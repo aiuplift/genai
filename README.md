@@ -9,7 +9,7 @@ Hosted via GitHub Pages. The site is served from the `public/` directory.
 ## 🏗️ Structure
 
 ```
-public/              → Static site (served by GitHub Pages)
+docs/                → Static site (served by GitHub Pages)
 ├── index.html       → SPA shell (student exercise platform)
 ├── css/styles.css   → Global styles
 ├── js/              → Application code
@@ -32,7 +32,7 @@ functions/           → Firebase Cloud Functions (AI chat proxy)
 
 ### AI Chat (Gemini)
 
-1. Copy `public/js/config.example.js` to `public/js/config.js`
+1. Copy `docs/js/config.example.js` to `docs/js/config.js`
 2. Add your Gemini API key (get one at https://aistudio.google.com/app/apikey)
 3. `config.js` is gitignored — your key won't be committed
 
@@ -49,7 +49,7 @@ For real-time collaboration features, configure Firebase:
 ## 🚀 Local Development
 
 ```bash
-cd public
+cd docs
 python3 -m http.server 8080
 # Open http://localhost:8080
 ```

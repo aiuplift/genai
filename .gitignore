@@ -3,7 +3,7 @@ node_modules/
 functions/node_modules/
 
 # Local config (contains API keys)
-public/js/config.js
+docs/js/config.js
 
 # OS files
 .DS_Store
