@@ -87,7 +87,11 @@ function init() {
   }
 
   // Configure session guard — checks if there is an active session
+  // In demo/static mode (no database), allow access to all routes
   setSessionCheck(() => {
+    if (!database || isDemoMode()) {
+      return true; // Bypass guard on GitHub Pages / static hosting
+    }
     return SessionManager.getActiveSession() !== null;
   });
 
@@ -96,6 +100,11 @@ function init() {
 
   // Start the router
   initRouter();
+
+  // In demo/static mode, navigate to modules list if on login page
+  if ((!database || isDemoMode()) && (!window.location.hash || window.location.hash === '#login')) {
+    window.location.hash = '#modules';
+  }
 
   // Initialize privacy cleanup (clears data on tab close)
   initPrivacyCleanup();
