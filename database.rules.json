@@ -1,0 +1,36 @@
+{
+  "rules": {
+    "sessions": {
+      ".read": true,
+      ".write": true,
+      "$passcode": {
+        "meta": {
+          ".validate": "newData.hasChildren(['name', 'createdAt', 'facilitatorId', 'passcode'])"
+        },
+        "modules": {
+          "$moduleId": {
+            ".validate": "$moduleId.matches(/^module(10|[1-9])$/)"
+          }
+        },
+        "groups": {
+          "$groupId": {
+            ".validate": "$groupId.matches(/^[A-Za-z0-9]{1,30}$/)",
+            "members": {
+              "$participantId": {
+                ".validate": "newData.hasChildren(['displayName', 'joinedAt'])"
+              }
+            }
+          }
+        },
+        "chat": {
+          "config": {
+            "apiKeys": {
+              ".read": false,
+              ".write": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 1: AI Landscape & Tool Survey — AI Skills Studio</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+<style>
+  /* ===== DESIGN SYSTEM ===== */
+  :root {
+    --navy:      #1E1045;
+    --blue:      #6C3AED;
+    --mint:      #0891B2;
+    --dark-bg:   #0F0A2E;
+    --light-bg:  #F5F3FF;
+    --card-bg:   #1E1B4B;
+    --text-light:#FFFFFF;
+    --text-muted:#A8B4D8;
+    --font:      system-ui, 'Segoe UI', sans-serif;
+    --practical-bg: #1A1050;
+  }
+
+  .reveal { font-family: var(--font); }
+  .reveal .slides section { text-align: left; padding: 0 48px; }
+
+  /* Progress bar */
+  .reveal .progress { height: 4px; color: var(--mint); }
+  .reveal .progress span { background: var(--mint); }
+
+  /* Slide number */
+  .reveal .slide-number {
+    background: rgba(0,0,0,0.4);
+    color: var(--text-muted);
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-family: var(--font);
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  .reveal h1, .reveal h2, .reveal h3 {
+    font-family: var(--font);
+    text-transform: none;
+    letter-spacing: -0.5px;
+  }
+  .slide-title-dark  { color: var(--text-light) !important; }
+  .slide-title-light { color: var(--navy) !important; }
+
+  .accent-bar {
+    width: 80px; height: 4px;
+    background: var(--mint);
+    margin: 6px 0 16px 0;
+    border-radius: 2px;
+  }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 18px 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  }
+  .card-light {
+    background: #fff;
+    border-radius: 10px;
+    padding: 18px 20px;
+    box-shadow: 0 2px 12px rgba(30,16,69,0.10);
+  }
+  .card-navy {
+    background: var(--navy);
+    border-radius: 10px;
+    padding: 18px 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  }
+
+  /* ===== GRID HELPERS ===== */
+  .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .grid-2x3  { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 12px; }
+  .grid-2x2  { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 14px; }
+  .flex-row   { display: flex; gap: 16px; align-items: stretch; }
+
+  /* ===== CHAPTER SLIDES ===== */
+  .chapter-num {
+    font-size: 96px;
+    font-weight: 900;
+    color: var(--mint);
+    opacity: 0.85;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .chapter-title {
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--text-light);
+    margin: 0 0 8px 0;
+  }
+  .chapter-sub {
+    font-size: 17px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin: 0;
+  }
+  .chapter-rule {
+    width: 100px; height: 4px;
+    background: var(--mint);
+    border-radius: 2px;
+    margin-top: 20px;
+  }
+
+  /* ===== AGENDA CARDS ===== */
+  .agenda-num {
+    font-size: 28px; font-weight: 800;
+    color: var(--mint); margin-bottom: 6px;
+  }
+  .agenda-title { font-size: 16px; font-weight: 700; color: var(--text-light); margin-bottom: 4px; }
+  .agenda-sub   { font-size: 14px; color: var(--text-muted); }
+
+  /* ===== LEVEL CARDS ===== */
+  .level-card { border-radius: 10px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.25); }
+  .level-bar  { height: 5px; }
+  .level-body { background: var(--card-bg); padding: 18px 16px; }
+  .level-title { font-size: 17px; font-weight: 700; color: var(--text-light); margin-bottom: 10px; }
+  .level-desc  { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+  /* ===== LIMIT ROWS ===== */
+  .limit-row {
+    display: flex; align-items: center;
+    background: var(--card-bg);
+    border-radius: 8px; padding: 12px 18px;
+    margin-bottom: 10px;
+    gap: 14px;
+  }
+  .limit-x  { color: #E74C3C; font-size: 20px; font-weight: 700; flex-shrink:0; }
+  .limit-txt { font-size: 16px; color: var(--text-light); }
+
+  /* ===== TOOL CARDS ===== */
+  .tool-title { font-size: 15px; font-weight: 700; color: var(--mint); margin-bottom: 8px; }
+  .tool-names { font-size: 14px; color: var(--text-light); line-height: 1.7; }
+
+  /* ===== LOOP / PIPELINE INFOGRAPHIC ===== */
+  .loop-steps { display: flex; align-items: stretch; gap: 0; }
+  .loop-step {
+    flex: 1;
+    background: var(--navy);
+    border-radius: 10px;
+    padding: 16px 10px;
+    text-align: center;
+  }
+  .loop-step-label { font-size: 13px; font-weight: 800; color: var(--mint); margin-bottom: 10px; letter-spacing: 1px; }
+  .loop-step-desc  { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+  .loop-arrow {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; color: var(--mint); flex-shrink: 0; padding: 0 6px;
+  }
+  .loop-footer {
+    background: rgba(8,145,178,0.12); border-radius: 8px;
+    padding: 10px 18px; margin-top: 16px;
+    font-size: 14px; color: var(--mint); font-weight: 600;
+    text-align: center;
+  }
+
+  /* ===== TIMELINE ===== */
+  .timeline { display: flex; flex-direction: column; gap: 12px; }
+  .tl-item  {
+    display: flex; align-items: flex-start; gap: 16px;
+    background: var(--navy); border-radius: 10px; padding: 14px 18px;
+  }
+  .tl-time {
+    font-size: 22px; font-weight: 800; color: var(--mint);
+    flex-shrink: 0; min-width: 64px; line-height: 1;
+  }
+  .tl-min  { font-size: 13px; font-weight: 400; color: var(--text-muted); }
+  .tl-title { font-size: 16px; font-weight: 700; color: var(--text-light); margin-bottom: 3px; }
+  .tl-desc  { font-size: 14px; color: var(--text-muted); }
+
+  /* ===== CHECKLIST ===== */
+  .check-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 9px 0; border-bottom: 1px solid rgba(108,58,237,0.15);
+    font-size: 16px; color: var(--text-light);
+  }
+  .check-icon { color: var(--mint); font-size: 17px; flex-shrink: 0; }
+
+  /* ===== CLOSING CARDS ===== */
+  .closing-card {
+    background: var(--card-bg); border-radius: 10px;
+    padding: 16px 18px; border-left: 3px solid var(--mint);
+    font-size: 15px; color: var(--text-light); line-height: 1.5;
+  }
+
+  /* ===== FOOTER BARS ===== */
+  .footer-bar {
+    background: rgba(8,145,178,0.08); border-radius: 8px;
+    padding: 9px 18px; margin-top: 14px;
+    font-size: 14px; color: var(--mint); font-weight: 600;
+    text-align: center;
+  }
+  .footer-bar-dark {
+    background: var(--card-bg);
+    border-radius: 8px; padding: 9px 18px; margin-top: 14px;
+    font-size: 14px; color: var(--mint); font-weight: 600;
+    text-align: center;
+  }
+
+  /* ===== VS ARROW ===== */
+  .vs-arrow {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; color: var(--mint); font-weight: 800;
+    flex-shrink: 0; padding: 0 8px;
+  }
+
+  /* ===== TEASER BOX ===== */
+  .teaser {
+    background: var(--card-bg); border-left: 3px solid var(--mint);
+    border-radius: 8px; padding: 10px 16px;
+    font-size: 14px; color: var(--text-muted);
+    margin-top: 12px; font-style: italic;
+  }
+
+  /* ===== TOOLTIPS ===== */
+  .tip {
+    position: relative;
+    border-bottom: 1px dashed var(--mint);
+    cursor: help;
+    color: inherit;
+    font-weight: inherit;
+  }
+  .tip:hover { color: var(--mint); }
+  .tip .tip-content {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--navy);
+    color: var(--text-light);
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.6;
+    width: 320px;
+    max-width: 90vw;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    border: 2px solid var(--mint);
+    z-index: 10000;
+    text-align: left;
+    font-style: normal;
+  }
+  .tip .tip-content::before {
+    content: '💡';
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  .tip:hover .tip-content,
+  .tip:focus .tip-content { display: block; }
+  /* Light variant */
+  .light-tip .tip-content { background: #fff; color: var(--navy); border-color: var(--blue); }
+  .light-tip { border-bottom-color: var(--blue); }
+  .light-tip:hover { color: var(--blue); }
+
+  /* ===== QUIZ SLIDES ===== */
+  .quiz-label { font-size: 13px; font-weight: 700; color: var(--mint); letter-spacing: 2px; margin-bottom: 12px; }
+  .quiz-question { font-size: 24px; font-weight: 700; color: var(--text-light); margin-bottom: 24px; line-height: 1.4; }
+  .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .quiz-opt {
+    background: var(--card-bg); border-radius: 10px; padding: 16px 20px;
+    font-size: 15px; color: var(--text-light); cursor: pointer;
+    border: 2px solid transparent; transition: all 0.2s;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .quiz-opt:hover { border-color: var(--mint); background: rgba(8,145,178,0.1); }
+  .quiz-opt.correct { background: #1D4A3A !important; border-color: #27AE60 !important; cursor: default; }
+  .quiz-opt.wrong { background: #4A1D1D !important; border-color: #E74C3C !important; cursor: default; opacity: 0.7; }
+  .quiz-opt.disabled { pointer-events: none; opacity: 0.6; }
+  .quiz-opt .opt-letter {
+    width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; flex-shrink: 0;
+  }
+  .quiz-opt.correct .opt-letter { background: #27AE60; color: #fff; }
+  .quiz-opt.wrong .opt-letter { background: #E74C3C; color: #fff; }
+  .quiz-explain {
+    margin-top: 16px; padding: 12px 18px; border-radius: 8px;
+    background: rgba(8,145,178,0.1); border-left: 3px solid var(--mint);
+    font-size: 14px; color: var(--text-muted); display: none; line-height: 1.6;
+  }
+  .quiz-explain.show { display: block; }
+
+  /* ===== NAV BAR ===== */
+  #session-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+    display: flex; justify-content: center; align-items: center;
+    gap: 6px; padding: 6px 12px;
+    background: rgba(15,10,46,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(8,145,178,0.2);
+    font-family: var(--font); font-size: 11px;
+  }
+  #session-nav .nav-label {
+    color: var(--text-muted); font-size: 10px; font-weight: 700;
+    letter-spacing: 1px; margin-right: 4px; flex-shrink: 0;
+  }
+  #session-nav a {
+    color: var(--text-muted); text-decoration: none;
+    padding: 3px 10px; border-radius: 20px;
+    border: 1px solid transparent;
+    transition: all 0.2s; font-size: 11px; white-space: nowrap;
+  }
+  #session-nav a:hover {
+    color: var(--mint); border-color: var(--mint);
+    background: rgba(8,145,178,0.1);
+  }
+  #session-nav a.nav-active {
+    color: var(--mint); border-color: rgba(8,145,178,0.4);
+  }
+
+  /* ===== TITLE SLIDE ===== */
+  .title-series  { font-size: 34px; font-weight: 800; color: var(--text-light); margin-bottom: 8px; line-height: 1.2; }
+  .title-session { font-size: 19px; font-weight: 600; color: var(--mint); margin-bottom: 8px; }
+  .title-tagline { font-size: 15px; color: var(--text-muted); font-style: italic; margin-bottom: 32px; }
+  .title-rule    { width: 80px; height: 3px; background: var(--mint); border-radius: 2px; margin-bottom: 24px; }
+  .title-author  { font-size: 15px; font-weight: 700; color: var(--text-light); margin-bottom: 4px; }
+  .title-date    { font-size: 13px; color: var(--text-muted); }
+
+  /* ===== KEYBOARD HINT ===== */
+  .keyboard-hint {
+    position: absolute; bottom: 28px; right: 0;
+    font-size: 11px; color: rgba(168,180,216,0.6);
+    display: flex; gap: 12px; align-items: center;
+  }
+  .key {
+    display: inline-block;
+    border: 1px solid rgba(168,180,216,0.3);
+    border-radius: 4px; padding: 2px 7px;
+    font-size: 11px; color: rgba(168,180,216,0.7);
+  }
+
+  /* ===== FRAGMENT OVERRIDES ===== */
+  .reveal .fragment { opacity: 0.15; transition: opacity 0.4s, transform 0.4s; }
+  .reveal .fragment.visible { opacity: 1; }
+  .reveal .fragment.fade-up { transform: translateY(20px); }
+  .reveal .fragment.fade-up.visible { transform: translateY(0); }
+  .reveal .fragment.scale-in { transform: scale(0.85); }
+  .reveal .fragment.scale-in.visible { transform: scale(1); }
+
+  /* ===== LIGHT SLIDE TEXT OVERRIDES ===== */
+  .light-slide p, .light-slide li { color: var(--navy); }
+
+  /* ===== PRACTICAL / HANDS-ON SLIDES ===== */
+  .practical-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--blue), var(--mint));
+    color: #fff;
+    font-size: 14px; font-weight: 800;
+    padding: 6px 16px; border-radius: 20px;
+    letter-spacing: 1px; margin-bottom: 14px;
+  }
+  .practical-url {
+    background: rgba(8,145,178,0.15);
+    border: 1px solid var(--mint);
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 16px; font-weight: 700;
+    color: var(--mint);
+    text-align: center;
+    margin: 12px 0;
+    word-break: break-all;
+  }
+  .practical-steps {
+    list-style: none; padding: 0; margin: 12px 0;
+  }
+  .practical-steps li {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 8px 0; font-size: 16px; color: var(--text-light);
+  }
+  .practical-steps li .step-num {
+    background: var(--mint); color: #fff; border-radius: 50%;
+    width: 26px; height: 26px; display: flex; align-items: center;
+    justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0;
+  }
+
+  /* ===== PROBABILITY CARDS ===== */
+  .prob-card {
+    background: var(--card-bg); border-radius: 10px; padding: 14px 16px;
+    text-align: center;
+  }
+  .prob-word { font-size: 18px; font-weight: 700; color: var(--text-light); margin-bottom: 6px; }
+  .prob-pct { font-size: 28px; font-weight: 900; color: var(--mint); }
+  .prob-bar { height: 6px; border-radius: 3px; margin-top: 8px; background: rgba(255,255,255,0.1); overflow: hidden; }
+  .prob-bar-fill { height: 100%; border-radius: 3px; background: var(--mint); }
+
+  /* ===== PASSCODE GATE ===== */
+  #passcode-gate {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--dark-bg);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 99999; flex-direction: column; gap: 16px;
+  }
+  #passcode-gate input {
+    padding: 12px 24px; font-size: 18px; border-radius: 8px;
+    border: 2px solid var(--mint); background: var(--card-bg);
+    color: var(--text-light); text-align: center; letter-spacing: 4px;
+    width: 200px; outline: none;
+  }
+  #passcode-gate input:focus { box-shadow: 0 0 12px rgba(8,145,178,0.4); }
+  #passcode-gate .gate-title { font-size: 24px; color: var(--text-light); font-weight: 700; }
+  #passcode-gate .gate-hint { font-size: 13px; color: var(--text-muted); }
+  #passcode-gate .gate-error { font-size: 13px; color: #E74C3C; display: none; }
+</style>
+</head>
+<body>
+
+<!-- PASSCODE GATE -->
+<div id="passcode-gate">
+  <div class="gate-title">🔒 AI Skills Studio</div>
+  <div class="gate-hint">Enter session passcode to continue</div>
+  <input type="text" id="gate-input" maxlength="5" placeholder="•••••" autocomplete="off">
+  <div class="gate-error" id="gate-error">Incorrect passcode. Try again.</div>
+</div>
+
+<!-- SESSION NAV BAR -->
+<div id="session-nav" style="display:none;">
+  <span class="nav-label">MODULE 1:</span>
+  <a href="#" data-nav="0" onclick="Reveal.slide(3); return false;">01 How AI Works</a>
+  <a href="#" data-nav="1" onclick="Reveal.slide(10); return false;">02 AI Types</a>
+  <a href="#" data-nav="2" onclick="Reveal.slide(14); return false;">03 Tool Categories</a>
+  <a href="#" data-nav="3" onclick="Reveal.slide(19); return false;">04 Key Risks</a>
+  <a href="#" data-nav="4" onclick="Reveal.slide(23); return false;">05 Activity</a>
+  <a href="#" data-nav="5" onclick="Reveal.slide(26); return false;">06 Wrap-up</a>
+</div>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- ==================== SLIDE 1: TITLE ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top: 40px;">
+    <div style="width:100%;height:4px;background:linear-gradient(90deg, var(--blue), var(--mint));border-radius:2px;margin-bottom:32px;"></div>
+    <div class="title-series">AI Skills Studio</div>
+    <div class="title-session">Module 1: The AI Landscape &amp; Tool Survey</div>
+    <div class="title-tagline">Understanding how generative AI works and mapping the tools that matter</div>
+    <div class="title-rule"></div>
+    <div class="title-author">Gen AI Inc</div>
+    <div class="title-date">2025 &nbsp;|&nbsp; 75 minutes</div>
+    <div class="keyboard-hint">
+      <span><span class="key">←→</span> Navigate</span>
+      <span><span class="key">F</span> Fullscreen</span>
+      <span><span class="key">S</span> Speaker Notes</span>
+      <span><span class="key">O</span> Overview</span>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] [TRANSITION: Welcome participants as they join]
+Key talking points:
+• Welcome to Module 1 of AI Skills Studio
+• This session is 75 minutes — theory + hands-on practice
+• By end of session you'll understand how AI works and have a personal tool map
+Discussion prompt: "Quick show of hands — who has used ChatGPT or similar in the past week?"
+Facilitation tip: Start on time. Use the show-of-hands to gauge baseline experience level.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 2: GROUND RULES ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:24px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Ground Rules</h2>
+    <div class="accent-bar"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="limit-row fragment fade-up">
+        <div style="font-size:1.2rem;flex-shrink:0;">🧪</div>
+        <div class="limit-txt"><strong>Interactive.</strong> You'll be opening tools and trying things live — not just watching slides.</div>
+      </div>
+      <div class="limit-row fragment fade-up">
+        <div style="font-size:1.2rem;flex-shrink:0;">🔧</div>
+        <div class="limit-txt"><strong>Tool-agnostic.</strong> We teach principles, not loyalty to any single product. Use what works for you.</div>
+      </div>
+      <div class="limit-row fragment fade-up">
+        <div style="font-size:1.2rem;flex-shrink:0;">❓</div>
+        <div class="limit-txt"><strong>Ask anything.</strong> No question is too basic. If you're wondering, others are too.</div>
+      </div>
+      <div class="limit-row fragment fade-up">
+        <div style="font-size:1.2rem;flex-shrink:0;">🧭</div>
+        <div class="limit-txt"><strong>Exploration mindset.</strong> We're not trying to master AI today — just open the door and look inside.</div>
+      </div>
+      <div class="limit-row fragment fade-up">
+        <div style="font-size:1.2rem;flex-shrink:0;">💻</div>
+        <div class="limit-txt"><strong>Have a device ready.</strong> You'll need a laptop or phone for the practical exercises.</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: From title → set expectations for the session]
+Key talking points:
+• This is NOT a lecture — 60% of the session is hands-on
+• Emphasize: no prior AI experience needed
+• Devices out is encouraged (we'll use them!)
+Discussion prompt: "What's one thing you hope to understand better about AI by end of today?"
+Facilitation tip: Read each rule, pause. The exploration mindset rule is key — remove pressure to "get it right."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 3: AGENDA ==================== -->
+<section data-background-color="#F5F3FF">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-light" style="font-size:28px;font-weight:800;margin-bottom:4px;">Today's Journey</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2x3" style="margin-top:8px;">
+      <div class="card-navy fragment scale-in">
+        <div class="agenda-num">01</div>
+        <div class="agenda-title">🧠 How Generative AI Works</div>
+        <div class="agenda-sub">Tokens, prediction, and patterns</div>
+      </div>
+      <div class="card-navy fragment scale-in">
+        <div class="agenda-num">02</div>
+        <div class="agenda-title">🤖 Three Types of AI</div>
+        <div class="agenda-sub">Traditional, Generative, Embedded</div>
+      </div>
+      <div class="card-navy fragment scale-in">
+        <div class="agenda-num">03</div>
+        <div class="agenda-title">🗂️ Five Tool Categories</div>
+        <div class="agenda-sub">Text, Image, Code, Data, Audio</div>
+      </div>
+      <div class="card-navy fragment scale-in">
+        <div class="agenda-num">04</div>
+        <div class="agenda-title">⚠️ Key Risks</div>
+        <div class="agenda-sub">Hallucination, Privacy, Bias, IP</div>
+      </div>
+      <div class="card-navy fragment scale-in">
+        <div class="agenda-num">05</div>
+        <div class="agenda-title">🔨 Hands-On Activity</div>
+        <div class="agenda-sub">Tool Survey &amp; Personal Tool Map</div>
+      </div>
+      <div class="card-navy fragment scale-in">
+        <div class="agenda-num">06</div>
+        <div class="agenda-title">🎯 Wrap-up</div>
+        <div class="agenda-sub">Takeaways &amp; Module 2 Preview</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: From ground rules → overview of what we'll cover]
+Key talking points:
+• 75 minutes total: ~40 min theory, ~35 min practical
+• We'll visit real tools during the session — keep devices handy
+• Sections 1-4 are theory with embedded mini-activities; Section 5 is the big exercise
+Discussion prompt: "Which section are you most curious about?"
+Facilitation tip: Use this as a roadmap — refer back to it when transitioning between chapters.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 4: CHAPTER 01 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">01</div>
+    <div class="chapter-title">How Generative AI Works</div>
+    <div class="chapter-sub">Tokens, prediction, and the illusion of understanding</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Now that you know where we're headed, let's start with the big question — how does this actually work?"]
+Key talking points:
+• This chapter demystifies the "magic" — it's math, not intelligence
+• We'll see exactly how AI processes text
+Facilitation tip: Build curiosity here. "By end of this section you'll understand why AI sometimes says confidently wrong things."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 5: THE AUTOCOMPLETE MODEL ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:18px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">The World's Most Powerful Autocomplete</h2>
+    <div class="accent-bar"></div>
+    <div class="loop-steps" style="margin-top:16px;">
+      <div class="loop-step fragment scale-in">
+        <div class="loop-step-label">1. TRAINING</div>
+        <div style="font-size:28px;margin:8px 0;">📚</div>
+        <div class="loop-step-desc">Reads billions of pages of text from the internet, books, and code</div>
+      </div>
+      <div class="loop-arrow fragment">→</div>
+      <div class="loop-step fragment scale-in">
+        <div class="loop-step-label">2. PATTERNS</div>
+        <div style="font-size:28px;margin:8px 0;">🧩</div>
+        <div class="loop-step-desc">Learns statistical patterns: which words tend to follow which other words</div>
+      </div>
+      <div class="loop-arrow fragment">→</div>
+      <div class="loop-step fragment scale-in">
+        <div class="loop-step-label">3. OUTPUT</div>
+        <div style="font-size:28px;margin:8px 0;">✍️</div>
+        <div class="loop-step-desc">Predicts the next <span class="tip">token<span class="tip-content">A token is a piece of text — roughly ¾ of a word. "ChatGPT" = 3 tokens. "Hello world" = 2 tokens. AI thinks in tokens, not words.</span></span>, one at a time, to form responses</div>
+      </div>
+    </div>
+    <div class="loop-footer fragment fade-up">💡 Key insight: GenAI doesn't "know" things — it predicts what text is most likely to come next</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Let's start with what's actually happening under the hood"]
+Key talking points:
+• This is the single most important mental model for the course
+• AI = sophisticated pattern matching, NOT understanding
+• The training data determines what patterns it learned
+• "Autocomplete on steroids" — same idea as phone keyboard, just way more powerful
+Discussion prompt: "Your phone predicts your next word too. What's the difference in scale?"
+Facilitation tip: Use the typing animation metaphor — show phone autocomplete, then explain AI is the same principle at massive scale.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 6: TOKEN PREDICTION ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:18px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Token Prediction in Action</h2>
+    <div class="accent-bar"></div>
+    <p style="font-size:15px;color:var(--text-muted);margin-bottom:16px;">Prompt: <strong style="color:var(--text-light);">"The capital of France is ___"</strong></p>
+    <div class="grid-3col" style="margin-bottom:16px;">
+      <div class="prob-card fragment scale-in">
+        <div class="prob-word">Paris</div>
+        <div class="prob-pct">97%</div>
+        <div class="prob-bar"><div class="prob-bar-fill" style="width:97%;"></div></div>
+      </div>
+      <div class="prob-card fragment scale-in">
+        <div class="prob-word">Lyon</div>
+        <div class="prob-pct" style="font-size:22px;color:var(--text-muted);">0.5%</div>
+        <div class="prob-bar"><div class="prob-bar-fill" style="width:2%;"></div></div>
+      </div>
+      <div class="prob-card fragment scale-in">
+        <div class="prob-word">beautiful</div>
+        <div class="prob-pct" style="font-size:22px;color:var(--text-muted);">0.3%</div>
+        <div class="prob-bar"><div class="prob-bar-fill" style="width:1%;"></div></div>
+      </div>
+    </div>
+    <div class="grid-2col fragment fade-up">
+      <div class="card" style="border-left:3px solid var(--mint);">
+        <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:6px;">🌡️ Temperature = Low (0.1)</div>
+        <div style="font-size:14px;color:var(--text-muted);">Always picks "Paris" → <strong style="color:var(--text-light);">Factual, predictable</strong></div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--blue);">
+        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:6px;">🌡️ Temperature = High (0.9)</div>
+        <div style="font-size:14px;color:var(--text-muted);">Might pick "beautiful" → <strong style="color:var(--text-light);">Creative, surprising</strong></div>
+      </div>
+    </div>
+    <div class="teaser fragment fade-up">🔮 Module 3 deep-dive: You'll learn exactly how to use temperature to control AI creativity vs accuracy</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "So now we know it predicts — but HOW does it choose?"]
+Key talking points:
+• Each prediction is a probability distribution across ALL possible next tokens
+• Temperature controls randomness — low = safe picks, high = creative picks
+• This is why the same prompt can give different answers each time
+• NOT looking up answers in a database — calculating probabilities
+Discussion prompt: "When would you want high temperature vs low temperature?"
+Facilitation tip: Let them guess before revealing the temperature cards. "What if we turn up the randomness dial?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 7: PRACTICAL — TOKENIZER ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:16px;">
+    <div class="practical-badge">💻 TRY IT NOW</div>
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">See Tokens in Action</h2>
+    <div class="accent-bar"></div>
+    <div class="practical-url">https://platform.openai.com/tokenizer</div>
+    <div style="font-size:13px;color:var(--text-muted);text-align:center;margin-bottom:14px;">⏱️ Take 3 minutes</div>
+    <ul class="practical-steps">
+      <li class="fragment fade-up"><span class="step-num">1</span> Open the tokenizer link above on your device</li>
+      <li class="fragment fade-up"><span class="step-num">2</span> Type: <strong style="color:var(--mint);">"Artificial Intelligence is transforming every industry"</strong> — count the tokens</li>
+      <li class="fragment fade-up"><span class="step-num">3</span> Now type: <strong style="color:var(--mint);">"AI は全産業を変革している"</strong> — how many tokens is this?</li>
+      <li class="fragment fade-up"><span class="step-num">4</span> Finally type: <strong style="color:var(--mint);">"supercalifragilisticexpialidocious"</strong> — what happens?</li>
+    </ul>
+    <div class="card fragment fade-up" style="margin-top:14px;border-left:3px solid var(--mint);padding:12px 16px;">
+      <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:4px;">🤔 What did you notice?</div>
+      <div style="font-size:14px;color:var(--text-muted);">Different languages use different token counts. Long/unusual words get split into more tokens. This affects cost and context limits!</div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Enough theory — let's SEE tokens with your own eyes"]
+Key talking points:
+• Walk the room while they do this — help anyone having trouble finding the URL
+• English text ≈ 1 token per 0.75 words; other languages use MORE tokens
+• The long word gets broken into sub-word pieces — AI doesn't know "words"
+• This is why AI tools have "token limits" not "word limits"
+Discussion prompt: "Who got a surprising result? What surprised you?"
+Facilitation tip: Have the tokenizer open on your screen as backup. Some corporate firewalls may block it — have a screenshot ready.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 8: PATTERN vs UNDERSTANDING ==================== -->
+<section data-background-color="#F5F3FF">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-light" style="font-size:26px;font-weight:800;margin-bottom:4px;">Pattern Matching ≠ Understanding</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="margin-top:8px;">
+      <div style="background:#E8F8F5;border-radius:10px;padding:18px;" class="fragment scale-in">
+        <div style="font-size:14px;font-weight:800;color:#1B8A6B;margin-bottom:12px;">✅ What AI DOES</div>
+        <div style="font-size:13px;color:#1B4F40;line-height:2;">
+          • Recognise language patterns<br>
+          • Generate fluent text<br>
+          • Translate between languages<br>
+          • Summarise long documents<br>
+          • Follow formatting instructions<br>
+          • Combine ideas from training data
+        </div>
+      </div>
+      <div style="background:#FEF0EE;border-radius:10px;padding:18px;" class="fragment scale-in">
+        <div style="font-size:14px;font-weight:800;color:#E74C3C;margin-bottom:12px;">❌ What AI DOESN'T</div>
+        <div style="font-size:13px;color:#7B3529;line-height:2;">
+          • Understand meaning or truth<br>
+          • Have beliefs or opinions<br>
+          • Access real-time information<br>
+          • Verify facts before stating them<br>
+          • Know what it doesn't know<br>
+          • Think or reason like humans
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="background:rgba(108,58,237,0.08);color:var(--navy);">
+      💡 AI is a <strong>mirror of its training data</strong> — it reflects patterns, not truth
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "So now we know HOW it works. But what does that mean for what it CAN and CAN'T do?"]
+Key talking points:
+• This is the most misunderstood aspect of AI
+• "Fluent" does not mean "correct" — AI can write beautifully wrong answers
+• No real-time info: training data has a cutoff date
+• It doesn't know what it doesn't know — it can't say "I'm not sure"
+Discussion prompt: "Have you ever been confidently told something wrong by ChatGPT?"
+Facilitation tip: Collect 2-3 examples from the room. This naturally leads to the next slide on hallucination.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 9: HALLUCINATION PROBLEM ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">The <span class="tip">Hallucination<span class="tip-content">When AI generates text that sounds confident and plausible but is factually incorrect. It's not "lying" — it simply predicted likely-sounding tokens without any truth-checking mechanism.</span></span> Problem</h2>
+    <div class="accent-bar"></div>
+    <div style="background:var(--card-bg);border-radius:10px;padding:16px 20px;margin-bottom:16px;border-left:3px solid #E74C3C;">
+      <div style="font-size:15px;color:var(--text-light);font-style:italic;line-height:1.5;">
+        "AI hallucination isn't a bug — it's a fundamental feature of how prediction works. The model doesn't distinguish between what's true and what sounds true."
+      </div>
+      <div style="font-size:14px;color:var(--text-muted);margin-top:8px;">— Why this matters for every professional</div>
+    </div>
+    <div class="grid-3col">
+      <div class="card fragment fade-up" style="border-top:3px solid #E74C3C;">
+        <div style="font-size:13px;font-weight:700;color:#E74C3C;margin-bottom:6px;">📚 Fake Citations</div>
+        <div style="font-size:14px;color:var(--text-muted);">Lawyers fined for citing AI-generated case law that didn't exist (2023)</div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:3px solid #F39C12;">
+        <div style="font-size:13px;font-weight:700;color:#F39C12;margin-bottom:6px;">📊 Wrong Numbers</div>
+        <div style="font-size:14px;color:var(--text-muted);">Financial reports with plausible but fabricated statistics that passed initial review</div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:3px solid #9B59B6;">
+        <div style="font-size:13px;font-weight:700;color:#9B59B6;margin-bottom:6px;">👤 Invented People</div>
+        <div style="font-size:14px;color:var(--text-muted);">AI creates realistic biographies for people who never existed, complete with quotes</div>
+      </div>
+    </div>
+    <div class="footer-bar-dark fragment fade-up">🛡️ Rule #1: Never trust AI output without verification — especially for facts, numbers, and names</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "And this leads to the biggest risk you need to understand RIGHT NOW"]
+Key talking points:
+• Hallucination = AI "makes up" information that sounds plausible
+• Not lying — it's predicting tokens without truth-checking
+• Real-world consequences: legal, financial, reputational
+• This is why we need verification habits (covered in Chapter 4)
+Discussion prompt: "What would happen in YOUR work if AI gave you a convincing but wrong answer?"
+Facilitation tip: The lawyer example is powerful — mention it was a $5,000 fine and nearly ended careers. Make it real.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 10: QUIZ 1 ==================== -->
+<section data-background-color="#0F0A2E">
+  <div id="quiz-1" style="padding-top:24px;">
+    <div class="quiz-label">🧠 KNOWLEDGE CHECK</div>
+    <div class="quiz-question">How does Generative AI produce its output?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-1', 0, 1, 'GenAI predicts the most likely next token based on patterns learned during training. It doesn\'t search databases or understand meaning — it calculates probabilities.')">
+        <span class="opt-letter">A</span> It searches the internet for answers in real-time
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-1', 1, 1, 'GenAI predicts the most likely next token based on patterns learned during training. It doesn\'t search databases or understand meaning — it calculates probabilities.')">
+        <span class="opt-letter">B</span> It predicts the next most likely token based on learned patterns
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-1', 2, 1, 'GenAI predicts the most likely next token based on patterns learned during training. It doesn\'t search databases or understand meaning — it calculates probabilities.')">
+        <span class="opt-letter">C</span> It retrieves pre-written answers from a database
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-1', 3, 1, 'GenAI predicts the most likely next token based on patterns learned during training. It doesn\'t search databases or understand meaning — it calculates probabilities.')">
+        <span class="opt-letter">D</span> It understands the question and reasons to find the answer
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1.5 min] [TRANSITION: "Quick check before we move on — let's see if the autocomplete model clicked"]
+Key talking points:
+• Let them discuss briefly before anyone clicks
+• After reveal: reinforce that "predicts likely tokens" is the core mechanism
+• Common misconception: people think AI "understands" — this quiz challenges that
+Facilitation tip: If most get it right, celebrate. If not, quickly revisit the pipeline slide verbally before moving on.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 11: CHAPTER 02 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">02</div>
+    <div class="chapter-title">Three Types of AI</div>
+    <div class="chapter-sub">Not all AI is created equal — know what you're working with</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Now that we understand the mechanism, let's zoom out — GenAI is only ONE type of AI you encounter daily"]
+Key talking points:
+• People use "AI" as a catch-all term but there are distinct categories
+• Knowing the type helps you set appropriate expectations
+Facilitation tip: Quick pulse — "When someone says 'AI' at work, what comes to mind?" Get 2-3 quick answers.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 12: THREE TYPES COMPARISON ==================== -->
+<section data-background-color="#F5F3FF">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-light" style="font-size:26px;font-weight:800;margin-bottom:4px;">Three Types of AI in the Workplace</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-3col" style="margin-top:8px;">
+      <div class="level-card fragment scale-in">
+        <div class="level-bar" style="background:#6C3AED;"></div>
+        <div class="level-body">
+          <div class="level-title"><span class="tip light-tip">Traditional AI<span class="tip-content">Rule-based systems and classical machine learning. Trained on specific data for specific tasks. Think spam filters, recommendation engines, fraud detection.</span></span></div>
+          <div class="level-desc">
+            <strong style="color:var(--mint);font-size:13px;">HOW IT WORKS</strong><br>
+            Trained on labeled data for one specific task<br><br>
+            <strong style="color:var(--mint);font-size:13px;">EXAMPLES</strong><br>
+            Spam filters<br>Product recommendations<br>Fraud detection
+          </div>
+        </div>
+      </div>
+      <div class="level-card fragment scale-in">
+        <div class="level-bar" style="background:#0891B2;"></div>
+        <div class="level-body">
+          <div class="level-title"><span class="tip light-tip">Generative AI<span class="tip-content">Creates NEW content (text, images, code, audio) based on patterns learned from vast training data. ChatGPT, Claude, Midjourney, GitHub Copilot.</span></span></div>
+          <div class="level-desc">
+            <strong style="color:var(--mint);font-size:13px;">HOW IT WORKS</strong><br>
+            Creates new content from learned patterns<br><br>
+            <strong style="color:var(--mint);font-size:13px;">EXAMPLES</strong><br>
+            ChatGPT / Claude / Gemini<br>DALL-E / Midjourney<br>GitHub Copilot
+          </div>
+        </div>
+      </div>
+      <div class="level-card fragment scale-in">
+        <div class="level-bar" style="background:#27AE60;"></div>
+        <div class="level-body">
+          <div class="level-title"><span class="tip light-tip">Embedded AI<span class="tip-content">AI features built INTO existing tools you already use. You might not even notice it's AI. Think Gmail Smart Compose, Grammarly suggestions, Excel insights.</span></span></div>
+          <div class="level-desc">
+            <strong style="color:var(--mint);font-size:13px;">HOW IT WORKS</strong><br>
+            AI features hidden inside familiar tools<br><br>
+            <strong style="color:var(--mint);font-size:13px;">EXAMPLES</strong><br>
+            Gmail Smart Compose<br>Grammarly<br>Excel AI Insights
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="background:rgba(108,58,237,0.08);color:var(--navy);">
+      You're probably already using all three types daily — most people just don't realise it
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Let me show you how different these are"]
+Key talking points:
+• Traditional AI = narrow, specific, reliable for its trained task
+• Generative AI = broad, creative, needs verification
+• Embedded AI = invisible, convenient, sometimes limiting
+• Most people only think of ChatGPT when they hear "AI"
+Discussion prompt: "Which type do you think you use most at work — even without realising?"
+Facilitation tip: The embedded AI category surprises people. Give more examples: Outlook scheduling suggestions, Slack emoji reactions, Spotify Discover Weekly.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 13: WORKPLACE EXAMPLES ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Spot the AI Type</h2>
+    <div class="accent-bar"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="limit-row fragment fade-up">
+        <div style="background:#6C3AED;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:12px;flex-shrink:0;min-width:80px;text-align:center;">Traditional</div>
+        <div class="limit-txt">Your bank flags a suspicious transaction before you notice it</div>
+      </div>
+      <div class="limit-row fragment fade-up">
+        <div style="background:#0891B2;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:12px;flex-shrink:0;min-width:80px;text-align:center;">Generative</div>
+        <div class="limit-txt">You ask Claude to write a project proposal from bullet points</div>
+      </div>
+      <div class="limit-row fragment fade-up">
+        <div style="background:#27AE60;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:12px;flex-shrink:0;min-width:80px;text-align:center;">Embedded</div>
+        <div class="limit-txt">Gmail suggests "Thanks, sounds good!" as a quick reply</div>
+      </div>
+      <div class="limit-row fragment fade-up">
+        <div style="background:#0891B2;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:12px;flex-shrink:0;min-width:80px;text-align:center;">Generative</div>
+        <div class="limit-txt">Midjourney creates a logo concept from your text description</div>
+      </div>
+      <div class="limit-row fragment fade-up">
+        <div style="background:#27AE60;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:12px;flex-shrink:0;min-width:80px;text-align:center;">Embedded</div>
+        <div class="limit-txt">Notion AI summarises your meeting notes automatically</div>
+      </div>
+    </div>
+    <div class="teaser fragment fade-up">💡 The line between these types is blurring — many tools now combine multiple AI types in one product</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Let's make this concrete with examples you'll recognise"]
+Key talking points:
+• Walk through each example — ask them to guess the type before revealing
+• The badge colours match the previous slide for reinforcement
+• Notion AI is interesting: it's embedded (inside Notion) but uses generative tech
+Discussion prompt: "Can you think of an AI tool that blends two types?"
+Facilitation tip: Cover the badges and reveal them one by one. Make it a mini-game. Gets energy up.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 14: QUIZ 2 ==================== -->
+<section data-background-color="#0F0A2E">
+  <div id="quiz-2" style="padding-top:24px;">
+    <div class="quiz-label">🧠 KNOWLEDGE CHECK</div>
+    <div class="quiz-question">Gmail's Smart Compose (suggesting how to finish your sentence) is an example of...</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-2', 0, 2, 'Smart Compose is Embedded AI — it\'s an AI feature built directly into Gmail that you use without switching to a separate AI tool. You might not even notice it\'s AI!')">
+        <span class="opt-letter">A</span> Traditional AI
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-2', 1, 2, 'Smart Compose is Embedded AI — it\'s an AI feature built directly into Gmail that you use without switching to a separate AI tool. You might not even notice it\'s AI!')">
+        <span class="opt-letter">B</span> Generative AI
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-2', 2, 2, 'Smart Compose is Embedded AI — it\'s an AI feature built directly into Gmail that you use without switching to a separate AI tool. You might not even notice it\'s AI!')">
+        <span class="opt-letter">C</span> Embedded AI
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-2', 3, 2, 'Smart Compose is Embedded AI — it\'s an AI feature built directly into Gmail that you use without switching to a separate AI tool. You might not even notice it\'s AI!')">
+        <span class="opt-letter">D</span> Not actually AI
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1.5 min] [TRANSITION: "Quick check — can you spot the type?"]
+Key talking points:
+• This is a common trick question — people often say "Generative" because it generates text
+• But the KEY distinction is that it's built INTO an existing tool (Gmail)
+• It technically uses generative technology but the user experience is "embedded"
+Facilitation tip: If there's debate, use it as a teaching moment: "This is exactly why the categories matter — the lines are blurry and context matters."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 15: CHAPTER 03 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">03</div>
+    <div class="chapter-title">Five Tool Categories</div>
+    <div class="chapter-sub">Mapping the AI tool landscape by what they create</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Now let's map the landscape — what kinds of AI tools exist and what can each one do?"]
+Key talking points:
+• This section gives you the vocabulary to categorise any AI tool you encounter
+• By end of this chapter you'll have a mental framework for evaluating new tools
+Facilitation tip: "Think of this as building your personal AI tool menu — we're listing all the dishes available."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 16: TOOL CATEGORIES GRID ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">The Five Categories of AI Tools</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2x3" style="margin-top:8px;">
+      <div class="card fragment scale-in" style="border-top:3px solid #6C3AED;">
+        <div class="tool-title" style="color:#6C3AED;">✍️ Text Generation</div>
+        <div class="tool-names">Write, summarise, translate, analyse text<br><strong style="font-size:13px;color:var(--mint);">ChatGPT · Claude · Gemini</strong></div>
+      </div>
+      <div class="card fragment scale-in" style="border-top:3px solid #0891B2;">
+        <div class="tool-title" style="color:#0891B2;">🎨 Image Creation</div>
+        <div class="tool-names">Generate, edit, upscale, style-transfer images<br><strong style="font-size:13px;color:var(--mint);">DALL-E · Midjourney · Stable Diffusion</strong></div>
+      </div>
+      <div class="card fragment scale-in" style="border-top:3px solid #27AE60;">
+        <div class="tool-title" style="color:#27AE60;">💻 Code Assistants</div>
+        <div class="tool-names">Generate, explain, debug, refactor code<br><strong style="font-size:13px;color:var(--mint);">Copilot · Cursor · Replit AI</strong></div>
+      </div>
+      <div class="card fragment scale-in" style="border-top:3px solid #F39C12;">
+        <div class="tool-title" style="color:#F39C12;">📊 Data &amp; Analysis</div>
+        <div class="tool-names">Clean, visualise, query, predict from data<br><strong style="font-size:13px;color:var(--mint);">Julius AI · ChatGPT Code Interpreter</strong></div>
+      </div>
+      <div class="card fragment scale-in" style="border-top:3px solid #E74C3C;">
+        <div class="tool-title" style="color:#E74C3C;">🎵 Audio &amp; Video</div>
+        <div class="tool-names">Transcribe, generate speech, create music/video<br><strong style="font-size:13px;color:var(--mint);">ElevenLabs · Suno · Descript · Runway</strong></div>
+      </div>
+      <div class="card fragment scale-in" style="border-top:3px solid var(--mint);background:rgba(8,145,178,0.15);">
+        <div class="tool-title">🎯 Your Goal</div>
+        <div class="tool-names" style="color:var(--mint);">Know which category to reach for based on what you need to accomplish</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Let's build your mental map of what's available"]
+Key talking points:
+• These 5 categories cover 95% of AI tools professionals use
+• Most tools specialise in one category; some span multiple (ChatGPT does text + code + data)
+• Knowing categories helps you evaluate: "Is this tool in the right category for my task?"
+Discussion prompt: "Which category would help you most in your current role?"
+Facilitation tip: Point out that the 6th card is THEIR goal — this is about building judgment, not memorising tool names.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 17: CATEGORY DEEP DIVE ==================== -->
+<section data-background-color="#F5F3FF">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-light" style="font-size:26px;font-weight:800;margin-bottom:4px;">Deep Dive: Text &amp; Image Tools</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="margin-top:8px;">
+      <div style="background:#fff;border-radius:10px;padding:18px;box-shadow:0 2px 12px rgba(30,16,69,0.08);" class="fragment scale-in">
+        <div style="font-size:14px;font-weight:800;color:#6C3AED;margin-bottom:10px;">✍️ Text Generation Tools</div>
+        <div style="font-size:14px;color:var(--navy);line-height:1.8;">
+          <strong>ChatGPT</strong> — Best for general conversations, creative writing<br>
+          <strong>Claude</strong> — Best for long documents, analysis, nuance<br>
+          <strong>Gemini</strong> — Best for Google integration, multimodal<br>
+          <strong>Perplexity</strong> — Best for research with cited sources<br><br>
+          <span style="font-size:13px;color:#666;font-style:italic;">💡 Most professionals need at least 2 text tools for different tasks</span>
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:10px;padding:18px;box-shadow:0 2px 12px rgba(30,16,69,0.08);" class="fragment scale-in">
+        <div style="font-size:14px;font-weight:800;color:#0891B2;margin-bottom:10px;">🎨 Image Creation Tools</div>
+        <div style="font-size:14px;color:var(--navy);line-height:1.8;">
+          <strong>DALL-E 3</strong> — Best for quick concepts, ChatGPT integrated<br>
+          <strong>Midjourney</strong> — Best for artistic, high-quality images<br>
+          <strong>Stable Diffusion</strong> — Best for customisation, local use<br>
+          <strong>Canva AI</strong> — Best for business graphics, presentations<br><br>
+          <span style="font-size:13px;color:#666;font-style:italic;">💡 Match the tool to the quality and style your task demands</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="background:rgba(108,58,237,0.08);color:var(--navy);">
+      🔑 The best tool depends on your specific task — there is no single "best AI tool"
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Let's look closer at the two most-used categories"]
+Key talking points:
+• Text tools: each has a personality and strength area
+• Image tools: quality/control tradeoff exists
+• "Best" depends on task context, not marketing claims
+• Free tiers exist for all — they can try before committing
+Discussion prompt: "Has anyone tried more than one text AI? Did you notice differences?"
+Facilitation tip: If time allows, open ChatGPT and Claude side-by-side with the same prompt to show differences live.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 18: CHOOSING THE RIGHT TOOL ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Choosing the Right Tool</h2>
+    <div class="accent-bar"></div>
+    <div style="border-radius:10px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+      <div style="display:grid;grid-template-columns:1.2fr 0.8fr 1fr 1.5fr;background:var(--navy);padding:10px 14px;font-size:13px;font-weight:800;color:var(--text-muted);letter-spacing:1px;">
+        <span>TASK</span><span>CATEGORY</span><span>TOOL</span><span>WHY THIS TOOL</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.2fr 0.8fr 1fr 1.5fr;padding:10px 14px;border-bottom:1px solid rgba(108,58,237,0.1);background:rgba(108,58,237,0.04);font-size:14px;color:var(--text-light);" class="fragment fade-up">
+        <span>Write a project proposal</span><span style="color:var(--blue);">Text</span><span style="color:var(--mint);">Claude</span><span style="color:var(--text-muted);">Handles long structured documents well</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.2fr 0.8fr 1fr 1.5fr;padding:10px 14px;border-bottom:1px solid rgba(108,58,237,0.1);background:rgba(108,58,237,0.08);font-size:14px;color:var(--text-light);" class="fragment fade-up">
+        <span>Create a presentation graphic</span><span style="color:var(--blue);">Image</span><span style="color:var(--mint);">Canva AI</span><span style="color:var(--text-muted);">Business-ready, easy to edit after</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.2fr 0.8fr 1fr 1.5fr;padding:10px 14px;border-bottom:1px solid rgba(108,58,237,0.1);background:rgba(108,58,237,0.04);font-size:14px;color:var(--text-light);" class="fragment fade-up">
+        <span>Analyse survey data</span><span style="color:var(--blue);">Data</span><span style="color:var(--mint);">ChatGPT + Code</span><span style="color:var(--text-muted);">Runs Python on your data directly</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.2fr 0.8fr 1fr 1.5fr;padding:10px 14px;border-bottom:1px solid rgba(108,58,237,0.1);background:rgba(108,58,237,0.08);font-size:14px;color:var(--text-light);" class="fragment fade-up">
+        <span>Debug a spreadsheet formula</span><span style="color:var(--blue);">Code</span><span style="color:var(--mint);">Gemini</span><span style="color:var(--text-muted);">Google Sheets integration</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.2fr 0.8fr 1fr 1.5fr;padding:10px 14px;background:rgba(108,58,237,0.04);font-size:14px;color:var(--text-light);" class="fragment fade-up">
+        <span>Transcribe meeting recording</span><span style="color:var(--blue);">Audio</span><span style="color:var(--mint);">Otter.ai</span><span style="color:var(--text-muted);">Real-time transcription + summaries</span>
+      </div>
+    </div>
+    <div class="footer-bar-dark fragment fade-up">🗺️ Your Tool Map exercise later will build YOUR version of this table</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "But how do you actually CHOOSE which tool for which job?"]
+Key talking points:
+• This is a decision-making framework, not a product recommendation
+• The "Why" column is key — know the strength of each tool
+• Their personal version of this table is the Tool Map exercise
+• Tools change fast — the FRAMEWORK for choosing persists
+Discussion prompt: "What task do you do regularly that might fit one of these categories?"
+Facilitation tip: Invite them to think about their own tasks. "Mentally add a row for something you do weekly."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 19: PRACTICAL — TOOL SURVEY ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:16px;">
+    <div class="practical-badge">🔨 HANDS-ON</div>
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Try Your First AI Prompt</h2>
+    <div class="accent-bar"></div>
+    <div style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">⏱️ Take 4 minutes — open any one of these tools:</div>
+    <div class="grid-3col" style="margin-bottom:14px;">
+      <div class="card fragment fade-up" style="text-align:center;padding:14px;">
+        <div style="font-size:24px;margin-bottom:6px;">🟢</div>
+        <div style="font-size:13px;font-weight:700;color:var(--text-light);">ChatGPT</div>
+        <div style="font-size:13px;color:var(--text-muted);">chat.openai.com</div>
+      </div>
+      <div class="card fragment fade-up" style="text-align:center;padding:14px;">
+        <div style="font-size:24px;margin-bottom:6px;">🟠</div>
+        <div style="font-size:13px;font-weight:700;color:var(--text-light);">Claude</div>
+        <div style="font-size:13px;color:var(--text-muted);">claude.ai</div>
+      </div>
+      <div class="card fragment fade-up" style="text-align:center;padding:14px;">
+        <div style="font-size:24px;margin-bottom:6px;">🔵</div>
+        <div style="font-size:13px;font-weight:700;color:var(--text-light);">Gemini</div>
+        <div style="font-size:13px;color:var(--text-muted);">gemini.google.com</div>
+      </div>
+    </div>
+    <ul class="practical-steps">
+      <li class="fragment fade-up"><span class="step-num">1</span> Open one of the tools above (whichever you have access to)</li>
+      <li class="fragment fade-up"><span class="step-num">2</span> Type this prompt: <strong style="color:var(--mint);">"Explain what you are in exactly 3 sentences, as if talking to a 10-year-old"</strong></li>
+      <li class="fragment fade-up"><span class="step-num">3</span> Then ask: <strong style="color:var(--mint);">"Now explain the same thing to a CEO in 2 bullet points"</strong></li>
+    </ul>
+    <div class="card fragment fade-up" style="margin-top:12px;border-left:3px solid var(--mint);padding:10px 16px;">
+      <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:4px;">🤔 What did you notice?</div>
+      <div style="font-size:14px;color:var(--text-muted);">Same AI, same question, different instructions → different output. That's the power of prompting.</div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 5 min] [TRANSITION: "Enough theory — let's actually USE one of these tools right now"]
+Key talking points:
+• Walk the room — help anyone having login/access issues
+• The point: same AI adapts its response based on HOW you ask
+• This is a preview of Module 2 (prompting) but gives them a taste
+• Some may have never used these tools before — celebrate their first prompt!
+Discussion prompt: "What difference did you notice between the two responses? Why?"
+Facilitation tip: Have all three tools open on your device as backup. If someone can't access any, pair them with a neighbour.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 20: CHAPTER 04 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">04</div>
+    <div class="chapter-title">Key Risks</div>
+    <div class="chapter-sub">What can go wrong — and how to protect yourself</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "AI is powerful — but power without guardrails is dangerous. Let's talk about what can go wrong."]
+Key talking points:
+• This isn't about fear — it's about informed, responsible use
+• Every professional needs to know these 4 risks
+Facilitation tip: Shift tone slightly — this is the "serious" section. "The risks are real, but manageable once you know them."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 21: FOUR RISKS GRID ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Four Risks Every AI User Must Know</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2x2" style="margin-top:12px;">
+      <div class="card fragment scale-in" style="border-left:4px solid #E74C3C;">
+        <div style="font-size:22px;margin-bottom:8px;">🎭</div>
+        <div style="font-size:14px;font-weight:700;color:var(--text-light);margin-bottom:6px;"><span class="tip">Hallucination<span class="tip-content">AI generates confident-sounding but factually wrong information. It cannot distinguish fact from fiction — it only predicts likely-sounding text.</span></span></div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">AI states false information with full confidence. No "I'm not sure" — just wrong answers that sound right.</div>
+      </div>
+      <div class="card fragment scale-in" style="border-left:4px solid #F39C12;">
+        <div style="font-size:22px;margin-bottom:8px;">🔒</div>
+        <div style="font-size:14px;font-weight:700;color:var(--text-light);margin-bottom:6px;"><span class="tip">Privacy &amp; Data Leakage<span class="tip-content">Anything you paste into an AI tool may be used for training or stored on external servers. Company secrets, personal data, and confidential info can leak.</span></span></div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">Data you share with AI may be stored, used for training, or visible to the provider. Company secrets at risk.</div>
+      </div>
+      <div class="card fragment scale-in" style="border-left:4px solid #9B59B6;">
+        <div style="font-size:22px;margin-bottom:8px;">⚖️</div>
+        <div style="font-size:14px;font-weight:700;color:var(--text-light);margin-bottom:6px;"><span class="tip">Bias &amp; Fairness<span class="tip-content">AI models inherit biases from their training data. If the training data over-represents certain perspectives, the AI will too. This can perpetuate stereotypes and unfair outcomes.</span></span></div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">Training data biases become output biases. Gender, racial, and cultural stereotypes can be amplified.</div>
+      </div>
+      <div class="card fragment scale-in" style="border-left:4px solid #3498DB;">
+        <div style="font-size:22px;margin-bottom:8px;">©️</div>
+        <div style="font-size:14px;font-weight:700;color:var(--text-light);margin-bottom:6px;"><span class="tip">Copyright &amp; IP<span class="tip-content">AI may generate content similar to copyrighted material. Legal ownership of AI-generated content is still evolving. Using AI output without review can create legal liability.</span></span></div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">Who owns AI-generated content? Can AI accidentally reproduce copyrighted work? Legal landscape still evolving.</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Every tool has risks. AI's risks are unique because the output LOOKS trustworthy."]
+Key talking points:
+• Walk through each risk with a 1-sentence real-world example
+• Hallucination: lawyer case. Privacy: Samsung code leak. Bias: hiring tools. Copyright: Getty vs Stability AI
+• These aren't edge cases — they happen daily to professionals
+Discussion prompt: "Which of these four risks is most relevant to YOUR work?"
+Facilitation tip: Don't dwell too long on each — the next slide gives them actionable safety rules.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 22: SAFETY RULES CHECKLIST ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Your AI Safety Checklist</h2>
+    <div class="accent-bar"></div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div class="check-row fragment fade-up"><span class="check-icon">✓</span> <strong>Verify before you trust.</strong> Always fact-check AI output — especially names, numbers, and citations.</div>
+      <div class="check-row fragment fade-up"><span class="check-icon">✓</span> <strong>Never paste confidential data.</strong> Treat every AI tool as a public billboard unless your org has approved it.</div>
+      <div class="check-row fragment fade-up"><span class="check-icon">✓</span> <strong>Check for bias.</strong> Ask: "Would this output be different if the person's name/gender/background changed?"</div>
+      <div class="check-row fragment fade-up"><span class="check-icon">✓</span> <strong>Own the output.</strong> If you use AI-generated content, YOU are responsible — not the AI.</div>
+      <div class="check-row fragment fade-up" style="border-bottom:none;"><span class="check-icon">✓</span> <strong>Stay current.</strong> AI policies and capabilities change monthly. Review your company's AI policy regularly.</div>
+    </div>
+    <div class="card fragment fade-up" style="margin-top:16px;border-left:3px solid var(--mint);padding:12px 16px;">
+      <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:4px;">💡 The Golden Rule</div>
+      <div style="font-size:14px;color:var(--text-muted);">If you wouldn't publish it without checking, don't trust AI to get it right either. Human judgment remains the final filter.</div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "So what do we DO about these risks? Here are 5 non-negotiable rules."]
+Key talking points:
+• These are the minimum safety standards for professional AI use
+• Rule 2 is the one most people violate unknowingly — give examples of what counts as "confidential"
+• Rule 4 is critical: "The AI made a mistake" is never an acceptable excuse in professional settings
+• The golden rule: AI output needs the same scrutiny as any other source
+Discussion prompt: "Has your organisation published an AI use policy? Do you know what it says?"
+Facilitation tip: If they don't know their company's AI policy, that becomes a homework assignment.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 23: PRACTICAL — 30-SECOND RULE ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:16px;">
+    <div class="practical-badge">🔨 HANDS-ON</div>
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">The 30-Second Verification Check</h2>
+    <div class="accent-bar"></div>
+    <div style="font-size:13px;color:var(--text-muted);margin-bottom:14px;">⏱️ Take 2 minutes — apply this to any recent AI output you've received</div>
+    <div class="grid-3col" style="margin-bottom:16px;">
+      <div class="card fragment scale-in" style="text-align:center;padding:16px;">
+        <div style="font-size:28px;margin-bottom:8px;">❓</div>
+        <div style="font-size:13px;font-weight:700;color:var(--text-light);margin-bottom:6px;">Question 1</div>
+        <div style="font-size:14px;color:var(--text-muted);">"Can I verify this claim with a second source?"</div>
+      </div>
+      <div class="card fragment scale-in" style="text-align:center;padding:16px;">
+        <div style="font-size:28px;margin-bottom:8px;">🔍</div>
+        <div style="font-size:13px;font-weight:700;color:var(--text-light);margin-bottom:6px;">Question 2</div>
+        <div style="font-size:14px;color:var(--text-muted);">"Would I stake my reputation on this being correct?"</div>
+      </div>
+      <div class="card fragment scale-in" style="text-align:center;padding:16px;">
+        <div style="font-size:28px;margin-bottom:8px;">⚠️</div>
+        <div style="font-size:13px;font-weight:700;color:var(--text-light);margin-bottom:6px;">Question 3</div>
+        <div style="font-size:14px;color:var(--text-muted);">"What's the worst that happens if this is wrong?"</div>
+      </div>
+    </div>
+    <ul class="practical-steps">
+      <li class="fragment fade-up"><span class="step-num">1</span> Think of the last time you used AI for work (or think of a hypothetical)</li>
+      <li class="fragment fade-up"><span class="step-num">2</span> Apply all 3 questions to that output</li>
+      <li class="fragment fade-up"><span class="step-num">3</span> Decide: Would you have published it as-is?</li>
+    </ul>
+    <div class="footer-bar-dark fragment fade-up">If ANY answer is "no" or "not sure" → verify before using. 30 seconds of checking saves hours of correction.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Let me give you a quick mental framework you can use every single time"]
+Key talking points:
+• This is a habit to build — not a one-time exercise
+• Question 3 is the risk assessment: low stakes = trust more freely; high stakes = verify everything
+• Real professionals already do this for other sources (Wikipedia, colleague advice) — apply same standard to AI
+Discussion prompt: "Share with your neighbour: what was your answer to Question 3?"
+Facilitation tip: Give them 90 seconds of quiet thinking, then 30 seconds of sharing. Keep it tight.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 24: CHAPTER 05 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">05</div>
+    <div class="chapter-title">Hands-On Activity</div>
+    <div class="chapter-sub">Build your Personal AI Tool Map</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Time to put it all together. Open your devices — we're building something you'll actually use."]
+Key talking points:
+• This is the main exercise — 15 minutes of focused work
+• They'll use the exercise platform to complete a structured activity
+• Deliverable: a personal tool map they keep and reference
+Facilitation tip: Energy check here — if energy is low, do a quick stretch or stand-up moment before diving in.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 25: EXERCISE INSTRUCTIONS ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:12px;">
+    <div class="practical-badge">🔨 MAIN EXERCISE</div>
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Tool Survey &amp; Personal Tool Map</h2>
+    <div class="accent-bar"></div>
+    <div class="practical-url">#module/module1</div>
+    <div style="font-size:13px;color:var(--text-muted);text-align:center;margin-bottom:12px;">⏱️ 12 minutes total</div>
+    <div class="timeline">
+      <div class="tl-item fragment fade-up">
+        <div class="tl-time">5<div class="tl-min">min</div></div>
+        <div>
+          <div class="tl-title">Part 1: Tool Survey Checklist</div>
+          <div class="tl-desc">Check off which AI tools you've already used, heard of, or want to try. Identify your experience level.</div>
+        </div>
+      </div>
+      <div class="tl-item fragment fade-up">
+        <div class="tl-time">5<div class="tl-min">min</div></div>
+        <div>
+          <div class="tl-title">Part 2: Personal Tool Map</div>
+          <div class="tl-desc">For each of the 5 categories, write: what tool you'd use, for what task, and your confidence level (1-5).</div>
+        </div>
+      </div>
+      <div class="tl-item fragment fade-up">
+        <div class="tl-time">2<div class="tl-min">min</div></div>
+        <div>
+          <div class="tl-title">Part 3: Gap Analysis</div>
+          <div class="tl-desc">Identify your biggest gap: which category has no tool assigned? That's your growth area for Module 2.</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar-dark fragment fade-up">📱 Navigate to the exercise platform and open Module 1 to start</div>
+  </div>
+  <aside class="notes">
+[TIMING: 13 min] [TRANSITION: "Open the exercise platform — I'll walk the room to help"]
+Key talking points:
+• Everyone works at their own pace — it's okay to not finish everything
+• The tool map is YOURS — there's no right answer
+• Walk the room: help with access issues first, then guide slow starters
+• 2-minute warning before time's up
+Discussion prompt: (none during exercise — let them focus)
+Facilitation tip: Play quiet background music if the environment supports it. Set a visible timer. Give a "5 minutes left" and "1 minute left" verbal cue.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 26: DEBRIEF ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:16px;">
+    <div class="practical-badge">💬 DEBRIEF</div>
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Share &amp; Reflect</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="margin-top:12px;">
+      <div class="card fragment scale-in" style="border-left:3px solid var(--mint);">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:8px;">🗣️ Share with the Group</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.7;">
+          1. What was your <strong style="color:var(--text-light);">biggest gap</strong>? (Which category had no tool?)<br>
+          2. What's <strong style="color:var(--text-light);">one tool</strong> you want to try this week?<br>
+          3. What <strong style="color:var(--text-light);">surprised you</strong> about the exercise?
+        </div>
+      </div>
+      <div class="card fragment scale-in" style="border-left:3px solid var(--blue);">
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:8px;">💡 Common Insights</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.7;">
+          • Most people have text tools but lack data/audio tools<br>
+          • Many tools overlap categories<br>
+          • Confidence is lower than expected — that's normal!<br>
+          • The gap IS the learning opportunity
+        </div>
+      </div>
+    </div>
+    <div class="card fragment fade-up" style="margin-top:16px;background:rgba(8,145,178,0.1);border:1px solid rgba(8,145,178,0.3);padding:14px 18px;">
+      <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:6px;">🎯 Your Action Item</div>
+      <div style="font-size:13px;color:var(--text-light);">Before Module 2: Try <strong>one new AI tool</strong> from a category you rated yourself below 3. Spend 10 minutes exploring it. Bring your experience back next session.</div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Time's up — let's hear what you discovered"]
+Key talking points:
+• Ask 3-4 volunteers to share their biggest gap (30 sec each)
+• Normalise the gaps: "Everyone has them — that's exactly why we're here"
+• The action item is lightweight but specific — makes it achievable
+• Connect gaps to upcoming modules: "Module 3 covers prompting to boost your text tool confidence"
+Discussion prompt: "Raise your hand if your biggest gap was in Audio/Video tools" (likely many hands — bonds the group)
+Facilitation tip: Keep sharing to 30 seconds per person. Celebrate every contribution. End with positive energy.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 27: KEY TAKEAWAYS ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:20px;">
+    <h2 class="slide-title-dark" style="font-size:28px;font-weight:800;margin-bottom:4px;">Key Takeaways</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2x2" style="margin-top:12px;">
+      <div class="closing-card fragment scale-in">🧠 &nbsp;<strong>AI predicts, it doesn't understand.</strong> It's autocomplete at massive scale — powerful but not intelligent.</div>
+      <div class="closing-card fragment scale-in">🗂️ &nbsp;<strong>Five tool categories</strong> cover the AI landscape. Know which one to reach for based on your task.</div>
+      <div class="closing-card fragment scale-in">⚠️ &nbsp;<strong>Always verify.</strong> Hallucination, privacy, bias, and IP risks are real. The 30-second check protects you.</div>
+      <div class="closing-card fragment scale-in">🗺️ &nbsp;<strong>Your Tool Map</strong> is your personal compass. The gap you identified is your growth opportunity.</div>
+    </div>
+    <div class="footer-bar-dark fragment fade-up">🎓 Module 1 complete — you now have the foundation to use AI tools with confidence and caution</div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Let's land the plane — what should you remember from today?"]
+Key talking points:
+• Reinforce the 4 key messages — these are the foundation for everything that follows
+• "Predicts not understands" is the mental model to carry forward
+• The tool map is a living document — update it as you learn
+• These takeaways become your safety net: always verify, always check
+Discussion prompt: "Which takeaway feels most important to you personally?"
+Facilitation tip: Read each card aloud with emphasis. Pause after each. Let them sink in.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 28: NEXT MODULE PREVIEW ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:20px;">
+    <h2 class="slide-title-dark" style="font-size:28px;font-weight:800;margin-bottom:4px;">Coming Up: Module 2</h2>
+    <div style="font-size:15px;color:var(--mint);margin-bottom:6px;font-weight:600;">Prompt Engineering — The Art of AI Communication</div>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="margin-top:12px;">
+      <div class="closing-card fragment fade-up">📝 &nbsp;<strong>Prompt structures</strong> — templates that get better results every time</div>
+      <div class="closing-card fragment fade-up">🎯 &nbsp;<strong>Task-specific prompting</strong> — different techniques for different goals</div>
+      <div class="closing-card fragment fade-up">🔄 &nbsp;<strong>Iterative refinement</strong> — how to improve AI output through conversation</div>
+      <div class="closing-card fragment fade-up">⚡ &nbsp;<strong>Hands-on practice</strong> — write 10+ prompts and compare results across tools</div>
+    </div>
+    <div class="card fragment fade-up" style="margin-top:16px;border-left:3px solid var(--mint);padding:14px 18px;">
+      <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:6px;">📋 Before Module 2</div>
+      <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">
+        ✅ Try one new tool from your gap category (10 min)<br>
+        ✅ Write down 3 tasks you'd like AI help with at work<br>
+        ✅ Notice when you use AI this week — what went well? What didn't?
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Here's what's next — and what to do before we meet again"]
+Key talking points:
+• Module 2 builds directly on today: we'll USE the tools we mapped today
+• The homework is low-effort but high-value — 10 minutes, max
+• "Notice when you use AI" builds metacognition — awareness of how they interact with AI
+• Prompt engineering is the highest-ROI AI skill — Module 2 is the core skill session
+Discussion prompt: "Which of the 3 homework items will you do first?"
+Facilitation tip: Make homework feel optional but valuable. "Even just the first one — 10 minutes — will make Module 2 twice as useful."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 29: THANK YOU / END ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:60px;text-align:center;">
+    <div style="width:100%;height:4px;background:linear-gradient(90deg, var(--blue), var(--mint));border-radius:2px;margin-bottom:40px;"></div>
+    <div style="font-size:36px;font-weight:800;color:var(--text-light);margin-bottom:12px;">Thank You!</div>
+    <div style="font-size:17px;color:var(--mint);margin-bottom:8px;font-weight:600;">Module 1 Complete</div>
+    <div style="font-size:14px;color:var(--text-muted);margin-bottom:40px;">The AI Landscape &amp; Tool Survey</div>
+    <div style="width:80px;height:3px;background:var(--mint);border-radius:2px;margin:0 auto 32px auto;"></div>
+    <div style="font-size:15px;color:var(--text-light);font-weight:600;margin-bottom:6px;">Gen AI Inc</div>
+    <div style="font-size:13px;color:var(--text-muted);">AI Skills Studio — Empowering Professionals</div>
+    <div style="margin-top:40px;font-size:14px;color:var(--text-muted);opacity:0.6;">
+      Questions? Feedback? Reach out anytime.
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] [TRANSITION: "That's a wrap — fantastic first session!"]
+Key talking points:
+• Thank them for their time and engagement
+• Remind: homework is optional but beneficial
+• "See you at Module 2 — bring your curiosity and your 3 tasks list"
+• Stay available for questions after the session
+Facilitation tip: End with energy and warmth. "You now know more about AI than 90% of professionals. Well done."
+  </aside>
+</section>
+
+</div><!-- /.slides -->
+</div><!-- /.reveal -->
+
+<!-- Reveal.js & Initialization -->
+<script type="module">
+  import Reveal from 'https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.esm.js';
+
+  const deck = Reveal.initialize({
+    hash: true,
+    slideNumber: function(slide) {
+      const h = Reveal.getIndices(slide).h + 1;
+      return [h + ' / 29'];
+    },
+    showSlideNumber: 'all',
+    progress: true,
+    keyboard: true,
+    overview: true,
+    center: true,
+    touch: true,
+    loop: false,
+    autoSlide: 0,
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    width: 1280,
+    height: 720,
+    margin: 0.06,
+    minScale: 0.2,
+    maxScale: 2.0
+  });
+
+  // Update nav active state on slide change
+  deck.then(() => {
+    const navLinks = document.querySelectorAll('#session-nav a');
+    const chapters = [3, 10, 14, 19, 23, 26]; // 0-indexed slide positions
+
+    function updateNav() {
+      const current = Reveal.getIndices().h;
+      navLinks.forEach((link, i) => {
+        link.classList.remove('nav-active');
+        if (i < chapters.length - 1 && current >= chapters[i] && current < chapters[i+1]) {
+          link.classList.add('nav-active');
+        } else if (i === chapters.length - 1 && current >= chapters[i]) {
+          link.classList.add('nav-active');
+        }
+      });
+    }
+
+    Reveal.on('slidechanged', updateNav);
+    updateNav();
+  });
+</script>
+
+<!-- Graceful fallback for offline use -->
+<noscript>
+  <style>
+    .reveal .fragment { opacity: 1 !important; transform: none !important; }
+    .reveal .slides section { display: block !important; }
+  </style>
+</noscript>
+<script>
+  // Fallback: if Reveal.js fails to load from CDN, show all content
+  window.addEventListener('error', function(e) {
+    if (e.filename && e.filename.includes('reveal')) {
+      document.querySelectorAll('.fragment').forEach(function(el) {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+      document.querySelector('.reveal').style.overflow = 'auto';
+      document.querySelectorAll('.reveal .slides section').forEach(function(s) {
+        s.style.display = 'block';
+        s.style.position = 'relative';
+        s.style.width = '100%';
+        s.style.minHeight = '100vh';
+        s.style.padding = '48px';
+        s.style.boxSizing = 'border-box';
+        s.style.borderBottom = '2px solid rgba(8,145,178,0.3)';
+      });
+    }
+  }, true);
+</script>
+
+<!-- Quiz handler -->
+<script>
+  function quizAnswer(slideId, selectedIdx, correctIdx, explanation) {
+    var container = document.getElementById(slideId);
+    if (!container) return;
+    var opts = container.querySelectorAll('.quiz-opt');
+    opts.forEach(function(opt, i) {
+      opt.classList.add('disabled');
+      if (i === correctIdx) {
+        opt.classList.add('correct');
+        opt.querySelector('.opt-letter').textContent = '✓';
+      }
+      if (i === selectedIdx && selectedIdx !== correctIdx) {
+        opt.classList.add('wrong');
+        opt.querySelector('.opt-letter').textContent = '✗';
+      }
+    });
+    var explainEl = container.querySelector('.quiz-explain');
+    if (explainEl) {
+      explainEl.textContent = explanation;
+      explainEl.classList.add('show');
+    }
+  }
+  window.quizAnswer = quizAnswer;
+</script>
+
+<!-- Tooltip mobile tap-to-toggle -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.tip').forEach(function(el) {
+      el.setAttribute('tabindex', '0');
+      el.addEventListener('click', function(e) {
+        e.stopPropagation();
+        // Close all other tooltips
+        document.querySelectorAll('.tip .tip-content').forEach(function(t) {
+          t.style.display = 'none';
+        });
+        var content = el.querySelector('.tip-content');
+        if (content) {
+          content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        }
+      });
+    });
+    document.addEventListener('click', function() {
+      document.querySelectorAll('.tip .tip-content').forEach(function(t) {
+        t.style.display = '';
+      });
+    });
+  });
+</script>
+
+<!-- Passcode Gate -->
+<script>
+  (function() {
+    var PASSCODE = 'G2026';
+    var gate = document.getElementById('passcode-gate');
+    var input = document.getElementById('gate-input');
+    var error = document.getElementById('gate-error');
+    var nav = document.getElementById('session-nav');
+
+    // Check if already authenticated this session
+    if (sessionStorage.getItem('ai-studio-auth') === 'true') {
+      gate.style.display = 'none';
+      nav.style.display = 'flex';
+    } else {
+      // Hide reveal content until authenticated
+      document.querySelector('.reveal').style.display = 'none';
+    }
+
+    input.addEventListener('input', function() {
+      error.style.display = 'none';
+      if (input.value.length === 5) {
+        if (input.value.toUpperCase() === PASSCODE) {
+          sessionStorage.setItem('ai-studio-auth', 'true');
+          gate.style.display = 'none';
+          nav.style.display = 'flex';
+          document.querySelector('.reveal').style.display = '';
+          // Trigger Reveal layout recalculation
+          setTimeout(function() {
+            if (window.Reveal && window.Reveal.layout) {
+              window.Reveal.layout();
+            }
+          }, 100);
+        } else {
+          error.style.display = 'block';
+          input.value = '';
+          input.focus();
+        }
+      }
+    });
+
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && input.value.length >= 4) {
+        if (input.value.toUpperCase() === PASSCODE) {
+          sessionStorage.setItem('ai-studio-auth', 'true');
+          gate.style.display = 'none';
+          nav.style.display = 'flex';
+          document.querySelector('.reveal').style.display = '';
+          setTimeout(function() {
+            if (window.Reveal && window.Reveal.layout) {
+              window.Reveal.layout();
+            }
+          }, 100);
+        } else {
+          error.style.display = 'block';
+          input.value = '';
+        }
+      }
+    });
+
+    // Auto-focus the input
+    setTimeout(function() { input.focus(); }, 300);
+  })();
+</script>
+</body>
+</html>

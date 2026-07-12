@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 1: AI Foundations for QA — Shifting the Mindset</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+<style>
+  /* ===== DESIGN SYSTEM ===== */
+  :root {
+    --navy:      #1B4F72;
+    --blue:      #2E86C1;
+    --mint:      #48C9B0;
+    --dark-bg:   #0D2137;
+    --light-bg:  #F4F9FC;
+    --card-bg:   #163D5C;
+    --text-light:#FFFFFF;
+    --text-muted:#A8C6D8;
+    --font:      system-ui, 'Segoe UI', sans-serif;
+  }
+
+  .reveal { font-family: var(--font); }
+  .reveal .slides section { text-align: left; padding: 0 48px; }
+
+  /* Progress bar */
+  .reveal .progress { height: 4px; color: var(--mint); }
+  .reveal .progress span { background: var(--mint); }
+
+  /* Slide number */
+  .reveal .slide-number {
+    background: rgba(0,0,0,0.4);
+    color: var(--text-muted);
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-family: var(--font);
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  .reveal h1, .reveal h2, .reveal h3 {
+    font-family: var(--font);
+    text-transform: none;
+    letter-spacing: -0.5px;
+  }
+  .slide-title-dark  { color: var(--text-light) !important; }
+  .slide-title-light { color: var(--navy) !important; }
+
+  .accent-bar {
+    width: 80px; height: 4px;
+    background: var(--mint);
+    margin: 8px 0 24px 0;
+    border-radius: 2px;
+  }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 18px 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  }
+  .card-light {
+    background: #fff;
+    border-radius: 10px;
+    padding: 18px 20px;
+    box-shadow: 0 2px 12px rgba(27,79,114,0.10);
+  }
+  .card-navy {
+    background: var(--navy);
+    border-radius: 10px;
+    padding: 18px 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  }
+
+  /* ===== GRID HELPERS ===== */
+  .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+  .grid-2x3  { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 16px; }
+  .flex-row  { display: flex; gap: 16px; align-items: stretch; }
+
+  /* ===== CHAPTER SLIDES ===== */
+  .chapter-num {
+    font-size: 96px;
+    font-weight: 900;
+    color: var(--mint);
+    opacity: 0.85;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .chapter-title {
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--text-light);
+    margin: 0 0 8px 0;
+  }
+  .chapter-sub {
+    font-size: 17px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin: 0;
+  }
+  .chapter-rule {
+    width: 100px; height: 4px;
+    background: var(--mint);
+    border-radius: 2px;
+    margin-top: 20px;
+  }
+
+  /* ===== AGENDA CARDS ===== */
+  .agenda-num {
+    font-size: 26px; font-weight: 800;
+    color: var(--mint); margin-bottom: 6px;
+  }
+  .agenda-title { font-size: 14px; font-weight: 700; color: var(--text-light); margin-bottom: 4px; }
+  .agenda-sub   { font-size: 12px; color: var(--text-muted); }
+
+  /* ===== LEVEL CARDS ===== */
+  .level-card { border-radius: 10px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.25); }
+  .level-bar  { height: 5px; }
+  .level-body { background: var(--card-bg); padding: 18px 16px; }
+  .level-title { font-size: 15px; font-weight: 700; color: var(--text-light); margin-bottom: 10px; }
+  .level-desc  { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+  /* ===== CAPS CARDS ===== */
+  .cap-badge { font-size: 11px; font-weight: 700; color: var(--mint); margin-bottom: 6px; }
+  .cap-title { font-size: 13px; font-weight: 700; color: var(--text-light); margin-bottom: 6px; }
+  .cap-desc  { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+  /* ===== LIMIT ROWS ===== */
+  .limit-row {
+    display: flex; align-items: center;
+    background: var(--card-bg);
+    border-radius: 8px; padding: 12px 18px;
+    margin-bottom: 10px;
+    gap: 14px;
+  }
+  .limit-x  { color: #E74C3C; font-size: 20px; font-weight: 700; flex-shrink:0; }
+  .limit-txt { font-size: 14px; color: var(--text-light); }
+
+  /* ===== TOOL CARDS ===== */
+  .tool-title { font-size: 13px; font-weight: 700; color: var(--mint); margin-bottom: 8px; }
+  .tool-names { font-size: 11px; color: var(--text-light); line-height: 1.6; }
+
+  /* ===== TOOLS vs AGENTS ===== */
+  .tva-label { font-size: 18px; font-weight: 800; margin-bottom: 10px; }
+  .tva-flow  { font-size: 13px; color: var(--mint); font-weight: 600; margin-bottom: 12px; }
+  .tva-list  { font-size: 12px; color: var(--text-muted); line-height: 1.9; }
+  .tva-list strong { color: var(--text-light); }
+
+  /* ===== SPEC SLIDES ===== */
+  .banner-mint {
+    background: var(--navy);
+    border-left: 4px solid var(--mint);
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 14px; font-weight: 700;
+    color: var(--mint);
+    margin-bottom: 18px;
+  }
+  .spec-bad  { background: #FEF0EE; border-radius: 10px; padding: 16px; }
+  .spec-good { background: #E8F8F5; border-radius: 10px; padding: 16px; }
+  .spec-bad-label  { font-size: 13px; font-weight: 700; color: #E74C3C; margin-bottom: 8px; }
+  .spec-good-label { font-size: 13px; font-weight: 700; color: #1B8A6B; margin-bottom: 8px; }
+  .spec-text { font-size: 12px; line-height: 1.65; }
+  .spec-text-bad  { color: #7B3529; }
+  .spec-text-good { color: #1B4F40; }
+
+  /* ===== SPEC LOOP ===== */
+  .loop-steps { display: flex; align-items: stretch; gap: 0; }
+  .loop-step {
+    flex: 1;
+    background: var(--navy);
+    border-radius: 10px;
+    padding: 16px 10px;
+    text-align: center;
+  }
+  .loop-step-label { font-size: 11px; font-weight: 800; color: var(--mint); margin-bottom: 10px; letter-spacing: 1px; }
+  .loop-step-desc  { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+  .loop-arrow {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; color: var(--mint); flex-shrink: 0; padding: 0 6px;
+  }
+  .loop-footer {
+    background: #E8F8F5; border-radius: 8px;
+    padding: 10px 18px; margin-top: 16px;
+    font-size: 12px; color: var(--navy); font-weight: 600;
+    text-align: center;
+  }
+
+  /* ===== CHECKLIST ===== */
+  .check-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 9px 0; border-bottom: 1px solid rgba(27,79,114,0.1);
+    font-size: 14px; color: var(--navy);
+  }
+  .check-icon { color: var(--mint); font-size: 17px; flex-shrink: 0; }
+
+  /* ===== GATEKEEPER ===== */
+  .model-old { background: #FEF0EE; border-radius: 10px; padding: 18px; }
+  .model-new { background: #E8F8F5; border-radius: 10px; padding: 18px; }
+  .model-label { font-size: 13px; font-weight: 800; margin-bottom: 12px; }
+  .model-old .model-label { color: #E74C3C; }
+  .model-new .model-label { color: #1B8A6B; }
+  .model-item { font-size: 12px; line-height: 2; }
+  .model-old .model-item { color: #7B3529; }
+  .model-new .model-item { color: #1B4F40; }
+
+  /* ===== SKILLS MATRIX ===== */
+  .matrix-header {
+    display: grid; grid-template-columns: 90px 130px 1fr;
+    background: var(--navy); border-radius: 8px 8px 0 0;
+    padding: 8px 14px; font-size: 11px; font-weight: 800;
+    color: var(--text-muted); letter-spacing: 1px;
+  }
+  .matrix-row {
+    display: grid; grid-template-columns: 90px 130px 1fr;
+    padding: 10px 14px; border-bottom: 1px solid rgba(27,79,114,0.08);
+    align-items: center;
+  }
+  .matrix-row:nth-child(odd)  { background: rgba(44,134,193,0.08); }
+  .matrix-row:nth-child(even) { background: rgba(44,134,193,0.04); }
+  .matrix-level { font-size: 12px; font-weight: 700; color: var(--blue); }
+  .matrix-role  { font-size: 13px; font-weight: 700; color: var(--navy); }
+  .matrix-desc  { font-size: 12px; color: #4a6785; }
+  .matrix-banner {
+    background: var(--navy); border-radius: 0 0 8px 8px;
+    padding: 12px 16px; font-size: 13px; font-weight: 700;
+    color: var(--mint); text-align: center;
+  }
+
+  /* ===== TRUST ZONES ===== */
+  .zone-card { border-radius: 10px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+  .zone-bar  { height: 6px; }
+  .zone-body { padding: 16px 14px; }
+  .zone-label { font-size: 12px; font-weight: 800; letter-spacing: 1px; margin-bottom: 4px; }
+  .zone-sub   { font-size: 12px; font-weight: 700; color: var(--text-light); margin-bottom: 12px; }
+  .zone-items { font-size: 11px; color: var(--text-muted); line-height: 2; }
+  .zone-green { background: #1A3D2E; }
+  .zone-yellow{ background: #3D2E0A; }
+  .zone-red   { background: #3D0A0A; }
+
+  /* ===== EXERCISE TIMELINE ===== */
+  .timeline { display: flex; flex-direction: column; gap: 12px; }
+  .tl-item  {
+    display: flex; align-items: flex-start; gap: 16px;
+    background: var(--navy); border-radius: 10px; padding: 14px 18px;
+  }
+  .tl-time {
+    font-size: 20px; font-weight: 800; color: var(--mint);
+    flex-shrink: 0; min-width: 64px; line-height: 1;
+  }
+  .tl-min  { font-size: 11px; font-weight: 400; color: var(--text-muted); }
+  .tl-title { font-size: 14px; font-weight: 700; color: var(--text-light); margin-bottom: 3px; }
+  .tl-desc  { font-size: 12px; color: var(--text-muted); }
+
+  /* ===== CLOSING CARDS ===== */
+  .closing-card {
+    background: var(--card-bg); border-radius: 10px;
+    padding: 16px 18px; border-left: 3px solid var(--mint);
+    font-size: 13px; color: var(--text-light); line-height: 1.5;
+  }
+
+  /* ===== NAV BAR ===== */
+  #session-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+    display: flex; justify-content: center; align-items: center;
+    gap: 6px; padding: 6px 12px;
+    background: rgba(13,33,55,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(72,201,176,0.2);
+    font-family: var(--font); font-size: 11px;
+  }
+  #session-nav .nav-label {
+    color: var(--text-muted); font-size: 10px; font-weight: 700;
+    letter-spacing: 1px; margin-right: 4px; flex-shrink: 0;
+  }
+  #session-nav a {
+    color: var(--text-muted); text-decoration: none;
+    padding: 3px 10px; border-radius: 20px;
+    border: 1px solid transparent;
+    transition: all 0.2s; font-size: 11px; white-space: nowrap;
+  }
+  #session-nav a:hover {
+    color: var(--mint); border-color: var(--mint);
+    background: rgba(72,201,176,0.1);
+  }
+
+  /* ===== KEYBOARD HINT ===== */
+  .keyboard-hint {
+    position: absolute; bottom: 28px; right: 0;
+    font-size: 11px; color: rgba(168,198,216,0.6);
+    display: flex; gap: 12px; align-items: center;
+  }
+  .key {
+    display: inline-block;
+    border: 1px solid rgba(168,198,216,0.3);
+    border-radius: 4px; padding: 2px 7px;
+    font-size: 11px; color: rgba(168,198,216,0.7);
+  }
+
+  /* ===== TITLE SLIDE ===== */
+  .title-series  { font-size: 34px; font-weight: 800; color: var(--text-light); margin-bottom: 8px; line-height: 1.2; }
+  .title-session { font-size: 19px; font-weight: 600; color: var(--mint); margin-bottom: 8px; }
+  .title-tagline { font-size: 15px; color: var(--text-muted); font-style: italic; margin-bottom: 32px; }
+  .title-rule    { width: 80px; height: 3px; background: var(--mint); border-radius: 2px; margin-bottom: 24px; }
+  .title-author  { font-size: 15px; font-weight: 700; color: var(--text-light); margin-bottom: 4px; }
+  .title-date    { font-size: 13px; color: var(--text-muted); }
+
+  /* ===== FRAGMENT OVERRIDES ===== */
+  .reveal .fragment { opacity: 0.15; transition: opacity 0.4s; }
+  .reveal .fragment.visible { opacity: 1; }
+
+  /* ===== LIGHT SLIDE TEXT OVERRIDES ===== */
+  .light-slide p, .light-slide li { color: var(--navy); }
+
+  /* ===== FOOTER BARS ===== */
+  .footer-bar {
+    background: #E8F8F5; border-radius: 8px;
+    padding: 9px 18px; margin-top: 14px;
+    font-size: 12px; color: var(--navy); font-weight: 600;
+    text-align: center;
+  }
+  .footer-bar-dark {
+    background: var(--card-bg);
+    border-radius: 8px; padding: 9px 18px; margin-top: 14px;
+    font-size: 12px; color: var(--mint); font-weight: 600;
+    text-align: center;
+  }
+
+  /* ===== ARROW VS ===== */
+  .vs-arrow {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; color: var(--mint); font-weight: 800;
+    flex-shrink: 0; padding: 0 8px;
+  }
+
+  /* teaser box */
+  .teaser {
+    background: var(--card-bg); border-left: 3px solid var(--mint);
+    border-radius: 8px; padding: 10px 16px;
+    font-size: 12px; color: var(--text-muted);
+    margin-top: 12px; font-style: italic;
+  }
+
+  /* ===== TOOLTIPS ===== */
+  .tip {
+    position: relative;
+    border-bottom: 1px dashed var(--mint);
+    cursor: help;
+    color: inherit;
+    font-weight: inherit;
+  }
+  .tip:hover { color: var(--mint); }
+  .tip .tip-content {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--navy);
+    color: var(--text-light);
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.6;
+    width: 320px;
+    max-width: 90vw;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    border: 2px solid var(--mint);
+    z-index: 10000;
+    text-align: left;
+    font-style: normal;
+  }
+  .tip .tip-content::before {
+    content: '💡';
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  .tip:hover .tip-content,
+  .tip:focus .tip-content { display: block; }
+  /* On light backgrounds */
+  .light-tip .tip-content { background: #fff; color: var(--navy); border-color: var(--blue); }
+  .light-tip { border-bottom-color: var(--blue); }
+  .light-tip:hover { color: var(--blue); }
+
+  /* ===== QUIZ SLIDES ===== */
+  .quiz-label { font-size: 11px; font-weight: 700; color: var(--mint); letter-spacing: 2px; margin-bottom: 12px; }
+  .quiz-question { font-size: 22px; font-weight: 700; color: var(--text-light); margin-bottom: 24px; line-height: 1.4; }
+  .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .quiz-opt {
+    background: var(--card-bg); border-radius: 10px; padding: 16px 20px;
+    font-size: 14px; color: var(--text-light); cursor: pointer;
+    border: 2px solid transparent; transition: all 0.2s;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .quiz-opt:hover { border-color: var(--mint); background: rgba(72,201,176,0.1); }
+  .quiz-opt.correct { background: #1D4A3A !important; border-color: #27AE60 !important; cursor: default; }
+  .quiz-opt.wrong { background: #4A1D1D !important; border-color: #E74C3C !important; cursor: default; opacity: 0.7; }
+  .quiz-opt.disabled { pointer-events: none; opacity: 0.6; }
+  .quiz-opt .opt-letter {
+    width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; flex-shrink: 0;
+  }
+  .quiz-opt.correct .opt-letter { background: #27AE60; color: #fff; }
+  .quiz-opt.wrong .opt-letter { background: #E74C3C; color: #fff; }
+  .quiz-explain {
+    margin-top: 16px; padding: 12px 18px; border-radius: 8px;
+    background: rgba(72,201,176,0.1); border-left: 3px solid var(--mint);
+    font-size: 12px; color: var(--text-muted); display: none; line-height: 1.6;
+  }
+  .quiz-explain.show { display: block; }
+</style>
+</head>
+<body>
+
+<!-- SESSION NAV BAR -->
+<div id="session-nav">
+  <span class="nav-label">SESSION 1</span>
+  <a href="#" onclick="Reveal.slide(3); return false;">01 AI Testing</a>
+  <a href="#" onclick="Reveal.slide(8); return false;">02 Tool Landscape</a>
+  <a href="#" onclick="Reveal.slide(12); return false;">03 Spec-Driven</a>
+  <a href="#" onclick="Reveal.slide(17); return false;">04 QA Role</a>
+  <a href="#" onclick="Reveal.slide(20); return false;">05 Guardrails</a>
+  <a href="#" onclick="Reveal.slide(22); return false;">06 Exercise</a>
+</div>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- ==================== SLIDE 1: TITLE ==================== -->
+<section data-background-color="#0D2137">
+  <div style="padding-top: 40px;">
+    <div style="width:100%;height:4px;background:var(--mint);border-radius:2px;margin-bottom:32px;"></div>
+    <div class="title-series">AI-Powered QA —<br>Rethinking Strategy &amp; Process</div>
+    <div class="title-session">Session 1: AI Foundations for QA — Shifting the Mindset</div>
+    <div class="title-tagline">From testing to transformation — redefine how quality gets built</div>
+    <div class="title-rule"></div>
+    <div class="title-author">Dr. Chathuranga Manamendra</div>
+    <div class="title-date">14th July 2026 &nbsp;|&nbsp; TIQRI QA Team</div>
+    <div class="keyboard-hint">
+      <span><span class="key">←→</span> Navigate</span>
+      <span><span class="key">F</span> Fullscreen</span>
+      <span><span class="key">S</span> Speaker Notes</span>
+      <span><span class="key">O</span> Overview</span>
+    </div>
+  </div>
+  <aside class="notes">Welcome participants. This is Session 1 of 3. Overview: We cover AI landscape, spec-driven development, agent capabilities, and guardrails. 1 hour theory + 1 hour practical. Session 2 on 21st July — hands-on building. Session 3 on 28th July — governance and scaling.</aside>
+</section>
+
+<!-- ==================== SLIDE 2: GROUND RULES ==================== -->
+<section data-background-color="#0D2137">
+  <div style="padding-top:24px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Ground Rules</h2>
+    <div class="accent-bar"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="limit-row fragment">
+        <div style="font-size:1.2rem;flex-shrink:0;">🔧</div>
+        <div class="limit-txt"><strong>Tool-agnostic.</strong> I'm not promoting any specific tool. We explore principles that apply regardless of which AI you use.</div>
+      </div>
+      <div class="limit-row fragment">
+        <div style="font-size:1.2rem;flex-shrink:0;">📷</div>
+        <div class="limit-txt"><strong>Camera on, voice up.</strong> This is a conversation, not a lecture. Your insights are as valuable as my slides.</div>
+      </div>
+      <div class="limit-row fragment">
+        <div style="font-size:1.2rem;flex-shrink:0;">❓</div>
+        <div class="limit-txt"><strong>Ask anything.</strong> I won't pretend to know everything. If I don't have the answer, I'll find it — or show you how to find it yourself.</div>
+      </div>
+      <div class="limit-row fragment">
+        <div style="font-size:1.2rem;flex-shrink:0;">🤝</div>
+        <div class="limit-txt"><strong>Be open and contribute.</strong> The best learning happens when you share your experiences — successes AND failures.</div>
+      </div>
+      <div class="limit-row fragment">
+        <div style="font-size:1.2rem;flex-shrink:0;">🧭</div>
+        <div class="limit-txt"><strong>6 hours ≠ everything.</strong> I can't teach you all of AI in QA. But I will teach you how to keep learning on your own — that's the real skill.</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Set expectations. These ground rules are about creating psychological safety: it's okay to not know, it's okay to disagree, and participation makes this better for everyone. Read each one aloud, pause briefly after each. The last point is key — this series launches a learning journey, it doesn't complete one.</aside>
+</section>
+
+<!-- ==================== SLIDE 3: AGENDA ==================== -->
+<section data-background-color="#F4F9FC">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-light" style="font-size:28px;font-weight:800;margin-bottom:4px;">Agenda</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2x3" style="margin-top:8px;">
+      <div class="card-navy fragment">
+        <div class="agenda-num">01</div>
+        <div class="agenda-title">AI-Driven Testing</div>
+        <div class="agenda-sub">Separating hype from reality</div>
+      </div>
+      <div class="card-navy fragment">
+        <div class="agenda-num">02</div>
+        <div class="agenda-title">Tool Landscape &amp; Agents</div>
+        <div class="agenda-sub">Mapping the ecosystem</div>
+      </div>
+      <div class="card-navy fragment">
+        <div class="agenda-num">03</div>
+        <div class="agenda-title">Spec-Driven Development</div>
+        <div class="agenda-sub">Foundation for AI workflows</div>
+      </div>
+      <div class="card-navy fragment">
+        <div class="agenda-num">04</div>
+        <div class="agenda-title">QA Role &amp; AI Skills</div>
+        <div class="agenda-sub">The evolving QE identity</div>
+      </div>
+      <div class="card-navy fragment">
+        <div class="agenda-num">05</div>
+        <div class="agenda-title">Guardrails for AI</div>
+        <div class="agenda-sub">Trust through boundaries</div>
+      </div>
+      <div class="card-navy fragment">
+        <div class="agenda-num">06</div>
+        <div class="agenda-title">Practical Exercise</div>
+        <div class="agenda-sub">Tool Map + Project Kickoff</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Walk through the agenda. Theory is 1 hour — 5 topics roughly 12 minutes each. Then 1 hour practical in breakout groups. Encourage questions throughout rather than saving them all to the end.</aside>
+</section>
+
+<!-- ==================== SLIDE 3: CHAPTER 01 ==================== -->
+<section data-background-color="#0D2137">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">01</div>
+    <div class="chapter-title">AI-Driven Testing in Practice</div>
+    <div class="chapter-sub">Separating hype from reality</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">Transition slide. Open with a quick show of hands: How many of you have used an AI tool for testing in the last month? This sets the baseline and makes it immediately personal and relevant.</aside>
+</section>
+
+<!-- ==================== SLIDE 4: THREE LEVELS ==================== -->
+<section data-background-color="#F4F9FC">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-light" style="font-size:26px;font-weight:800;margin-bottom:4px;">Three Levels of AI in Testing</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-3col" style="margin-top:4px;">
+      <div class="level-card fragment">
+        <div class="level-bar" style="background:#2E86C1;"></div>
+        <div class="level-body">
+          <div class="level-title"><span class="tip light-tip">AI-Assisted<span class="tip-content">Human drives the work, AI provides suggestions on demand. Example: Copilot autocomplete while typing code.</span></span></div>
+          <div class="level-desc">Human-driven, AI suggests.<br><br>
+            <strong style="color:var(--mint);font-size:11px;">EXAMPLES</strong><br>
+            Copilot autocomplete<br>Test data hints<br>Assertion suggestions
+          </div>
+        </div>
+      </div>
+      <div class="level-card fragment">
+        <div class="level-bar" style="background:#1B8A6B;"></div>
+        <div class="level-body">
+          <div class="level-title"><span class="tip light-tip">AI-Augmented<span class="tip-content">AI handles routine tasks end-to-end, human reviews the output before it's used. Example: AI generates a full test suite, you review before committing.</span></span></div>
+          <div class="level-desc">AI executes, human validates.<br><br>
+            <strong style="color:var(--mint);font-size:11px;">EXAMPLES</strong><br>
+            Full test generation<br>Smart prioritization<br>Defect auto-triage
+          </div>
+        </div>
+      </div>
+      <div class="level-card fragment">
+        <div class="level-bar" style="background:#48C9B0;"></div>
+        <div class="level-body">
+          <div class="level-title"><span class="tip light-tip">AI-Autonomous<span class="tip-content">AI plans, executes, and adapts independently. Human sets goals, AI figures out how. Example: Self-healing tests that fix their own selectors.</span></span></div>
+          <div class="level-desc">AI plans &amp; executes independently.<br><br>
+            <strong style="color:var(--mint);font-size:11px;">EXAMPLES</strong><br>
+            Self-healing tests<br>Autonomous exploratory<br>Adaptive test strategies
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment">Increasing AI Autonomy →</div>
+  </div>
+  <aside class="notes">Key message: Most teams today are at AI-Assisted level. The opportunity — and what this series covers — is moving to AI-Augmented. Autonomous is the future and will be covered in the Advanced Series teaser at the end.</aside>
+</section>
+
+<!-- ==================== SLIDE 5: WHAT AI CAN DO ==================== -->
+<section data-background-color="#F4F9FC">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-light" style="font-size:26px;font-weight:800;margin-bottom:4px;">What AI Can Do Today</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2x3">
+      <div class="card-navy fragment">
+        <div class="cap-badge">40–60% TIME SAVED</div>
+        <div class="cap-title">Test Case Generation</div>
+        <div class="cap-desc">From specs to comprehensive test suites</div>
+      </div>
+      <div class="card-navy fragment">
+        <div class="cap-badge">AUTO-CLASSIFICATION</div>
+        <div class="cap-title">Defect Triage</div>
+        <div class="cap-desc">Priority, component, and assignee suggestion</div>
+      </div>
+      <div class="card-navy fragment">
+        <div class="cap-badge">AI NOISE FILTERING</div>
+        <div class="cap-title">Visual Regression</div>
+        <div class="cap-desc">Ignore false positives, detect real changes</div>
+      </div>
+      <div class="card-navy fragment">
+        <div class="cap-badge">SMART PRIORITIZATION</div>
+        <div class="cap-title">Risk-Based Selection</div>
+        <div class="cap-desc">Run what matters most, cut waste</div>
+      </div>
+      <div class="card-navy fragment">
+        <div class="cap-badge">PATTERN RECOGNITION</div>
+        <div class="cap-title">Flaky Test Detection</div>
+        <div class="cap-desc">Identify and quarantine unstable tests</div>
+      </div>
+      <div class="card-navy fragment">
+        <div class="cap-badge">SYNTHETIC + REALISTIC</div>
+        <div class="cap-title">Test Data Generation</div>
+        <div class="cap-desc">Edge cases, boundary values, personas</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">These are all real capabilities available today — not futuristic. Each one maps to a concrete tool or workflow they can start using. If time allows, briefly demo test case generation live from a user story.</aside>
+</section>
+
+<!-- ==================== SLIDE 6: WHAT AI CANNOT DO ==================== -->
+<section data-background-color="#0D2137">
+  <div style="padding-top:20px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">What AI Cannot Do</h2>
+    <div class="accent-bar"></div>
+    <div class="limit-row fragment">
+      <div class="limit-x">✗</div>
+      <div class="limit-txt">Understand your domain without well-written specs</div>
+    </div>
+    <div class="limit-row fragment">
+      <div class="limit-x">✗</div>
+      <div class="limit-txt">Replace exploratory testing intuition developed over years</div>
+    </div>
+    <div class="limit-row fragment">
+      <div class="limit-x">✗</div>
+      <div class="limit-txt">Guarantee correctness of generated outputs</div>
+    </div>
+    <div class="limit-row fragment">
+      <div class="limit-x">✗</div>
+      <div class="limit-txt">Understand organizational politics &amp; context</div>
+    </div>
+    <div class="limit-row fragment">
+      <div class="limit-x">✗</div>
+      <div class="limit-txt">Make risk decisions on your behalf</div>
+    </div>
+    <div class="teaser fragment">🔮 Advanced Series teaser: We'll explore how to push these boundaries further — and where the hard limits remain.</div>
+  </div>
+  <aside class="notes">Balance the optimism of the previous slide with realism. This is exactly why human QEs remain essential and irreplaceable. AI generates plausible output, not provably correct output. The last point — risk decisions — is something we'll revisit in the guardrails section.</aside>
+</section>
+
+<!-- ==================== QUIZ 1: After AI Levels ==================== -->
+<section data-background-color="#0D2137">
+  <div id="quiz-1" style="padding-top:24px;">
+    <div class="quiz-label">🧠 QUICK CHECK</div>
+    <div class="quiz-question">Which level of AI involvement best describes:<br>"AI generates full test suites, human reviews before committing"?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-1', 0, 1, 'AI-Augmented means AI handles routine execution while humans validate and guide. The human review step is what distinguishes it from Autonomous.')">
+        <span class="opt-letter">A</span> AI-Assisted
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-1', 1, 1, 'AI-Augmented means AI handles routine execution while humans validate and guide. The human review step is what distinguishes it from Autonomous.')">
+        <span class="opt-letter">B</span> AI-Augmented
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-1', 2, 1, 'AI-Augmented means AI handles routine execution while humans validate and guide. The human review step is what distinguishes it from Autonomous.')">
+        <span class="opt-letter">C</span> AI-Autonomous
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-1', 3, 1, 'AI-Augmented means AI handles routine execution while humans validate and guide. The human review step is what distinguishes it from Autonomous.')">
+        <span class="opt-letter">D</span> Manual Testing
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">Interactive quiz. Let participants discuss briefly before clicking. This reinforces the key concept from the previous section.</aside>
+</section>
+
+<!-- ==================== SLIDE 7: CHAPTER 02 ==================== -->
+<section data-background-color="#0D2137">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">02</div>
+    <div class="chapter-title">The AI Tool Landscape &amp;<br>Agent Capabilities</div>
+    <div class="chapter-sub">Mapping the ecosystem &amp; understanding agent architecture</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">Transition slide. This section maps the full ecosystem and then introduces the critical Tool vs Agent distinction — which changes how QEs think about what AI can do for their workflow.</aside>
+</section>
+
+<!-- ==================== SLIDE 8: TOOL CATEGORIES ==================== -->
+<section data-background-color="#0D2137">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">AI Tool Categories for QA</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2x3">
+      <div class="card fragment">
+        <div class="tool-title"><span class="tip">Test Generation<span class="tip-content">AI tools that create test cases, scripts, and test data from specifications or code. They translate requirements into executable tests.</span></span></div>
+        <div class="tool-names">Copilot, Codium, TestPilot</div>
+      </div>
+      <div class="card fragment">
+        <div class="tool-title"><span class="tip">Execution &amp; Orchestration<span class="tip-content">Tools that run tests, manage environments, and coordinate execution across browsers, devices, and configurations.</span></span></div>
+        <div class="tool-names">Playwright AI, Katalon, mabl</div>
+      </div>
+      <div class="card fragment">
+        <div class="tool-title"><span class="tip">Defect Intelligence<span class="tip-content">AI that auto-classifies bugs, detects duplicates, suggests root causes, and predicts which modules are likely to have defects.</span></span></div>
+        <div class="tool-names">Sentry AI, LinearB, Bugasura</div>
+      </div>
+      <div class="card fragment">
+        <div class="tool-title"><span class="tip">Test Data<span class="tip-content">Tools that generate synthetic, realistic test data including edge cases, boundary values, and user profiles without using real customer data.</span></span></div>
+        <div class="tool-names">Faker AI, Synthea, Mockaroo</div>
+      </div>
+      <div class="card fragment">
+        <div class="tool-title"><span class="tip">Visual Testing<span class="tip-content">AI-powered screenshot comparison that detects real visual changes while filtering out false positives like anti-aliasing and dynamic content.</span></span></div>
+        <div class="tool-names">Applitools, Percy, Chromatic</div>
+      </div>
+      <div class="card fragment">
+        <div class="tool-title"><span class="tip">Monitoring &amp; Observability<span class="tip-content">AI that watches production systems, detects anomalies in real-time, and correlates issues across logs, metrics, and traces.</span></span></div>
+        <div class="tool-names">Datadog AI, PagerDuty AI, Honeycomb</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Quick landscape survey. Ask: Which of these categories are you already using tools in? Which has the biggest gap in your current practice? This primes the Tool Map exercise in the practical session. This becomes the map they'll fill in detail during the workshop.</aside>
+</section>
+
+<!-- ==================== SLIDE 9: TOOLS vs AGENTS ==================== -->
+<section data-background-color="#F4F9FC">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-light" style="font-size:26px;font-weight:800;margin-bottom:4px;">Tools vs Agents</h2>
+    <div class="accent-bar"></div>
+    <div class="flex-row" style="margin-top:4px;">
+      <div class="card-navy fragment" style="flex:1;">
+        <div class="tva-label" style="color:#2E86C1;"><span class="tip light-tip">TOOL<span class="tip-content">A single-transaction interaction: you ask, it answers, done. No memory between calls. Like a calculator — powerful but stateless.</span></span></div>
+        <div class="tva-flow">Invoke → Respond → Done</div>
+        <div class="tva-list">
+          <strong>Single transaction</strong><br>
+          No memory between calls<br>
+          Human drives every step<br>
+          Predictable &amp; contained<br><br>
+          <strong>Example:</strong> Copilot autocomplete —<br>
+          you type, it suggests, done.
+        </div>
+      </div>
+      <div class="vs-arrow fragment">vs</div>
+      <div class="card-navy fragment" style="flex:1.2;">
+        <div class="tva-label" style="color:#48C9B0;"><span class="tip light-tip">AGENT<span class="tip-content">An autonomous system with goals, memory, and planning ability. It can take multiple actions, learn from results, and adapt without human intervention between steps.</span></span></div>
+        <div class="tva-flow">Goals → Plan → Execute → Adapt</div>
+        <div class="tva-list">
+          <strong>Multi-step autonomous</strong><br>
+          Memory &amp; persistent context<br>
+          Self-directed planning<br>
+          Can chain multiple tools<br><br>
+          <strong>Capabilities:</strong> Code generation,<br>
+          orchestration, reasoning, memory<br><br>
+          <strong>Example:</strong> Copilot Workspace —<br>
+          give it a goal, it builds a plan.
+        </div>
+      </div>
+    </div>
+    <div class="teaser" style="margin-top:14px;">🔮 Advanced Series: Build custom agents tailored to your QA pipeline — agents that know your codebase and your definition of quality.</div>
+  </div>
+  <aside class="notes">Critical distinction. A tool is a transaction. An agent is a collaborator with its own plan and memory. Understanding this changes how you think about automation scope and guardrails. Teaser: Advanced Series covers building custom agents from scratch.</aside>
+</section>
+
+<!-- ==================== QUIZ 2: After Tools vs Agents ==================== -->
+<section data-background-color="#0D2137">
+  <div id="quiz-2" style="padding-top:24px;">
+    <div class="quiz-label">🧠 QUICK CHECK</div>
+    <div class="quiz-question">What is the KEY difference between an AI Tool and an AI Agent?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-2', 0, 2, 'An agent has autonomy — it can set goals, maintain context across interactions, and take multiple actions to achieve an outcome without human intervention between steps.')">
+        <span class="opt-letter">A</span> Agents are more expensive
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-2', 1, 2, 'An agent has autonomy — it can set goals, maintain context across interactions, and take multiple actions to achieve an outcome without human intervention between steps.')">
+        <span class="opt-letter">B</span> Tools use machine learning, agents don&rsquo;t
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-2', 2, 2, 'An agent has autonomy — it can set goals, maintain context across interactions, and take multiple actions to achieve an outcome without human intervention between steps.')">
+        <span class="opt-letter">C</span> Agents have goals, memory, and can plan multi-step actions
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-2', 3, 2, 'An agent has autonomy — it can set goals, maintain context across interactions, and take multiple actions to achieve an outcome without human intervention between steps.')">
+        <span class="opt-letter">D</span> Tools are cloud-based, agents run locally
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">Interactive quiz. Let participants discuss briefly before clicking. This reinforces the key concept from the previous section.</aside>
+</section>
+
+<!-- ==================== SLIDE 10: CHAPTER 03 ==================== -->
+<section data-background-color="#0D2137">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">03</div>
+    <div class="chapter-title">Spec-Driven Development</div>
+    <div class="chapter-sub">The foundation for AI-augmented workflows</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">This is perhaps the most important concept in the entire series. Emphasize: the quality of your specification determines everything downstream — the quality of the code, the tests, and the AI output. Bad input → bad output, amplified 10x with AI.</aside>
+</section>
+
+<!-- ==================== SLIDE 11: WHY SPECS MATTER ==================== -->
+<section data-background-color="#F4F9FC">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-light" style="font-size:24px;font-weight:800;margin-bottom:4px;">Why Specs Matter More Now</h2>
+    <div class="accent-bar"></div>
+    <div class="banner-mint">Garbage In → Garbage Out applies 10× more with AI</div>
+    <div class="grid-2col">
+      <div class="spec-bad fragment">
+        <div class="spec-bad-label">✗ &nbsp;Vague Requirement</div>
+        <div class="spec-text spec-text-bad">
+          <em>"The login should work properly"</em><br><br>
+          ↓ AI generates generic tests<br>
+          ↓ Low coverage, false confidence<br>
+          ↓ Bugs escape to production
+        </div>
+      </div>
+      <div class="spec-good fragment">
+        <div class="spec-good-label">✓ &nbsp;Clear Specification</div>
+        <div class="spec-text spec-text-good">
+          <em>"Given valid credentials, When user submits, Then redirect to dashboard within 2s"</em><br><br>
+          ↓ AI generates precise test cases<br>
+          ↓ Boundary + negative cases included<br>
+          ↓ Real coverage, real confidence
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Live demo opportunity here: paste a vague requirement into an AI tool, show the mediocre output. Then rewrite as a proper spec with Given/When/Then, show dramatically better output. This 2–3 minute demo is worth more than any slide.</aside>
+</section>
+
+<!-- ==================== SLIDE 12: SPEC–TEST LOOP ==================== -->
+<section data-background-color="#F4F9FC">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-light" style="font-size:24px;font-weight:800;margin-bottom:4px;">The Spec → Test Loop</h2>
+    <div class="accent-bar"></div>
+    <div class="loop-steps">
+      <div class="loop-step fragment">
+        <div class="loop-step-label">SPEC</div>
+        <div class="loop-step-desc">Human writes testable spec</div>
+      </div>
+      <div class="loop-arrow fragment">→</div>
+      <div class="loop-step fragment">
+        <div class="loop-step-label">AI CODE</div>
+        <div class="loop-step-desc">AI generates implementation</div>
+      </div>
+      <div class="loop-arrow fragment">→</div>
+      <div class="loop-step fragment">
+        <div class="loop-step-label">AI TESTS</div>
+        <div class="loop-step-desc">AI creates test suite from spec</div>
+      </div>
+      <div class="loop-arrow fragment">→</div>
+      <div class="loop-step fragment">
+        <div class="loop-step-label">VALIDATE</div>
+        <div class="loop-step-desc">Human reviews &amp; verifies</div>
+      </div>
+      <div class="loop-arrow fragment">→</div>
+      <div class="loop-step fragment">
+        <div class="loop-step-label">REFINE</div>
+        <div class="loop-step-desc">Iterate based on findings</div>
+      </div>
+    </div>
+    <div class="loop-footer fragment">↺ &nbsp;Continuous loop: Refine feeds back into Spec — each iteration improves quality</div>
+  </div>
+  <aside class="notes">This is the workflow they will practice in Session 2. The spec is the starting point for everything — it is the contract between human intent and AI execution. Emphasize: they need to bring their spec to Session 2 polished and ready.</aside>
+</section>
+
+<!-- ==================== SLIDE 13: WRITING TESTABLE SPECS ==================== -->
+<section data-background-color="#F4F9FC">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-light" style="font-size:24px;font-weight:800;margin-bottom:4px;">Writing Testable Specs</h2>
+    <div class="accent-bar"></div>
+    <div class="check-row fragment"><span class="check-icon">✓</span> Use Given / When / Then format for clarity</div>
+    <div class="check-row fragment"><span class="check-icon">✓</span> Define explicit boundaries and limits</div>
+    <div class="check-row fragment"><span class="check-icon">✓</span> Include negative cases and error paths</div>
+    <div class="check-row fragment"><span class="check-icon">✓</span> Specify data constraints and valid ranges</div>
+    <div class="check-row fragment" style="border-bottom:none;"><span class="check-icon">✓</span> Document expected error behaviors</div>
+    <div class="grid-2col" style="margin-top:16px;">
+      <div class="spec-bad fragment">
+        <div class="spec-bad-label">✗ "Users can log in"</div>
+        <div class="spec-text spec-text-bad">No boundaries, no error paths, no data constraints defined</div>
+      </div>
+      <div class="spec-good fragment">
+        <div class="spec-good-label">✓ "Given email + password..."</div>
+        <div class="spec-text spec-text-good">Max 3 attempts, lockout 15 min, email format validated, 8+ char password required</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Practical tips they'll apply directly in the exercise. Reference the spec template handout they've been given. The spec template in the exercise follows these exact principles. Encourage them to look critically at their own past user stories against these five criteria.</aside>
+</section>
+
+<!-- ==================== QUIZ 3: After Writing Testable Specs ==================== -->
+<section data-background-color="#0D2137">
+  <div id="quiz-3" style="padding-top:24px;">
+    <div class="quiz-label">🧠 QUICK CHECK</div>
+    <div class="quiz-question">Which specification is MOST useful as input for AI test generation?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-3', 0, 1, 'Clear boundaries (price range), specific context (logged-in user), and measurable outcomes (sorted by relevance) give AI the precision it needs to generate meaningful tests.')">
+        <span class="opt-letter">A</span> &ldquo;The search feature should work correctly&rdquo;
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-3', 1, 1, 'Clear boundaries (price range), specific context (logged-in user), and measurable outcomes (sorted by relevance) give AI the precision it needs to generate meaningful tests.')">
+        <span class="opt-letter">B</span> &ldquo;Given a logged-in user, When they search for &lsquo;laptop&rsquo; with price filter $200–$500, Then results show only laptops in that range sorted by relevance&rdquo;
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-3', 2, 1, 'Clear boundaries (price range), specific context (logged-in user), and measurable outcomes (sorted by relevance) give AI the precision it needs to generate meaningful tests.')">
+        <span class="opt-letter">C</span> &ldquo;Users can search for products&rdquo;
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-3', 3, 1, 'Clear boundaries (price range), specific context (logged-in user), and measurable outcomes (sorted by relevance) give AI the precision it needs to generate meaningful tests.')">
+        <span class="opt-letter">D</span> &ldquo;Implement search functionality per the PRD&rdquo;
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">Interactive quiz. Let participants discuss briefly before clicking. This reinforces the key concept from the previous section.</aside>
+</section>
+
+<!-- ==================== SLIDE 14: CHAPTER 04 ==================== -->
+<section data-background-color="#0D2137">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">04</div>
+    <div class="chapter-title">The Evolving QA Role &amp;<br>AI Skills</div>
+    <div class="chapter-sub">From execution to strategy — the new QE identity</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">Transition. Ask: How has your role changed in the last 2 years? What feels different about the work now compared to before AI tools were common? This opens reflection before presenting the framework.</aside>
+</section>
+
+<!-- ==================== SLIDE 15: GATEKEEPER TO STRATEGIST ==================== -->
+<section data-background-color="#F4F9FC">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-light" style="font-size:24px;font-weight:800;margin-bottom:4px;">From Gatekeeper to Strategist</h2>
+    <div class="accent-bar"></div>
+    <div class="flex-row" style="margin-top:4px; align-items:stretch;">
+      <div class="model-old fragment" style="flex:1;">
+        <div class="model-label">OLD MODEL</div>
+        <div class="model-item">• Reactive — finds bugs after code<br>• Gate at the end of the cycle<br>• Manual test execution<br>• Measured by bug count<br>• Siloed from development<br>• Tool operator</div>
+      </div>
+      <div class="vs-arrow fragment">→</div>
+      <div class="model-new fragment" style="flex:1;">
+        <div class="model-label">NEW MODEL</div>
+        <div class="model-item">• Proactive — influences quality early<br>• Present at every stage<br>• AI handles routine execution<br>• Measured by quality outcomes<br>• Embedded in delivery team<br>• AI orchestrator &amp; strategist</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment" style="margin-top:16px;">The most valuable QE knows what to automate <em>and</em> what NOT to.</div>
+  </div>
+  <aside class="notes">The most valuable QE is the one who knows what to automate AND what not to. AI handles execution; humans handle strategy, risk, and judgment. This is not a threat to the role — it is an elevation of it.</aside>
+</section>
+
+<!-- ==================== SLIDE 16: QE AI SKILLS MATRIX ==================== -->
+<section data-background-color="#F4F9FC">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-light" style="font-size:24px;font-weight:800;margin-bottom:4px;">QE AI Skills Matrix</h2>
+    <div class="accent-bar"></div>
+    <div style="border-radius:10px;overflow:hidden;box-shadow:0 2px 12px rgba(27,79,114,0.12);">
+      <div class="matrix-header">
+        <span>LEVEL</span><span>ROLE</span><span>DESCRIPTION</span>
+      </div>
+      <div class="matrix-row fragment">
+        <span class="matrix-level">Level 1</span>
+        <span class="matrix-role"><span class="tip light-tip">Consumer<span class="tip-content">Uses AI tools as provided with default settings. Can follow prompts and templates others have created.</span></span></span>
+        <span class="matrix-desc">Uses AI tools as provided, follows prompts</span>
+      </div>
+      <div class="matrix-row fragment">
+        <span class="matrix-level">Level 2</span>
+        <span class="matrix-role"><span class="tip light-tip">Power User<span class="tip-content">Customizes prompts for better results, knows tool limitations, can evaluate AI output quality and iterate effectively.</span></span></span>
+        <span class="matrix-desc">Customizes prompts, chains tools, evaluates output quality</span>
+      </div>
+      <div class="matrix-row fragment">
+        <span class="matrix-level">Level 3</span>
+        <span class="matrix-role"><span class="tip light-tip">Builder<span class="tip-content">Creates reusable prompt libraries, builds custom AI workflows, integrates tools into team pipelines. Makes AI work for the whole team.</span></span></span>
+        <span class="matrix-desc">Creates custom workflows, integrates AI into pipelines</span>
+      </div>
+      <div class="matrix-row fragment">
+        <span class="matrix-level">Level 4</span>
+        <span class="matrix-role"><span class="tip light-tip">Architect<span class="tip-content">Designs org-wide AI strategy, builds governance frameworks, creates custom AI agents, and sets standards that scale across multiple teams.</span></span></span>
+        <span class="matrix-desc">Designs AI strategy, builds agents, sets org standards</span>
+      </div>
+      <div class="matrix-banner fragment">
+        🎯 &nbsp;This series takes you from Consumer → Builder &nbsp;(Levels 1–2 to Level 3)
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Ask participants to self-assess silently: where are you today on this matrix? No judgment — it is a growth tool. Most people will be Level 1–2 on most skills. The goal of this series is to reach Level 3. Level 4 is the Advanced Series.</aside>
+</section>
+
+<!-- ==================== SLIDE 17: CHAPTER 05 ==================== -->
+<section data-background-color="#0D2137">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">05</div>
+    <div class="chapter-title">Guardrails for AI in QE</div>
+    <div class="chapter-sub" style="color:var(--mint); font-style:normal; font-size:16px;">Trust = Capability × Predictability × Boundaries</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">Final theory topic. This sets up the accountability mindset they carry into the practical session and beyond. AI without guardrails is like automation without assertions — it runs, it looks impressive, but you can't trust the results.</aside>
+</section>
+
+<!-- ==================== SLIDE 18: THREE ZONES ==================== -->
+<section data-background-color="#0D2137">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">The Three Zones of AI Trust</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-3col" style="margin-top:4px;">
+      <div class="zone-card fragment">
+        <div class="zone-bar" style="background:#27AE60;"></div>
+        <div class="zone-body zone-green">
+          <div class="zone-label" style="color:#27AE60;">🟢 GREEN ZONE</div>
+          <div class="zone-sub"><span class="tip">Automate Freely<span class="tip-content">AI can do this without human review. Low risk, repetitive tasks where mistakes are easily caught and reversed. Example: test data generation, code formatting.</span></span></div>
+          <div class="zone-items">
+            • Test data generation<br>
+            • Code formatting<br>
+            • Report generation<br>
+            • Environment setup<br>
+            • Log parsing
+          </div>
+        </div>
+      </div>
+      <div class="zone-card fragment">
+        <div class="zone-bar" style="background:#F39C12;"></div>
+        <div class="zone-body zone-yellow">
+          <div class="zone-label" style="color:#F39C12;">🟡 YELLOW ZONE</div>
+          <div class="zone-sub"><span class="tip">Human Reviews<span class="tip-content">AI generates output, but a human must validate before it enters the pipeline. Medium risk, where mistakes could affect quality. Example: test case generation, bug triage.</span></span></div>
+          <div class="zone-items">
+            • Test case generation<br>
+            • Code suggestions<br>
+            • Bug classification<br>
+            • Test prioritization<br>
+            • Coverage analysis
+          </div>
+        </div>
+      </div>
+      <div class="zone-card fragment">
+        <div class="zone-bar" style="background:#E74C3C;"></div>
+        <div class="zone-body zone-red">
+          <div class="zone-label" style="color:#E74C3C;">🔴 RED ZONE</div>
+          <div class="zone-sub"><span class="tip">Human Only<span class="tip-content">AI must not be used here. High risk, compliance-sensitive, or decisions requiring accountability. Example: security sign-offs, production release decisions.</span></span></div>
+          <div class="zone-items">
+            • Security decisions<br>
+            • Compliance sign-off<br>
+            • Risk assessment<br>
+            • Release approval<br>
+            • Customer-facing decisions
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Quick group discussion: What would you put in your personal Red Zone right now in your current role? This primes them for the practical session where they'll evaluate AI output critically and decide what to trust. There are no wrong answers — it depends on context and maturity.</aside>
+</section>
+
+<!-- ==================== SLIDE 19: PRACTICAL EXERCISE ==================== -->
+<section data-background-color="#F4F9FC">
+  <div style="padding-top:10px;">
+    <h2 class="slide-title-light" style="font-size:24px;font-weight:800;margin-bottom:4px;">Practical Exercise — Tool Map + Project Kickoff</h2>
+    <div class="accent-bar"></div>
+    <div class="timeline">
+      <div class="tl-item fragment">
+        <div class="tl-time">25<div class="tl-min">min</div></div>
+        <div>
+          <div class="tl-title">Task 1: Tool Map</div>
+          <div class="tl-desc">Map current tools to AI categories. Evaluate each for value, complexity, and agent capabilities. Identify top 3 &amp; biggest gap.</div>
+        </div>
+      </div>
+      <div class="tl-item fragment">
+        <div class="tl-time">20<div class="tl-min">min</div></div>
+        <div>
+          <div class="tl-title">Task 2: Spec First</div>
+          <div class="tl-desc">Choose your micro-app idea. Write a testable spec: user stories + Given/When/Then acceptance criteria + edge cases.</div>
+        </div>
+      </div>
+      <div class="tl-item fragment">
+        <div class="tl-time">10<div class="tl-min">min</div></div>
+        <div>
+          <div class="tl-title">Task 3: AI Story Expansion</div>
+          <div class="tl-desc">Feed your spec to AI. Evaluate output: ✅ Keep / ⚠️ Modify / ❌ Reject. Note how spec quality affects AI output quality.</div>
+        </div>
+      </div>
+      <div class="tl-item fragment">
+        <div class="tl-time">5<div class="tl-min">min</div></div>
+        <div>
+          <div class="tl-title">Debrief</div>
+          <div class="tl-desc">Each group shares: tool map highlight, app concept, and one insight about spec quality → AI output quality.</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment" style="margin-top:12px;">6 teams (5×3 + 1×4) &nbsp;|&nbsp; Deliverables: Tool Map + Testable Spec + AI-generated test cases (evaluated)</div>
+  </div>
+  <aside class="notes">Form groups now if not already done. Distribute the handouts: Tool Map template, Spec template, access to AI tools. Set a visible timer. Walk the room during the exercise — intervene gently if groups are stuck on app choice. The debrief is important — keep it tight at 1 minute per group.</aside>
+</section>
+
+<!-- ==================== SLIDE 20: CLOSING ==================== -->
+<section data-background-color="#0D2137">
+  <div style="padding-top:24px;">
+    <h2 class="slide-title-dark" style="font-size:32px;font-weight:800;margin-bottom:4px;">Next Week: We Build</h2>
+    <div style="font-size:15px;color:var(--mint);margin-bottom:6px;font-weight:600;">Session 2 Preview — 21st July 2026</div>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="margin-top:8px;">
+      <div class="closing-card fragment">📝 &nbsp;<strong>Bring your spec</strong> — polished and ready for AI input</div>
+      <div class="closing-card fragment">🛠 &nbsp;<strong>Micro-app + Playwright</strong> — hands-on AI-assisted coding</div>
+      <div class="closing-card fragment">🧠 &nbsp;<strong>Prompt engineering</strong> — master the art of AI instruction</div>
+      <div class="closing-card fragment">⚙ &nbsp;<strong>Spec to automated test</strong> — full pipeline in 60 minutes</div>
+    </div>
+    <div class="card fragment" style="margin-top:18px;border-left:3px solid var(--mint);padding:14px 18px;">
+      🚀 &nbsp;<strong style="color:var(--mint);">Advanced Series teaser:</strong>
+      <span style="color:var(--text-muted); font-size:13px;"> Build custom AI agents for your QA workflow — tailored to your codebase, your test patterns, your definition of quality.</span>
+    </div>
+  </div>
+  <aside class="notes">Close on a forward-looking high note. Remind them to: (1) keep their spec template from today, (2) try at least one AI tool from the tool map before next week, (3) come to Session 2 with their spec — polished or rough, we're building. Thank the group for their engagement today.</aside>
+</section>
+
+</div><!-- /.slides -->
+</div><!-- /.reveal -->
+
+<!-- Reveal.js & Initialization -->
+<script type="module">
+  import Reveal from 'https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.esm.js';
+
+  const deck = Reveal.initialize({
+    hash: true,
+    slideNumber: function(slide) {
+      const h = Reveal.getIndices(slide).h + 1;
+      return [h + ' / 24'];
+    },
+    showSlideNumber: 'all',
+    progress: true,
+    keyboard: true,
+    overview: true,
+    center: true,
+    touch: true,
+    loop: false,
+    autoSlide: 0,
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    width: 1280,
+    height: 720,
+    margin: 0.04,
+    minScale: 0.2,
+    maxScale: 2.0
+  });
+
+  // Update nav active state on slide change
+  deck.then(() => {
+    const navLinks = document.querySelectorAll('#session-nav a');
+    const chapters = [3, 8, 12, 17, 20, 22]; // 0-indexed
+
+    function updateNav() {
+      const current = Reveal.getIndices().h;
+      navLinks.forEach((link, i) => {
+        if (i < chapters.length - 1 && current >= chapters[i] && current < chapters[i+1]) {
+          link.style.color = 'var(--mint)';
+          link.style.borderColor = 'rgba(72,201,176,0.4)';
+        } else if (i === chapters.length - 1 && current >= chapters[i]) {
+          link.style.color = 'var(--mint)';
+          link.style.borderColor = 'rgba(72,201,176,0.4)';
+        } else {
+          link.style.color = '';
+          link.style.borderColor = '';
+        }
+      });
+    }
+
+    Reveal.on('slidechanged', updateNav);
+    updateNav();
+  });
+</script>
+
+<!-- Graceful fallback for offline use -->
+<noscript>
+  <style>
+    .reveal .fragment { opacity: 1 !important; }
+    .reveal .slides section { display: block !important; }
+  </style>
+</noscript>
+<script>
+  // Fallback: if Reveal.js fails to load from CDN, show all content
+  window.addEventListener('error', function(e) {
+    if (e.filename && e.filename.includes('reveal')) {
+      document.querySelectorAll('.fragment').forEach(function(el) {
+        el.style.opacity = '1';
+      });
+      document.querySelector('.reveal').style.overflow = 'auto';
+      document.querySelectorAll('.reveal .slides section').forEach(function(s) {
+        s.style.display = 'block';
+        s.style.position = 'relative';
+        s.style.width = '100%';
+        s.style.minHeight = '100vh';
+        s.style.padding = '48px';
+        s.style.boxSizing = 'border-box';
+        s.style.borderBottom = '2px solid rgba(72,201,176,0.3)';
+      });
+    }
+  }, true);
+</script>
+<script>
+  function quizAnswer(slideId, selectedIdx, correctIdx, explanation) {
+    var container = document.getElementById(slideId);
+    if (!container) return;
+    var opts = container.querySelectorAll('.quiz-opt');
+    opts.forEach(function(opt, i) {
+      opt.classList.add('disabled');
+      if (i === correctIdx) {
+        opt.classList.add('correct');
+        opt.querySelector('.opt-letter').textContent = '✓';
+      }
+      if (i === selectedIdx && selectedIdx !== correctIdx) {
+        opt.classList.add('wrong');
+        opt.querySelector('.opt-letter').textContent = '✗';
+      }
+    });
+    var explainEl = container.querySelector('.quiz-explain');
+    if (explainEl) {
+      explainEl.textContent = explanation;
+      explainEl.classList.add('show');
+    }
+  }
+  window.quizAnswer = quizAnswer;
+</script>
+<script>
+// Touch support: tap to toggle tooltip on mobile
+document.querySelectorAll('.tip').forEach(function(el) {
+  el.addEventListener('click', function(e) {
+    e.stopPropagation();
+    document.querySelectorAll('.tip .tip-content').forEach(function(t) { t.style.display = 'none'; });
+    var content = el.querySelector('.tip-content');
+    if (content) content.style.display = content.style.display === 'block' ? 'none' : 'block';
+  });
+});
+document.addEventListener('click', function() {
+  document.querySelectorAll('.tip .tip-content').forEach(function(t) { t.style.display = ''; });
+});
+</script>
+</body>
+</html>

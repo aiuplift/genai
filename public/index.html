@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI Essentials Exercise Platform - Interactive training for professionals">
+  <title>AI Essentials for Professionals</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <!-- Reveal.js presentation engine -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+</head>
+<body>
+  <header role="banner" class="app-header">
+    <div class="app-header__inner">
+      <a href="#modules" class="nav-brand">
+        <span class="nav-brand__icon" aria-hidden="true">🧠</span>
+        <span class="nav-brand__text">AI Essentials</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="app" role="main" aria-live="polite" aria-atomic="false" tabindex="-1">
+    <!-- SPA content rendered here by the router -->
+  </main>
+
+  <div id="notifications" role="status" aria-live="assertive" aria-atomic="true" class="visually-hidden">
+    <!-- Dynamic notifications announced to screen readers -->
+  </div>
+
+  <footer role="contentinfo" class="app-footer">
+    <p>&copy; 2026 AI Essentials for Professionals</p>
+  </footer>
+
+  <!-- Firebase SDK (compat for no-build-step usage) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
+  <!-- Reveal.js presentation engine -->
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+
+  <!-- Local config (API keys — gitignored) -->
+  <script src="/js/config.js" onerror="console.log('No config.js — AI chat will run in demo mode')"></script>
+
+  <!-- Application entry point -->
+  <script src="/js/app.js" type="module"></script>
+</body>
+</html>
