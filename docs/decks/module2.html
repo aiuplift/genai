@@ -3,409 +3,127 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Module 2: Prompt Engineering &amp; Professional Writing — AI Essentials for Professionals</title>
+<title>Module 2: Prompt Engineering &amp; Professional Writing — AI Skills Studio</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
 <style>
-  /* ===== DESIGN SYSTEM ===== */
-  :root {
-    --navy:      #1E1045;
-    --blue:      #6C3AED;
-    --mint:      #0891B2;
-    --dark-bg:   #0F0A2E;
-    --light-bg:  #F5F3FF;
-    --card-bg:   #1E1B4B;
-    --text-light:#FFFFFF;
-    --text-muted:#A8B4D8;
-    --font:      system-ui, 'Segoe UI', sans-serif;
-  }
-
-  .reveal { font-family: var(--font); }
-  .reveal .slides section { text-align: left; padding: 0 48px; }
-
-  /* Progress bar */
-  .reveal .progress { height: 4px; color: var(--mint); }
-  .reveal .progress span { background: var(--mint); }
-
-  /* Slide number */
-  .reveal .slide-number {
-    background: rgba(0,0,0,0.4);
-    color: var(--text-muted);
-    font-size: 13px;
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-family: var(--font);
-  }
-</style>
-<style>
-  /* ===== TYPOGRAPHY ===== */
-  .reveal h1, .reveal h2, .reveal h3 {
-    font-family: var(--font);
-    text-transform: none;
-    letter-spacing: -0.5px;
-  }
-  .slide-title-dark  { color: var(--text-light) !important; }
-  .slide-title-light { color: var(--navy) !important; }
-
-  .accent-bar {
-    width: 80px; height: 4px;
-    background: var(--mint);
-    margin: 6px 0 16px 0;
-    border-radius: 2px;
-  }
-
-  /* ===== CARDS ===== */
-  .card {
-    background: var(--card-bg);
-    border-radius: 10px;
-    padding: 18px 20px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-  }
-  .card-light {
-    background: #fff;
-    border-radius: 10px;
-    padding: 18px 20px;
-    box-shadow: 0 2px 12px rgba(30,16,69,0.10);
-  }
-  .card-navy {
-    background: var(--navy);
-    border-radius: 10px;
-    padding: 18px 20px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-  }
-
-  /* ===== GRID HELPERS ===== */
-  .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .grid-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
-  .grid-2x3  { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 12px; }
-  .flex-row  { display: flex; gap: 16px; align-items: stretch; }
-
-  /* ===== CHAPTER SLIDES ===== */
-  .chapter-num {
-    font-size: 96px; font-weight: 900;
-    color: var(--mint); opacity: 0.85;
-    line-height: 1; margin-bottom: 8px;
-  }
-  .chapter-title {
-    font-size: 38px; font-weight: 700;
-    color: var(--text-light); margin: 0 0 8px 0;
-  }
-  .chapter-sub {
-    font-size: 17px; color: var(--text-muted);
-    font-style: italic; margin: 0;
-  }
-  .chapter-rule {
-    width: 100px; height: 4px;
-    background: var(--mint); border-radius: 2px; margin-top: 20px;
-  }
-
-  /* ===== AGENDA CARDS ===== */
-  .agenda-num { font-size: 26px; font-weight: 800; color: var(--mint); margin-bottom: 6px; }
-  .agenda-title { font-size: 14px; font-weight: 700; color: var(--text-light); margin-bottom: 4px; }
-  .agenda-sub   { font-size: 12px; color: var(--text-muted); }
-
-  /* ===== LIMIT ROWS ===== */
-  .limit-row {
-    display: flex; align-items: center;
-    background: var(--card-bg);
-    border-radius: 8px; padding: 10px 16px;
-    margin-bottom: 8px; gap: 12px;
-  }
-  .limit-x  { color: #E74C3C; font-size: 20px; font-weight: 700; flex-shrink:0; }
-  .limit-txt { font-size: 14px; color: var(--text-light); }
-
-  /* ===== TOOL CARDS ===== */
-  .tool-title { font-size: 13px; font-weight: 700; color: var(--mint); margin-bottom: 8px; }
-  .tool-names { font-size: 11px; color: var(--text-light); line-height: 1.6; }
-
-  /* ===== CHECKLIST ===== */
-  .check-row {
-    display: flex; align-items: center; gap: 12px;
-    padding: 9px 0; border-bottom: 1px solid rgba(30,16,69,0.1);
-    font-size: 14px; color: var(--navy);
-  }
-  .check-icon { color: var(--mint); font-size: 17px; flex-shrink: 0; }
-
-  /* ===== CLOSING CARDS ===== */
-  .closing-card {
-    background: var(--card-bg); border-radius: 10px;
-    padding: 16px 18px; border-left: 3px solid var(--mint);
-    font-size: 13px; color: var(--text-light); line-height: 1.5;
-  }
-
-  /* ===== NAV BAR ===== */
-  #session-nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
-    display: flex; justify-content: center; align-items: center;
-    gap: 6px; padding: 6px 12px;
-    background: rgba(15,10,46,0.92);
-    backdrop-filter: blur(6px);
-    border-bottom: 1px solid rgba(8,145,178,0.2);
-    font-family: var(--font); font-size: 11px;
-  }
-  #session-nav .nav-label {
-    color: var(--text-muted); font-size: 10px; font-weight: 700;
-    letter-spacing: 1px; margin-right: 4px; flex-shrink: 0;
-  }
-  #session-nav a {
-    color: var(--text-muted); text-decoration: none;
-    padding: 3px 10px; border-radius: 20px;
-    border: 1px solid transparent;
-    transition: all 0.2s; font-size: 11px; white-space: nowrap;
-  }
-  #session-nav a:hover {
-    color: var(--mint); border-color: var(--mint);
-    background: rgba(8,145,178,0.1);
-  }
-
-  /* ===== KEYBOARD HINT ===== */
-  .keyboard-hint {
-    position: absolute; bottom: 28px; right: 0;
-    font-size: 11px; color: rgba(168,180,216,0.6);
-    display: flex; gap: 12px; align-items: center;
-  }
-  .key {
-    display: inline-block;
-    border: 1px solid rgba(168,180,216,0.3);
-    border-radius: 4px; padding: 2px 7px;
-    font-size: 11px; color: rgba(168,180,216,0.7);
-  }
-
-  /* ===== TITLE SLIDE ===== */
-  .title-series  { font-size: 34px; font-weight: 800; color: var(--text-light); margin-bottom: 8px; line-height: 1.2; }
-  .title-session { font-size: 19px; font-weight: 600; color: var(--mint); margin-bottom: 8px; }
-  .title-tagline { font-size: 15px; color: var(--text-muted); font-style: italic; margin-bottom: 32px; }
-  .title-rule    { width: 80px; height: 3px; background: var(--mint); border-radius: 2px; margin-bottom: 24px; }
-  .title-author  { font-size: 15px; font-weight: 700; color: var(--text-light); margin-bottom: 4px; }
-  .title-date    { font-size: 13px; color: var(--text-muted); }
-
-  /* ===== FRAGMENT OVERRIDES ===== */
-  .reveal .fragment { opacity: 0.15; transition: opacity 0.4s; }
-  .reveal .fragment.visible { opacity: 1; }
-
-  /* ===== LIGHT SLIDE TEXT OVERRIDES ===== */
-  .light-slide p, .light-slide li { color: var(--navy); }
-
-  /* ===== FOOTER BARS ===== */
-  .footer-bar {
-    background: #E0F2FE; border-radius: 8px;
-    padding: 9px 18px; margin-top: 14px;
-    font-size: 12px; color: var(--navy); font-weight: 600;
-    text-align: center;
-  }
-  .footer-bar-dark {
-    background: var(--card-bg);
-    border-radius: 8px; padding: 9px 18px; margin-top: 14px;
-    font-size: 12px; color: var(--mint); font-weight: 600;
-    text-align: center;
-  }
-
-  /* ===== QUIZ SLIDES ===== */
-  .quiz-label { font-size: 11px; font-weight: 700; color: var(--mint); letter-spacing: 2px; margin-bottom: 12px; }
-  .quiz-question { font-size: 22px; font-weight: 700; color: var(--text-light); margin-bottom: 24px; line-height: 1.4; }
-  .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .quiz-opt {
-    background: var(--card-bg); border-radius: 10px; padding: 16px 20px;
-    font-size: 14px; color: var(--text-light); cursor: pointer;
-    border: 2px solid transparent; transition: all 0.2s;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .quiz-opt:hover { border-color: var(--mint); background: rgba(8,145,178,0.1); }
-  .quiz-opt.correct { background: #1D4A3A !important; border-color: #27AE60 !important; cursor: default; }
-  .quiz-opt.wrong { background: #4A1D1D !important; border-color: #E74C3C !important; cursor: default; opacity: 0.7; }
-  .quiz-opt.disabled { pointer-events: none; opacity: 0.6; }
-  .quiz-opt .opt-letter {
-    width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.1);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 700; flex-shrink: 0;
-  }
-  .quiz-opt.correct .opt-letter { background: #27AE60; color: #fff; }
-  .quiz-opt.wrong .opt-letter { background: #E74C3C; color: #fff; }
-  .quiz-explain {
-    margin-top: 16px; padding: 12px 18px; border-radius: 8px;
-    background: rgba(8,145,178,0.1); border-left: 3px solid var(--mint);
-    font-size: 12px; color: var(--text-muted); display: none; line-height: 1.6;
-  }
-  .quiz-explain.show { display: block; }
-
-  /* ===== TEASER BOX ===== */
-  .teaser {
-    background: var(--card-bg); border-left: 3px solid var(--mint);
-    border-radius: 8px; padding: 10px 16px;
-    font-size: 12px; color: var(--text-muted);
-    margin-top: 12px; font-style: italic;
-  }
-
-  /* ===== VS ARROW ===== */
-  .vs-arrow {
-    display: flex; align-items: center; justify-content: center;
-    font-size: 28px; color: var(--mint); font-weight: 800;
-    flex-shrink: 0; padding: 0 8px;
-  }
-
-  /* ===== EXAMPLE ROWS ===== */
-  .example-row {
-    display: flex; align-items: center;
-    background: var(--card-bg);
-    border-radius: 8px; padding: 8px 16px;
-    margin-bottom: 6px; gap: 12px;
-  }
-  .example-icon { font-size: 1.1rem; flex-shrink: 0; }
-  .example-text { font-size: 13px; color: var(--text-light); flex: 1; }
-
-  /* ===== BLOCKQUOTE ===== */
-  .insight-quote {
-    background: var(--card-bg); border-left: 4px solid var(--mint);
-    border-radius: 8px; padding: 20px 24px;
-    font-size: 20px; font-weight: 700; color: var(--text-light);
-    line-height: 1.4; margin: 16px 0;
-    font-style: italic;
-  }
-
-  /* ===== LARGER FONTS FOR VISIBILITY ===== */
-  .reveal .slides section { padding: 0 52px; }
-  .reveal .slides section > div { max-height: 100%; }
-  .reveal .slide-background { background-color: var(--dark-bg); }
-  .card { padding: 16px 18px; }
-  .card-navy { padding: 16px 18px; }
-  .tool-title { font-size: 14px; }
-  .tool-names { font-size: 13px; line-height: 1.7; }
-  .limit-txt { font-size: 15px; }
-  .check-row { font-size: 15px; }
-  .closing-card { font-size: 14px; }
-  .quiz-question { font-size: 24px; }
-  .quiz-opt { font-size: 15px; padding: 18px 22px; }
-  .agenda-title { font-size: 15px; }
-  .agenda-sub { font-size: 13px; }
-  .example-text { font-size: 14px; }
-  .insight-quote { font-size: 22px; padding: 24px 28px; }
-  .footer-bar, .footer-bar-dark { font-size: 13px; padding: 10px 20px; }
-  .teaser { font-size: 13px; padding: 12px 18px; }
-
-  /* ===== ANIMATIONS ===== */
-
-  /* Token typing cursor */
-  .typing-cursor {
-    display: inline-block; width: 3px; height: 1em;
-    background: var(--mint); vertical-align: text-bottom;
-    animation: cursorBlink 0.8s infinite; margin-left: 2px;
-  }
-  @keyframes cursorBlink { 0%,49%{opacity:1} 50%,100%{opacity:0} }
-
-  /* Token demo box */
-  .token-demo {
-    background: rgba(0,0,0,0.4); border: 1px solid rgba(8,145,178,0.3);
-    border-radius: 10px; padding: 20px 24px; margin-top: 12px;
-    font-family: 'Courier New', monospace; font-size: 16px; color: #A5F3FC;
-    min-height: 60px;
-  }
-  .token-demo .generated { color: var(--mint); font-weight: 700; }
-
-  /* Prompt comparison boxes */
-  .prompt-box {
-    background: rgba(0,0,0,0.3); border: 1px solid rgba(108,58,237,0.3);
-    border-radius: 8px; padding: 14px 18px;
-    font-family: 'Courier New', monospace; font-size: 12px;
-    color: #A5F3FC; line-height: 1.6;
-  }
-  .prompt-box.good { border-color: rgba(39,174,96,0.4); }
-  .prompt-box.bad { border-color: rgba(231,76,60,0.4); }
-
-  /* CRAFT framework cards */
-  .craft-letter {
-    font-size: 32px; font-weight: 900; color: var(--mint);
-    line-height: 1; margin-bottom: 4px;
-  }
-  .craft-word {
-    font-size: 13px; font-weight: 700; color: var(--text-light);
-    margin-bottom: 4px;
-  }
-  .craft-desc {
-    font-size: 11px; color: var(--text-muted); line-height: 1.4;
-  }
-
-  /* Failure pattern cards */
-  .failure-icon {
-    font-size: 1.6em; margin-bottom: 6px;
-  }
-  .failure-title {
-    font-size: 13px; font-weight: 700; margin-bottom: 4px;
-  }
-  .failure-desc {
-    font-size: 11px; color: var(--text-muted); line-height: 1.4;
-  }
-
-  /* Glow effect */
-  .glow-card {
-    box-shadow: 0 0 20px rgba(8,145,178,0.15), 0 4px 16px rgba(0,0,0,0.25);
-    border: 1px solid rgba(8,145,178,0.2);
-  }
-
-  /* Animated accent line on title */
-  .animated-line {
-    width: 0; height: 4px; background: linear-gradient(90deg, var(--blue), var(--mint));
-    border-radius: 2px; margin-bottom: 32px;
-    animation: lineGrow 1.5s ease-out 0.5s forwards;
-  }
-  @keyframes lineGrow { to { width: 100%; } }
-
-  /* Seven Cs badge */
-  .seven-c-badge {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 32px; height: 32px; border-radius: 50%;
-    background: rgba(8,145,178,0.15); border: 2px solid var(--mint);
-    font-size: 14px; font-weight: 800; color: var(--mint); flex-shrink: 0;
-  }
+  :root{--navy:#1E1045;--blue:#6C3AED;--mint:#0891B2;--dark-bg:#0F0A2E;--light-bg:#F5F3FF;--card-bg:#1E1B4B;--text-light:#FFFFFF;--text-muted:#A8B4D8;--font:system-ui,'Segoe UI',sans-serif;--practical-bg:#1A1050}
+  .reveal{font-family:var(--font)}.reveal .slides section{text-align:left;padding:0 48px}
+  .reveal .progress{height:4px;color:var(--mint)}.reveal .progress span{background:var(--mint)}
+  .reveal .slide-number{background:rgba(0,0,0,0.4);color:var(--text-muted);font-size:13px;padding:4px 10px;border-radius:4px;font-family:var(--font)}
+  .reveal h1,.reveal h2,.reveal h3{font-family:var(--font);text-transform:none;letter-spacing:-0.5px}
+  .slide-title-dark{color:var(--text-light)!important}.slide-title-light{color:var(--navy)!important}
+  .accent-bar{width:80px;height:4px;background:var(--mint);margin:6px 0 16px 0;border-radius:2px}
+  .card{background:var(--card-bg);border-radius:10px;padding:18px 20px;box-shadow:0 4px 16px rgba(0,0,0,0.25)}
+  .card-light{background:#fff;border-radius:10px;padding:18px 20px;box-shadow:0 2px 12px rgba(30,16,69,0.10)}
+  .card-navy{background:var(--navy);border-radius:10px;padding:18px 20px;box-shadow:0 4px 16px rgba(0,0,0,0.2)}
+  .grid-2col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .grid-3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  .grid-2x3{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:12px}
+  .grid-2x2{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:14px}
+  .flex-row{display:flex;gap:16px;align-items:stretch}
+  .chapter-num{font-size:96px;font-weight:900;color:var(--mint);opacity:0.85;line-height:1;margin-bottom:8px}
+  .chapter-title{font-size:38px;font-weight:700;color:var(--text-light);margin:0 0 8px 0}
+  .chapter-sub{font-size:17px;color:var(--text-muted);font-style:italic;margin:0}
+  .chapter-rule{width:100px;height:4px;background:var(--mint);border-radius:2px;margin-top:20px}
+  .agenda-num{font-size:28px;font-weight:800;color:var(--mint);margin-bottom:6px}
+  .agenda-title{font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:4px}
+  .agenda-sub{font-size:14px;color:var(--text-muted)}
+  .limit-row{display:flex;align-items:center;background:var(--card-bg);border-radius:8px;padding:12px 18px;margin-bottom:10px;gap:14px}
+  .limit-txt{font-size:16px;color:var(--text-light)}
+  .loop-steps{display:flex;align-items:stretch;gap:0}
+  .loop-step{flex:1;background:var(--navy);border-radius:10px;padding:16px 10px;text-align:center}
+  .loop-step-label{font-size:13px;font-weight:800;color:var(--mint);margin-bottom:10px;letter-spacing:1px}
+  .loop-step-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .loop-arrow{display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--mint);flex-shrink:0;padding:0 6px}
+  .loop-footer{background:rgba(8,145,178,0.12);border-radius:8px;padding:10px 18px;margin-top:16px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .closing-card{background:var(--card-bg);border-radius:10px;padding:16px 18px;border-left:3px solid var(--mint);font-size:15px;color:var(--text-light);line-height:1.5}
+  .footer-bar{background:rgba(8,145,178,0.08);border-radius:8px;padding:9px 18px;margin-top:14px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .footer-bar-dark{background:var(--card-bg);border-radius:8px;padding:9px 18px;margin-top:14px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .teaser{background:var(--card-bg);border-left:3px solid var(--mint);border-radius:8px;padding:10px 16px;font-size:14px;color:var(--text-muted);margin-top:12px;font-style:italic}
+  .tip{position:relative;border-bottom:1px dashed var(--mint);cursor:help;color:inherit;font-weight:inherit}
+  .tip:hover{color:var(--mint)}
+  .tip .tip-content{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--navy);color:var(--text-light);padding:14px 18px;border-radius:10px;font-size:13px;font-weight:400;line-height:1.6;width:320px;max-width:90vw;box-shadow:0 8px 32px rgba(0,0,0,0.5);border:2px solid var(--mint);z-index:10000;text-align:left;font-style:normal}
+  .tip .tip-content::before{content:'💡';display:block;font-size:14px;margin-bottom:6px}
+  .tip:hover .tip-content,.tip:focus .tip-content{display:block}
+  .light-tip .tip-content{background:#fff;color:var(--navy);border-color:var(--blue)}.light-tip{border-bottom-color:var(--blue)}.light-tip:hover{color:var(--blue)}
+  .quiz-label{font-size:13px;font-weight:700;color:var(--mint);letter-spacing:2px;margin-bottom:12px}
+  .quiz-question{font-size:24px;font-weight:700;color:var(--text-light);margin-bottom:24px;line-height:1.4}
+  .quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .quiz-opt{background:var(--card-bg);border-radius:10px;padding:16px 20px;font-size:15px;color:var(--text-light);cursor:pointer;border:2px solid transparent;transition:all 0.2s;display:flex;align-items:center;gap:12px}
+  .quiz-opt:hover{border-color:var(--mint);background:rgba(8,145,178,0.1)}
+  .quiz-opt.correct{background:#1D4A3A!important;border-color:#27AE60!important;cursor:default}
+  .quiz-opt.wrong{background:#4A1D1D!important;border-color:#E74C3C!important;cursor:default;opacity:0.7}
+  .quiz-opt.disabled{pointer-events:none;opacity:0.6}
+  .quiz-opt .opt-letter{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+  .quiz-opt.correct .opt-letter{background:#27AE60;color:#fff}
+  .quiz-opt.wrong .opt-letter{background:#E74C3C;color:#fff}
+  .quiz-explain{margin-top:16px;padding:12px 18px;border-radius:8px;background:rgba(8,145,178,0.1);border-left:3px solid var(--mint);font-size:14px;color:var(--text-muted);display:none;line-height:1.6}
+  .quiz-explain.show{display:block}
+  #session-nav{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;justify-content:center;align-items:center;gap:6px;padding:6px 12px;background:rgba(15,10,46,0.92);backdrop-filter:blur(6px);border-bottom:1px solid rgba(8,145,178,0.2);font-family:var(--font);font-size:11px}
+  #session-nav .nav-label{color:var(--text-muted);font-size:10px;font-weight:700;letter-spacing:1px;margin-right:4px;flex-shrink:0}
+  #session-nav a{color:var(--text-muted);text-decoration:none;padding:3px 10px;border-radius:20px;border:1px solid transparent;transition:all 0.2s;font-size:11px;white-space:nowrap}
+  #session-nav a:hover{color:var(--mint);border-color:var(--mint);background:rgba(8,145,178,0.1)}
+  #session-nav a.nav-active{color:var(--mint);border-color:rgba(8,145,178,0.4)}
+  .title-series{font-size:34px;font-weight:800;color:var(--text-light);margin-bottom:8px;line-height:1.2}
+  .title-session{font-size:19px;font-weight:600;color:var(--mint);margin-bottom:8px}
+  .title-tagline{font-size:15px;color:var(--text-muted);font-style:italic;margin-bottom:32px}
+  .title-rule{width:80px;height:3px;background:var(--mint);border-radius:2px;margin-bottom:24px}
+  .title-author{font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:4px}
+  .title-date{font-size:13px;color:var(--text-muted)}
+  .keyboard-hint{position:absolute;bottom:28px;right:0;font-size:11px;color:rgba(168,180,216,0.6);display:flex;gap:12px;align-items:center}
+  .key{display:inline-block;border:1px solid rgba(168,180,216,0.3);border-radius:4px;padding:2px 7px;font-size:11px;color:rgba(168,180,216,0.7)}
+  .reveal .fragment{opacity:0.15;transition:opacity 0.4s,transform 0.4s}
+  .reveal .fragment.visible{opacity:1}
+  .reveal .fragment.fade-up{transform:translateY(20px)}.reveal .fragment.fade-up.visible{transform:translateY(0)}
+  .reveal .fragment.scale-in{transform:scale(0.85)}.reveal .fragment.scale-in.visible{transform:scale(1)}
+  .light-slide p,.light-slide li{color:var(--navy)}
+  .practical-badge{display:inline-block;background:linear-gradient(135deg,var(--blue),var(--mint));color:#fff;font-size:14px;font-weight:800;padding:6px 16px;border-radius:20px;letter-spacing:1px;margin-bottom:14px}
+  .practical-steps{list-style:none;padding:0;margin:12px 0}
+  .practical-steps li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;font-size:16px;color:var(--text-light)}
+  .practical-steps li .step-num{background:var(--mint);color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+  .check-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(108,58,237,0.15);font-size:16px;color:var(--text-light)}
+  .check-icon{color:var(--mint);font-size:17px;flex-shrink:0}
+  .vs-arrow{display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--mint);font-weight:800;flex-shrink:0;padding:0 8px}
+  #passcode-gate{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--dark-bg);display:flex;align-items:center;justify-content:center;z-index:99999;flex-direction:column;gap:16px}
+  #passcode-gate input{padding:12px 24px;font-size:18px;border-radius:8px;border:2px solid var(--mint);background:var(--card-bg);color:var(--text-light);text-align:center;letter-spacing:4px;width:200px;outline:none}
+  #passcode-gate input:focus{box-shadow:0 0 12px rgba(8,145,178,0.4)}
+  #passcode-gate .gate-title{font-size:24px;color:var(--text-light);font-weight:700}
+  #passcode-gate .gate-hint{font-size:13px;color:var(--text-muted)}
+  #passcode-gate .gate-error{font-size:13px;color:#E74C3C;display:none}
+  .craft-card{background:var(--card-bg);border-radius:10px;padding:16px 14px;text-align:center;border-top:4px solid var(--mint)}
+  .craft-letter{font-size:36px;font-weight:900;color:var(--mint);margin-bottom:4px}
+  .craft-word{font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px}
+  .craft-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .constraint-card{background:var(--card-bg);border-radius:10px;padding:18px 16px;border-left:4px solid var(--mint)}
+  .constraint-title{font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:6px}
+  .constraint-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .failure-card{background:var(--card-bg);border-radius:10px;padding:16px;text-align:center}
+  .failure-icon{font-size:28px;margin-bottom:6px}
+  .failure-title{font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px}
+  .failure-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
 </style>
 </head>
 <body>
 
-<!-- TUTOR PASSCODE GATE -->
-<div id="passcode-gate" style="position:fixed;inset:0;z-index:99999;background:#0F0A2E;display:flex;align-items:center;justify-content:center;font-family:system-ui,'Segoe UI',sans-serif;">
-  <div style="text-align:center;max-width:360px;padding:40px;">
-    <div style="font-size:48px;margin-bottom:16px;">🔒</div>
-    <h1 style="color:#fff;font-size:1.5rem;margin:0 0 8px;">Trainer Access</h1>
-    <p style="color:#A8B4D8;font-size:0.9rem;margin:0 0 24px;">Enter the tutor code to access slide materials.</p>
-    <input id="passcode-input" type="password" placeholder="Enter code..." style="width:100%;padding:14px 18px;border:2px solid #6C3AED;border-radius:10px;background:#1E1B4B;color:#fff;font-size:1rem;text-align:center;outline:none;" autofocus>
-    <button id="passcode-btn" style="width:100%;margin-top:12px;padding:14px;background:linear-gradient(135deg,#6C3AED,#0891B2);border:none;border-radius:10px;color:#fff;font-size:1rem;font-weight:600;cursor:pointer;">Unlock</button>
-    <p id="passcode-error" style="color:#EF4444;font-size:0.85rem;margin-top:12px;display:none;">Incorrect code. Please try again.</p>
-  </div>
+<!-- PASSCODE GATE -->
+<div id="passcode-gate">
+  <div class="gate-title">🔒 AI Skills Studio</div>
+  <div class="gate-hint">Enter session passcode to continue</div>
+  <input type="text" id="gate-input" maxlength="5" placeholder="•••••" autocomplete="off">
+  <div class="gate-error" id="gate-error">Incorrect passcode. Try again.</div>
 </div>
-<script>
-(function(){
-  var CODE = 'G2026';
-  var KEY = 'tutor_deck_access';
-  if(sessionStorage.getItem(KEY) === CODE){
-    document.getElementById('passcode-gate').style.display='none';
-  }
-  function unlock(){
-    var val = document.getElementById('passcode-input').value.trim();
-    if(val === CODE){
-      sessionStorage.setItem(KEY, CODE);
-      document.getElementById('passcode-gate').style.display='none';
-    } else {
-      document.getElementById('passcode-error').style.display='block';
-      document.getElementById('passcode-input').value='';
-      document.getElementById('passcode-input').focus();
-    }
-  }
-  document.getElementById('passcode-btn').addEventListener('click', unlock);
-  document.getElementById('passcode-input').addEventListener('keydown', function(e){
-    if(e.key==='Enter') unlock();
-  });
-})();
-</script>
 
 <!-- SESSION NAV BAR -->
-<div id="session-nav">
-  <span class="nav-label">MODULE 2</span>
-  <a href="#" onclick="Reveal.slide(3); return false;">01 How LLMs Work</a>
-  <a href="#" onclick="Reveal.slide(7); return false;">02 CRAFT Framework</a>
-  <a href="#" onclick="Reveal.slide(12); return false;">03 Failure Patterns</a>
-  <a href="#" onclick="Reveal.slide(16); return false;">04 Email Clinic</a>
-  <a href="#" onclick="Reveal.slide(18); return false;">05 Template Builder</a>
-  <a href="#" onclick="Reveal.slide(20); return false;">06 Peer Review</a>
-  <a href="#" onclick="Reveal.slide(22); return false;">07 Wrap-up</a>
+<div id="session-nav" style="display:none;">
+  <span class="nav-label">MODULE 2:</span>
+  <a href="#" data-nav="0" onclick="Reveal.slide(3);return false;">01 Pipeline</a>
+  <a href="#" data-nav="1" onclick="Reveal.slide(7);return false;">02 CRAFT</a>
+  <a href="#" data-nav="2" onclick="Reveal.slide(12);return false;">03 Constraints</a>
+  <a href="#" data-nav="3" onclick="Reveal.slide(16);return false;">04 Iteration</a>
+  <a href="#" data-nav="4" onclick="Reveal.slide(20);return false;">05 Failures</a>
+  <a href="#" data-nav="5" onclick="Reveal.slide(24);return false;">06 Practice</a>
+  <a href="#" data-nav="6" onclick="Reveal.slide(28);return false;">07 Wrap-up</a>
 </div>
 
 <div class="reveal">
@@ -413,14 +131,14 @@
 
 <!-- ==================== SLIDE 1: TITLE ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top: 40px;">
-    <div style="width:100%;height:4px;background:var(--mint);border-radius:2px;margin-bottom:32px;" class="animated-line"></div>
-    <div class="title-series">AI Essentials for Professionals</div>
+  <div style="padding-top:40px;">
+    <div style="width:100%;height:4px;background:linear-gradient(90deg,var(--blue),var(--mint));border-radius:2px;margin-bottom:32px;"></div>
+    <div class="title-series">AI Skills Studio</div>
     <div class="title-session">Module 2: Prompt Engineering &amp; Professional Writing</div>
-    <div class="title-tagline">Master the art of communicating with AI to produce professional, accurate workplace writing</div>
+    <div class="title-tagline">Mastering the art of communicating with AI to produce professional output</div>
     <div class="title-rule"></div>
     <div class="title-author">Gen AI Inc</div>
-    <div class="title-date">2025 &nbsp;|&nbsp; AI for Professionals Course</div>
+    <div class="title-date">2025 &nbsp;|&nbsp; 75 minutes</div>
     <div class="keyboard-hint">
       <span><span class="key">←→</span> Navigate</span>
       <span><span class="key">F</span> Fullscreen</span>
@@ -428,581 +146,996 @@
       <span><span class="key">O</span> Overview</span>
     </div>
   </div>
-  <aside class="notes">Welcome back! Module 2 builds on the AI foundations from Module 1. Today we move from understanding AI to actively directing it through prompt engineering and professional writing. By the end, participants will have practical frameworks for getting reliable, professional output from any AI tool.</aside>
+  <aside class="notes">
+[TIMING: 1 min] [TRANSITION: Welcome participants back for Module 2]
+Key talking points:
+• Welcome to Module 2 — where we turn understanding into skill
+• In Module 1 you learned AI is pattern prediction. Now you'll learn to drive it.
+• 75 minutes: 40% theory, 60% hands-on practice
+Discussion prompt: "Who tried using AI for a work task since Module 1? How did it go?"
+Facilitation tip: Use opening stories to bridge from Module 1. Acknowledge any struggles — that's exactly why this module exists.
+  </aside>
 </section>
 
-<!-- ==================== SLIDE 2: AGENDA ==================== -->
-<section data-background-color="#F5F3FF">
-  <div style="padding-top:8px;">
-    <h2 class="slide-title-light" style="font-size:28px;font-weight:800;margin-bottom:4px;">Agenda</h2>
+<!-- ==================== SLIDE 2: GROUND RULES ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:24px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Ground Rules &amp; Setup</h2>
     <div class="accent-bar"></div>
-    <div class="grid-2x3" style="margin-top:8px;">
-      <div class="card-navy fragment">
-        <div class="agenda-num">01</div>
-        <div class="agenda-title">How LLMs Work</div>
-        <div class="agenda-sub">Tokens, prediction, and context windows</div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="limit-row fragment fade-up">
+        <div style="font-size:1.2rem;flex-shrink:0;">🔗</div>
+        <div class="limit-txt"><strong>Builds on Module 1.</strong> You know AI is pattern prediction — now you'll exploit that knowledge.</div>
       </div>
-      <div class="card-navy fragment">
-        <div class="agenda-num">02</div>
-        <div class="agenda-title">The CRAFT Framework</div>
-        <div class="agenda-sub">Context, Role, Action, Format, Tone</div>
+      <div class="limit-row fragment fade-up">
+        <div style="font-size:1.2rem;flex-shrink:0;">🧪</div>
+        <div class="limit-txt"><strong>Highly interactive.</strong> You'll write prompts, iterate, and test — right now, during the session.</div>
       </div>
-      <div class="card-navy fragment">
-        <div class="agenda-num">03</div>
-        <div class="agenda-title">Failure Patterns</div>
-        <div class="agenda-sub">Common prompt failures and fixes</div>
+      <div class="limit-row fragment fade-up">
+        <div style="font-size:1.2rem;flex-shrink:0;">💻</div>
+        <div class="limit-txt"><strong>Devices ready.</strong> Open ChatGPT, Claude, or Gemini — you'll need an AI chat open throughout.</div>
       </div>
-      <div class="card-navy fragment">
-        <div class="agenda-num">04</div>
-        <div class="agenda-title">Email Clinic</div>
-        <div class="agenda-sub">Rewrite professional communications</div>
+      <div class="limit-row fragment fade-up">
+        <div style="font-size:1.2rem;flex-shrink:0;">📝</div>
+        <div class="limit-txt"><strong>Save your prompts.</strong> You'll build a reusable prompt library by end of session.</div>
       </div>
-      <div class="card-navy fragment">
-        <div class="agenda-num">05</div>
-        <div class="agenda-title">Template Builder</div>
-        <div class="agenda-sub">Create reusable prompt templates</div>
-      </div>
-      <div class="card-navy fragment">
-        <div class="agenda-num">06</div>
-        <div class="agenda-title">Peer Review &amp; Clinic</div>
-        <div class="agenda-sub">Feedback swap + writing scenarios</div>
+      <div class="limit-row fragment fade-up">
+        <div style="font-size:1.2rem;flex-shrink:0;">🚫</div>
+        <div class="limit-txt"><strong>No perfect prompts.</strong> Iteration is the skill. Your first prompt is never your best.</div>
       </div>
     </div>
   </div>
-  <aside class="notes">Walk through the agenda. We start with theory (how LLMs actually work), build a practical framework (CRAFT), identify failure patterns, then apply everything in hands-on activities. The Email Clinic and Template Builder are the core deliverables participants will take away.</aside>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: From title → set expectations and get devices ready]
+Key talking points:
+• Ask everyone to open their preferred AI tool RIGHT NOW
+• Emphasize: the exercises build on each other — save your work
+• "No perfect prompts" is the key mindset shift for this module
+Discussion prompt: "Quick check — raise your hand if you have an AI chat tool open. If not, take 30 seconds now."
+Facilitation tip: Wait until at least 80% have a tool open before proceeding. Help anyone who needs it.
+  </aside>
 </section>
 
-<!-- ==================== SLIDE 3: CHAPTER 01 ==================== -->
+<!-- ==================== SLIDE 3: AGENDA ==================== -->
+<section data-background-color="#F5F3FF">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-light" style="font-size:28px;font-weight:800;margin-bottom:4px;">Today's Journey</h2>
+    <div class="accent-bar"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-top:8px;">
+      <div class="card-navy fragment scale-in">
+        <div class="agenda-num">01</div>
+        <div class="agenda-title">🧠 From Tokens to Output</div>
+        <div class="agenda-sub">How LLMs process prompts</div>
+      </div>
+      <div class="card-navy fragment scale-in">
+        <div class="agenda-num">02</div>
+        <div class="agenda-title">🎯 The CRAFT Framework</div>
+        <div class="agenda-sub">5 elements of great prompts</div>
+      </div>
+      <div class="card-navy fragment scale-in">
+        <div class="agenda-num">03</div>
+        <div class="agenda-title">🛡️ Constraints</div>
+        <div class="agenda-sub">Your safety net</div>
+      </div>
+      <div class="card-navy fragment scale-in">
+        <div class="agenda-num">04</div>
+        <div class="agenda-title">🔄 Progressive Prompting</div>
+        <div class="agenda-sub">The art of iteration</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px;">
+      <div class="card-navy fragment scale-in">
+        <div class="agenda-num">05</div>
+        <div class="agenda-title">⚠️ Failure Patterns</div>
+        <div class="agenda-sub">When AI gets it wrong</div>
+      </div>
+      <div class="card-navy fragment scale-in">
+        <div class="agenda-num">06</div>
+        <div class="agenda-title">🔨 Email Clinic</div>
+        <div class="agenda-sub">Hands-on practice</div>
+      </div>
+      <div class="card-navy fragment scale-in">
+        <div class="agenda-num">07</div>
+        <div class="agenda-title">🎯 Wrap-up</div>
+        <div class="agenda-sub">Takeaways &amp; next steps</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="background:rgba(30,16,69,0.15);color:var(--navy);">⏱️ 75 minutes total — 40% theory, 60% hands-on practice</div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: From ground rules → map of the session]
+Key talking points:
+• 7 chapters, 4 practical exercises embedded throughout
+• Chapters 1-5 are theory+practice mix; Chapter 6 is extended practice
+• Everything builds: CRAFT → Constraints → Iteration → Application
+Discussion prompt: "Which chapter are you most curious about? CRAFT? Failures? The clinic?"
+Facilitation tip: Point out the 60% practical ratio — this is a workshop, not a lecture.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 4: CHAPTER 01 DIVIDER ==================== -->
 <section data-background-color="#0F0A2E">
   <div style="padding-top:30px;">
     <div class="chapter-num">01</div>
-    <div class="chapter-title">How LLMs Generate Text</div>
-    <div class="chapter-sub">Understanding the engine so you can steer it</div>
+    <div class="chapter-title">From Tokens to Output</div>
+    <div class="chapter-sub">How LLMs actually process your prompts — the five-step pipeline</div>
     <div class="chapter-rule"></div>
   </div>
-  <aside class="notes">Transition slide. In Module 1 we said AI is 'fancy autocomplete.' Now let's go one level deeper — understanding the five-step pipeline gives you intuition for WHY certain prompting techniques work.</aside>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Before we learn HOW to write great prompts, let's understand what happens to them inside the model."]
+Key talking points:
+• This builds directly on Module 1's autocomplete model
+• Understanding the pipeline explains WHY prompt techniques work
+Facilitation tip: "If you know why specific prompts work better, you'll never need to memorise rules — you'll derive them."
+  </aside>
 </section>
 
-<!-- ==================== SLIDE 4: THE FIVE-STEP PIPELINE ==================== -->
+<!-- ==================== SLIDE 5: FIVE-STEP PIPELINE ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top:8px;">
-    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">The Five-Step Pipeline</h2>
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">The Five-Step Pipeline</h2>
     <div class="accent-bar"></div>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px;">
-      <div class="limit-row fragment">
-        <div style="font-size:1.2rem;flex-shrink:0;">1️⃣</div>
-        <div class="limit-txt"><strong style="color:var(--mint);">Tokenization</strong> — Your input is split into tokens (word fragments). "Unbelievable" → ["un", "believ", "able"]</div>
+    <div class="loop-steps" style="margin-top:12px;">
+      <div class="loop-step fragment scale-in">
+        <div class="loop-step-label">1. TOKENIZE</div>
+        <div style="font-size:24px;margin:6px 0;">✂️</div>
+        <div class="loop-step-desc">Your text is split into <span class="tip">tokens<span class="tip-content">Tokens are sub-word pieces. "Prompt engineering" = 2 tokens. Models process tokens, not words — this is why token limits matter.</span></span> (sub-word pieces)</div>
       </div>
-      <div class="limit-row fragment">
-        <div style="font-size:1.2rem;flex-shrink:0;">2️⃣</div>
-        <div class="limit-txt"><strong style="color:var(--mint);">Embeddings</strong> — Each token becomes a vector (coordinates in meaning-space). Similar concepts cluster together.</div>
+      <div class="loop-arrow fragment">→</div>
+      <div class="loop-step fragment scale-in">
+        <div class="loop-step-label">2. EMBED</div>
+        <div style="font-size:24px;margin:6px 0;">🧮</div>
+        <div class="loop-step-desc">Each token becomes a high-dimensional number vector</div>
       </div>
-      <div class="limit-row fragment">
-        <div style="font-size:1.2rem;flex-shrink:0;">3️⃣</div>
-        <div class="limit-txt"><strong style="color:var(--mint);">Attention</strong> — The transformer decides which tokens relate to which. Connects "said" back to "manager," not "Tuesday."</div>
+      <div class="loop-arrow fragment">→</div>
+      <div class="loop-step fragment scale-in">
+        <div class="loop-step-label">3. ATTEND</div>
+        <div style="font-size:24px;margin:6px 0;">🔍</div>
+        <div class="loop-step-desc"><span class="tip">Attention<span class="tip-content">Attention lets the model weigh which parts of your prompt matter most for each word it generates. Specific prompts create stronger attention signals.</span></span> weighs which tokens relate to each other</div>
       </div>
-      <div class="limit-row fragment">
-        <div style="font-size:1.2rem;flex-shrink:0;">4️⃣</div>
-        <div class="limit-txt"><strong style="color:var(--mint);">Prediction</strong> — Produces a probability distribution for the next token. Picks one, adds it, repeats.</div>
+      <div class="loop-arrow fragment">→</div>
+      <div class="loop-step fragment scale-in">
+        <div class="loop-step-label">4. PREDICT</div>
+        <div style="font-size:24px;margin:6px 0;">🎯</div>
+        <div class="loop-step-desc">Model calculates probability for every possible next token</div>
       </div>
-      <div class="limit-row fragment">
-        <div style="font-size:1.2rem;flex-shrink:0;">5️⃣</div>
-        <div class="limit-txt"><strong style="color:var(--mint);">Temperature</strong> — Controls randomness. Low = predictable/safe. High = creative/risky.</div>
+      <div class="loop-arrow fragment">→</div>
+      <div class="loop-step fragment scale-in">
+        <div class="loop-step-label">5. SAMPLE</div>
+        <div style="font-size:24px;margin:6px 0;">🎲</div>
+        <div class="loop-step-desc">One token is chosen based on temperature setting</div>
       </div>
     </div>
-    <div class="footer-bar-dark fragment">Your prompt sets the prediction context. Better input tokens → stronger patterns → better output.</div>
+    <div class="loop-footer fragment fade-up">💡 This repeats for EVERY token generated — a 500-word response runs through this pipeline ~700 times</div>
   </div>
-  <aside class="notes">Don't dwell on each step too long. The key takeaway: your prompt is the steering wheel. The five-step pipeline explains WHY specific, well-structured prompts produce better output — they give the model stronger statistical patterns to work with. Temperature explains why AI can be creative OR precise, depending on settings.</aside>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Your prompt goes on a journey before you see any output. Here's what that journey looks like."]
+Key talking points:
+• Walk through each step — tokenize (Module 1 recap), embed (numbers!), attend (relationships), predict (probabilities), sample (pick one)
+• The ATTEND step is key: this is where your prompt structure matters most
+• More specific prompts create stronger attention signals → better predictions
+• This is NOT a database lookup — it's computed fresh every time
+Discussion prompt: "Given this pipeline, why do you think longer, more specific prompts produce better output?"
+Facilitation tip: Use the pipeline to preview WHY CRAFT works. "In Chapter 2, you'll see how each CRAFT element optimises a different step in this pipeline."
+  </aside>
 </section>
 
-<!-- ==================== SLIDE 5: CONTEXT WINDOWS ==================== -->
+<!-- ==================== SLIDE 6: CONTEXT WINDOWS ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top:8px;">
-    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Context Windows &amp; Token Limits</h2>
+  <div style="padding-top:18px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Context Windows — Your Working Memory</h2>
     <div class="accent-bar"></div>
-    <div class="grid-2col" style="margin-top:8px;">
-      <div class="card fragment glow-card">
-        <div class="tool-title">📐 WHAT IS A CONTEXT WINDOW?</div>
-        <div class="tool-names" style="line-height:1.8;">The total amount of text (input + output) the model can "see" at once. Think of it as the model's working memory.<br><br>Anything outside this window doesn't exist to the model.</div>
+    <p style="font-size:15px;color:var(--text-muted);margin-bottom:16px;">The <span class="tip">context window<span class="tip-content">The context window is the total amount of text (input + output) the model can "see" at once. Think of it as the model's working memory — once full, early content gets dropped.</span></span> is everything the model can "see" at once — your prompt + its response.</p>
+    <div class="grid-3col" style="margin-bottom:16px;">
+      <div class="card fragment scale-in" style="text-align:center;border-top:3px solid var(--mint);">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:6px;">GPT-4o</div>
+        <div style="font-size:32px;font-weight:900;color:var(--text-light);">128K</div>
+        <div style="font-size:14px;color:var(--text-muted);margin-top:4px;">~96,000 words</div>
       </div>
-      <div class="card fragment">
-        <div class="tool-title">📊 TYPICAL SIZES (2025)</div>
-        <div class="tool-names" style="line-height:1.8;">
-          <strong>GPT-4o:</strong> ~128K tokens (~100 pages)<br>
-          <strong>Claude 3.5:</strong> ~200K tokens (~150 pages)<br>
-          <strong>Gemini 1.5:</strong> ~1M tokens (~750 pages)<br><br>
-          <em style="color:var(--text-muted);">1 token ≈ 0.75 words (English)</em>
-        </div>
+      <div class="card fragment scale-in" style="text-align:center;border-top:3px solid var(--blue);">
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:6px;">Claude 3.5</div>
+        <div style="font-size:32px;font-weight:900;color:var(--text-light);">200K</div>
+        <div style="font-size:14px;color:var(--text-muted);margin-top:4px;">~150,000 words</div>
+      </div>
+      <div class="card fragment scale-in" style="text-align:center;border-top:3px solid #F59E0B;">
+        <div style="font-size:14px;font-weight:700;color:#F59E0B;margin-bottom:6px;">Gemini 1.5 Pro</div>
+        <div style="font-size:32px;font-weight:900;color:var(--text-light);">1M</div>
+        <div style="font-size:14px;color:var(--text-muted);margin-top:4px;">~750,000 words</div>
       </div>
     </div>
-    <div class="insight-quote fragment" style="font-size:18px;padding:16px 22px;margin-top:12px;">
-      "The context window is your conversation's RAM. When it fills up, earlier information gets pushed out — and the model 'forgets.'"
+    <div class="grid-2col fragment fade-up">
+      <div class="card" style="border-left:3px solid var(--mint);">
+        <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:6px;">✅ What this means for you</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.6;">You can paste entire documents, long email threads, or meeting transcripts directly into your prompt for context.</div>
+      </div>
+      <div class="card" style="border-left:3px solid #E74C3C;">
+        <div style="font-size:15px;font-weight:700;color:#E74C3C;margin-bottom:6px;">⚠️ The catch</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.6;">Attention quality degrades in very long contexts. Just because it CAN see 200K tokens doesn't mean it pays equal attention to all of them.</div>
+      </div>
     </div>
+    <div class="footer-bar fragment fade-up">🧠 Rule of thumb: Put the most important instructions at the START and END of your prompt</div>
   </div>
-  <aside class="notes">Context windows matter for practical prompt engineering. If you're working with long documents or multi-turn conversations, you'll hit limits. Key insight: the model doesn't remember previous conversations unless you paste them in. Each session starts fresh. This is why templates and structured prompts are essential — they pack maximum useful context into minimum tokens.</aside>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Now you know what happens inside the model — let's talk about the SIZE of what it can handle."]
+Key talking points:
+• Context window = input + output combined
+• These numbers change rapidly — Gemini just jumped to 1M in 2024
+• Bigger isn't always better: attention quality degrades with length
+• Practical implication: you CAN paste a full document but should put key instructions at boundaries
+Discussion prompt: "Has anyone hit a context limit? What happened?"
+Facilitation tip: Make it concrete — "128K tokens is roughly a 300-page book. You can paste an entire report and ask questions about it."
+  </aside>
 </section>
 
-<!-- ==================== SLIDE 6: QUIZ 1 - LLM KNOWLEDGE ==================== -->
-<section data-background-color="#0F0A2E">
-  <div id="quiz-1" style="padding-top:12px;">
-    <div class="quiz-label">🧠 QUICK CHECK</div>
-    <div class="quiz-question">Why does a clear, specific prompt produce better AI output than a vague one?</div>
+<!-- ==================== SLIDE 7: QUIZ 1 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz1">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🧠 KNOWLEDGE CHECK</div>
+    <div class="quiz-question">Why do specific, detailed prompts produce better AI output?</div>
     <div class="quiz-options">
-      <div class="quiz-opt" onclick="quizAnswer('quiz-1', 0, 1, 'A clear prompt provides stronger token patterns for the model to work with. Since LLMs predict the next token based on statistical patterns, a well-structured input creates a more constrained prediction space — leading to more relevant, focused output.')">
-        <span class="opt-letter">A</span> The AI tries harder when you write more
+      <div class="quiz-opt" onclick="quizAnswer('quiz1',0,2,'Specific prompts create stronger attention signals in the model, narrowing the probability distribution so the most relevant tokens are much more likely to be selected.')">
+        <span class="opt-letter">A</span><span>The AI searches a bigger database for the answer</span>
       </div>
-      <div class="quiz-opt" onclick="quizAnswer('quiz-1', 1, 1, 'A clear prompt provides stronger token patterns for the model to work with. Since LLMs predict the next token based on statistical patterns, a well-structured input creates a more constrained prediction space — leading to more relevant, focused output.')">
-        <span class="opt-letter">B</span> It gives the model stronger patterns to predict from
+      <div class="quiz-opt" onclick="quizAnswer('quiz1',1,2,'Specific prompts create stronger attention signals in the model, narrowing the probability distribution so the most relevant tokens are much more likely to be selected.')">
+        <span class="opt-letter">B</span><span>The AI tries harder when it detects you are experienced</span>
       </div>
-      <div class="quiz-opt" onclick="quizAnswer('quiz-1', 2, 1, 'A clear prompt provides stronger token patterns for the model to work with. Since LLMs predict the next token based on statistical patterns, a well-structured input creates a more constrained prediction space — leading to more relevant, focused output.')">
-        <span class="opt-letter">C</span> Clear prompts bypass the AI's safety filters
+      <div class="quiz-opt" onclick="quizAnswer('quiz1',2,2,'Specific prompts create stronger attention signals in the model, narrowing the probability distribution so the most relevant tokens are much more likely to be selected.')">
+        <span class="opt-letter">C</span><span>Specificity creates stronger attention signals, narrowing the probability distribution toward relevant tokens</span>
       </div>
-      <div class="quiz-opt" onclick="quizAnswer('quiz-1', 3, 1, 'A clear prompt provides stronger token patterns for the model to work with. Since LLMs predict the next token based on statistical patterns, a well-structured input creates a more constrained prediction space — leading to more relevant, focused output.')">
-        <span class="opt-letter">D</span> The AI searches a database more accurately
+      <div class="quiz-opt" onclick="quizAnswer('quiz1',3,2,'Specific prompts create stronger attention signals in the model, narrowing the probability distribution so the most relevant tokens are much more likely to be selected.')">
+        <span class="opt-letter">D</span><span>It doesn't matter — AI always produces the same quality</span>
       </div>
     </div>
     <div class="quiz-explain"></div>
   </div>
-  <aside class="notes">Interactive quiz. Answer B is correct. This connects back to the pipeline — your input tokens set the prediction context. Vague prompts give weak statistical signals; specific prompts give strong ones. Let participants discuss briefly before revealing.</aside>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Let's check understanding before we move into the framework."]
+Key talking points:
+• Give 30 seconds for them to think before anyone clicks
+• Correct answer: C — ties directly back to the Attend step in the pipeline
+• Reinforce: you're not "asking nicely" — you're engineering the statistical conditions for good output
+Facilitation tip: If many get it wrong, briefly revisit the attention step. If most get it right, celebrate and move on quickly.
+  </aside>
 </section>
 
-<!-- ==================== SLIDE 7: CHAPTER 02 ==================== -->
+<!-- ==================== SLIDE 8: CHAPTER 02 DIVIDER ==================== -->
 <section data-background-color="#0F0A2E">
   <div style="padding-top:30px;">
     <div class="chapter-num">02</div>
     <div class="chapter-title">The CRAFT Framework</div>
-    <div class="chapter-sub">A repeatable structure for effective prompts</div>
+    <div class="chapter-sub">Five elements that transform vague requests into precision instruments</div>
     <div class="chapter-rule"></div>
   </div>
-  <aside class="notes">Transition slide. Now we move from theory to practice. CRAFT is a mnemonic that gives participants a repeatable structure for writing prompts. It works for any AI tool, any task, any industry.</aside>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Now you know WHY specific prompts work. Let's learn a repeatable system for writing them."]
+Key talking points:
+• CRAFT is our framework — not the only one, but a solid professional system
+• Each letter maps to a different dimension of prompt quality
+Facilitation tip: Build anticipation — "By end of this chapter you'll have a 5-element checklist you can use for ANY prompt."
+  </aside>
 </section>
 
-<!-- ==================== SLIDE 8: CRAFT OVERVIEW ==================== -->
+<!-- ==================== SLIDE 9: CRAFT OVERVIEW ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top:8px;">
-    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">The CRAFT Framework</h2>
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">The CRAFT Framework</h2>
     <div class="accent-bar"></div>
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:8px;">
-      <div class="card fragment" style="text-align:center;padding:14px 8px;">
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px;">
+      <div class="craft-card fragment scale-in">
         <div class="craft-letter">C</div>
         <div class="craft-word">Context</div>
-        <div class="craft-desc">Background info &amp; situation</div>
+        <div class="craft-desc">Background info the AI needs to understand your situation</div>
       </div>
-      <div class="card fragment" style="text-align:center;padding:14px 8px;">
-        <div class="craft-letter">R</div>
+      <div class="craft-card fragment scale-in" style="border-top-color:var(--blue);">
+        <div class="craft-letter" style="color:var(--blue);">R</div>
         <div class="craft-word">Role</div>
-        <div class="craft-desc">Who the AI should be</div>
+        <div class="craft-desc">Who you want the AI to "be" — the expert persona</div>
       </div>
-      <div class="card fragment" style="text-align:center;padding:14px 8px;">
-        <div class="craft-letter">A</div>
+      <div class="craft-card fragment scale-in" style="border-top-color:#F59E0B;">
+        <div class="craft-letter" style="color:#F59E0B;">A</div>
         <div class="craft-word">Action</div>
-        <div class="craft-desc">What to do + constraints</div>
+        <div class="craft-desc">The specific task — what you want it to DO</div>
       </div>
-      <div class="card fragment" style="text-align:center;padding:14px 8px;">
-        <div class="craft-letter">F</div>
+      <div class="craft-card fragment scale-in" style="border-top-color:#27AE60;">
+        <div class="craft-letter" style="color:#27AE60;">F</div>
         <div class="craft-word">Format</div>
-        <div class="craft-desc">Shape of the output</div>
+        <div class="craft-desc">How the output should be structured</div>
       </div>
-      <div class="card fragment" style="text-align:center;padding:14px 8px;">
-        <div class="craft-letter">T</div>
+      <div class="craft-card fragment scale-in" style="border-top-color:#E74C3C;">
+        <div class="craft-letter" style="color:#E74C3C;">T</div>
         <div class="craft-word">Tone</div>
-        <div class="craft-desc">Voice &amp; formality level</div>
+        <div class="craft-desc">Voice, formality level, and style</div>
       </div>
     </div>
-    <div class="footer-bar-dark fragment">Every great prompt has at least 3 of these 5 elements. The best prompts use all 5.</div>
+    <div class="loop-footer fragment fade-up" style="margin-top:18px;">💡 You don't always need all 5 — but the more you include, the more precise the output</div>
+    <div class="teaser fragment fade-up">🔗 Pipeline connection: Context & Role shape Embedding → Action drives Attention → Format & Tone narrow Sampling</div>
   </div>
-  <aside class="notes">Introduce the CRAFT mnemonic. Ask participants to think of their most recent AI prompt — how many of these five elements did it include? Most people include only Action (the command). Adding Context and Role dramatically improves output quality.</aside>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Here's the framework that ties everything together — CRAFT."]
+Key talking points:
+• Walk through each letter with a quick example
+• C: "I'm a project manager at a tech company preparing for a board meeting"
+• R: "Act as a senior communications consultant"
+• A: "Write an executive summary of Q3 progress"
+• F: "3 paragraphs, bullet points for metrics, max 200 words"
+• T: "Professional, confident, data-driven"
+Discussion prompt: "Which element do you think most people skip? Why?"
+Facilitation tip: Most skip Context and Format. Highlight that these two give the biggest quality jump for least effort.
+  </aside>
 </section>
 
-<!-- ==================== SLIDE 9: WEAK vs STRONG PROMPT ==================== -->
+<!-- ==================== SLIDE 10: WEAK VS STRONG PROMPT ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top:8px;">
-    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Weak vs Strong Prompt</h2>
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Weak vs Strong: Same Task, Different Results</h2>
     <div class="accent-bar"></div>
-    <div class="grid-2col" style="margin-top:4px;">
-      <div class="fragment">
-        <div style="font-size:13px;font-weight:700;color:#F87171;margin-bottom:8px;">❌ WEAK PROMPT</div>
-        <div class="prompt-box bad">Write me an email asking for a pay raise.</div>
-        <div style="margin-top:8px;font-size:12px;color:var(--text-muted);">
-          ⚠️ No role, no context, no constraints, no format, no tone guidance. The AI has to guess everything.
-        </div>
+    <div style="display:flex;gap:16px;align-items:stretch;">
+      <div class="card fragment fade-up" style="flex:1;border-left:3px solid #E74C3C;">
+        <div style="font-size:13px;font-weight:700;color:#E74C3C;letter-spacing:1px;margin-bottom:10px;">❌ WEAK PROMPT</div>
+        <div style="font-size:15px;color:var(--text-light);line-height:1.7;font-style:italic;">"Write me an email about the project delay"</div>
+        <div style="margin-top:12px;font-size:14px;color:var(--text-muted);">Missing: Context, Role, Format, Tone. AI will guess everything — and probably guess wrong.</div>
       </div>
-      <div class="fragment">
-        <div style="font-size:13px;font-weight:700;color:#27AE60;margin-bottom:8px;">✅ STRONG PROMPT (CRAFT)</div>
-        <div class="prompt-box good" style="font-size:11px;">
-          <strong style="color:#22D3EE;">[R]</strong> You are a career coach specialising in tech compensation.<br>
-          <strong style="color:#22D3EE;">[C]</strong> I'm a senior engineer, 4 years at company, led 2 launches.<br>
-          <strong style="color:#22D3EE;">[A]</strong> Write a 200-word email requesting a compensation review.<br>
-          <strong style="color:#22D3EE;">[F]</strong> Open with appreciation, present metrics, close with meeting request.<br>
-          <strong style="color:#22D3EE;">[T]</strong> Confident but collegial. Do not invent accomplishments.
-        </div>
+      <div class="vs-arrow fragment">→</div>
+      <div class="card fragment fade-up" style="flex:1.3;border-left:3px solid #27AE60;">
+        <div style="font-size:13px;font-weight:700;color:#27AE60;letter-spacing:1px;margin-bottom:10px;">✅ CRAFT PROMPT</div>
+        <div style="font-size:14px;color:var(--text-light);line-height:1.7;"><strong style="color:var(--mint);">C:</strong> Our Q3 product launch is delayed 2 weeks due to vendor issues.<br><strong style="color:var(--blue);">R:</strong> Act as a senior project manager.<br><strong style="color:#F59E0B;">A:</strong> Write a stakeholder update email explaining the delay and revised timeline.<br><strong style="color:#27AE60;">F:</strong> 3 paragraphs: situation, impact, next steps. Under 150 words.<br><strong style="color:#E74C3C;">T:</strong> Professional, transparent, solutions-focused.</div>
       </div>
     </div>
-    <div class="footer-bar-dark fragment">Same task, dramatically different output quality. The strong prompt channels the prediction engine precisely.</div>
+    <div class="footer-bar fragment fade-up">📊 In testing, CRAFT prompts produce usable output on first try ~80% of the time vs ~20% for vague prompts</div>
   </div>
-  <aside class="notes">Side-by-side comparison. The weak prompt gives the model almost nothing — it'll produce generic, template-sounding output. The strong prompt specifies every CRAFT element and includes a critical guardrail ('do not invent accomplishments'). Ask: which output would you actually send to your manager?</aside>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Let me show you the difference CRAFT makes with a concrete example."]
+Key talking points:
+• Read the weak prompt aloud — ask "what would YOU write if given only this?"
+• The AI faces the same ambiguity problem — it doesn't know your company, audience, or tone preference
+• Walk through the CRAFT version — show how each element removes a guess
+• 80% first-try success rate is based on professional workflow testing
+Discussion prompt: "What would the AI guess wrong with just the weak prompt?"
+Facilitation tip: Have someone volunteer what they think the AI would assume with the weak version. Usually: wrong tone, wrong length, wrong audience.
+  </aside>
 </section>
 
-<!-- ==================== SLIDE 10: CONSTRAINT-BASED PROMPTING ==================== -->
-<section data-background-color="#0F0A2E">
-  <div style="padding-top:8px;">
-    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Constraint-Based Prompting</h2>
+<!-- ==================== SLIDE 11: PRACTICAL — CRAFT PROMPT ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="practical-badge">🔨 HANDS-ON</div>
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Write Your First CRAFT Prompt</h2>
     <div class="accent-bar"></div>
-    <div class="grid-3col" style="margin-top:8px;">
-      <div class="card fragment glow-card">
-        <div class="tool-title">🎯 WHAT TO CHANGE</div>
-        <div class="tool-names">"Rewrite the opening to be more direct" is better than "improve this."</div>
-      </div>
-      <div class="card fragment glow-card">
-        <div class="tool-title">🔒 WHAT TO KEEP</div>
-        <div class="tool-names">"Keep the original deadline of March 15th. Don't change the greeting."</div>
-      </div>
-      <div class="card fragment glow-card">
-        <div class="tool-title">🚫 WHAT TO AVOID</div>
-        <div class="tool-names">"Do not add commitments. Avoid jargon the client wouldn't understand."</div>
-      </div>
-    </div>
-    <div class="card fragment" style="margin-top:14px;border-left:3px solid var(--mint);">
-      <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:6px;">🛡️ The Anchor Guardrail</div>
-      <div class="prompt-box" style="font-size:13px;margin-top:6px;border-color:rgba(8,145,178,0.4);">
-        "Do not invent policies, reasons, or details that I have not provided."
-      </div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:8px;">This single sentence prevents the most dangerous AI failure: confident fabrication.</div>
+    <div style="font-size:14px;color:var(--text-muted);margin-bottom:14px;">⏱️ 5 minutes — use your open AI chat tool</div>
+    <ul class="practical-steps">
+      <li class="fragment fade-up"><span class="step-num">1</span> Think of a <strong style="color:var(--mint);">real work task</strong> you'd use AI for (email, summary, plan, message)</li>
+      <li class="fragment fade-up"><span class="step-num">2</span> Write a prompt that includes ALL 5 CRAFT elements:
+        <div style="margin-top:6px;font-size:14px;color:var(--text-muted);padding-left:36px;"><strong>C</strong>ontext → <strong>R</strong>ole → <strong>A</strong>ction → <strong>F</strong>ormat → <strong>T</strong>one</div></li>
+      <li class="fragment fade-up"><span class="step-num">3</span> Submit it to your AI tool and <strong style="color:var(--mint);">evaluate the output</strong></li>
+      <li class="fragment fade-up"><span class="step-num">4</span> Rate the output: Would you send this as-is? What's missing?</li>
+    </ul>
+    <div class="card fragment fade-up" style="margin-top:12px;border-left:3px solid var(--mint);padding:12px 16px;">
+      <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:4px;">💡 Stuck? Try this scenario:</div>
+      <div style="font-size:14px;color:var(--text-muted);">Write an email to your team explaining that the weekly meeting is moving from Tuesday to Thursday, starting next week.</div>
     </div>
   </div>
-  <aside class="notes">Constraints are the secret weapon of professional prompt engineers. Without boundaries, AI drifts — adding invented context, shifting tone, making unauthorized promises. Three categories: what to change, what to keep, what to avoid. The anchor guardrail should be in every professional prompt.</aside>
+  <aside class="notes">
+[TIMING: 5 min] [TRANSITION: "Time to put CRAFT into practice. You're going to write a real prompt right now."]
+Key talking points:
+• Walk the room — help anyone stuck on choosing a task
+• Encourage REAL work tasks — the more authentic, the more useful
+• After 4 min, ask 2-3 volunteers to share: "What was your task? Was the output usable?"
+• Common issue: people forget Format or Tone — point out these are the elements that prevent "generic AI voice"
+Discussion prompt: "Who got usable output on the first try? Who needed to tweak it?"
+Facilitation tip: This is the first big "aha" moment — celebrate good results. For poor results, preview that we'll fix them with constraints and iteration.
+  </aside>
 </section>
 
-<!-- ==================== SLIDE 11: QUIZ 2 - PROMPT ENGINEERING ==================== -->
-<section data-background-color="#0F0A2E">
-  <div id="quiz-2" style="padding-top:12px;">
-    <div class="quiz-label">🧠 QUICK CHECK</div>
-    <div class="quiz-question">Which element is MISSING from this prompt? "Write a professional email declining a meeting invitation."</div>
+<!-- ==================== SLIDE 12: QUIZ 2 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz2">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🧠 KNOWLEDGE CHECK</div>
+    <div class="quiz-question">This prompt is missing a CRAFT element. Which one?<br><span style="font-size:16px;color:var(--text-muted);font-weight:400;font-style:italic;">"Act as an HR specialist. Write a rejection email for a job candidate. Keep it under 100 words. Use a compassionate tone."</span></div>
     <div class="quiz-options">
-      <div class="quiz-opt" onclick="quizAnswer('quiz-2', 0, 3, 'The prompt has an Action (write an email declining) but is missing Context (who are you? what\'s the relationship?), Role, Format, and Tone. All of these are missing, but the MOST critical missing element is Context — without it, the AI can\'t calibrate formality, relationship dynamics, or appropriate alternatives to offer.')">
-        <span class="opt-letter">A</span> Action — it doesn't say what to do
+      <div class="quiz-opt" onclick="quizAnswer('quiz2',0,0,'The prompt has Role (HR specialist), Action (write rejection email), Format (under 100 words), and Tone (compassionate) — but no Context. What company? What role was the candidate applying for? Why were they rejected? Without context, the email will be generic.')">
+        <span class="opt-letter">A</span><span>Context — no background about the situation</span>
       </div>
-      <div class="quiz-opt" onclick="quizAnswer('quiz-2', 1, 3, 'The prompt has an Action (write an email declining) but is missing Context (who are you? what\'s the relationship?), Role, Format, and Tone. All of these are missing, but the MOST critical missing element is Context — without it, the AI can\'t calibrate formality, relationship dynamics, or appropriate alternatives to offer.')">
-        <span class="opt-letter">B</span> Format — it doesn't specify length
+      <div class="quiz-opt" onclick="quizAnswer('quiz2',1,0,'The prompt has Role (HR specialist), Action (write rejection email), Format (under 100 words), and Tone (compassionate) — but no Context. What company? What role was the candidate applying for? Why were they rejected? Without context, the email will be generic.')">
+        <span class="opt-letter">B</span><span>Role — no persona specified</span>
       </div>
-      <div class="quiz-opt" onclick="quizAnswer('quiz-2', 2, 3, 'The prompt has an Action (write an email declining) but is missing Context (who are you? what\'s the relationship?), Role, Format, and Tone. All of these are missing, but the MOST critical missing element is Context — without it, the AI can\'t calibrate formality, relationship dynamics, or appropriate alternatives to offer.')">
-        <span class="opt-letter">C</span> Tone — it doesn't define voice
+      <div class="quiz-opt" onclick="quizAnswer('quiz2',2,0,'The prompt has Role (HR specialist), Action (write rejection email), Format (under 100 words), and Tone (compassionate) — but no Context. What company? What role was the candidate applying for? Why were they rejected? Without context, the email will be generic.')">
+        <span class="opt-letter">C</span><span>Format — no structure requested</span>
       </div>
-      <div class="quiz-opt" onclick="quizAnswer('quiz-2', 3, 3, 'The prompt has an Action (write an email declining) but is missing Context (who are you? what\'s the relationship?), Role, Format, and Tone. All of these are missing, but the MOST critical missing element is Context — without it, the AI can\'t calibrate formality, relationship dynamics, or appropriate alternatives to offer.')">
-        <span class="opt-letter">D</span> All of the above (Context, Role, Format, Tone)
+      <div class="quiz-opt" onclick="quizAnswer('quiz2',3,0,'The prompt has Role (HR specialist), Action (write rejection email), Format (under 100 words), and Tone (compassionate) — but no Context. What company? What role was the candidate applying for? Why were they rejected? Without context, the email will be generic.')">
+        <span class="opt-letter">D</span><span>Tone — no voice specified</span>
       </div>
     </div>
     <div class="quiz-explain"></div>
   </div>
-  <aside class="notes">Interactive quiz. Answer D is correct — the prompt only has an Action element. It's missing Context (who, what relationship), Role (what expertise to draw on), Format (length, structure), and Tone (formal vs casual). This is the typical 'lazy prompt' that produces generic output.</aside>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Before we move to constraints, let's test your CRAFT eye."]
+Key talking points:
+• Read the prompt aloud — let them identify what's present vs missing
+• Correct: A — Context is missing. We have R (HR specialist), A (write rejection), F (100 words), T (compassionate)
+• Key learning: without context, the AI will write a GENERIC rejection — not personalised to the situation
+Facilitation tip: Ask "What context would YOU add?" — get 2-3 suggestions before moving on.
+  </aside>
 </section>
 
-<!-- ==================== SLIDE 12: CHAPTER 03 ==================== -->
+<!-- ==================== SLIDE 13: CHAPTER 03 DIVIDER ==================== -->
 <section data-background-color="#0F0A2E">
   <div style="padding-top:30px;">
     <div class="chapter-num">03</div>
-    <div class="chapter-title">AI Writing Failure Patterns</div>
-    <div class="chapter-sub">Learn to spot what goes wrong — before you hit send</div>
+    <div class="chapter-title">Constraints — Your Safety Net</div>
+    <div class="chapter-sub">Tell AI what NOT to do — and watch the quality jump</div>
     <div class="chapter-rule"></div>
   </div>
-  <aside class="notes">Transition slide. Even with good prompts, AI output can fail in predictable ways. Learning these patterns turns participants into effective editors of AI-generated content. This section is about building critical evaluation skills.</aside>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "CRAFT tells AI what to do. Constraints tell it what NOT to do. Both matter."]
+Key talking points:
+• Constraints are the guardrails that prevent AI from going off track
+• Think of them as the bumpers in bowling — they keep the ball in the lane
+Facilitation tip: "If CRAFT is the steering wheel, constraints are the lane markings."
+  </aside>
 </section>
 
-<!-- ==================== SLIDE 13: FOUR FAILURE PATTERNS ==================== -->
+<!-- ==================== SLIDE 14: THREE TYPES OF CONSTRAINTS ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top:8px;">
-    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Four Failure Patterns to Watch For</h2>
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Three Types of Constraints</h2>
     <div class="accent-bar"></div>
-    <div class="grid-2col" style="margin-top:4px;">
-      <div class="card fragment">
-        <div class="failure-icon">🎭</div>
-        <div class="failure-title" style="color:#F87171;">Wrong Assumptions</div>
-        <div class="failure-desc">AI fills gaps in your prompt with invented context. It assumes the complaint was about timing when it was about quality.</div>
+    <div class="grid-3col" style="margin-top:14px;">
+      <div class="constraint-card fragment scale-in" style="border-left-color:#27AE60;">
+        <div style="font-size:22px;margin-bottom:8px;">✅</div>
+        <div class="constraint-title" style="color:#27AE60;">What to CHANGE</div>
+        <div class="constraint-desc">"Rewrite this in active voice"<br>"Convert bullet points to paragraphs"<br>"Shorten each section to 2 sentences"</div>
       </div>
-      <div class="card fragment">
-        <div class="failure-icon">🎵</div>
-        <div class="failure-title" style="color:#FBBF24;">Tone Mismatches</div>
-        <div class="failure-desc">Over-softens feedback until the message is lost. Over-formalises casual team comms. Dilutes urgency with politeness padding.</div>
+      <div class="constraint-card fragment scale-in" style="border-left-color:#F59E0B;">
+        <div style="font-size:22px;margin-bottom:8px;">🔒</div>
+        <div class="constraint-title" style="color:#F59E0B;">What to KEEP</div>
+        <div class="constraint-desc">"Keep all original numbers and dates"<br>"Preserve the 3-section structure"<br>"Maintain the existing tone"</div>
       </div>
-      <div class="card fragment">
-        <div class="failure-icon">🔮</div>
-        <div class="failure-title" style="color:#A78BFA;">Invented Details</div>
-        <div class="failure-desc">Adds fabricated dates, policies, statistics. "As per our 90-day review policy..." — you never mentioned that policy.</div>
-      </div>
-      <div class="card fragment">
-        <div class="failure-icon">✨</div>
-        <div class="failure-title" style="color:#22D3EE;">Over-Polishing</div>
-        <div class="failure-desc">Excessive em-dashes, lists of three, hedging phrases. Grammatically perfect but utterly generic. Lost your authentic voice.</div>
+      <div class="constraint-card fragment scale-in" style="border-left-color:#E74C3C;">
+        <div style="font-size:22px;margin-bottom:8px;">🚫</div>
+        <div class="constraint-title" style="color:#E74C3C;">What to AVOID</div>
+        <div class="constraint-desc">"Do not use jargon or acronyms"<br>"Never invent statistics or sources"<br>"Avoid passive voice entirely"</div>
       </div>
     </div>
-    <div class="footer-bar-dark fragment">Every AI draft needs human review. These four patterns tell you exactly what to look for.</div>
+    <div class="footer-bar fragment fade-up">💡 Pro tip: The AVOID column prevents the most costly AI mistakes — always include at least one</div>
   </div>
-  <aside class="notes">Four predictable failure modes. Wrong Assumptions: the AI fills gaps you didn't provide. Tone Mismatches: technically correct but wrong for the situation. Invented Details: the most dangerous — fabricated facts that sound authoritative. Over-Polishing: the AI 'voice' that sounds like everyone and no one. Ask: which have you experienced?</aside>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "There are three flavours of constraint — each does a different job."]
+Key talking points:
+• CHANGE: tells AI what transformation to apply
+• KEEP: protects specific elements from being altered (critical for editing tasks!)
+• AVOID: prevents common AI failure patterns
+• The AVOID column is the most powerful for professional work
+Discussion prompt: "What's one thing AI has done in your writing that you wish it hadn't?"
+Facilitation tip: Collect 3-4 answers — then show how each maps to an AVOID constraint.
+  </aside>
 </section>
 
-<!-- ==================== SLIDE 14: THE VERIFICATION CHECKLIST ==================== -->
-<section data-background-color="#F5F3FF">
-  <div style="padding-top:8px;">
-    <h2 class="slide-title-light" style="font-size:24px;font-weight:800;margin-bottom:4px;">The 60-Second Verification Checklist</h2>
-    <div class="accent-bar"></div>
-    <div style="margin-top:4px;">
-      <div class="check-row fragment"><span class="check-icon">✓</span> <strong>Names &amp; Details</strong> — Is every proper noun spelled correctly? Every name right?</div>
-      <div class="check-row fragment"><span class="check-icon">✓</span> <strong>Dates &amp; Math</strong> — Do the numbers add up? Are deadlines accurate?</div>
-      <div class="check-row fragment"><span class="check-icon">✓</span> <strong>Policy References</strong> — Does the cited policy actually say what the AI implies?</div>
-      <div class="check-row fragment"><span class="check-icon">✓</span> <strong>Cultural Fit</strong> — Would this sound natural in YOUR workplace to THIS person?</div>
-      <div class="check-row fragment" style="border-bottom:none;"><span class="check-icon">✓</span> <strong>Self-Critique QA</strong> — Ask the AI: "Flag anything you assumed or invented."</div>
-    </div>
-    <div class="footer-bar fragment">5 checks. 60 seconds. Catches 90% of AI writing errors before they reach your colleagues.</div>
-  </div>
-  <aside class="notes">This is the practical takeaway. Five checks that take 60 seconds total. The Self-Critique QA prompt is powerful — asking the AI to be its own editor catches a surprising number of hallucinations. Print this as a desk card for participants.</aside>
-</section>
-
-<!-- ==================== SLIDE 15: QUIZ 3 - FAILURE PATTERNS ==================== -->
+<!-- ==================== SLIDE 15: THE ANCHOR GUARDRAIL ==================== -->
 <section data-background-color="#0F0A2E">
-  <div id="quiz-3" style="padding-top:12px;">
-    <div class="quiz-label">🧠 QUICK CHECK</div>
-    <div class="quiz-question">An AI draft says "As per our company's 90-day review policy..." but you never mentioned any such policy. Which failure pattern is this?</div>
-    <div class="quiz-options">
-      <div class="quiz-opt" onclick="quizAnswer('quiz-3', 0, 2, 'This is the Invented Details pattern — the AI fabricated a specific policy reference that sounds authoritative but doesn\'t exist. This is the most dangerous failure pattern because it can create legal exposure and erode trust if sent to colleagues or clients.')">
-        <span class="opt-letter">A</span> Wrong Assumptions
+  <div style="padding-top:18px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">The Anchor Guardrail</h2>
+    <div class="accent-bar"></div>
+    <div class="card fragment fade-up" style="border:2px solid var(--mint);padding:24px;text-align:center;margin-bottom:20px;">
+      <div style="font-size:20px;font-weight:700;color:var(--text-light);line-height:1.5;">"Do not invent any details, statistics, or claims that I have not explicitly provided in this prompt."</div>
+    </div>
+    <div class="grid-2col fragment fade-up">
+      <div class="card" style="border-left:3px solid var(--mint);">
+        <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:8px;">Why it works</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.6;">LLMs <span class="tip">hallucinate<span class="tip-content">Hallucination = when AI generates confident-sounding information that isn't true. It's a fundamental feature of probability-based generation, not a bug that can be fully fixed.</span></span> by default — they fill gaps with plausible-sounding content. This constraint forces the model to stay within your provided facts.</div>
       </div>
-      <div class="quiz-opt" onclick="quizAnswer('quiz-3', 1, 2, 'This is the Invented Details pattern — the AI fabricated a specific policy reference that sounds authoritative but doesn\'t exist. This is the most dangerous failure pattern because it can create legal exposure and erode trust if sent to colleagues or clients.')">
-        <span class="opt-letter">B</span> Tone Mismatch
-      </div>
-      <div class="quiz-opt" onclick="quizAnswer('quiz-3', 2, 2, 'This is the Invented Details pattern — the AI fabricated a specific policy reference that sounds authoritative but doesn\'t exist. This is the most dangerous failure pattern because it can create legal exposure and erode trust if sent to colleagues or clients.')">
-        <span class="opt-letter">C</span> Invented Details
-      </div>
-      <div class="quiz-opt" onclick="quizAnswer('quiz-3', 3, 2, 'This is the Invented Details pattern — the AI fabricated a specific policy reference that sounds authoritative but doesn\'t exist. This is the most dangerous failure pattern because it can create legal exposure and erode trust if sent to colleagues or clients.')">
-        <span class="opt-letter">D</span> Over-Polishing
+      <div class="card" style="border-left:3px solid var(--blue);">
+        <div style="font-size:15px;font-weight:700;color:var(--blue);margin-bottom:8px;">When to use it</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.6;">• Emails that reference specific projects or deadlines<br>• Reports with data or metrics<br>• Any content going to external audiences<br>• Anything with legal or compliance implications</div>
       </div>
     </div>
-    <div class="quiz-explain"></div>
+    <div class="teaser fragment fade-up">🛡️ Add this to every professional prompt. It's the single most impactful constraint for workplace writing.</div>
   </div>
-  <aside class="notes">Interactive quiz. Answer C is correct. Invented Details is the most dangerous pattern because fabricated policy references can create legal exposure. The AI didn't 'lie' — it pattern-matched from its training data to produce something that sounds like corporate communication. But the specific reference doesn't exist.</aside>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Of all possible constraints, this one earns its own slide."]
+Key talking points:
+• This is the #1 constraint for professional use — memorise it
+• Without it, AI will confidently invent policy names, statistics, dates, and quotes
+• It doesn't guarantee zero hallucination but dramatically reduces it
+• Think of it as the "safety catch" on a weapon — always on by default
+Discussion prompt: "Has anyone received AI output that included invented details? What happened?"
+Facilitation tip: Share a specific example — "I asked for a policy summary and it invented a 'Remote Work Policy 2024' that didn't exist."
+  </aside>
 </section>
 
-<!-- ==================== SLIDE 16: CHAPTER 04 - EMAIL CLINIC ==================== -->
+<!-- ==================== SLIDE 16: PRACTICAL — ADD CONSTRAINTS ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="practical-badge">🔨 HANDS-ON</div>
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Add Constraints to a Prompt</h2>
+    <div class="accent-bar"></div>
+    <div style="font-size:14px;color:var(--text-muted);margin-bottom:14px;">⏱️ 4 minutes — iterate on your CRAFT prompt from earlier</div>
+    <ul class="practical-steps">
+      <li class="fragment fade-up"><span class="step-num">1</span> Take the CRAFT prompt you wrote in the previous exercise</li>
+      <li class="fragment fade-up"><span class="step-num">2</span> Add <strong style="color:var(--mint);">3 constraints</strong> — at least one from each type:
+        <div style="margin-top:4px;padding-left:36px;font-size:14px;color:var(--text-muted);">✅ One CHANGE • 🔒 One KEEP • 🚫 One AVOID</div></li>
+      <li class="fragment fade-up"><span class="step-num">3</span> Always include the <strong style="color:var(--mint);">Anchor Guardrail</strong>: "Do not invent details I haven't provided"</li>
+      <li class="fragment fade-up"><span class="step-num">4</span> Submit to your AI tool — <strong style="color:var(--mint);">compare the output</strong> to your earlier result</li>
+    </ul>
+    <div class="card fragment fade-up" style="margin-top:12px;border-left:3px solid var(--mint);padding:12px 16px;">
+      <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:4px;">🔍 What to look for:</div>
+      <div style="font-size:14px;color:var(--text-muted);">Did the constrained version feel more "you"? Did it stay closer to facts? Was it more useful?</div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Let's add constraints to your CRAFT prompt and see the difference."]
+Key talking points:
+• This is an iteration exercise — they're improving their earlier work
+• Walk the room — common mistake: constraints that are too vague ("be accurate")
+• Good constraints are SPECIFIC: "do not exceed 150 words" > "keep it short"
+• After 3 min, ask: "Did the output improve? How?"
+Discussion prompt: "What was the biggest difference between the unconstrained and constrained output?"
+Facilitation tip: Collect 2-3 "before/after" comparisons. The contrast sells the technique.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 17: CHAPTER 04 DIVIDER ==================== -->
 <section data-background-color="#0F0A2E">
   <div style="padding-top:30px;">
     <div class="chapter-num">04</div>
-    <div class="chapter-title">Email Clinic</div>
-    <div class="chapter-sub">Rewrite professional communications with AI assistance</div>
+    <div class="chapter-title">The Art of Iteration</div>
+    <div class="chapter-sub">Progressive prompting — why your second prompt matters more than your first</div>
     <div class="chapter-rule"></div>
   </div>
-  <aside class="notes">Transition to first activity. The Email Clinic gives participants three pre-loaded workplace communications that need improvement. They'll use AI tools to rewrite each one, then document their decisions about which AI suggestions they accepted or rejected.</aside>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "CRAFT + Constraints get you 80% there on the first try. Iteration gets you to 95%."]
+Key talking points:
+• Professional prompt engineers almost never accept first-draft output
+• The skill is knowing HOW to iterate — not just "try again"
+Facilitation tip: "Your first prompt is the rough sketch. Iteration is the refinement. Both are part of the craft."
+  </aside>
 </section>
 
-<!-- ==================== SLIDE 17: EMAIL CLINIC ACTIVITY ==================== -->
+<!-- ==================== SLIDE 18: 3-STEP WORKFLOW ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top:8px;">
-    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Activity: Email Clinic</h2>
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">The 3-Step Iteration Workflow</h2>
     <div class="accent-bar"></div>
-    <div class="grid-3col" style="margin-top:4px;">
-      <div class="card fragment">
-        <div class="tool-title">📧 EMAIL 1: Internal Request</div>
-        <div class="prompt-box bad" style="font-size:11px;margin-top:6px;">
-          "Hey, I need the sales report by end of day. You were supposed to have it done already. Send it over ASAP."
-        </div>
+    <div class="loop-steps" style="margin-top:16px;">
+      <div class="loop-step fragment scale-in" style="padding:20px 14px;">
+        <div class="loop-step-label">1. STRUCTURE</div>
+        <div style="font-size:28px;margin:8px 0;">🏗️</div>
+        <div class="loop-step-desc">First prompt: get the bones right. Focus on CRAFT + overall shape of the output.</div>
       </div>
-      <div class="card fragment">
-        <div class="tool-title">📧 EMAIL 2: Time-off Request</div>
-        <div class="prompt-box bad" style="font-size:11px;margin-top:6px;">
-          "I want to take next Friday off. I have stuff to do. Let me know if that works or whatever."
-        </div>
+      <div class="loop-arrow fragment">→</div>
+      <div class="loop-step fragment scale-in" style="padding:20px 14px;">
+        <div class="loop-step-label">2. REFINE</div>
+        <div style="font-size:28px;margin:8px 0;">✨</div>
+        <div class="loop-step-desc">Second prompt: fix specifics. Adjust tone, length, emphasis, or missing details.</div>
       </div>
-      <div class="card fragment">
-        <div class="tool-title">📧 EMAIL 3: Complaint Response</div>
-        <div class="prompt-box bad" style="font-size:11px;margin-top:6px;">
-          "We got your complaint. Not sure what you expected us to do about it. The policy is the policy."
-        </div>
+      <div class="loop-arrow fragment">→</div>
+      <div class="loop-step fragment scale-in" style="padding:20px 14px;">
+        <div class="loop-step-label">3. VERIFY</div>
+        <div style="font-size:28px;margin:8px 0;">✅</div>
+        <div class="loop-step-desc">Third prompt: challenge it. "What did you assume? What might be wrong?"</div>
       </div>
     </div>
-    <div style="margin-top:14px;display:flex;gap:12px;" class="fragment">
-      <div class="card" style="flex:1;border-left:3px solid var(--mint);padding:12px 16px;">
-        <div style="font-size:13px;font-weight:700;color:var(--mint);margin-bottom:4px;">📋 Your Task (20 min)</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">
-          1. Use AI to rewrite each email using CRAFT<br>
-          2. Document which suggestions you accepted/rejected<br>
-          3. Run the 60-second verification checklist on each
-        </div>
+    <div class="loop-footer fragment fade-up">💡 Most professionals stop at step 1. Step 3 is what separates good output from great output.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Here's the 3-step pattern that professional prompt engineers use."]
+Key talking points:
+• Step 1 is CRAFT + Constraints — what they already know
+• Step 2 is targeted refinement — "make paragraph 2 shorter" or "add more data in section 3"
+• Step 3 is the secret weapon — asking the AI to critique its own work
+• Show that this is faster than writing from scratch — 3 prompts take 2-3 minutes total
+Discussion prompt: "Who currently stops at step 1? That's normal — but let's change that."
+Facilitation tip: Emphasise that iteration is NOT failure — it's the intended workflow.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 19: COMPLETE EXAMPLE ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Iteration in Action: Email Task</h2>
+    <div class="accent-bar"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="card fragment fade-up" style="border-left:3px solid var(--mint);padding:14px 16px;">
+        <div style="font-size:13px;font-weight:700;color:var(--mint);letter-spacing:1px;margin-bottom:6px;">PROMPT 1 — STRUCTURE</div>
+        <div style="font-size:14px;color:var(--text-light);line-height:1.6;">"You are a project manager. Write a team email announcing our office move from Building A to Building C, effective March 15. Include logistics, timeline, and what people need to do. 3 sections, professional tone, under 200 words. Do not invent details I haven't provided."</div>
       </div>
-      <div class="card" style="flex:1;border-left:3px solid var(--blue);padding:12px 16px;">
-        <div style="font-size:13px;font-weight:700;color:#A78BFA;margin-bottom:4px;">💡 Pro Tip</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">
-          Set a role first: "You are an executive communication coach." Then provide the original email as context with specific improvement goals.
-        </div>
+      <div class="card fragment fade-up" style="border-left:3px solid var(--blue);padding:14px 16px;">
+        <div style="font-size:13px;font-weight:700;color:var(--blue);letter-spacing:1px;margin-bottom:6px;">PROMPT 2 — REFINE</div>
+        <div style="font-size:14px;color:var(--text-light);line-height:1.6;">"Good structure. Now: make the tone warmer and more encouraging. Add a bullet list for the 'what to do' section. Mention that IT will handle equipment moves — people only need to pack personal items by March 12."</div>
       </div>
+      <div class="card fragment fade-up" style="border-left:3px solid #F59E0B;padding:14px 16px;">
+        <div style="font-size:13px;font-weight:700;color:#F59E0B;letter-spacing:1px;margin-bottom:6px;">PROMPT 3 — VERIFY</div>
+        <div style="font-size:14px;color:var(--text-light);line-height:1.6;">"Review this email: Are there any assumptions you made that I didn't confirm? Is anything potentially unclear to a reader? Suggest 2 improvements."</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up">⏱️ Total time: ~3 minutes for a polished, verified email you'd actually send</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Let me walk through a real 3-prompt iteration so you can see the pattern."]
+Key talking points:
+• Prompt 1: full CRAFT — gets the structure and overall content
+• Prompt 2: targeted refinements — doesn't rewrite, just adjusts
+• Prompt 3: self-critique — the AI flags its own assumptions and blind spots
+• Total time: 3 prompts, 3 minutes, professional-quality output
+• Key insight: each prompt is SHORT — you're steering, not rewriting
+Discussion prompt: "Which step surprised you most? Did you expect asking AI to critique itself would work?"
+Facilitation tip: If time allows, show this live — run the 3 prompts and show the evolution in real-time.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 20: PRACTICAL — ITERATE ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="practical-badge">🔨 HANDS-ON</div>
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Iterate on Your Prompt</h2>
+    <div class="accent-bar"></div>
+    <div style="font-size:14px;color:var(--text-muted);margin-bottom:14px;">⏱️ 5 minutes — use the same conversation from earlier</div>
+    <ul class="practical-steps">
+      <li class="fragment fade-up"><span class="step-num">1</span> Look at the output from your constrained CRAFT prompt</li>
+      <li class="fragment fade-up"><span class="step-num">2</span> Write a <strong style="color:var(--mint);">REFINE prompt</strong>: fix one specific thing (tone, length, structure, missing detail)</li>
+      <li class="fragment fade-up"><span class="step-num">3</span> Write a <strong style="color:var(--mint);">VERIFY prompt</strong>: "What assumptions did you make? What might be unclear?"</li>
+      <li class="fragment fade-up"><span class="step-num">4</span> Review the AI's self-critique — was it right? Apply the useful suggestions.</li>
+    </ul>
+    <div class="card fragment fade-up" style="margin-top:12px;border-left:3px solid var(--mint);padding:12px 16px;">
+      <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:4px;">🎯 Success criteria:</div>
+      <div style="font-size:14px;color:var(--text-muted);">After 3 prompts total (CRAFT → Refine → Verify), you should have output you'd use as-is in your real work.</div>
     </div>
   </div>
-  <aside class="notes">Hands-on activity. Direct participants to the exercise platform on their devices. Walk the room while they work. The key learning: participants will see how different prompting approaches produce dramatically different rewrites. The decisions log is crucial — it builds the habit of critical evaluation rather than blind acceptance.</aside>
+  <aside class="notes">
+[TIMING: 5 min] [TRANSITION: "Your turn. Take your earlier output through the refine and verify steps."]
+Key talking points:
+• They already have CRAFT + Constraints from earlier — now add steps 2 and 3
+• Walk the room — common issues: refinement prompts that are too vague
+• Good refine prompt: "Make the opening sentence more direct" vs bad: "Make it better"
+• After 4 min, ask: "Who noticed the AI catching its own mistakes in the verify step?"
+Discussion prompt: "What did the AI flag about its own assumptions? Was it right?"
+Facilitation tip: The verify step is often the "wow" moment. Highlight 2-3 good examples of AI self-correction.
+  </aside>
 </section>
 
-<!-- ==================== SLIDE 18: CHAPTER 05 - TEMPLATE BUILDER ==================== -->
+<!-- ==================== SLIDE 21: CHAPTER 05 DIVIDER ==================== -->
 <section data-background-color="#0F0A2E">
   <div style="padding-top:30px;">
     <div class="chapter-num">05</div>
-    <div class="chapter-title">Template Builder</div>
-    <div class="chapter-sub">Create reusable prompt templates for your daily work</div>
+    <div class="chapter-title">When AI Gets It Wrong</div>
+    <div class="chapter-sub">Four failure patterns every professional must recognise</div>
     <div class="chapter-rule"></div>
   </div>
-  <aside class="notes">Transition to Template Builder activity. This is where participants create a reusable prompt template they can use repeatedly for common work tasks. The template becomes a personal productivity asset they take away from the workshop.</aside>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "You now have tools to write great prompts. But what about catching bad output?"]
+Key talking points:
+• Even great prompts can produce flawed output — you need to know what to look for
+• These 4 patterns account for ~90% of AI writing failures in professional contexts
+Facilitation tip: "This chapter is your quality control training. You'll use it every single time you use AI for work."
+  </aside>
 </section>
 
-<!-- ==================== SLIDE 19: TEMPLATE BUILDER ACTIVITY ==================== -->
+<!-- ==================== SLIDE 22: FOUR FAILURE PATTERNS ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top:8px;">
-    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Activity: Template Builder</h2>
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">The Four Failure Patterns</h2>
     <div class="accent-bar"></div>
-    <div style="display:flex;gap:14px;margin-top:8px;">
-      <div class="card fragment" style="flex:1;">
-        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:10px;">🧱 Template Structure</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:2;">
-          <strong style="color:var(--text-light);">1. Role:</strong> Who the AI should be<br>
-          <strong style="color:var(--text-light);">2. Goal:</strong> The specific outcome<br>
-          <strong style="color:var(--text-light);">3. Details:</strong> Context &amp; requirements<br>
-          <strong style="color:var(--text-light);">4. Rules:</strong> Constraints &amp; limits<br>
-          <strong style="color:var(--text-light);">5. QA Prompt:</strong> Self-check instruction
-        </div>
+    <div class="grid-2x2" style="margin-top:12px;">
+      <div class="failure-card fragment scale-in" style="border-top:3px solid #E74C3C;">
+        <div class="failure-icon">🎭</div>
+        <div class="failure-title" style="color:#E74C3C;">Wrong Assumptions</div>
+        <div class="failure-desc">AI assumes context you never provided — guesses your company size, industry, or situation incorrectly.</div>
       </div>
-      <div class="card fragment" style="flex:1;">
-        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:10px;">💡 Example Template</div>
-        <div class="prompt-box good" style="font-size:10px;line-height:1.7;">
-          <strong>Role:</strong> Senior HR advisor at a mid-size firm<br>
-          <strong>Goal:</strong> Draft a performance feedback email<br>
-          <strong>Details:</strong> Employee exceeded Q3 targets by 20%...<br>
-          <strong>Rules:</strong> Max 150 words. No invented metrics.<br>
-          <strong>QA:</strong> "Flag any details not provided by me."
-        </div>
+      <div class="failure-card fragment scale-in" style="border-top:3px solid #F59E0B;">
+        <div class="failure-icon">🎵</div>
+        <div class="failure-title" style="color:#F59E0B;">Tone Mismatch</div>
+        <div class="failure-desc">Output sounds like a corporate robot or an overly casual friend — neither matches YOUR voice.</div>
       </div>
-    </div>
-    <div class="card fragment" style="margin-top:14px;border-left:3px solid var(--mint);padding:12px 18px;">
-      <div style="font-size:13px;font-weight:700;color:var(--mint);margin-bottom:4px;">📋 Your Task (15 min)</div>
-      <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">
-        Build a reusable template for a task YOU do repeatedly (weekly reports, client updates, meeting summaries). Fill in all 5 fields. Test it with your AI tool — does it produce consistent, high-quality output?
+      <div class="failure-card fragment scale-in" style="border-top:3px solid #9B59B6;">
+        <div class="failure-icon">🌀</div>
+        <div class="failure-title" style="color:#9B59B6;">Invented Details</div>
+        <div class="failure-desc">AI fabricates specific data, policy names, dates, or quotes that sound real but aren't.</div>
+      </div>
+      <div class="failure-card fragment scale-in" style="border-top:3px solid var(--blue);">
+        <div class="failure-icon">💎</div>
+        <div class="failure-title" style="color:var(--blue);">Over-Polishing</div>
+        <div class="failure-desc">Output is technically correct but sounds nothing like you — too formal, too perfect, clearly AI-written.</div>
       </div>
     </div>
+    <div class="footer-bar fragment fade-up">🛡️ Prevention: Context fixes #1, Tone in CRAFT fixes #2, Anchor Guardrail fixes #3, Style examples fix #4</div>
   </div>
-  <aside class="notes">Hands-on activity. The Template Builder is about creating lasting productivity gains — not one-off prompts, but reusable templates for recurring tasks. Direct participants to think about their most common writing tasks. Walk the room and help anyone stuck. A good template should produce 80% usable output every time.</aside>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Even with perfect prompts, AI can fail in predictable ways. Here are the four you'll see most."]
+Key talking points:
+• Wrong Assumptions: caused by missing Context in your prompt
+• Tone Mismatch: caused by missing or vague Tone specification
+• Invented Details: the hallucination problem — Anchor Guardrail is your fix
+• Over-Polishing: the "AI voice" problem — fix by providing examples of YOUR writing style
+• Each failure maps to a CRAFT element or constraint they already know
+Discussion prompt: "Which of these have you experienced? Which worries you most?"
+Facilitation tip: Show a real example of each — even 1 sentence per pattern makes it concrete.
+  </aside>
 </section>
 
-<!-- ==================== SLIDE 20: CHAPTER 06 - PEER REVIEW ==================== -->
+<!-- ==================== SLIDE 23: 60-SECOND VERIFICATION ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top:30px;">
-    <div class="chapter-num">06</div>
-    <div class="chapter-title">Peer Review &amp; Writing Clinic</div>
-    <div class="chapter-sub">Give structured feedback, then apply skills in realistic scenarios</div>
-    <div class="chapter-rule"></div>
-  </div>
-  <aside class="notes">Transition to peer activities. Peer Review builds the skill of evaluating AI-assisted writing using the Seven Cs framework. The Writing Clinic then applies everything learned to realistic workplace scenarios. These activities reinforce critical evaluation skills.</aside>
-</section>
-
-<!-- ==================== SLIDE 21: PEER REVIEW + WRITING CLINIC ==================== -->
-<section data-background-color="#0F0A2E">
-  <div style="padding-top:8px;">
-    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Activities: Peer Review &amp; Writing Clinic</h2>
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">The 60-Second Verification Checklist</h2>
     <div class="accent-bar"></div>
-    <div class="grid-2col" style="margin-top:4px;">
-      <div class="card fragment">
-        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:8px;">🔄 Peer Review Swap (15 min)</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:1.6;margin-bottom:10px;">
-          Review a colleague's Email Clinic draft using the <strong style="color:var(--text-light);">Seven Cs Framework</strong>:
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;">
-          <span class="seven-c-badge">C</span>
-          <span style="font-size:11px;color:var(--text-muted);padding:6px 0;">lear</span>
-          <span class="seven-c-badge">C</span>
-          <span style="font-size:11px;color:var(--text-muted);padding:6px 0;">oncise</span>
-          <span class="seven-c-badge">C</span>
-          <span style="font-size:11px;color:var(--text-muted);padding:6px 0;">oncrete</span>
-          <span class="seven-c-badge">C</span>
-          <span style="font-size:11px;color:var(--text-muted);padding:6px 0;">orrect</span>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
-          <span class="seven-c-badge">C</span>
-          <span style="font-size:11px;color:var(--text-muted);padding:6px 0;">oherent</span>
-          <span class="seven-c-badge">C</span>
-          <span style="font-size:11px;color:var(--text-muted);padding:6px 0;">omplete</span>
-          <span class="seven-c-badge">C</span>
-          <span style="font-size:11px;color:var(--text-muted);padding:6px 0;">ourteous</span>
-        </div>
-      </div>
-      <div class="card fragment">
-        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:8px;">📝 Writing Clinic (20 min)</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:1.6;margin-bottom:8px;">
-          Choose <strong style="color:var(--text-light);">2 scenarios</strong> and draft AI-assisted responses:
-        </div>
-        <div style="font-size:11px;color:var(--text-muted);line-height:1.8;">
-          • Diplomatic Feedback to a colleague<br>
-          • Angry Client Response<br>
-          • Team Change Announcement<br>
-          • Repurposing Content for newsletter<br>
-          • Job Application / Cover Letter
-        </div>
-      </div>
+    <p style="font-size:15px;color:var(--text-muted);margin-bottom:14px;">Run this on EVERY AI draft before sending. Takes under 60 seconds.</p>
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <div class="check-row fragment fade-up"><span class="check-icon">1️⃣</span> <strong>Facts check</strong> — Are all dates, names, numbers, and claims actually true?</div>
+      <div class="check-row fragment fade-up"><span class="check-icon">2️⃣</span> <strong>Tone check</strong> — Does this sound like ME or like a generic AI?</div>
+      <div class="check-row fragment fade-up"><span class="check-icon">3️⃣</span> <strong>Audience check</strong> — Would the recipient find this appropriate and clear?</div>
+      <div class="check-row fragment fade-up"><span class="check-icon">4️⃣</span> <strong>Completeness check</strong> — Is anything important missing or oversimplified?</div>
+      <div class="check-row fragment fade-up"><span class="check-icon">5️⃣</span> <strong>Risk check</strong> — Could anything here cause harm if it's wrong?</div>
     </div>
-    <div class="footer-bar-dark fragment">Rate each C from 1-5 with specific comments. For Writing Clinic, use CRAFT + constraints + verification checklist.</div>
+    <div class="loop-footer fragment fade-up">⏱️ This catches 90% of AI errors. Make it a habit — never send AI output without running these 5 checks.</div>
   </div>
-  <aside class="notes">Two activities in sequence. Peer Review: participants swap Email Clinic drafts and provide structured feedback using the Seven Cs. This builds evaluation skills. Writing Clinic: participants choose 2 of 5 realistic scenarios and apply everything they've learned. Walk the room, encourage CRAFT usage, and remind about the verification checklist.</aside>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Here's your quality control process — memorise these 5 checks."]
+Key talking points:
+• Walk through each check with a quick example
+• Facts: did it make up a "company policy" that doesn't exist?
+• Tone: does it sound robotic? Did it add "I hope this email finds you well"?
+• Audience: would your VP find this appropriate? Would your direct report?
+• Completeness: did it skip something because you forgot to mention it?
+• Risk: if this went out wrong, what's the worst case?
+Discussion prompt: "Which check do you think catches the most errors in practice?"
+Facilitation tip: Answer is usually #1 (Facts) — AI is confidently wrong more often than people expect.
+  </aside>
 </section>
 
-<!-- ==================== SLIDE 22: QUIZ 4 - SEVEN Cs ==================== -->
-<section data-background-color="#0F0A2E">
-  <div id="quiz-4" style="padding-top:12px;">
-    <div class="quiz-label">🧠 QUICK CHECK</div>
-    <div class="quiz-question">An AI-generated email says "we'll get back to you soon" without specifying when. Which of the Seven Cs does this violate?</div>
+<!-- ==================== SLIDE 24: QUIZ 3 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz3">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🧠 KNOWLEDGE CHECK</div>
+    <div class="quiz-question">An AI draft of your team update references a "Q4 Productivity Framework" that your company doesn't have. Which failure pattern is this?</div>
     <div class="quiz-options">
-      <div class="quiz-opt" onclick="quizAnswer('quiz-4', 0, 1, '\"Soon\" without a specific timeframe violates Concrete — one of the Seven Cs that requires specific details rather than vague generalities. A concrete version would say \"by Thursday at 3pm\" or \"within 48 hours.\" AI often defaults to vague language that sounds professional but lacks actionable specifics.')">
-        <span class="opt-letter">A</span> Clear — it's ambiguous
+      <div class="quiz-opt" onclick="quizAnswer('quiz3',0,2,'This is Invented Details (hallucination). The AI fabricated a specific policy/framework name that sounds plausible but doesn\'t exist. The Anchor Guardrail constraint prevents this: Do not invent details I haven\'t provided.')">
+        <span class="opt-letter">A</span><span>Wrong Assumptions</span>
       </div>
-      <div class="quiz-opt" onclick="quizAnswer('quiz-4', 1, 1, '\"Soon\" without a specific timeframe violates Concrete — one of the Seven Cs that requires specific details rather than vague generalities. A concrete version would say \"by Thursday at 3pm\" or \"within 48 hours.\" AI often defaults to vague language that sounds professional but lacks actionable specifics.')">
-        <span class="opt-letter">B</span> Concrete — it lacks specifics
+      <div class="quiz-opt" onclick="quizAnswer('quiz3',1,2,'This is Invented Details (hallucination). The AI fabricated a specific policy/framework name that sounds plausible but doesn\'t exist. The Anchor Guardrail constraint prevents this: Do not invent details I haven\'t provided.')">
+        <span class="opt-letter">B</span><span>Tone Mismatch</span>
       </div>
-      <div class="quiz-opt" onclick="quizAnswer('quiz-4', 2, 1, '\"Soon\" without a specific timeframe violates Concrete — one of the Seven Cs that requires specific details rather than vague generalities. A concrete version would say \"by Thursday at 3pm\" or \"within 48 hours.\" AI often defaults to vague language that sounds professional but lacks actionable specifics.')">
-        <span class="opt-letter">C</span> Courteous — it's dismissive
+      <div class="quiz-opt" onclick="quizAnswer('quiz3',2,2,'This is Invented Details (hallucination). The AI fabricated a specific policy/framework name that sounds plausible but doesn\'t exist. The Anchor Guardrail constraint prevents this: Do not invent details I haven\'t provided.')">
+        <span class="opt-letter">C</span><span>Invented Details</span>
       </div>
-      <div class="quiz-opt" onclick="quizAnswer('quiz-4', 3, 1, '\"Soon\" without a specific timeframe violates Concrete — one of the Seven Cs that requires specific details rather than vague generalities. A concrete version would say \"by Thursday at 3pm\" or \"within 48 hours.\" AI often defaults to vague language that sounds professional but lacks actionable specifics.')">
-        <span class="opt-letter">D</span> Correct — it's factually wrong
+      <div class="quiz-opt" onclick="quizAnswer('quiz3',3,2,'This is Invented Details (hallucination). The AI fabricated a specific policy/framework name that sounds plausible but doesn\'t exist. The Anchor Guardrail constraint prevents this: Do not invent details I haven\'t provided.')">
+        <span class="opt-letter">D</span><span>Over-Polishing</span>
       </div>
     </div>
     <div class="quiz-explain"></div>
   </div>
-  <aside class="notes">Interactive quiz. Answer B is correct. 'Soon' is vague — it violates Concrete. The reader can't act on it. AI frequently uses vague language like 'soon,' 'shortly,' 'in due course' because these are common patterns in its training data. A human editor adds specifics.</aside>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Quick check before we move into the hands-on clinic."]
+Key talking points:
+• Correct answer: C — Invented Details (hallucination)
+• The AI generated a specific, named framework that sounds real but isn't
+• This is exactly what the Anchor Guardrail prevents
+• Distinguishing from A: Wrong Assumptions is about CONTEXT (wrong industry, wrong audience), Invented Details is about FABRICATED SPECIFICS
+Facilitation tip: If anyone picks A, explain the distinction — both involve "wrongness" but the mechanism differs.
+  </aside>
 </section>
 
-<!-- ==================== SLIDE 23: KEY TAKEAWAYS ==================== -->
+<!-- ==================== SLIDE 25: CHAPTER 06 DIVIDER ==================== -->
 <section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">06</div>
+    <div class="chapter-title">Hands-On Practice</div>
+    <div class="chapter-sub">Email Clinic &amp; Template Builder — put it all together</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Everything you've learned comes together now. This is the extended practice section."]
+Key talking points:
+• Two exercises: Email Clinic (fix bad emails) and Template Builder (create reusable prompts)
+• These build skills you'll use immediately after this session
+Facilitation tip: "This is where the learning becomes permanent. You're about to create tools you'll use at work starting tomorrow."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 26: PRACTICAL — EMAIL CLINIC ==================== -->
+<section data-background-color="#1A1050">
   <div style="padding-top:12px;">
+    <div class="practical-badge">🔨 EMAIL CLINIC</div>
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Revise These Emails Using CRAFT + Constraints</h2>
+    <div class="accent-bar"></div>
+    <div style="font-size:14px;color:var(--text-muted);margin-bottom:12px;">⏱️ 8 minutes — choose at least 2 of these 3 scenarios</div>
+    <div class="grid-3col">
+      <div class="card fragment scale-in" style="border-top:3px solid #E74C3C;padding:14px;">
+        <div style="font-size:14px;font-weight:700;color:#E74C3C;margin-bottom:6px;">📧 Email 1: The Vague Update</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;font-style:italic;">"Hi team, just wanted to let you know things are going well with the project. We should be done soon. Let me know if you have questions."</div>
+        <div style="font-size:13px;color:var(--mint);margin-top:8px;">Task: Make it specific and actionable</div>
+      </div>
+      <div class="card fragment scale-in" style="border-top:3px solid #F59E0B;padding:14px;">
+        <div style="font-size:14px;font-weight:700;color:#F59E0B;margin-bottom:6px;">📧 Email 2: The Blame Email</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;font-style:italic;">"The report was late because your team didn't send the data on time. This caused problems for everyone. Please make sure this doesn't happen again."</div>
+        <div style="font-size:13px;color:var(--mint);margin-top:8px;">Task: Make it constructive and solutions-focused</div>
+      </div>
+      <div class="card fragment scale-in" style="border-top:3px solid var(--blue);padding:14px;">
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:6px;">📧 Email 3: The Wall of Text</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;font-style:italic;">"I wanted to reach out regarding the upcoming conference... [imagine 400 words of unstructured text with no clear ask]"</div>
+        <div style="font-size:13px;color:var(--mint);margin-top:8px;">Task: Restructure with clear sections and a direct ask</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up">🎯 Use CRAFT + Constraints + the 3-step workflow. Run each email through Structure → Refine → Verify.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 8 min] [TRANSITION: "Time for the main event. You're going to fix real-world bad emails using everything you've learned."]
+Key talking points:
+• They choose 2 of 3 — different difficulty levels
+• Email 1 is easiest (add specifics), Email 2 is hardest (emotional intelligence)
+• Remind them: use CRAFT for the prompt, add constraints, then iterate
+• Walk the room — offer help, see creative approaches
+• At 6 min mark, give 2-minute warning
+Discussion prompt: (After) "Who tackled the blame email? What tone did you land on?"
+Facilitation tip: The blame email usually generates the best discussion. Pull 2 volunteers to share their rewrites.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 27: PROMPT LIBRARY ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Building Your Prompt Library</h2>
+    <div class="accent-bar"></div>
+    <p style="font-size:15px;color:var(--text-muted);margin-bottom:14px;">Reusable templates with <span class="tip">[VARIABLES]<span class="tip-content">Variables are placeholders in your template that you swap out each time you use it. Like a form with blanks — the structure stays the same, only the specifics change.</span></span> you swap out each time — write once, use forever.</p>
+    <div class="card fragment fade-up" style="border:1px solid var(--mint);margin-bottom:14px;">
+      <div style="font-size:13px;font-weight:700;color:var(--mint);letter-spacing:1px;margin-bottom:10px;">TEMPLATE EXAMPLE: Stakeholder Update</div>
+      <div style="font-size:14px;color:var(--text-light);line-height:1.8;font-family:monospace;">
+        <strong style="color:var(--mint);">Context:</strong> I am [ROLE] at [COMPANY]. [PROJECT_NAME] is currently [STATUS].<br>
+        <strong style="color:var(--blue);">Role:</strong> Act as a senior project communicator.<br>
+        <strong style="color:#F59E0B;">Action:</strong> Write a stakeholder update email covering [TOPIC].<br>
+        <strong style="color:#27AE60;">Format:</strong> 3 sections: Progress, Risks, Next Steps. Bullet points. Under [WORD_LIMIT] words.<br>
+        <strong style="color:#E74C3C;">Tone:</strong> [TONE_STYLE] — professional and [TONE_MODIFIER].<br>
+        <strong style="color:var(--text-muted);">Constraints:</strong> Do not invent details. Keep all dates accurate. Avoid jargon.
+      </div>
+    </div>
+    <div class="grid-2col fragment fade-up">
+      <div class="card" style="border-left:3px solid var(--mint);padding:12px 16px;">
+        <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:4px;">Why templates work</div>
+        <div style="font-size:14px;color:var(--text-muted);">You invest effort ONCE to get the structure right. Then reuse it 50+ times by just swapping variables.</div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--blue);padding:12px 16px;">
+        <div style="font-size:15px;font-weight:700;color:var(--blue);margin-bottom:4px;">What to templatise</div>
+        <div style="font-size:14px;color:var(--text-muted);">Weekly updates, meeting summaries, feedback emails, project proposals, status reports, onboarding messages.</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Don't write a great prompt once and throw it away. Turn it into a reusable template."]
+Key talking points:
+• Templates are the compound interest of prompt engineering
+• Show the [VARIABLE] pattern — it's like a mail merge for AI
+• Good candidates: anything you write more than once a month
+• The upfront investment is 5-10 minutes; the payback is months of saved time
+Discussion prompt: "What's one thing you write repeatedly at work? That's your first template."
+Facilitation tip: Get 3-4 suggestions. Show how quickly you could template each one.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 28: PRACTICAL — TEMPLATE BUILDER ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="practical-badge">🔨 HANDS-ON</div>
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Build Your First Template</h2>
+    <div class="accent-bar"></div>
+    <div style="font-size:14px;color:var(--text-muted);margin-bottom:14px;">⏱️ 5 minutes — create a reusable prompt you'll actually use at work</div>
+    <ul class="practical-steps">
+      <li class="fragment fade-up"><span class="step-num">1</span> Choose a task you do <strong style="color:var(--mint);">at least twice a month</strong> (weekly update, meeting notes, feedback...)</li>
+      <li class="fragment fade-up"><span class="step-num">2</span> Write a CRAFT prompt for it with <strong style="color:var(--mint);">[VARIABLES]</strong> for the parts that change each time</li>
+      <li class="fragment fade-up"><span class="step-num">3</span> Add at least <strong style="color:var(--mint);">2 constraints</strong> (including the Anchor Guardrail)</li>
+      <li class="fragment fade-up"><span class="step-num">4</span> Test it: fill in the variables with real data and submit to your AI tool</li>
+      <li class="fragment fade-up"><span class="step-num">5</span> <strong style="color:var(--mint);">Save it</strong> — note app, doc, wherever you'll find it again</li>
+    </ul>
+    <div class="card fragment fade-up" style="margin-top:10px;border-left:3px solid var(--mint);padding:12px 16px;">
+      <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:4px;">📋 Template ideas:</div>
+      <div style="font-size:14px;color:var(--text-muted);">Weekly status email • Meeting summary • Feedback to a direct report • Project kickoff message • Client follow-up</div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 5 min] [TRANSITION: "Last exercise — and this one gives you something you'll use every week after today."]
+Key talking points:
+• This is the most valuable exercise — they leave with an actual tool
+• Walk the room — help people identify their best template candidate
+• Good templates: specific enough to be useful, generic enough to reuse
+• After 4 min, ask 2 volunteers to share what they templatised
+Discussion prompt: "What did you templatise? How often will you use it?"
+Facilitation tip: Celebrate the variety — every role has different templates. That's the point.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 29: KEY TAKEAWAYS ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:16px;">
     <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Key Takeaways</h2>
     <div class="accent-bar"></div>
-    <div class="grid-2col" style="margin-top:8px;">
-      <div class="closing-card fragment">🧠 &nbsp;<strong>LLMs predict tokens.</strong> Your prompt sets the prediction context. Clearer input → stronger patterns → better output.</div>
-      <div class="closing-card fragment">🎯 &nbsp;<strong>Use CRAFT.</strong> Context, Role, Action, Format, Tone — at least 3 elements in every prompt you write.</div>
-      <div class="closing-card fragment">🛡️ &nbsp;<strong>Add constraints.</strong> What to change, what to keep, what to avoid. Always include the anchor guardrail.</div>
-      <div class="closing-card fragment">✅ &nbsp;<strong>Verify everything.</strong> 60-second checklist: names, dates, policies, cultural fit, self-critique QA.</div>
+    <div class="grid-2x2" style="margin-top:12px;">
+      <div class="closing-card fragment scale-in">
+        <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:6px;">🎯 CRAFT is your foundation</div>
+        <div>Context, Role, Action, Format, Tone — use all 5 for any important prompt. Each element removes one guess the AI would otherwise make.</div>
+      </div>
+      <div class="closing-card fragment scale-in">
+        <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:6px;">🛡️ Always constrain</div>
+        <div>The Anchor Guardrail ("don't invent details") belongs in every professional prompt. Add CHANGE, KEEP, and AVOID constraints to narrow output.</div>
+      </div>
+      <div class="closing-card fragment scale-in">
+        <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:6px;">🔄 Iterate, don't restart</div>
+        <div>Structure → Refine → Verify. Three short prompts beat one long one. Iteration is the skill, not a sign of failure.</div>
+      </div>
+      <div class="closing-card fragment scale-in">
+        <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:6px;">✅ Always verify</div>
+        <div>60-second checklist: Facts, Tone, Audience, Completeness, Risk. Never send AI output without human review.</div>
+      </div>
     </div>
-    <div class="teaser fragment">🔮 Next module: We'll apply these skills to data analysis, complex reasoning, and multi-step problem solving.</div>
+    <div class="footer-bar fragment fade-up">💡 You don't need to memorise everything — just use CRAFT + Anchor Guardrail + Iterate. That covers 90% of cases.</div>
   </div>
-  <aside class="notes">Four takeaways that summarise Module 2. The CRAFT framework and verification checklist are the two tools participants should use every time they work with AI. Encourage them to print CRAFT and the checklist as desk reference cards. The constraint habit takes practice — encourage daily use this week.</aside>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Let's lock in what we covered today."]
+Key talking points:
+• Walk through each card — 1 sentence per takeaway
+• Reinforce: these 4 habits transform AI from unreliable to professional-grade
+• The 90% rule: CRAFT + Anchor Guardrail + Iteration handles almost everything
+• Homework preview: they'll apply these techniques before Module 3
+Discussion prompt: "Which technique will you use first this week? What task will you try it on?"
+Facilitation tip: Go around — have each person commit to ONE technique they'll use this week. Makes it concrete and creates accountability.
+  </aside>
 </section>
 
-<!-- ==================== SLIDE 24: NEXT MODULE PREVIEW ==================== -->
+<!-- ==================== SLIDE 30: NEXT MODULE PREVIEW ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top:12px;">
-    <h2 class="slide-title-dark" style="font-size:32px;font-weight:800;margin-bottom:4px;">Next: Module 3</h2>
-    <div style="font-size:15px;color:var(--mint);margin-bottom:6px;font-weight:600;">Applying AI to complex professional tasks</div>
+  <div style="padding-top:18px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Coming Next: Module 3</h2>
     <div class="accent-bar"></div>
-    <div class="grid-2col" style="margin-top:8px;">
-      <div class="closing-card fragment">📊 &nbsp;<strong>Data &amp; Analysis</strong> — Use AI for summarisation, extraction, and insight generation</div>
-      <div class="closing-card fragment">🔗 &nbsp;<strong>Multi-step Reasoning</strong> — Chain prompts for complex workflows</div>
-      <div class="closing-card fragment">🧩 &nbsp;<strong>Problem Decomposition</strong> — Break complex tasks into AI-friendly subtasks</div>
-      <div class="closing-card fragment">📋 &nbsp;<strong>Hands-on Practice</strong> — Build a multi-prompt workflow for a real work task</div>
+    <div class="card" style="border:1px solid var(--mint);margin-bottom:16px;padding:20px;">
+      <div style="font-size:18px;font-weight:700;color:var(--mint);margin-bottom:10px;">Advanced Prompt Techniques &amp; Data Analysis</div>
+      <div style="font-size:15px;color:var(--text-muted);line-height:1.7;">
+        • Chain-of-thought prompting — make AI show its reasoning<br>
+        • Few-shot learning — teach by example within your prompt<br>
+        • Data extraction &amp; summarisation — turn documents into insights<br>
+        • Working with tables, CSVs, and structured data<br>
+        • Temperature &amp; parameter control for different tasks
+      </div>
     </div>
-    <div class="card fragment" style="margin-top:18px;border-left:3px solid var(--mint);padding:14px 18px;">
-      🚀 &nbsp;<strong style="color:var(--mint);">Before Module 3:</strong>
-      <span style="color:var(--text-muted); font-size:13px;"> Use CRAFT for at least 5 real work prompts this week. Bring your best and worst results to share.</span>
+    <div class="card fragment fade-up" style="border-left:3px solid #F59E0B;padding:14px 18px;">
+      <div style="font-size:15px;font-weight:700;color:#F59E0B;margin-bottom:6px;">📝 Before Module 3:</div>
+      <div style="font-size:14px;color:var(--text-muted);line-height:1.6;">
+        1. Use your CRAFT template at least <strong style="color:var(--text-light);">3 times</strong> this week on real work tasks<br>
+        2. Build one more template for a different task type<br>
+        3. Practice the 3-step iteration workflow — notice how quickly output improves
+      </div>
+    </div>
+    <div class="teaser fragment fade-up">🔮 Module 3 unlocks advanced techniques: chain-of-thought makes AI 40% more accurate on complex reasoning tasks</div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Here's what's coming next — and what to do between now and then."]
+Key talking points:
+• Module 3 builds on everything from today — advanced techniques assume you know CRAFT
+• Homework is practical: use CRAFT 3+ times, build another template
+• The more they practice between sessions, the more value Module 3 delivers
+• Chain-of-thought preview: it's like asking AI to "show its work" — dramatically improves complex tasks
+Discussion prompt: "What real work task will you try this on first?"
+Facilitation tip: End with energy — "You now have a professional prompting system. Go use it. Come back with stories."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 31: THANK YOU ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:60px;text-align:center;">
+    <div style="width:100%;height:4px;background:linear-gradient(90deg,var(--blue),var(--mint));border-radius:2px;margin-bottom:40px;"></div>
+    <div style="font-size:32px;font-weight:800;color:var(--text-light);margin-bottom:12px;">Thank You! 🎉</div>
+    <div style="font-size:18px;color:var(--mint);margin-bottom:8px;">Module 2: Prompt Engineering &amp; Professional Writing — Complete</div>
+    <div style="font-size:15px;color:var(--text-muted);margin-bottom:40px;">You now have: CRAFT framework • Constraint system • Iteration workflow • Verification checklist • Prompt templates</div>
+    <div class="title-rule" style="margin:0 auto 24px auto;"></div>
+    <div class="title-author" style="text-align:center;">Gen AI Inc</div>
+    <div class="title-date" style="text-align:center;">AI Skills Studio 2025</div>
+    <div class="keyboard-hint" style="justify-content:center;position:static;margin-top:40px;">
+      <span style="font-size:14px;color:var(--text-muted);">Questions? Connect during the break or on the course channel.</span>
     </div>
   </div>
-  <aside class="notes">Close with a forward-looking preview. Module 3 builds on prompt engineering by tackling more complex, multi-step tasks. Homework: use CRAFT for at least 5 real prompts this week. Come prepared to share what worked and what didn't — we'll debrief at the start of Module 3.</aside>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: Final wrap-up and dismissal]
+Key talking points:
+• Thank them for their participation and energy
+• Remind: homework is to use CRAFT 3+ times this week
+• Module 3 date/time reminder
+• Offer to stay for questions — "I'll be here for 5 more minutes if anyone wants to chat"
+Facilitation tip: End on time. A clean, confident ending leaves a professional impression. "Go write some great prompts. See you at Module 3."
+  </aside>
 </section>
 
 </div><!-- /.slides -->
@@ -1016,7 +1149,7 @@
     hash: true,
     slideNumber: function(slide) {
       const h = Reveal.getIndices(slide).h + 1;
-      return [h + ' / 24'];
+      return [h + ' / 31'];
     },
     showSlideNumber: 'all',
     progress: true,
@@ -1036,23 +1169,18 @@
     maxScale: 2.0
   });
 
-  // Update nav active state on slide change
   deck.then(() => {
     const navLinks = document.querySelectorAll('#session-nav a');
-    const chapters = [3, 7, 12, 16, 18, 20, 22]; // 0-indexed slide positions
+    const chapters = [3, 7, 12, 16, 20, 24, 28];
 
     function updateNav() {
       const current = Reveal.getIndices().h;
       navLinks.forEach((link, i) => {
+        link.classList.remove('nav-active');
         if (i < chapters.length - 1 && current >= chapters[i] && current < chapters[i+1]) {
-          link.style.color = 'var(--mint)';
-          link.style.borderColor = 'rgba(8,145,178,0.4)';
+          link.classList.add('nav-active');
         } else if (i === chapters.length - 1 && current >= chapters[i]) {
-          link.style.color = 'var(--mint)';
-          link.style.borderColor = 'rgba(8,145,178,0.4)';
-        } else {
-          link.style.color = '';
-          link.style.borderColor = '';
+          link.classList.add('nav-active');
         }
       });
     }
@@ -1065,15 +1193,16 @@
 <!-- Graceful fallback for offline use -->
 <noscript>
   <style>
-    .reveal .fragment { opacity: 1 !important; }
+    .reveal .fragment { opacity: 1 !important; transform: none !important; }
+    .reveal .slides section { display: block !important; }
   </style>
 </noscript>
 <script>
-  // Fallback: if Reveal.js fails to load from CDN, show all content
   window.addEventListener('error', function(e) {
     if (e.filename && e.filename.includes('reveal')) {
       document.querySelectorAll('.fragment').forEach(function(el) {
         el.style.opacity = '1';
+        el.style.transform = 'none';
       });
       document.querySelector('.reveal').style.overflow = 'auto';
       document.querySelectorAll('.reveal .slides section').forEach(function(s) {
@@ -1089,6 +1218,7 @@
   }, true);
 </script>
 
+<!-- Quiz handler -->
 <script>
   function quizAnswer(slideId, selectedIdx, correctIdx, explanation) {
     var container = document.getElementById(slideId);
@@ -1112,6 +1242,90 @@
     }
   }
   window.quizAnswer = quizAnswer;
+</script>
+
+<!-- Tooltip mobile tap-to-toggle -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.tip').forEach(function(el) {
+      el.setAttribute('tabindex', '0');
+      el.addEventListener('click', function(e) {
+        e.stopPropagation();
+        document.querySelectorAll('.tip .tip-content').forEach(function(t) {
+          t.style.display = 'none';
+        });
+        var content = el.querySelector('.tip-content');
+        if (content) {
+          content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        }
+      });
+    });
+    document.addEventListener('click', function() {
+      document.querySelectorAll('.tip .tip-content').forEach(function(t) {
+        t.style.display = '';
+      });
+    });
+  });
+</script>
+
+<!-- Passcode Gate -->
+<script>
+  (function() {
+    var PASSCODE = 'G2026';
+    var gate = document.getElementById('passcode-gate');
+    var input = document.getElementById('gate-input');
+    var error = document.getElementById('gate-error');
+    var nav = document.getElementById('session-nav');
+
+    if (sessionStorage.getItem('ai-studio-auth') === 'true') {
+      gate.style.display = 'none';
+      nav.style.display = 'flex';
+    } else {
+      document.querySelector('.reveal').style.display = 'none';
+    }
+
+    input.addEventListener('input', function() {
+      error.style.display = 'none';
+      if (input.value.length === 5) {
+        if (input.value.toUpperCase() === PASSCODE) {
+          sessionStorage.setItem('ai-studio-auth', 'true');
+          gate.style.display = 'none';
+          nav.style.display = 'flex';
+          document.querySelector('.reveal').style.display = '';
+          setTimeout(function() {
+            if (window.Reveal && window.Reveal.layout) {
+              window.Reveal.layout();
+            }
+          }, 100);
+        } else {
+          error.style.display = 'block';
+          input.value = '';
+          input.focus();
+        }
+      }
+    });
+
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && input.value.length >= 4) {
+        if (input.value.toUpperCase() === PASSCODE) {
+          sessionStorage.setItem('ai-studio-auth', 'true');
+          gate.style.display = 'none';
+          nav.style.display = 'flex';
+          document.querySelector('.reveal').style.display = '';
+          setTimeout(function() {
+            if (window.Reveal && window.Reveal.layout) {
+              window.Reveal.layout();
+            }
+          }, 100);
+        } else {
+          error.style.display = 'block';
+          input.value = '';
+        }
+      }
+    });
+
+    setTimeout(function() { input.focus(); }, 300);
+  })();
 </script>
 </body>
 </html>

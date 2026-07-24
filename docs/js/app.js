@@ -87,9 +87,13 @@ function init() {
   }
 
   // Configure session guard — checks if there is an active session
-  // In demo/static mode (no database), allow access to all routes
+  // On GitHub Pages or any static host (not localhost), allow access to all routes
+  const isStaticHost = typeof window !== 'undefined' && 
+    !window.location.hostname.includes('localhost') && 
+    !window.location.hostname.includes('127.0.0.1');
+  
   setSessionCheck(() => {
-    if (!database || isDemoMode()) {
+    if (isStaticHost || isDemoMode()) {
       return true; // Bypass guard on GitHub Pages / static hosting
     }
     return SessionManager.getActiveSession() !== null;
@@ -102,7 +106,7 @@ function init() {
   initRouter();
 
   // In demo/static mode, navigate to modules list if on login page
-  if ((!database || isDemoMode()) && (!window.location.hash || window.location.hash === '#login')) {
+  if ((isStaticHost || isDemoMode()) && (!window.location.hash || window.location.hash === '#login' || window.location.hash === '#')) {
     window.location.hash = '#modules';
   }
 
