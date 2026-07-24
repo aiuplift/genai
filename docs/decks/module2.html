@@ -17,10 +17,10 @@
   .card{background:var(--card-bg);border-radius:10px;padding:18px 20px;box-shadow:0 4px 16px rgba(0,0,0,0.25)}
   .card-light{background:#fff;border-radius:10px;padding:18px 20px;box-shadow:0 2px 12px rgba(30,16,69,0.10)}
   .card-navy{background:var(--navy);border-radius:10px;padding:18px 20px;box-shadow:0 4px 16px rgba(0,0,0,0.2)}
-  .grid-2col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  .grid-3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  .grid-2col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid-3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
   .grid-2x3{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:12px}
-  .grid-2x2{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:14px}
+  .grid-2x2{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px}
   .flex-row{display:flex;gap:16px;align-items:stretch}
   .chapter-num{font-size:96px;font-weight:900;color:var(--mint);opacity:0.85;line-height:1;margin-bottom:8px}
   .chapter-title{font-size:38px;font-weight:700;color:var(--text-light);margin:0 0 8px 0}
@@ -29,7 +29,7 @@
   .agenda-num{font-size:28px;font-weight:800;color:var(--mint);margin-bottom:6px}
   .agenda-title{font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:4px}
   .agenda-sub{font-size:14px;color:var(--text-muted)}
-  .limit-row{display:flex;align-items:center;background:var(--card-bg);border-radius:8px;padding:12px 18px;margin-bottom:10px;gap:14px}
+  .limit-row{display:flex;align-items:center;background:var(--card-bg);border-radius:8px;padding:10px 18px;margin-bottom:8px;gap:12px}
   .limit-txt{font-size:16px;color:var(--text-light)}
   .loop-steps{display:flex;align-items:stretch;gap:0}
   .loop-step{flex:1;background:var(--navy);border-radius:10px;padding:16px 10px;text-align:center}
@@ -38,8 +38,8 @@
   .loop-arrow{display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--mint);flex-shrink:0;padding:0 6px}
   .loop-footer{background:rgba(8,145,178,0.12);border-radius:8px;padding:10px 18px;margin-top:16px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
   .closing-card{background:var(--card-bg);border-radius:10px;padding:16px 18px;border-left:3px solid var(--mint);font-size:15px;color:var(--text-light);line-height:1.5}
-  .footer-bar{background:rgba(8,145,178,0.08);border-radius:8px;padding:9px 18px;margin-top:14px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
-  .footer-bar-dark{background:var(--card-bg);border-radius:8px;padding:9px 18px;margin-top:14px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .footer-bar{background:rgba(8,145,178,0.08);border-radius:8px;padding:8px 16px;margin-top:10px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .footer-bar-dark{background:var(--card-bg);border-radius:8px;padding:8px 16px;margin-top:10px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
   .teaser{background:var(--card-bg);border-left:3px solid var(--mint);border-radius:8px;padding:10px 16px;font-size:14px;color:var(--text-muted);margin-top:12px;font-style:italic}
   .tip{position:relative;border-bottom:1px dashed var(--mint);cursor:help;color:inherit;font-weight:inherit}
   .tip:hover{color:var(--mint)}
@@ -102,6 +102,8 @@
   .failure-icon{font-size:28px;margin-bottom:6px}
   .failure-title{font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px}
   .failure-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  /* Global overflow safety net */
+  .reveal .slides section > div { max-height: calc(720px * 0.88 - 40px); overflow: hidden; }
 </style>
 </head>
 <body>
@@ -159,10 +161,10 @@ Facilitation tip: Use opening stories to bridge from Module 1. Acknowledge any s
 
 <!-- ==================== SLIDE 2: GROUND RULES ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top:24px;">
+  <div style="padding-top:16px;">
     <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Ground Rules &amp; Setup</h2>
     <div class="accent-bar"></div>
-    <div style="display:flex;flex-direction:column;gap:10px;">
+    <div style="display:flex;flex-direction:column;gap:8px;">
       <div class="limit-row fragment fade-up">
         <div style="font-size:1.2rem;flex-shrink:0;">🔗</div>
         <div class="limit-txt"><strong>Builds on Module 1.</strong> You know AI is pattern prediction — now you'll exploit that knowledge.</div>
@@ -198,49 +200,49 @@ Facilitation tip: Wait until at least 80% have a tool open before proceeding. He
 
 <!-- ==================== SLIDE 3: AGENDA ==================== -->
 <section data-background-color="#F5F3FF">
-  <div style="padding-top:16px;">
-    <h2 class="slide-title-light" style="font-size:28px;font-weight:800;margin-bottom:4px;">Today's Journey</h2>
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-light" style="font-size:26px;font-weight:800;margin-bottom:4px;">Today's Journey</h2>
     <div class="accent-bar"></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-top:8px;">
-      <div class="card-navy fragment scale-in">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-top:6px;">
+      <div class="card-navy fragment scale-in" style="padding:14px 16px;">
         <div class="agenda-num">01</div>
         <div class="agenda-title">🧠 From Tokens to Output</div>
         <div class="agenda-sub">How LLMs process prompts</div>
       </div>
-      <div class="card-navy fragment scale-in">
+      <div class="card-navy fragment scale-in" style="padding:14px 16px;">
         <div class="agenda-num">02</div>
         <div class="agenda-title">🎯 The CRAFT Framework</div>
         <div class="agenda-sub">5 elements of great prompts</div>
       </div>
-      <div class="card-navy fragment scale-in">
+      <div class="card-navy fragment scale-in" style="padding:14px 16px;">
         <div class="agenda-num">03</div>
         <div class="agenda-title">🛡️ Constraints</div>
         <div class="agenda-sub">Your safety net</div>
       </div>
-      <div class="card-navy fragment scale-in">
+      <div class="card-navy fragment scale-in" style="padding:14px 16px;">
         <div class="agenda-num">04</div>
         <div class="agenda-title">🔄 Progressive Prompting</div>
         <div class="agenda-sub">The art of iteration</div>
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px;">
-      <div class="card-navy fragment scale-in">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px;">
+      <div class="card-navy fragment scale-in" style="padding:14px 16px;">
         <div class="agenda-num">05</div>
         <div class="agenda-title">⚠️ Failure Patterns</div>
         <div class="agenda-sub">When AI gets it wrong</div>
       </div>
-      <div class="card-navy fragment scale-in">
+      <div class="card-navy fragment scale-in" style="padding:14px 16px;">
         <div class="agenda-num">06</div>
         <div class="agenda-title">🔨 Email Clinic</div>
         <div class="agenda-sub">Hands-on practice</div>
       </div>
-      <div class="card-navy fragment scale-in">
+      <div class="card-navy fragment scale-in" style="padding:14px 16px;">
         <div class="agenda-num">07</div>
         <div class="agenda-title">🎯 Wrap-up</div>
         <div class="agenda-sub">Takeaways &amp; next steps</div>
       </div>
     </div>
-    <div class="footer-bar fragment fade-up" style="background:rgba(30,16,69,0.15);color:var(--navy);">⏱️ 75 minutes total — 40% theory, 60% hands-on practice</div>
+    <div class="footer-bar fragment fade-up" style="background:rgba(30,16,69,0.15);color:var(--navy);margin-top:10px;">⏱️ 75 minutes — 40% theory, 60% hands-on</div>
   </div>
   <aside class="notes">
 [TIMING: 2 min] [TRANSITION: From ground rules → map of the session]
@@ -272,41 +274,41 @@ Facilitation tip: "If you know why specific prompts work better, you'll never ne
 
 <!-- ==================== SLIDE 5: FIVE-STEP PIPELINE ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top:14px;">
+  <div style="padding-top:12px;">
     <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">The Five-Step Pipeline</h2>
     <div class="accent-bar"></div>
-    <div class="loop-steps" style="margin-top:12px;">
-      <div class="loop-step fragment scale-in">
+    <div class="loop-steps" style="margin-top:10px;">
+      <div class="loop-step fragment scale-in" style="padding:12px 8px;">
         <div class="loop-step-label">1. TOKENIZE</div>
-        <div style="font-size:24px;margin:6px 0;">✂️</div>
+        <div style="font-size:22px;margin:4px 0;">✂️</div>
         <div class="loop-step-desc">Your text is split into <span class="tip">tokens<span class="tip-content">Tokens are sub-word pieces. "Prompt engineering" = 2 tokens. Models process tokens, not words — this is why token limits matter.</span></span> (sub-word pieces)</div>
       </div>
       <div class="loop-arrow fragment">→</div>
-      <div class="loop-step fragment scale-in">
+      <div class="loop-step fragment scale-in" style="padding:12px 8px;">
         <div class="loop-step-label">2. EMBED</div>
-        <div style="font-size:24px;margin:6px 0;">🧮</div>
+        <div style="font-size:22px;margin:4px 0;">🧮</div>
         <div class="loop-step-desc">Each token becomes a high-dimensional number vector</div>
       </div>
       <div class="loop-arrow fragment">→</div>
-      <div class="loop-step fragment scale-in">
+      <div class="loop-step fragment scale-in" style="padding:12px 8px;">
         <div class="loop-step-label">3. ATTEND</div>
-        <div style="font-size:24px;margin:6px 0;">🔍</div>
+        <div style="font-size:22px;margin:4px 0;">🔍</div>
         <div class="loop-step-desc"><span class="tip">Attention<span class="tip-content">Attention lets the model weigh which parts of your prompt matter most for each word it generates. Specific prompts create stronger attention signals.</span></span> weighs which tokens relate to each other</div>
       </div>
       <div class="loop-arrow fragment">→</div>
-      <div class="loop-step fragment scale-in">
+      <div class="loop-step fragment scale-in" style="padding:12px 8px;">
         <div class="loop-step-label">4. PREDICT</div>
-        <div style="font-size:24px;margin:6px 0;">🎯</div>
+        <div style="font-size:22px;margin:4px 0;">🎯</div>
         <div class="loop-step-desc">Model calculates probability for every possible next token</div>
       </div>
       <div class="loop-arrow fragment">→</div>
-      <div class="loop-step fragment scale-in">
+      <div class="loop-step fragment scale-in" style="padding:12px 8px;">
         <div class="loop-step-label">5. SAMPLE</div>
-        <div style="font-size:24px;margin:6px 0;">🎲</div>
+        <div style="font-size:22px;margin:4px 0;">🎲</div>
         <div class="loop-step-desc">One token is chosen based on temperature setting</div>
       </div>
     </div>
-    <div class="loop-footer fragment fade-up">💡 This repeats for EVERY token generated — a 500-word response runs through this pipeline ~700 times</div>
+    <div class="loop-footer fragment fade-up">💡 This repeats for EVERY token — a 500-word response runs this pipeline ~700 times</div>
   </div>
   <aside class="notes">
 [TIMING: 4 min] [TRANSITION: "Your prompt goes on a journey before you see any output. Here's what that journey looks like."]
@@ -322,38 +324,38 @@ Facilitation tip: Use the pipeline to preview WHY CRAFT works. "In Chapter 2, yo
 
 <!-- ==================== SLIDE 6: CONTEXT WINDOWS ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top:18px;">
+  <div style="padding-top:12px;">
     <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Context Windows — Your Working Memory</h2>
     <div class="accent-bar"></div>
-    <p style="font-size:15px;color:var(--text-muted);margin-bottom:16px;">The <span class="tip">context window<span class="tip-content">The context window is the total amount of text (input + output) the model can "see" at once. Think of it as the model's working memory — once full, early content gets dropped.</span></span> is everything the model can "see" at once — your prompt + its response.</p>
-    <div class="grid-3col" style="margin-bottom:16px;">
-      <div class="card fragment scale-in" style="text-align:center;border-top:3px solid var(--mint);">
-        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:6px;">GPT-4o</div>
-        <div style="font-size:32px;font-weight:900;color:var(--text-light);">128K</div>
-        <div style="font-size:14px;color:var(--text-muted);margin-top:4px;">~96,000 words</div>
+    <p style="font-size:15px;color:var(--text-muted);margin-bottom:12px;">The <span class="tip">context window<span class="tip-content">The context window is the total amount of text (input + output) the model can "see" at once. Think of it as the model's working memory — once full, early content gets dropped.</span></span> is everything the model can "see" at once — your prompt + its response.</p>
+    <div class="grid-3col" style="margin-bottom:12px;gap:10px;">
+      <div class="card fragment scale-in" style="text-align:center;border-top:3px solid var(--mint);padding:14px 16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">GPT-4o</div>
+        <div style="font-size:28px;font-weight:900;color:var(--text-light);">128K</div>
+        <div style="font-size:13px;color:var(--text-muted);margin-top:2px;">~96,000 words</div>
       </div>
-      <div class="card fragment scale-in" style="text-align:center;border-top:3px solid var(--blue);">
-        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:6px;">Claude 3.5</div>
-        <div style="font-size:32px;font-weight:900;color:var(--text-light);">200K</div>
-        <div style="font-size:14px;color:var(--text-muted);margin-top:4px;">~150,000 words</div>
+      <div class="card fragment scale-in" style="text-align:center;border-top:3px solid var(--blue);padding:14px 16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:4px;">Claude 3.5</div>
+        <div style="font-size:28px;font-weight:900;color:var(--text-light);">200K</div>
+        <div style="font-size:13px;color:var(--text-muted);margin-top:2px;">~150,000 words</div>
       </div>
-      <div class="card fragment scale-in" style="text-align:center;border-top:3px solid #F59E0B;">
-        <div style="font-size:14px;font-weight:700;color:#F59E0B;margin-bottom:6px;">Gemini 1.5 Pro</div>
-        <div style="font-size:32px;font-weight:900;color:var(--text-light);">1M</div>
-        <div style="font-size:14px;color:var(--text-muted);margin-top:4px;">~750,000 words</div>
-      </div>
-    </div>
-    <div class="grid-2col fragment fade-up">
-      <div class="card" style="border-left:3px solid var(--mint);">
-        <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:6px;">✅ What this means for you</div>
-        <div style="font-size:14px;color:var(--text-muted);line-height:1.6;">You can paste entire documents, long email threads, or meeting transcripts directly into your prompt for context.</div>
-      </div>
-      <div class="card" style="border-left:3px solid #E74C3C;">
-        <div style="font-size:15px;font-weight:700;color:#E74C3C;margin-bottom:6px;">⚠️ The catch</div>
-        <div style="font-size:14px;color:var(--text-muted);line-height:1.6;">Attention quality degrades in very long contexts. Just because it CAN see 200K tokens doesn't mean it pays equal attention to all of them.</div>
+      <div class="card fragment scale-in" style="text-align:center;border-top:3px solid #F59E0B;padding:14px 16px;">
+        <div style="font-size:14px;font-weight:700;color:#F59E0B;margin-bottom:4px;">Gemini 1.5 Pro</div>
+        <div style="font-size:28px;font-weight:900;color:var(--text-light);">1M</div>
+        <div style="font-size:13px;color:var(--text-muted);margin-top:2px;">~750,000 words</div>
       </div>
     </div>
-    <div class="footer-bar fragment fade-up">🧠 Rule of thumb: Put the most important instructions at the START and END of your prompt</div>
+    <div class="grid-2col fragment fade-up" style="gap:10px;">
+      <div class="card" style="border-left:3px solid var(--mint);padding:12px 16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">✅ What this means for you</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">You can paste entire documents, long email threads, or meeting transcripts directly into your prompt for context.</div>
+      </div>
+      <div class="card" style="border-left:3px solid #E74C3C;padding:12px 16px;">
+        <div style="font-size:14px;font-weight:700;color:#E74C3C;margin-bottom:4px;">⚠️ The catch</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">Attention quality degrades in very long contexts. Just because it CAN see 200K tokens doesn't mean it pays equal attention to all of them.</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:10px;">🧠 Rule of thumb: Put the most important instructions at the START and END of your prompt</div>
   </div>
   <aside class="notes">
 [TIMING: 3 min] [TRANSITION: "Now you know what happens inside the model — let's talk about the SIZE of what it can handle."]
@@ -417,10 +419,10 @@ Facilitation tip: Build anticipation — "By end of this chapter you'll have a 5
 
 <!-- ==================== SLIDE 9: CRAFT OVERVIEW ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top:14px;">
+  <div style="padding-top:12px;">
     <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">The CRAFT Framework</h2>
     <div class="accent-bar"></div>
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px;">
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px;">
       <div class="craft-card fragment scale-in">
         <div class="craft-letter">C</div>
         <div class="craft-word">Context</div>
@@ -447,8 +449,8 @@ Facilitation tip: Build anticipation — "By end of this chapter you'll have a 5
         <div class="craft-desc">Voice, formality level, and style</div>
       </div>
     </div>
-    <div class="loop-footer fragment fade-up" style="margin-top:18px;">💡 You don't always need all 5 — but the more you include, the more precise the output</div>
-    <div class="teaser fragment fade-up">🔗 Pipeline connection: Context & Role shape Embedding → Action drives Attention → Format & Tone narrow Sampling</div>
+    <div class="loop-footer fragment fade-up" style="margin-top:14px;">💡 You don't always need all 5 — but the more you include, the more precise the output</div>
+    <div class="teaser fragment fade-up" style="margin-top:8px;">🔗 Pipeline connection: Context & Role shape Embedding → Action drives Attention → Format & Tone narrow Sampling</div>
   </div>
   <aside class="notes">
 [TIMING: 4 min] [TRANSITION: "Here's the framework that ties everything together — CRAFT."]
@@ -497,21 +499,21 @@ Facilitation tip: Have someone volunteer what they think the AI would assume wit
 
 <!-- ==================== SLIDE 11: PRACTICAL — CRAFT PROMPT ==================== -->
 <section data-background-color="#1A1050">
-  <div style="padding-top:14px;">
-    <div class="practical-badge">🔨 HANDS-ON</div>
+  <div style="padding-top:12px;">
+    <div class="practical-badge" style="padding:4px 14px;font-size:13px;margin-bottom:10px;">🔨 HANDS-ON</div>
     <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Write Your First CRAFT Prompt</h2>
     <div class="accent-bar"></div>
-    <div style="font-size:14px;color:var(--text-muted);margin-bottom:14px;">⏱️ 5 minutes — use your open AI chat tool</div>
-    <ul class="practical-steps">
-      <li class="fragment fade-up"><span class="step-num">1</span> Think of a <strong style="color:var(--mint);">real work task</strong> you'd use AI for (email, summary, plan, message)</li>
-      <li class="fragment fade-up"><span class="step-num">2</span> Write a prompt that includes ALL 5 CRAFT elements:
-        <div style="margin-top:6px;font-size:14px;color:var(--text-muted);padding-left:36px;"><strong>C</strong>ontext → <strong>R</strong>ole → <strong>A</strong>ction → <strong>F</strong>ormat → <strong>T</strong>one</div></li>
-      <li class="fragment fade-up"><span class="step-num">3</span> Submit it to your AI tool and <strong style="color:var(--mint);">evaluate the output</strong></li>
-      <li class="fragment fade-up"><span class="step-num">4</span> Rate the output: Would you send this as-is? What's missing?</li>
+    <div style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">⏱️ 5 minutes — use your open AI chat tool</div>
+    <ul class="practical-steps" style="margin:8px 0;">
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">1</span> Think of a <strong style="color:var(--mint);">real work task</strong> you'd use AI for (email, summary, plan, message)</li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">2</span> Write a prompt that includes ALL 5 CRAFT elements:
+        <div style="margin-top:4px;font-size:13px;color:var(--text-muted);padding-left:36px;"><strong>C</strong>ontext → <strong>R</strong>ole → <strong>A</strong>ction → <strong>F</strong>ormat → <strong>T</strong>one</div></li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">3</span> Submit it to your AI tool and <strong style="color:var(--mint);">evaluate the output</strong></li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">4</span> Rate the output: Would you send this as-is? What's missing?</li>
     </ul>
-    <div class="card fragment fade-up" style="margin-top:12px;border-left:3px solid var(--mint);padding:12px 16px;">
-      <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:4px;">💡 Stuck? Try this scenario:</div>
-      <div style="font-size:14px;color:var(--text-muted);">Write an email to your team explaining that the weekly meeting is moving from Tuesday to Thursday, starting next week.</div>
+    <div class="card fragment fade-up" style="margin-top:10px;border-left:3px solid var(--mint);padding:10px 14px;">
+      <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">💡 Stuck? Try this scenario:</div>
+      <div style="font-size:13px;color:var(--text-muted);">Write an email to your team explaining that the weekly meeting is moving from Tuesday to Thursday, starting next week.</div>
     </div>
   </div>
   <aside class="notes">
@@ -576,27 +578,27 @@ Facilitation tip: "If CRAFT is the steering wheel, constraints are the lane mark
 
 <!-- ==================== SLIDE 14: THREE TYPES OF CONSTRAINTS ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top:16px;">
+  <div style="padding-top:12px;">
     <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Three Types of Constraints</h2>
     <div class="accent-bar"></div>
-    <div class="grid-3col" style="margin-top:14px;">
-      <div class="constraint-card fragment scale-in" style="border-left-color:#27AE60;">
-        <div style="font-size:22px;margin-bottom:8px;">✅</div>
+    <div class="grid-3col" style="margin-top:10px;gap:10px;">
+      <div class="constraint-card fragment scale-in" style="border-left-color:#27AE60;padding:14px 14px;">
+        <div style="font-size:20px;margin-bottom:6px;">✅</div>
         <div class="constraint-title" style="color:#27AE60;">What to CHANGE</div>
         <div class="constraint-desc">"Rewrite this in active voice"<br>"Convert bullet points to paragraphs"<br>"Shorten each section to 2 sentences"</div>
       </div>
-      <div class="constraint-card fragment scale-in" style="border-left-color:#F59E0B;">
-        <div style="font-size:22px;margin-bottom:8px;">🔒</div>
+      <div class="constraint-card fragment scale-in" style="border-left-color:#F59E0B;padding:14px 14px;">
+        <div style="font-size:20px;margin-bottom:6px;">🔒</div>
         <div class="constraint-title" style="color:#F59E0B;">What to KEEP</div>
         <div class="constraint-desc">"Keep all original numbers and dates"<br>"Preserve the 3-section structure"<br>"Maintain the existing tone"</div>
       </div>
-      <div class="constraint-card fragment scale-in" style="border-left-color:#E74C3C;">
-        <div style="font-size:22px;margin-bottom:8px;">🚫</div>
+      <div class="constraint-card fragment scale-in" style="border-left-color:#E74C3C;padding:14px 14px;">
+        <div style="font-size:20px;margin-bottom:6px;">🚫</div>
         <div class="constraint-title" style="color:#E74C3C;">What to AVOID</div>
         <div class="constraint-desc">"Do not use jargon or acronyms"<br>"Never invent statistics or sources"<br>"Avoid passive voice entirely"</div>
       </div>
     </div>
-    <div class="footer-bar fragment fade-up">💡 Pro tip: The AVOID column prevents the most costly AI mistakes — always include at least one</div>
+    <div class="footer-bar fragment fade-up" style="margin-top:12px;">💡 Pro tip: The AVOID column prevents the most costly AI mistakes — always include at least one</div>
   </div>
   <aside class="notes">
 [TIMING: 3 min] [TRANSITION: "There are three flavours of constraint — each does a different job."]
@@ -612,23 +614,23 @@ Facilitation tip: Collect 3-4 answers — then show how each maps to an AVOID co
 
 <!-- ==================== SLIDE 15: THE ANCHOR GUARDRAIL ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top:18px;">
+  <div style="padding-top:14px;">
     <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">The Anchor Guardrail</h2>
     <div class="accent-bar"></div>
-    <div class="card fragment fade-up" style="border:2px solid var(--mint);padding:24px;text-align:center;margin-bottom:20px;">
-      <div style="font-size:20px;font-weight:700;color:var(--text-light);line-height:1.5;">"Do not invent any details, statistics, or claims that I have not explicitly provided in this prompt."</div>
+    <div class="card fragment fade-up" style="border:2px solid var(--mint);padding:18px;text-align:center;margin-bottom:14px;">
+      <div style="font-size:18px;font-weight:700;color:var(--text-light);line-height:1.5;">"Do not invent any details, statistics, or claims that I have not explicitly provided in this prompt."</div>
     </div>
-    <div class="grid-2col fragment fade-up">
-      <div class="card" style="border-left:3px solid var(--mint);">
-        <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:8px;">Why it works</div>
-        <div style="font-size:14px;color:var(--text-muted);line-height:1.6;">LLMs <span class="tip">hallucinate<span class="tip-content">Hallucination = when AI generates confident-sounding information that isn't true. It's a fundamental feature of probability-based generation, not a bug that can be fully fixed.</span></span> by default — they fill gaps with plausible-sounding content. This constraint forces the model to stay within your provided facts.</div>
+    <div class="grid-2col fragment fade-up" style="gap:10px;">
+      <div class="card" style="border-left:3px solid var(--mint);padding:12px 14px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:6px;">Why it works</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">LLMs <span class="tip">hallucinate<span class="tip-content">Hallucination = when AI generates confident-sounding information that isn't true. It's a fundamental feature of probability-based generation, not a bug that can be fully fixed.</span></span> by default — they fill gaps with plausible-sounding content. This constraint forces the model to stay within your provided facts.</div>
       </div>
-      <div class="card" style="border-left:3px solid var(--blue);">
-        <div style="font-size:15px;font-weight:700;color:var(--blue);margin-bottom:8px;">When to use it</div>
-        <div style="font-size:14px;color:var(--text-muted);line-height:1.6;">• Emails that reference specific projects or deadlines<br>• Reports with data or metrics<br>• Any content going to external audiences<br>• Anything with legal or compliance implications</div>
+      <div class="card" style="border-left:3px solid var(--blue);padding:12px 14px;">
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:6px;">When to use it</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">• Emails that reference specific projects or deadlines<br>• Reports with data or metrics<br>• Any content going to external audiences<br>• Anything with legal or compliance implications</div>
       </div>
     </div>
-    <div class="teaser fragment fade-up">🛡️ Add this to every professional prompt. It's the single most impactful constraint for workplace writing.</div>
+    <div class="teaser fragment fade-up" style="margin-top:10px;">🛡️ Add this to every professional prompt. It's the single most impactful constraint for workplace writing.</div>
   </div>
   <aside class="notes">
 [TIMING: 3 min] [TRANSITION: "Of all possible constraints, this one earns its own slide."]
@@ -644,21 +646,21 @@ Facilitation tip: Share a specific example — "I asked for a policy summary and
 
 <!-- ==================== SLIDE 16: PRACTICAL — ADD CONSTRAINTS ==================== -->
 <section data-background-color="#1A1050">
-  <div style="padding-top:14px;">
-    <div class="practical-badge">🔨 HANDS-ON</div>
+  <div style="padding-top:12px;">
+    <div class="practical-badge" style="padding:4px 14px;font-size:13px;margin-bottom:10px;">🔨 HANDS-ON</div>
     <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Add Constraints to a Prompt</h2>
     <div class="accent-bar"></div>
-    <div style="font-size:14px;color:var(--text-muted);margin-bottom:14px;">⏱️ 4 minutes — iterate on your CRAFT prompt from earlier</div>
-    <ul class="practical-steps">
-      <li class="fragment fade-up"><span class="step-num">1</span> Take the CRAFT prompt you wrote in the previous exercise</li>
-      <li class="fragment fade-up"><span class="step-num">2</span> Add <strong style="color:var(--mint);">3 constraints</strong> — at least one from each type:
-        <div style="margin-top:4px;padding-left:36px;font-size:14px;color:var(--text-muted);">✅ One CHANGE • 🔒 One KEEP • 🚫 One AVOID</div></li>
-      <li class="fragment fade-up"><span class="step-num">3</span> Always include the <strong style="color:var(--mint);">Anchor Guardrail</strong>: "Do not invent details I haven't provided"</li>
-      <li class="fragment fade-up"><span class="step-num">4</span> Submit to your AI tool — <strong style="color:var(--mint);">compare the output</strong> to your earlier result</li>
+    <div style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">⏱️ 4 minutes — iterate on your CRAFT prompt from earlier</div>
+    <ul class="practical-steps" style="margin:8px 0;">
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">1</span> Take the CRAFT prompt you wrote in the previous exercise</li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">2</span> Add <strong style="color:var(--mint);">3 constraints</strong> — at least one from each type:
+        <div style="margin-top:4px;padding-left:36px;font-size:13px;color:var(--text-muted);">✅ One CHANGE • 🔒 One KEEP • 🚫 One AVOID</div></li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">3</span> Always include the <strong style="color:var(--mint);">Anchor Guardrail</strong>: "Do not invent details I haven't provided"</li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">4</span> Submit to your AI tool — <strong style="color:var(--mint);">compare the output</strong> to your earlier result</li>
     </ul>
-    <div class="card fragment fade-up" style="margin-top:12px;border-left:3px solid var(--mint);padding:12px 16px;">
-      <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:4px;">🔍 What to look for:</div>
-      <div style="font-size:14px;color:var(--text-muted);">Did the constrained version feel more "you"? Did it stay closer to facts? Was it more useful?</div>
+    <div class="card fragment fade-up" style="margin-top:10px;border-left:3px solid var(--mint);padding:10px 14px;">
+      <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">🔍 What to look for:</div>
+      <div style="font-size:13px;color:var(--text-muted);">Did the constrained version feel more "you"? Did it stay closer to facts? Was it more useful?</div>
     </div>
   </div>
   <aside class="notes">
@@ -692,25 +694,25 @@ Facilitation tip: "Your first prompt is the rough sketch. Iteration is the refin
 
 <!-- ==================== SLIDE 18: 3-STEP WORKFLOW ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top:14px;">
+  <div style="padding-top:12px;">
     <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">The 3-Step Iteration Workflow</h2>
     <div class="accent-bar"></div>
-    <div class="loop-steps" style="margin-top:16px;">
-      <div class="loop-step fragment scale-in" style="padding:20px 14px;">
+    <div class="loop-steps" style="margin-top:14px;">
+      <div class="loop-step fragment scale-in" style="padding:16px 12px;">
         <div class="loop-step-label">1. STRUCTURE</div>
-        <div style="font-size:28px;margin:8px 0;">🏗️</div>
+        <div style="font-size:26px;margin:6px 0;">🏗️</div>
         <div class="loop-step-desc">First prompt: get the bones right. Focus on CRAFT + overall shape of the output.</div>
       </div>
       <div class="loop-arrow fragment">→</div>
-      <div class="loop-step fragment scale-in" style="padding:20px 14px;">
+      <div class="loop-step fragment scale-in" style="padding:16px 12px;">
         <div class="loop-step-label">2. REFINE</div>
-        <div style="font-size:28px;margin:8px 0;">✨</div>
+        <div style="font-size:26px;margin:6px 0;">✨</div>
         <div class="loop-step-desc">Second prompt: fix specifics. Adjust tone, length, emphasis, or missing details.</div>
       </div>
       <div class="loop-arrow fragment">→</div>
-      <div class="loop-step fragment scale-in" style="padding:20px 14px;">
+      <div class="loop-step fragment scale-in" style="padding:16px 12px;">
         <div class="loop-step-label">3. VERIFY</div>
-        <div style="font-size:28px;margin:8px 0;">✅</div>
+        <div style="font-size:26px;margin:6px 0;">✅</div>
         <div class="loop-step-desc">Third prompt: challenge it. "What did you assume? What might be wrong?"</div>
       </div>
     </div>
@@ -733,21 +735,21 @@ Facilitation tip: Emphasise that iteration is NOT failure — it's the intended 
   <div style="padding-top:12px;">
     <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Iteration in Action: Email Task</h2>
     <div class="accent-bar"></div>
-    <div style="display:flex;flex-direction:column;gap:10px;">
-      <div class="card fragment fade-up" style="border-left:3px solid var(--mint);padding:14px 16px;">
-        <div style="font-size:13px;font-weight:700;color:var(--mint);letter-spacing:1px;margin-bottom:6px;">PROMPT 1 — STRUCTURE</div>
-        <div style="font-size:14px;color:var(--text-light);line-height:1.6;">"You are a project manager. Write a team email announcing our office move from Building A to Building C, effective March 15. Include logistics, timeline, and what people need to do. 3 sections, professional tone, under 200 words. Do not invent details I haven't provided."</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div class="card fragment fade-up" style="border-left:3px solid var(--mint);padding:12px 14px;">
+        <div style="font-size:13px;font-weight:700;color:var(--mint);letter-spacing:1px;margin-bottom:4px;">PROMPT 1 — STRUCTURE</div>
+        <div style="font-size:13px;color:var(--text-light);line-height:1.5;">"You are a project manager. Write a team email announcing our office move from Building A to Building C, effective March 15. Include logistics, timeline, and what people need to do. 3 sections, professional tone, under 200 words. Do not invent details I haven't provided."</div>
       </div>
-      <div class="card fragment fade-up" style="border-left:3px solid var(--blue);padding:14px 16px;">
-        <div style="font-size:13px;font-weight:700;color:var(--blue);letter-spacing:1px;margin-bottom:6px;">PROMPT 2 — REFINE</div>
-        <div style="font-size:14px;color:var(--text-light);line-height:1.6;">"Good structure. Now: make the tone warmer and more encouraging. Add a bullet list for the 'what to do' section. Mention that IT will handle equipment moves — people only need to pack personal items by March 12."</div>
+      <div class="card fragment fade-up" style="border-left:3px solid var(--blue);padding:12px 14px;">
+        <div style="font-size:13px;font-weight:700;color:var(--blue);letter-spacing:1px;margin-bottom:4px;">PROMPT 2 — REFINE</div>
+        <div style="font-size:13px;color:var(--text-light);line-height:1.5;">"Good structure. Now: make the tone warmer and more encouraging. Add a bullet list for the 'what to do' section. Mention that IT will handle equipment moves — people only need to pack personal items by March 12."</div>
       </div>
-      <div class="card fragment fade-up" style="border-left:3px solid #F59E0B;padding:14px 16px;">
-        <div style="font-size:13px;font-weight:700;color:#F59E0B;letter-spacing:1px;margin-bottom:6px;">PROMPT 3 — VERIFY</div>
-        <div style="font-size:14px;color:var(--text-light);line-height:1.6;">"Review this email: Are there any assumptions you made that I didn't confirm? Is anything potentially unclear to a reader? Suggest 2 improvements."</div>
+      <div class="card fragment fade-up" style="border-left:3px solid #F59E0B;padding:12px 14px;">
+        <div style="font-size:13px;font-weight:700;color:#F59E0B;letter-spacing:1px;margin-bottom:4px;">PROMPT 3 — VERIFY</div>
+        <div style="font-size:13px;color:var(--text-light);line-height:1.5;">"Review this email: Are there any assumptions you made that I didn't confirm? Is anything potentially unclear to a reader? Suggest 2 improvements."</div>
       </div>
     </div>
-    <div class="footer-bar fragment fade-up">⏱️ Total time: ~3 minutes for a polished, verified email you'd actually send</div>
+    <div class="footer-bar fragment fade-up" style="margin-top:10px;">⏱️ Total time: ~3 minutes for a polished, verified email you'd actually send</div>
   </div>
   <aside class="notes">
 [TIMING: 3 min] [TRANSITION: "Let me walk through a real 3-prompt iteration so you can see the pattern."]
@@ -764,20 +766,20 @@ Facilitation tip: If time allows, show this live — run the 3 prompts and show 
 
 <!-- ==================== SLIDE 20: PRACTICAL — ITERATE ==================== -->
 <section data-background-color="#1A1050">
-  <div style="padding-top:14px;">
-    <div class="practical-badge">🔨 HANDS-ON</div>
+  <div style="padding-top:12px;">
+    <div class="practical-badge" style="padding:4px 14px;font-size:13px;margin-bottom:10px;">🔨 HANDS-ON</div>
     <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Iterate on Your Prompt</h2>
     <div class="accent-bar"></div>
-    <div style="font-size:14px;color:var(--text-muted);margin-bottom:14px;">⏱️ 5 minutes — use the same conversation from earlier</div>
-    <ul class="practical-steps">
-      <li class="fragment fade-up"><span class="step-num">1</span> Look at the output from your constrained CRAFT prompt</li>
-      <li class="fragment fade-up"><span class="step-num">2</span> Write a <strong style="color:var(--mint);">REFINE prompt</strong>: fix one specific thing (tone, length, structure, missing detail)</li>
-      <li class="fragment fade-up"><span class="step-num">3</span> Write a <strong style="color:var(--mint);">VERIFY prompt</strong>: "What assumptions did you make? What might be unclear?"</li>
-      <li class="fragment fade-up"><span class="step-num">4</span> Review the AI's self-critique — was it right? Apply the useful suggestions.</li>
+    <div style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">⏱️ 5 minutes — use the same conversation from earlier</div>
+    <ul class="practical-steps" style="margin:8px 0;">
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">1</span> Look at the output from your constrained CRAFT prompt</li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">2</span> Write a <strong style="color:var(--mint);">REFINE prompt</strong>: fix one specific thing (tone, length, structure, missing detail)</li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">3</span> Write a <strong style="color:var(--mint);">VERIFY prompt</strong>: "What assumptions did you make? What might be unclear?"</li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">4</span> Review the AI's self-critique — was it right? Apply the useful suggestions.</li>
     </ul>
-    <div class="card fragment fade-up" style="margin-top:12px;border-left:3px solid var(--mint);padding:12px 16px;">
-      <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:4px;">🎯 Success criteria:</div>
-      <div style="font-size:14px;color:var(--text-muted);">After 3 prompts total (CRAFT → Refine → Verify), you should have output you'd use as-is in your real work.</div>
+    <div class="card fragment fade-up" style="margin-top:10px;border-left:3px solid var(--mint);padding:10px 14px;">
+      <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">🎯 Success criteria:</div>
+      <div style="font-size:13px;color:var(--text-muted);">After 3 prompts total (CRAFT → Refine → Verify), you should have output you'd use as-is in your real work.</div>
     </div>
   </div>
   <aside class="notes">
@@ -811,32 +813,32 @@ Facilitation tip: "This chapter is your quality control training. You'll use it 
 
 <!-- ==================== SLIDE 22: FOUR FAILURE PATTERNS ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top:14px;">
+  <div style="padding-top:12px;">
     <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">The Four Failure Patterns</h2>
     <div class="accent-bar"></div>
-    <div class="grid-2x2" style="margin-top:12px;">
-      <div class="failure-card fragment scale-in" style="border-top:3px solid #E74C3C;">
-        <div class="failure-icon">🎭</div>
+    <div class="grid-2x2" style="margin-top:10px;gap:10px;">
+      <div class="failure-card fragment scale-in" style="border-top:3px solid #E74C3C;padding:12px;">
+        <div class="failure-icon" style="font-size:24px;margin-bottom:4px;">🎭</div>
         <div class="failure-title" style="color:#E74C3C;">Wrong Assumptions</div>
         <div class="failure-desc">AI assumes context you never provided — guesses your company size, industry, or situation incorrectly.</div>
       </div>
-      <div class="failure-card fragment scale-in" style="border-top:3px solid #F59E0B;">
-        <div class="failure-icon">🎵</div>
+      <div class="failure-card fragment scale-in" style="border-top:3px solid #F59E0B;padding:12px;">
+        <div class="failure-icon" style="font-size:24px;margin-bottom:4px;">🎵</div>
         <div class="failure-title" style="color:#F59E0B;">Tone Mismatch</div>
         <div class="failure-desc">Output sounds like a corporate robot or an overly casual friend — neither matches YOUR voice.</div>
       </div>
-      <div class="failure-card fragment scale-in" style="border-top:3px solid #9B59B6;">
-        <div class="failure-icon">🌀</div>
+      <div class="failure-card fragment scale-in" style="border-top:3px solid #9B59B6;padding:12px;">
+        <div class="failure-icon" style="font-size:24px;margin-bottom:4px;">🌀</div>
         <div class="failure-title" style="color:#9B59B6;">Invented Details</div>
         <div class="failure-desc">AI fabricates specific data, policy names, dates, or quotes that sound real but aren't.</div>
       </div>
-      <div class="failure-card fragment scale-in" style="border-top:3px solid var(--blue);">
-        <div class="failure-icon">💎</div>
+      <div class="failure-card fragment scale-in" style="border-top:3px solid var(--blue);padding:12px;">
+        <div class="failure-icon" style="font-size:24px;margin-bottom:4px;">💎</div>
         <div class="failure-title" style="color:var(--blue);">Over-Polishing</div>
         <div class="failure-desc">Output is technically correct but sounds nothing like you — too formal, too perfect, clearly AI-written.</div>
       </div>
     </div>
-    <div class="footer-bar fragment fade-up">🛡️ Prevention: Context fixes #1, Tone in CRAFT fixes #2, Anchor Guardrail fixes #3, Style examples fix #4</div>
+    <div class="footer-bar fragment fade-up" style="margin-top:10px;">🛡️ Prevention: Context fixes #1, Tone in CRAFT fixes #2, Anchor Guardrail fixes #3, Style examples fix #4</div>
   </div>
   <aside class="notes">
 [TIMING: 3 min] [TRANSITION: "Even with perfect prompts, AI can fail in predictable ways. Here are the four you'll see most."]
@@ -853,18 +855,18 @@ Facilitation tip: Show a real example of each — even 1 sentence per pattern ma
 
 <!-- ==================== SLIDE 23: 60-SECOND VERIFICATION ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top:16px;">
+  <div style="padding-top:12px;">
     <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">The 60-Second Verification Checklist</h2>
     <div class="accent-bar"></div>
-    <p style="font-size:15px;color:var(--text-muted);margin-bottom:14px;">Run this on EVERY AI draft before sending. Takes under 60 seconds.</p>
-    <div style="display:flex;flex-direction:column;gap:6px;">
-      <div class="check-row fragment fade-up"><span class="check-icon">1️⃣</span> <strong>Facts check</strong> — Are all dates, names, numbers, and claims actually true?</div>
-      <div class="check-row fragment fade-up"><span class="check-icon">2️⃣</span> <strong>Tone check</strong> — Does this sound like ME or like a generic AI?</div>
-      <div class="check-row fragment fade-up"><span class="check-icon">3️⃣</span> <strong>Audience check</strong> — Would the recipient find this appropriate and clear?</div>
-      <div class="check-row fragment fade-up"><span class="check-icon">4️⃣</span> <strong>Completeness check</strong> — Is anything important missing or oversimplified?</div>
-      <div class="check-row fragment fade-up"><span class="check-icon">5️⃣</span> <strong>Risk check</strong> — Could anything here cause harm if it's wrong?</div>
+    <p style="font-size:14px;color:var(--text-muted);margin-bottom:10px;">Run this on EVERY AI draft before sending. Takes under 60 seconds.</p>
+    <div style="display:flex;flex-direction:column;gap:4px;">
+      <div class="check-row fragment fade-up" style="padding:7px 0;"><span class="check-icon">1️⃣</span> <strong>Facts check</strong> — Are all dates, names, numbers, and claims actually true?</div>
+      <div class="check-row fragment fade-up" style="padding:7px 0;"><span class="check-icon">2️⃣</span> <strong>Tone check</strong> — Does this sound like ME or like a generic AI?</div>
+      <div class="check-row fragment fade-up" style="padding:7px 0;"><span class="check-icon">3️⃣</span> <strong>Audience check</strong> — Would the recipient find this appropriate and clear?</div>
+      <div class="check-row fragment fade-up" style="padding:7px 0;"><span class="check-icon">4️⃣</span> <strong>Completeness check</strong> — Is anything important missing or oversimplified?</div>
+      <div class="check-row fragment fade-up" style="padding:7px 0;"><span class="check-icon">5️⃣</span> <strong>Risk check</strong> — Could anything here cause harm if it's wrong?</div>
     </div>
-    <div class="loop-footer fragment fade-up">⏱️ This catches 90% of AI errors. Make it a habit — never send AI output without running these 5 checks.</div>
+    <div class="loop-footer fragment fade-up" style="margin-top:12px;">⏱️ This catches 90% of AI errors. Make it a habit — never send AI output without these 5 checks.</div>
   </div>
   <aside class="notes">
 [TIMING: 3 min] [TRANSITION: "Here's your quality control process — memorise these 5 checks."]
@@ -931,29 +933,29 @@ Facilitation tip: "This is where the learning becomes permanent. You're about to
 
 <!-- ==================== SLIDE 26: PRACTICAL — EMAIL CLINIC ==================== -->
 <section data-background-color="#1A1050">
-  <div style="padding-top:12px;">
-    <div class="practical-badge">🔨 EMAIL CLINIC</div>
-    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Revise These Emails Using CRAFT + Constraints</h2>
+  <div style="padding-top:10px;">
+    <div class="practical-badge" style="padding:4px 14px;font-size:13px;margin-bottom:10px;">🔨 EMAIL CLINIC</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:4px;">Revise These Emails Using CRAFT + Constraints</h2>
     <div class="accent-bar"></div>
-    <div style="font-size:14px;color:var(--text-muted);margin-bottom:12px;">⏱️ 8 minutes — choose at least 2 of these 3 scenarios</div>
-    <div class="grid-3col">
-      <div class="card fragment scale-in" style="border-top:3px solid #E74C3C;padding:14px;">
-        <div style="font-size:14px;font-weight:700;color:#E74C3C;margin-bottom:6px;">📧 Email 1: The Vague Update</div>
-        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;font-style:italic;">"Hi team, just wanted to let you know things are going well with the project. We should be done soon. Let me know if you have questions."</div>
-        <div style="font-size:13px;color:var(--mint);margin-top:8px;">Task: Make it specific and actionable</div>
+    <div style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">⏱️ 8 minutes — choose at least 2 of these 3 scenarios</div>
+    <div class="grid-3col" style="gap:10px;">
+      <div class="card fragment scale-in" style="border-top:3px solid #E74C3C;padding:12px;">
+        <div style="font-size:13px;font-weight:700;color:#E74C3C;margin-bottom:4px;">📧 Email 1: The Vague Update</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.4;font-style:italic;">"Hi team, just wanted to let you know things are going well with the project. We should be done soon. Let me know if you have questions."</div>
+        <div style="font-size:12px;color:var(--mint);margin-top:6px;">Task: Make it specific and actionable</div>
       </div>
-      <div class="card fragment scale-in" style="border-top:3px solid #F59E0B;padding:14px;">
-        <div style="font-size:14px;font-weight:700;color:#F59E0B;margin-bottom:6px;">📧 Email 2: The Blame Email</div>
-        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;font-style:italic;">"The report was late because your team didn't send the data on time. This caused problems for everyone. Please make sure this doesn't happen again."</div>
-        <div style="font-size:13px;color:var(--mint);margin-top:8px;">Task: Make it constructive and solutions-focused</div>
+      <div class="card fragment scale-in" style="border-top:3px solid #F59E0B;padding:12px;">
+        <div style="font-size:13px;font-weight:700;color:#F59E0B;margin-bottom:4px;">📧 Email 2: The Blame Email</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.4;font-style:italic;">"The report was late because your team didn't send the data on time. This caused problems for everyone. Please make sure this doesn't happen again."</div>
+        <div style="font-size:12px;color:var(--mint);margin-top:6px;">Task: Make it constructive and solutions-focused</div>
       </div>
-      <div class="card fragment scale-in" style="border-top:3px solid var(--blue);padding:14px;">
-        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:6px;">📧 Email 3: The Wall of Text</div>
-        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;font-style:italic;">"I wanted to reach out regarding the upcoming conference... [imagine 400 words of unstructured text with no clear ask]"</div>
-        <div style="font-size:13px;color:var(--mint);margin-top:8px;">Task: Restructure with clear sections and a direct ask</div>
+      <div class="card fragment scale-in" style="border-top:3px solid var(--blue);padding:12px;">
+        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:4px;">📧 Email 3: The Wall of Text</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.4;font-style:italic;">"I wanted to reach out regarding the upcoming conference... [imagine 400 words of unstructured text with no clear ask]"</div>
+        <div style="font-size:12px;color:var(--mint);margin-top:6px;">Task: Restructure with clear sections and a direct ask</div>
       </div>
     </div>
-    <div class="footer-bar fragment fade-up">🎯 Use CRAFT + Constraints + the 3-step workflow. Run each email through Structure → Refine → Verify.</div>
+    <div class="footer-bar fragment fade-up" style="margin-top:10px;">🎯 Use CRAFT + Constraints + the 3-step workflow. Structure → Refine → Verify.</div>
   </div>
   <aside class="notes">
 [TIMING: 8 min] [TRANSITION: "Time for the main event. You're going to fix real-world bad emails using everything you've learned."]
@@ -970,13 +972,13 @@ Facilitation tip: The blame email usually generates the best discussion. Pull 2 
 
 <!-- ==================== SLIDE 27: PROMPT LIBRARY ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top:14px;">
+  <div style="padding-top:12px;">
     <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Building Your Prompt Library</h2>
     <div class="accent-bar"></div>
-    <p style="font-size:15px;color:var(--text-muted);margin-bottom:14px;">Reusable templates with <span class="tip">[VARIABLES]<span class="tip-content">Variables are placeholders in your template that you swap out each time you use it. Like a form with blanks — the structure stays the same, only the specifics change.</span></span> you swap out each time — write once, use forever.</p>
-    <div class="card fragment fade-up" style="border:1px solid var(--mint);margin-bottom:14px;">
-      <div style="font-size:13px;font-weight:700;color:var(--mint);letter-spacing:1px;margin-bottom:10px;">TEMPLATE EXAMPLE: Stakeholder Update</div>
-      <div style="font-size:14px;color:var(--text-light);line-height:1.8;font-family:monospace;">
+    <p style="font-size:14px;color:var(--text-muted);margin-bottom:10px;">Reusable templates with <span class="tip">[VARIABLES]<span class="tip-content">Variables are placeholders in your template that you swap out each time you use it. Like a form with blanks — the structure stays the same, only the specifics change.</span></span> you swap out each time — write once, use forever.</p>
+    <div class="card fragment fade-up" style="border:1px solid var(--mint);margin-bottom:10px;padding:12px 16px;">
+      <div style="font-size:12px;font-weight:700;color:var(--mint);letter-spacing:1px;margin-bottom:8px;">TEMPLATE EXAMPLE: Stakeholder Update</div>
+      <div style="font-size:13px;color:var(--text-light);line-height:1.7;font-family:monospace;">
         <strong style="color:var(--mint);">Context:</strong> I am [ROLE] at [COMPANY]. [PROJECT_NAME] is currently [STATUS].<br>
         <strong style="color:var(--blue);">Role:</strong> Act as a senior project communicator.<br>
         <strong style="color:#F59E0B;">Action:</strong> Write a stakeholder update email covering [TOPIC].<br>
@@ -985,14 +987,14 @@ Facilitation tip: The blame email usually generates the best discussion. Pull 2 
         <strong style="color:var(--text-muted);">Constraints:</strong> Do not invent details. Keep all dates accurate. Avoid jargon.
       </div>
     </div>
-    <div class="grid-2col fragment fade-up">
-      <div class="card" style="border-left:3px solid var(--mint);padding:12px 16px;">
-        <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:4px;">Why templates work</div>
-        <div style="font-size:14px;color:var(--text-muted);">You invest effort ONCE to get the structure right. Then reuse it 50+ times by just swapping variables.</div>
+    <div class="grid-2col fragment fade-up" style="gap:10px;">
+      <div class="card" style="border-left:3px solid var(--mint);padding:10px 14px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">Why templates work</div>
+        <div style="font-size:13px;color:var(--text-muted);">You invest effort ONCE to get the structure right. Then reuse it 50+ times by just swapping variables.</div>
       </div>
-      <div class="card" style="border-left:3px solid var(--blue);padding:12px 16px;">
-        <div style="font-size:15px;font-weight:700;color:var(--blue);margin-bottom:4px;">What to templatise</div>
-        <div style="font-size:14px;color:var(--text-muted);">Weekly updates, meeting summaries, feedback emails, project proposals, status reports, onboarding messages.</div>
+      <div class="card" style="border-left:3px solid var(--blue);padding:10px 14px;">
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:4px;">What to templatise</div>
+        <div style="font-size:13px;color:var(--text-muted);">Weekly updates, meeting summaries, feedback emails, project proposals, status reports, onboarding messages.</div>
       </div>
     </div>
   </div>
@@ -1010,21 +1012,21 @@ Facilitation tip: Get 3-4 suggestions. Show how quickly you could template each 
 
 <!-- ==================== SLIDE 28: PRACTICAL — TEMPLATE BUILDER ==================== -->
 <section data-background-color="#1A1050">
-  <div style="padding-top:14px;">
-    <div class="practical-badge">🔨 HANDS-ON</div>
+  <div style="padding-top:12px;">
+    <div class="practical-badge" style="padding:4px 14px;font-size:13px;margin-bottom:10px;">🔨 HANDS-ON</div>
     <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Build Your First Template</h2>
     <div class="accent-bar"></div>
-    <div style="font-size:14px;color:var(--text-muted);margin-bottom:14px;">⏱️ 5 minutes — create a reusable prompt you'll actually use at work</div>
-    <ul class="practical-steps">
-      <li class="fragment fade-up"><span class="step-num">1</span> Choose a task you do <strong style="color:var(--mint);">at least twice a month</strong> (weekly update, meeting notes, feedback...)</li>
-      <li class="fragment fade-up"><span class="step-num">2</span> Write a CRAFT prompt for it with <strong style="color:var(--mint);">[VARIABLES]</strong> for the parts that change each time</li>
-      <li class="fragment fade-up"><span class="step-num">3</span> Add at least <strong style="color:var(--mint);">2 constraints</strong> (including the Anchor Guardrail)</li>
-      <li class="fragment fade-up"><span class="step-num">4</span> Test it: fill in the variables with real data and submit to your AI tool</li>
-      <li class="fragment fade-up"><span class="step-num">5</span> <strong style="color:var(--mint);">Save it</strong> — note app, doc, wherever you'll find it again</li>
+    <div style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">⏱️ 5 minutes — create a reusable prompt you'll actually use at work</div>
+    <ul class="practical-steps" style="margin:8px 0;">
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">1</span> Choose a task you do <strong style="color:var(--mint);">at least twice a month</strong> (weekly update, meeting notes, feedback...)</li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">2</span> Write a CRAFT prompt for it with <strong style="color:var(--mint);">[VARIABLES]</strong> for the parts that change each time</li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">3</span> Add at least <strong style="color:var(--mint);">2 constraints</strong> (including the Anchor Guardrail)</li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">4</span> Test it: fill in the variables with real data and submit to your AI tool</li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">5</span> <strong style="color:var(--mint);">Save it</strong> — note app, doc, wherever you'll find it again</li>
     </ul>
-    <div class="card fragment fade-up" style="margin-top:10px;border-left:3px solid var(--mint);padding:12px 16px;">
-      <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:4px;">📋 Template ideas:</div>
-      <div style="font-size:14px;color:var(--text-muted);">Weekly status email • Meeting summary • Feedback to a direct report • Project kickoff message • Client follow-up</div>
+    <div class="card fragment fade-up" style="margin-top:8px;border-left:3px solid var(--mint);padding:10px 14px;">
+      <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:2px;">📋 Template ideas:</div>
+      <div style="font-size:13px;color:var(--text-muted);">Weekly status email • Meeting summary • Feedback to a direct report • Project kickoff message • Client follow-up</div>
     </div>
   </div>
   <aside class="notes">
@@ -1041,28 +1043,28 @@ Facilitation tip: Celebrate the variety — every role has different templates. 
 
 <!-- ==================== SLIDE 29: KEY TAKEAWAYS ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top:16px;">
+  <div style="padding-top:12px;">
     <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Key Takeaways</h2>
     <div class="accent-bar"></div>
-    <div class="grid-2x2" style="margin-top:12px;">
-      <div class="closing-card fragment scale-in">
-        <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:6px;">🎯 CRAFT is your foundation</div>
+    <div class="grid-2x2" style="margin-top:10px;gap:10px;">
+      <div class="closing-card fragment scale-in" style="padding:14px 16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">🎯 CRAFT is your foundation</div>
         <div>Context, Role, Action, Format, Tone — use all 5 for any important prompt. Each element removes one guess the AI would otherwise make.</div>
       </div>
-      <div class="closing-card fragment scale-in">
-        <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:6px;">🛡️ Always constrain</div>
+      <div class="closing-card fragment scale-in" style="padding:14px 16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">🛡️ Always constrain</div>
         <div>The Anchor Guardrail ("don't invent details") belongs in every professional prompt. Add CHANGE, KEEP, and AVOID constraints to narrow output.</div>
       </div>
-      <div class="closing-card fragment scale-in">
-        <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:6px;">🔄 Iterate, don't restart</div>
+      <div class="closing-card fragment scale-in" style="padding:14px 16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">🔄 Iterate, don't restart</div>
         <div>Structure → Refine → Verify. Three short prompts beat one long one. Iteration is the skill, not a sign of failure.</div>
       </div>
-      <div class="closing-card fragment scale-in">
-        <div style="font-size:15px;font-weight:700;color:var(--mint);margin-bottom:6px;">✅ Always verify</div>
+      <div class="closing-card fragment scale-in" style="padding:14px 16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">✅ Always verify</div>
         <div>60-second checklist: Facts, Tone, Audience, Completeness, Risk. Never send AI output without human review.</div>
       </div>
     </div>
-    <div class="footer-bar fragment fade-up">💡 You don't need to memorise everything — just use CRAFT + Anchor Guardrail + Iterate. That covers 90% of cases.</div>
+    <div class="footer-bar fragment fade-up" style="margin-top:10px;">💡 Just use CRAFT + Anchor Guardrail + Iterate. That covers 90% of cases.</div>
   </div>
   <aside class="notes">
 [TIMING: 3 min] [TRANSITION: "Let's lock in what we covered today."]
@@ -1078,12 +1080,12 @@ Facilitation tip: Go around — have each person commit to ONE technique they'll
 
 <!-- ==================== SLIDE 30: NEXT MODULE PREVIEW ==================== -->
 <section data-background-color="#0F0A2E">
-  <div style="padding-top:18px;">
+  <div style="padding-top:14px;">
     <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Coming Next: Module 3</h2>
     <div class="accent-bar"></div>
-    <div class="card" style="border:1px solid var(--mint);margin-bottom:16px;padding:20px;">
-      <div style="font-size:18px;font-weight:700;color:var(--mint);margin-bottom:10px;">Advanced Prompt Techniques &amp; Data Analysis</div>
-      <div style="font-size:15px;color:var(--text-muted);line-height:1.7;">
+    <div class="card" style="border:1px solid var(--mint);margin-bottom:12px;padding:16px;">
+      <div style="font-size:17px;font-weight:700;color:var(--mint);margin-bottom:8px;">Advanced Prompt Techniques &amp; Data Analysis</div>
+      <div style="font-size:14px;color:var(--text-muted);line-height:1.6;">
         • Chain-of-thought prompting — make AI show its reasoning<br>
         • Few-shot learning — teach by example within your prompt<br>
         • Data extraction &amp; summarisation — turn documents into insights<br>
@@ -1091,15 +1093,15 @@ Facilitation tip: Go around — have each person commit to ONE technique they'll
         • Temperature &amp; parameter control for different tasks
       </div>
     </div>
-    <div class="card fragment fade-up" style="border-left:3px solid #F59E0B;padding:14px 18px;">
-      <div style="font-size:15px;font-weight:700;color:#F59E0B;margin-bottom:6px;">📝 Before Module 3:</div>
-      <div style="font-size:14px;color:var(--text-muted);line-height:1.6;">
+    <div class="card fragment fade-up" style="border-left:3px solid #F59E0B;padding:12px 16px;">
+      <div style="font-size:14px;font-weight:700;color:#F59E0B;margin-bottom:4px;">📝 Before Module 3:</div>
+      <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">
         1. Use your CRAFT template at least <strong style="color:var(--text-light);">3 times</strong> this week on real work tasks<br>
         2. Build one more template for a different task type<br>
         3. Practice the 3-step iteration workflow — notice how quickly output improves
       </div>
     </div>
-    <div class="teaser fragment fade-up">🔮 Module 3 unlocks advanced techniques: chain-of-thought makes AI 40% more accurate on complex reasoning tasks</div>
+    <div class="teaser fragment fade-up" style="margin-top:10px;">🔮 Module 3 unlocks advanced techniques: chain-of-thought makes AI 40% more accurate on complex reasoning tasks</div>
   </div>
   <aside class="notes">
 [TIMING: 2 min] [TRANSITION: "Here's what's coming next — and what to do between now and then."]
