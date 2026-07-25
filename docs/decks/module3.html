@@ -119,12 +119,12 @@
 <!-- SESSION NAV BAR -->
 <div id="session-nav" style="display:none;">
   <span class="nav-label">MODULE 3:</span>
-  <a href="#" data-nav="0" onclick="Reveal.slide(3);return false;">01 Why It Matters</a>
-  <a href="#" data-nav="1" onclick="Reveal.slide(5);return false;">02 Pipeline</a>
-  <a href="#" data-nav="2" onclick="Reveal.slide(8);return false;">03 Blind Spots</a>
-  <a href="#" data-nav="3" onclick="Reveal.slide(12);return false;">04 Verification</a>
-  <a href="#" data-nav="4" onclick="Reveal.slide(15);return false;">05 Practice</a>
-  <a href="#" data-nav="5" onclick="Reveal.slide(22);return false;">06 Wrap-up</a>
+  <a href="#" data-nav="0" onclick="Reveal.slide(5);return false;">01 Why It Matters</a>
+  <a href="#" data-nav="1" onclick="Reveal.slide(7);return false;">02 Pipeline</a>
+  <a href="#" data-nav="2" onclick="Reveal.slide(10);return false;">03 Blind Spots</a>
+  <a href="#" data-nav="3" onclick="Reveal.slide(14);return false;">04 Verification</a>
+  <a href="#" data-nav="4" onclick="Reveal.slide(17);return false;">05 Practice</a>
+  <a href="#" data-nav="5" onclick="Reveal.slide(24);return false;">06 Wrap-up</a>
 </div>
 
 <div class="reveal">
@@ -158,7 +158,80 @@ Facilitation tip: Start with energy — meeting documentation is a pain point ev
   </aside>
 </section>
 
-<!-- ==================== SLIDE 2: GROUND RULES ==================== -->
+<!-- ==================== SLIDE 2: RECAP — MODULES 1 & 2 ==================== -->
+<section data-background-color="#F5F3FF">
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-light" style="font-size:26px;font-weight:800;margin-bottom:4px;">Quick Recap — Modules 1 &amp; 2</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="gap:12px;margin-top:8px;">
+      <div style="background:#fff;border-radius:10px;padding:16px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid var(--blue);" class="fragment fade-up">
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:8px;">Module 1: AI Landscape</div>
+        <div style="font-size:14px;color:var(--navy);line-height:1.6;">
+          • AI = pattern prediction (advanced autocomplete)<br>
+          • Three types: Traditional, Generative, Embedded<br>
+          • Five tool categories: Text, Image, Code, Data, Audio<br>
+          • Key risks: Hallucination, Privacy, Bias, Copyright<br>
+          • The 30-second verification rule
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:10px;padding:16px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid var(--mint);" class="fragment fade-up">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:8px;">Module 2: Prompt Engineering</div>
+        <div style="font-size:14px;color:var(--navy);line-height:1.6;">
+          • CRAFT framework: Context, Role, Action, Format, Tone<br>
+          • Three constraint types: Change, Keep, Avoid<br>
+          • Anchor Guardrail: "Don't invent details"<br>
+          • 3-step iteration: Structure → Refine → Verify<br>
+          • 60-second verification checklist
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="background:rgba(30,16,69,0.12);color:var(--navy);margin-top:12px;">💡 Module 3 builds directly on these foundations — especially CRAFT prompting and verification habits</div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: From title → quick recap of prior modules]
+Key talking points:
+• Rapid-fire recap — don't dwell, just remind
+• Module 1 gave them the mental model (AI = prediction, not understanding)
+• Module 2 gave them the tool (CRAFT + constraints + iteration)
+• Module 3 applies both to a specific high-value workflow: meeting documentation
+Discussion prompt: "Who used CRAFT this week? Quick show of hands — how did it go?"
+Facilitation tip: Spend 30 seconds collecting 1-2 quick stories from homework. Validates the learning.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 3: RECAP QUIZ ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-recap">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🔄 RECAP CHECK</div>
+    <div class="quiz-question">In the CRAFT framework, what does the "Anchor Guardrail" constraint do?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap',0,1,'The Anchor Guardrail — &quot;Do not invent details I have not provided&quot; — prevents AI from hallucinating specific facts, policies, dates, or statistics. It forces the model to work only with information you supply, dramatically reducing fabrication.')">
+        <span class="opt-letter">A</span><span>Makes AI write longer and more detailed responses</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap',1,1,'The Anchor Guardrail — &quot;Do not invent details I have not provided&quot; — prevents AI from hallucinating specific facts, policies, dates, or statistics. It forces the model to work only with information you supply, dramatically reducing fabrication.')">
+        <span class="opt-letter">B</span><span>Prevents AI from inventing details you didn't provide</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap',2,1,'The Anchor Guardrail — &quot;Do not invent details I have not provided&quot; — prevents AI from hallucinating specific facts, policies, dates, or statistics. It forces the model to work only with information you supply, dramatically reducing fabrication.')">
+        <span class="opt-letter">C</span><span>Forces AI to use formal academic language</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap',3,1,'The Anchor Guardrail — &quot;Do not invent details I have not provided&quot; — prevents AI from hallucinating specific facts, policies, dates, or statistics. It forces the model to work only with information you supply, dramatically reducing fabrication.')">
+        <span class="opt-letter">D</span><span>Makes AI ask clarifying questions before responding</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Quick check — do we remember the key concept from Module 2?"]
+Key talking points:
+• Correct answer: B — prevents hallucination of details
+• This is CRITICAL for Module 3: meeting minutes are full of specific details AI might invent
+• If participants get this wrong, briefly re-explain the Anchor Guardrail before proceeding
+Discussion prompt: "Who has already used the Anchor Guardrail since Module 2? Did it help?"
+Facilitation tip: If most get it right, move quickly. If many get it wrong, spend 60 extra seconds on the concept — it's essential for today.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 4: GROUND RULES (was slide 2) ==================== -->
 <section data-background-color="#0F0A2E">
   <div style="padding-top:16px;">
     <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Ground Rules &amp; Setup</h2>
@@ -1027,7 +1100,7 @@ Facilitation tip: End on time and with energy. "Your next meeting is your testin
     hash: true,
     slideNumber: function(slide) {
       const h = Reveal.getIndices(slide).h + 1;
-      return [h + ' / 28'];
+      return [h + ' / 30'];
     },
     showSlideNumber: 'all',
     progress: true,
@@ -1050,7 +1123,7 @@ Facilitation tip: End on time and with energy. "Your next meeting is your testin
 
   deck.then(() => {
     const navLinks = document.querySelectorAll('#session-nav a');
-    const chapters = [3, 5, 8, 12, 15, 22];
+    const chapters = [5, 7, 10, 14, 17, 24];
 
     function updateNav() {
       const current = Reveal.getIndices().h;
