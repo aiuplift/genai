@@ -600,6 +600,25 @@ This plan implements a real-time collaborative web application for a 10-module p
   - [ ] 36.7 Build Module 9 student experience (Building Without Coding)
   - [ ] 36.8 Build Module 10 student experience (Capstone)
 
+- [ ] 37. Slide Deck Enhancements — Dialogues & Quality Upgrades
+  - [ ] 37.1 Add 2-3 comic dialogue slides to Module 1 deck
+    - Use recurring characters (Priya, Amit, Kenji, Rachel)
+    - DiceBear avataaars with comic speech bubbles (white/coloured, triangular tails)
+    - Topics: hallucination discovery, tool selection mistake, verification save
+  - [ ] 37.2 Add 2-3 comic dialogue slides to Module 2 deck
+    - Topics: weak vs strong prompt consequences, constraint saving the day, iteration success
+  - [ ] 37.3 Add recap slides (summary + 3-4 quiz questions) to Module 2 deck opening
+    - Recap of Module 1 key concepts before Module 2 content begins
+  - [ ] 37.4 Replace any software engineering examples in Module 1 & 2 slides with generic business scenarios
+    - Use finance, HR, admin, law, teaching examples
+    - Ensure recurring characters are used where dialogues/scenarios appear
+  - [ ] 37.5 Build Module 4-10 slide decks with full quality standard
+    - Apply all checklist criteria: recaps, dialogues, bigger fonts, speaker notes, practical exercises
+    - Each deck: ~28-33 slides, 75 min, 40/60 theory/practical ratio
+    - Include 2-3 comic dialogue slides per module
+    - Include recap + 3-4 quiz questions from prior modules at start
+    - Industry-agnostic examples throughout
+
 ## Notes
 
 - Tasks marked with `*` are optional and can be skipped for faster MVP
