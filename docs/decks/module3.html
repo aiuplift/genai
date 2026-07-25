@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 3: AI as Notetaker &amp; Operational Writing — AI Skills Studio</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+<style>
+  :root{--navy:#1E1045;--blue:#6C3AED;--mint:#0891B2;--dark-bg:#0F0A2E;--light-bg:#F5F3FF;--card-bg:#1E1B4B;--text-light:#FFFFFF;--text-muted:#A8B4D8;--font:system-ui,'Segoe UI',sans-serif;--practical-bg:#1A1050}
+  .reveal{font-family:var(--font)}.reveal .slides section{text-align:left;padding:0 48px}
+  .reveal .progress{height:4px;color:var(--mint)}.reveal .progress span{background:var(--mint)}
+  .reveal .slide-number{background:rgba(0,0,0,0.4);color:var(--text-muted);font-size:13px;padding:4px 10px;border-radius:4px;font-family:var(--font)}
+  .reveal h1,.reveal h2,.reveal h3{font-family:var(--font);text-transform:none;letter-spacing:-0.5px}
+  .slide-title-dark{color:var(--text-light)!important}.slide-title-light{color:var(--navy)!important}
+  .accent-bar{width:80px;height:4px;background:var(--mint);margin:6px 0 16px 0;border-radius:2px}
+  .card{background:var(--card-bg);border-radius:10px;padding:18px 20px;box-shadow:0 4px 16px rgba(0,0,0,0.25)}
+  .card-light{background:#fff;border-radius:10px;padding:18px 20px;box-shadow:0 2px 12px rgba(30,16,69,0.10)}
+  .card-navy{background:var(--navy);border-radius:10px;padding:18px 20px;box-shadow:0 4px 16px rgba(0,0,0,0.2)}
+  .grid-2col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid-3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .grid-2x3{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:12px}
+  .grid-2x2{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px}
+  .flex-row{display:flex;gap:16px;align-items:stretch}
+  .chapter-num{font-size:96px;font-weight:900;color:var(--mint);opacity:0.85;line-height:1;margin-bottom:8px}
+  .chapter-title{font-size:38px;font-weight:700;color:var(--text-light);margin:0 0 8px 0}
+  .chapter-sub{font-size:17px;color:var(--text-muted);font-style:italic;margin:0}
+  .chapter-rule{width:100px;height:4px;background:var(--mint);border-radius:2px;margin-top:20px}
+  .agenda-num{font-size:28px;font-weight:800;color:var(--mint);margin-bottom:6px}
+  .agenda-title{font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:4px}
+  .agenda-sub{font-size:14px;color:var(--text-muted)}
+  .limit-row{display:flex;align-items:center;background:var(--card-bg);border-radius:8px;padding:10px 18px;margin-bottom:8px;gap:12px}
+  .limit-txt{font-size:16px;color:var(--text-light)}
+  .loop-steps{display:flex;align-items:stretch;gap:0}
+  .loop-step{flex:1;background:var(--navy);border-radius:10px;padding:16px 10px;text-align:center}
+  .loop-step-label{font-size:13px;font-weight:800;color:var(--mint);margin-bottom:10px;letter-spacing:1px}
+  .loop-step-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .loop-arrow{display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--mint);flex-shrink:0;padding:0 6px}
+  .loop-footer{background:rgba(8,145,178,0.12);border-radius:8px;padding:10px 18px;margin-top:16px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .closing-card{background:var(--card-bg);border-radius:10px;padding:16px 18px;border-left:3px solid var(--mint);font-size:15px;color:var(--text-light);line-height:1.5}
+  .footer-bar{background:rgba(8,145,178,0.08);border-radius:8px;padding:8px 16px;margin-top:10px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .footer-bar-dark{background:var(--card-bg);border-radius:8px;padding:8px 16px;margin-top:10px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .teaser{background:var(--card-bg);border-left:3px solid var(--mint);border-radius:8px;padding:10px 16px;font-size:14px;color:var(--text-muted);margin-top:12px;font-style:italic}
+  .tip{position:relative;border-bottom:1px dashed var(--mint);cursor:help;color:inherit;font-weight:inherit}
+  .tip:hover{color:var(--mint)}
+  .tip .tip-content{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--navy);color:var(--text-light);padding:14px 18px;border-radius:10px;font-size:14px;font-weight:400;line-height:1.6;width:340px;max-width:90vw;box-shadow:0 12px 40px rgba(0,0,0,0.7);border:2px solid var(--mint);z-index:99999;text-align:left;font-style:normal}
+  .tip .tip-content::before{content:'💡';display:block;font-size:14px;margin-bottom:6px}
+  .tip:hover .tip-content,.tip:focus .tip-content{display:block}
+  .light-tip .tip-content{background:#fff;color:var(--navy);border-color:var(--blue)}.light-tip{border-bottom-color:var(--blue)}.light-tip:hover{color:var(--blue)}
+  .quiz-label{font-size:13px;font-weight:700;color:var(--mint);letter-spacing:2px;margin-bottom:12px}
+  .quiz-question{font-size:24px;font-weight:700;color:var(--text-light);margin-bottom:24px;line-height:1.4}
+  .quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .quiz-opt{background:var(--card-bg);border-radius:10px;padding:16px 20px;font-size:15px;color:var(--text-light);cursor:pointer;border:2px solid transparent;transition:all 0.2s;display:flex;align-items:center;gap:12px}
+  .quiz-opt:hover{border-color:var(--mint);background:rgba(8,145,178,0.1)}
+  .quiz-opt.correct{background:#1D4A3A!important;border-color:#27AE60!important;cursor:default}
+  .quiz-opt.wrong{background:#4A1D1D!important;border-color:#E74C3C!important;cursor:default;opacity:0.7}
+  .quiz-opt.disabled{pointer-events:none;opacity:0.6}
+  .quiz-opt .opt-letter{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+  .quiz-opt.correct .opt-letter{background:#27AE60;color:#fff}
+  .quiz-opt.wrong .opt-letter{background:#E74C3C;color:#fff}
+  .quiz-explain{margin-top:16px;padding:12px 18px;border-radius:8px;background:rgba(8,145,178,0.1);border-left:3px solid var(--mint);font-size:14px;color:var(--text-muted);display:none;line-height:1.6}
+  .quiz-explain.show{display:block}
+  #session-nav{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;justify-content:center;align-items:center;gap:6px;padding:6px 12px;background:rgba(15,10,46,0.92);backdrop-filter:blur(6px);border-bottom:1px solid rgba(8,145,178,0.2);font-family:var(--font);font-size:11px}
+  #session-nav .nav-label{color:var(--text-muted);font-size:10px;font-weight:700;letter-spacing:1px;margin-right:4px;flex-shrink:0}
+  #session-nav a{color:var(--text-muted);text-decoration:none;padding:3px 10px;border-radius:20px;border:1px solid transparent;transition:all 0.2s;font-size:11px;white-space:nowrap}
+  #session-nav a:hover{color:var(--mint);border-color:var(--mint);background:rgba(8,145,178,0.1)}
+  #session-nav a.nav-active{color:var(--mint);border-color:rgba(8,145,178,0.4)}
+  .title-series{font-size:34px;font-weight:800;color:var(--text-light);margin-bottom:8px;line-height:1.2}
+  .title-session{font-size:19px;font-weight:600;color:var(--mint);margin-bottom:8px}
+  .title-tagline{font-size:15px;color:var(--text-muted);font-style:italic;margin-bottom:32px}
+  .title-rule{width:80px;height:3px;background:var(--mint);border-radius:2px;margin-bottom:24px}
+  .title-author{font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:4px}
+  .title-date{font-size:13px;color:var(--text-muted)}
+  .keyboard-hint{position:absolute;bottom:28px;right:0;font-size:11px;color:rgba(168,180,216,0.6);display:flex;gap:12px;align-items:center}
+  .key{display:inline-block;border:1px solid rgba(168,180,216,0.3);border-radius:4px;padding:2px 7px;font-size:11px;color:rgba(168,180,216,0.7)}
+  .reveal .fragment{opacity:0.15;transition:opacity 0.4s,transform 0.4s}
+  .reveal .fragment.visible{opacity:1}
+  .reveal .fragment.fade-up{transform:translateY(20px)}.reveal .fragment.fade-up.visible{transform:translateY(0)}
+  .reveal .fragment.scale-in{transform:scale(0.85)}.reveal .fragment.scale-in.visible{transform:scale(1)}
+  .light-slide p,.light-slide li{color:var(--navy)}
+  .practical-badge{display:inline-block;background:linear-gradient(135deg,var(--blue),var(--mint));color:#fff;font-size:14px;font-weight:800;padding:6px 16px;border-radius:20px;letter-spacing:1px;margin-bottom:14px}
+  .practical-steps{list-style:none;padding:0;margin:12px 0}
+  .practical-steps li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;font-size:16px;color:var(--text-light)}
+  .practical-steps li .step-num{background:var(--mint);color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+  .check-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(108,58,237,0.15);font-size:16px;color:var(--text-light)}
+  .check-icon{color:var(--mint);font-size:17px;flex-shrink:0}
+  .vs-arrow{display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--mint);font-weight:800;flex-shrink:0;padding:0 8px}
+  #passcode-gate{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--dark-bg);display:flex;align-items:center;justify-content:center;z-index:99999;flex-direction:column;gap:16px}
+  #passcode-gate input{padding:12px 24px;font-size:18px;border-radius:8px;border:2px solid var(--mint);background:var(--card-bg);color:var(--text-light);text-align:center;letter-spacing:4px;width:200px;outline:none}
+  #passcode-gate input:focus{box-shadow:0 0 12px rgba(8,145,178,0.4)}
+  #passcode-gate .gate-title{font-size:24px;color:var(--text-light);font-weight:700}
+  #passcode-gate .gate-hint{font-size:13px;color:var(--text-muted)}
+  #passcode-gate .gate-error{font-size:13px;color:#E74C3C;display:none}
+  .craft-card{background:var(--card-bg);border-radius:10px;padding:16px 14px;text-align:center;border-top:4px solid var(--mint)}
+  .craft-letter{font-size:36px;font-weight:900;color:var(--mint);margin-bottom:4px}
+  .craft-word{font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px}
+  .craft-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .constraint-card{background:var(--card-bg);border-radius:10px;padding:18px 16px;border-left:4px solid var(--mint)}
+  .constraint-title{font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:6px}
+  .constraint-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .failure-card{background:var(--card-bg);border-radius:10px;padding:16px;text-align:center}
+  .failure-icon{font-size:28px;margin-bottom:6px}
+  .failure-title{font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px}
+  .failure-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  /* Global overflow safety net */
+  .reveal .slides section > div { max-height: calc(720px * 0.88 - 40px); overflow: hidden; }
+</style>
+</head>
+<body>
+
+<!-- PASSCODE GATE -->
+<div id="passcode-gate">
+  <div class="gate-title">🔒 AI Skills Studio</div>
+  <div class="gate-hint">Enter session passcode to continue</div>
+  <input type="text" id="gate-input" maxlength="5" placeholder="•••••" autocomplete="off">
+  <div class="gate-error" id="gate-error">Incorrect passcode. Try again.</div>
+</div>
+
+<!-- SESSION NAV BAR -->
+<div id="session-nav" style="display:none;">
+  <span class="nav-label">MODULE 3:</span>
+  <a href="#" data-nav="0" onclick="Reveal.slide(3);return false;">01 Why It Matters</a>
+  <a href="#" data-nav="1" onclick="Reveal.slide(5);return false;">02 Pipeline</a>
+  <a href="#" data-nav="2" onclick="Reveal.slide(8);return false;">03 Blind Spots</a>
+  <a href="#" data-nav="3" onclick="Reveal.slide(12);return false;">04 Verification</a>
+  <a href="#" data-nav="4" onclick="Reveal.slide(15);return false;">05 Practice</a>
+  <a href="#" data-nav="5" onclick="Reveal.slide(22);return false;">06 Wrap-up</a>
+</div>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- ==================== SLIDE 1: TITLE ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:40px;">
+    <div style="width:100%;height:4px;background:linear-gradient(90deg,var(--blue),var(--mint));border-radius:2px;margin-bottom:32px;"></div>
+    <div class="title-series">AI Skills Studio</div>
+    <div class="title-session">Module 3: AI as Notetaker &amp; Operational Writing</div>
+    <div class="title-tagline">Turn meeting chaos into clear, verified documentation — in minutes</div>
+    <div class="title-rule"></div>
+    <div class="title-author">Gen AI Inc</div>
+    <div class="title-date">2025 &nbsp;|&nbsp; 75 minutes</div>
+    <div class="keyboard-hint">
+      <span><span class="key">←→</span> Navigate</span>
+      <span><span class="key">F</span> Fullscreen</span>
+      <span><span class="key">S</span> Speaker Notes</span>
+      <span><span class="key">O</span> Overview</span>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] [TRANSITION: Welcome participants back for Module 3]
+Key talking points:
+• Welcome to Module 3 — operational writing and AI-powered notetaking
+• This is where M1 (understanding) and M2 (prompting) combine into a real workflow
+• 75 minutes: we'll transform raw meeting notes into polished docs and verify them
+Discussion prompt: "Who has lost an action item because nobody wrote it down? That ends today."
+Facilitation tip: Start with energy — meeting documentation is a pain point everyone relates to.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 2: GROUND RULES ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:16px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Ground Rules &amp; Setup</h2>
+    <div class="accent-bar"></div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div class="limit-row fragment fade-up">
+        <div style="font-size:1.2rem;flex-shrink:0;">🔗</div>
+        <div class="limit-txt"><strong>Builds on M1 &amp; M2.</strong> You know AI is pattern prediction and you can write CRAFT prompts — now we apply both.</div>
+      </div>
+      <div class="limit-row fragment fade-up">
+        <div style="font-size:1.2rem;flex-shrink:0;">💻</div>
+        <div class="limit-txt"><strong>Devices ready.</strong> Open your AI chat tool — you'll use it throughout for hands-on exercises.</div>
+      </div>
+      <div class="limit-row fragment fade-up">
+        <div style="font-size:1.2rem;flex-shrink:0;">📝</div>
+        <div class="limit-txt"><strong>Bring real meeting notes.</strong> If you have messy notes from a recent meeting, even better — use those.</div>
+      </div>
+      <div class="limit-row fragment fade-up">
+        <div style="font-size:1.2rem;flex-shrink:0;">✅</div>
+        <div class="limit-txt"><strong>Verification is non-negotiable.</strong> Every AI output gets checked. No exceptions. This is the core habit.</div>
+      </div>
+      <div class="limit-row fragment fade-up">
+        <div style="font-size:1.2rem;flex-shrink:0;">⚠️</div>
+        <div class="limit-txt"><strong>AI will get things wrong.</strong> That's the point — learning to catch errors is the skill we're building.</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: From title → set expectations]
+Key talking points:
+• Emphasise: this module is about the FULL pipeline — not just generation
+• Verification is 50% of the skill; generation is only the other 50%
+• If they have real meeting notes, they can use those instead of the provided scenario
+Discussion prompt: "Quick show of hands — who has meeting notes from this week you could use today?"
+Facilitation tip: Wait for devices to be open. Offer the provided scenario for anyone without their own notes.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 3: AGENDA ==================== -->
+<section data-background-color="#F5F3FF">
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-light" style="font-size:26px;font-weight:800;margin-bottom:4px;">Today's Journey</h2>
+    <div class="accent-bar"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:6px;">
+      <div class="card-navy fragment scale-in" style="padding:14px 16px;">
+        <div class="agenda-num">01</div>
+        <div class="agenda-title">💡 Why This Matters</div>
+        <div class="agenda-sub">The documentation problem</div>
+      </div>
+      <div class="card-navy fragment scale-in" style="padding:14px 16px;">
+        <div class="agenda-num">02</div>
+        <div class="agenda-title">🔄 The Pipeline</div>
+        <div class="agenda-sub">5 steps from chaos to clarity</div>
+      </div>
+      <div class="card-navy fragment scale-in" style="padding:14px 16px;">
+        <div class="agenda-num">03</div>
+        <div class="agenda-title">👁️ Blind Spots</div>
+        <div class="agenda-sub">Where AI fails silently</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px;">
+      <div class="card-navy fragment scale-in" style="padding:14px 16px;">
+        <div class="agenda-num">04</div>
+        <div class="agenda-title">✅ Verification</div>
+        <div class="agenda-sub">The 4-check system</div>
+      </div>
+      <div class="card-navy fragment scale-in" style="padding:14px 16px;">
+        <div class="agenda-num">05</div>
+        <div class="agenda-title">🔨 Hands-On</div>
+        <div class="agenda-sub">Full pipeline practice</div>
+      </div>
+      <div class="card-navy fragment scale-in" style="padding:14px 16px;">
+        <div class="agenda-num">06</div>
+        <div class="agenda-title">🎯 Wrap-up</div>
+        <div class="agenda-sub">Takeaways &amp; traps</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="background:rgba(30,16,69,0.15);color:var(--navy);margin-top:10px;">⏱️ 75 minutes — theory + extended hands-on pipeline exercise</div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: From ground rules → map of the session]
+Key talking points:
+• 6 chapters — first half is understanding, second half is doing
+• Chapter 5 is the big exercise: full pipeline from raw notes to verified output
+• Verification appears in Ch 3 (blind spots), Ch 4 (system), and Ch 5 (practice)
+Discussion prompt: "Which chapter are you most curious about? Blind spots usually gets the most interest."
+Facilitation tip: Point out that the hands-on section is 7 slides — this is mostly a workshop.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 4: CHAPTER 01 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">01</div>
+    <div class="chapter-title">Why This Matters</div>
+    <div class="chapter-sub">The documentation problem — and how AI changes the math</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Let's start with WHY operational writing is both critical and broken."]
+Key talking points:
+• Meetings are where decisions happen; documentation is where accountability lives
+• Without good notes, decisions evaporate within 24 hours
+Facilitation tip: "Raise your hand if you've ever left a meeting and couldn't remember who agreed to what by the next day."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 5: THE DOCUMENTATION PROBLEM ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">The Documentation Problem</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="gap:16px;margin-top:10px;">
+      <div class="card fragment fade-up" style="border-left:3px solid #E74C3C;padding:14px 16px;">
+        <div style="font-size:14px;font-weight:700;color:#E74C3C;margin-bottom:8px;">❌ The Problem</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.6;">
+          • 73% of action items from undocumented meetings are never completed<br>
+          • Average professional attends 8-12 meetings/week<br>
+          • Writing proper minutes takes 15-30 min per meeting<br>
+          • Most people don't bother — decisions evaporate
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid #27AE60;padding:14px 16px;">
+        <div style="font-size:14px;font-weight:700;color:#27AE60;margin-bottom:8px;">✅ AI Changes the Math</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.6;">
+          • Raw notes → polished minutes in 2-3 minutes<br>
+          • Action items extracted automatically<br>
+          • Follow-up emails drafted instantly<br>
+          • The cost of good documentation drops to near-zero
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:12px;">⚠️ But "near-zero cost" ≠ "zero risk" — AI introduces NEW failure modes we must understand</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Here's the reality of meeting documentation today — and what AI makes possible."]
+Key talking points:
+• Left side: the human bottleneck. Nobody has 30 min after each meeting to write proper minutes.
+• Right side: AI removes the bottleneck. But it adds new risks.
+• The key insight: AI makes documentation EASY but not SAFE without verification
+• This module teaches both: how to generate AND how to verify
+Discussion prompt: "How many of you write formal minutes after meetings today? Why not?"
+Facilitation tip: Most will say "no time." Validate that — then show the solution is speed + verification, not just speed.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 6: CHAPTER 02 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">02</div>
+    <div class="chapter-title">The Pipeline</div>
+    <div class="chapter-sub">Five steps from raw capture to actionable follow-up</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Now let's look at the systematic pipeline for turning messy notes into polished output."]
+Key talking points:
+• This is a repeatable system — not a one-off trick
+• Each step builds on the previous one
+Facilitation tip: "By end of this chapter you'll have a 5-step system you can use starting with your next meeting."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 7: 5-STEP PIPELINE ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">The 5-Step Pipeline</h2>
+    <div class="accent-bar"></div>
+    <div class="loop-steps" style="margin-top:10px;">
+      <div class="loop-step fragment scale-in" style="padding:12px 8px;">
+        <div class="loop-step-label">1. CAPTURE</div>
+        <div style="font-size:22px;margin:4px 0;">📝</div>
+        <div class="loop-step-desc">Raw notes — messy, shorthand, incomplete. That's fine.</div>
+      </div>
+      <div class="loop-arrow fragment">→</div>
+      <div class="loop-step fragment scale-in" style="padding:12px 8px;">
+        <div class="loop-step-label">2. STRUCTURE</div>
+        <div style="font-size:22px;margin:4px 0;">🏗️</div>
+        <div class="loop-step-desc">AI organises into sections: decisions, discussion, actions.</div>
+      </div>
+      <div class="loop-arrow fragment">→</div>
+      <div class="loop-step fragment scale-in" style="padding:12px 8px;">
+        <div class="loop-step-label">3. MINUTES</div>
+        <div style="font-size:22px;margin:4px 0;">📋</div>
+        <div class="loop-step-desc">Polished meeting minutes with proper attribution.</div>
+      </div>
+      <div class="loop-arrow fragment">→</div>
+      <div class="loop-step fragment scale-in" style="padding:12px 8px;">
+        <div class="loop-step-label">4. ACTIONS</div>
+        <div style="font-size:22px;margin:4px 0;">✅</div>
+        <div class="loop-step-desc">Extract action items: who, what, by when.</div>
+      </div>
+      <div class="loop-arrow fragment">→</div>
+      <div class="loop-step fragment scale-in" style="padding:12px 8px;">
+        <div class="loop-step-label">5. FOLLOW-UP</div>
+        <div style="font-size:22px;margin:4px 0;">📧</div>
+        <div class="loop-step-desc">Draft follow-up email summarising outcomes.</div>
+      </div>
+    </div>
+    <div class="loop-footer fragment fade-up">💡 Total time: 3-5 minutes for all 5 steps. Verification adds 2 minutes. Still under 7 minutes per meeting.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Here's the full pipeline — 5 steps from chaos to clarity."]
+Key talking points:
+• Step 1 is HUMAN — your raw capture. The messier the better, AI handles it.
+• Steps 2-5 are AI-assisted with human verification at the end
+• The pipeline is sequential — each step feeds the next
+• Total investment: under 7 minutes per meeting for full documentation
+Discussion prompt: "Which step do you think AI handles best? Which do you think is riskiest?"
+Facilitation tip: Preview that Step 4 (Actions) is where AI fails most dangerously — it invents commitments.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 8: WHERE AI EXCELS VS FAILS ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Where AI Excels vs Where It Fails</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="gap:16px;margin-top:10px;">
+      <div class="card fragment fade-up" style="border-left:3px solid #27AE60;padding:14px 16px;">
+        <div style="font-size:14px;font-weight:700;color:#27AE60;margin-bottom:8px;">✅ AI Excels At</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          • Reformatting messy notes into structure<br>
+          • Identifying topic clusters<br>
+          • Generating professional language<br>
+          • Creating consistent formatting<br>
+          • Drafting standard follow-up emails
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid #E74C3C;padding:14px 16px;">
+        <div style="font-size:14px;font-weight:700;color:#E74C3C;margin-bottom:8px;">❌ AI Fails At</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          • Knowing who ACTUALLY said what<br>
+          • Distinguishing decisions from discussions<br>
+          • Understanding organisational context<br>
+          • Detecting sarcasm or tentative language<br>
+          • Knowing what was agreed vs floated
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:12px;">🧠 Rule: AI handles FORMAT. Humans verify FACTS. Never trust AI on attribution or commitment.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "AI is brilliant at some parts of this pipeline — and dangerously bad at others."]
+Key talking points:
+• Left column: these are pattern/format tasks — AI's strength
+• Right column: these require CONTEXT AI doesn't have
+• The critical distinction: format vs fact. AI formats beautifully. Facts need human eyes.
+• "Distinguishing decisions from discussions" is the single most dangerous failure
+Discussion prompt: "Why is 'knowing who said what' so hard for AI when working from notes?"
+Facilitation tip: Answer: notes rarely have perfect attribution. AI fills gaps by guessing — and guesses CONFIDENTLY.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 9: CHAPTER 03 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">03</div>
+    <div class="chapter-title">Blind Spots</div>
+    <div class="chapter-sub">Five ways AI meeting minutes fail silently — and how to catch them</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Now we get into the dangerous territory — where AI fails and you won't notice unless you know what to look for."]
+Key talking points:
+• These aren't obvious errors — they're SILENT failures
+• The output looks professional and polished, which makes errors harder to spot
+Facilitation tip: "This is the chapter that will save your reputation. AI errors in meeting minutes damage credibility fast."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 10: FIVE BLIND SPOTS ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Five Blind Spots in AI Minutes</h2>
+    <div class="accent-bar"></div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
+      <div class="limit-row fragment fade-up">
+        <div style="font-size:1.2rem;flex-shrink:0;">1️⃣</div>
+        <div class="limit-txt"><strong style="color:#E74C3C;">Attribution errors.</strong> AI assigns statements to the wrong person or invents speakers not present.</div>
+      </div>
+      <div class="limit-row fragment fade-up">
+        <div style="font-size:1.2rem;flex-shrink:0;">2️⃣</div>
+        <div class="limit-txt"><strong style="color:#F59E0B;">Invented attendees.</strong> AI may add people to the attendee list who weren't actually in the meeting.</div>
+      </div>
+      <div class="limit-row fragment fade-up">
+        <div style="font-size:1.2rem;flex-shrink:0;">3️⃣</div>
+        <div class="limit-txt"><strong style="color:var(--blue);">Missing context.</strong> AI can't know the political context, history, or unspoken dynamics in the room.</div>
+      </div>
+      <div class="limit-row fragment fade-up">
+        <div style="font-size:1.2rem;flex-shrink:0;">4️⃣</div>
+        <div class="limit-txt"><strong style="color:#9B59B6;">Org hierarchy confusion.</strong> AI doesn't know who reports to whom or who has authority to decide.</div>
+      </div>
+      <div class="limit-row fragment fade-up">
+        <div style="font-size:1.2rem;flex-shrink:0;">5️⃣</div>
+        <div class="limit-txt"><strong style="color:var(--mint);">Decisions vs discussions.</strong> AI treats "we talked about X" as "we decided X" — the most dangerous error.</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:10px;">⚠️ #5 is the career-ender. Sending minutes that say "team committed to X" when it was only discussed can cause real damage.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "These are the five silent failures. Each one looks professional in the output but is factually wrong."]
+Key talking points:
+• Walk through each with a quick example
+• #1: "Sarah mentioned..." when Marcus actually said it
+• #2: AI adds "and the full team" when only 4 people were there
+• #3: AI can't know that the VP hates this project
+• #4: AI might assign an action to someone who doesn't have authority
+• #5: THE BIG ONE — "agreed to March deadline" vs "discussed March as a possibility"
+Discussion prompt: "Has anyone received meeting minutes where something was wrong but looked plausible?"
+Facilitation tip: Spend most time on #5. It's the most common and most damaging blind spot.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 11: PRACTICAL — SPOT THE ERROR ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:12px;">
+    <div class="practical-badge" style="padding:4px 14px;font-size:13px;margin-bottom:10px;">🔨 SPOT THE ERROR</div>
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Find 3 Errors in These AI-Generated Minutes</h2>
+    <div class="accent-bar"></div>
+    <div class="card" style="border:1px solid var(--mint);padding:14px 16px;margin-top:8px;">
+      <div style="font-size:13px;font-weight:700;color:var(--mint);letter-spacing:1px;margin-bottom:8px;">AI-GENERATED MINUTES (contains 3 errors)</div>
+      <div style="font-size:14px;color:var(--text-light);line-height:1.7;">
+        <strong>Product Sync — 10:00am</strong><br>
+        <strong>Attendees:</strong> Sarah, Marcus, Tom, Jenna, <span style="color:#E74C3C;font-weight:700;">David (remote)</span><br><br>
+        • Sarah reported dashboard redesign on track; Q2 metrics ready for review<br>
+        • Marcus noted API integration delayed 2 weeks due to vendor issues<br>
+        • <span style="color:#F59E0B;font-weight:700;">Tom confirmed mobile app deprioritised; team committed to web-only for Q2 launch</span><br>
+        • <span style="color:#9B59B6;font-weight:700;">Jenna agreed to deliver widget feature by end of current sprint</span><br>
+        • Sarah to escalate staging environment issues to infrastructure team
+      </div>
+    </div>
+    <div class="card fragment fade-up" style="margin-top:10px;border-left:3px solid var(--mint);padding:10px 14px;">
+      <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">🔍 Hint: Look for blind spots #1, #2, and #5</div>
+      <div style="font-size:13px;color:var(--text-muted);">Compare against the raw notes. What did AI add, change, or assume?</div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 5 min] [TRANSITION: "Let's test your blind-spot detection skills. Here are AI-generated minutes — find the 3 errors."]
+Key talking points:
+• Error 1 (red): David is NOT in the original attendee list — AI invented an attendee (Blind Spot #2)
+• Error 2 (orange): Tom said "deprioritised for now" — NOT "team committed to web-only for Q2 launch." AI upgraded a discussion to a commitment (Blind Spot #5)
+• Error 3 (purple): Jenna said widget PUSHED TO Q3, won't make this sprint — AI reversed the meaning entirely (Blind Spot #5 again)
+• Give 3 minutes to find errors, then reveal answers
+Discussion prompt: "Which error would cause the most damage if sent to stakeholders?"
+Facilitation tip: The Jenna error is the worst — it commits someone to the OPPOSITE of what they said. Use this to drive home verification importance.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 12: QUIZ 1 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz1">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🧠 KNOWLEDGE CHECK</div>
+    <div class="quiz-question">What's the biggest risk of unverified AI meeting minutes?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz1',0,2,'Misattribution is the biggest risk because it can damage professional relationships and create false accountability. When AI says &quot;Sarah committed to X&quot; but it was actually Marcus, or nobody actually committed at all, it creates confusion and erodes trust in the documentation process.')">
+        <span class="opt-letter">A</span><span>They might have grammatical errors</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz1',1,2,'Misattribution is the biggest risk because it can damage professional relationships and create false accountability. When AI says &quot;Sarah committed to X&quot; but it was actually Marcus, or nobody actually committed at all, it creates confusion and erodes trust in the documentation process.')">
+        <span class="opt-letter">B</span><span>They could be too long or verbose</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz1',2,2,'Misattribution is the biggest risk because it can damage professional relationships and create false accountability. When AI says &quot;Sarah committed to X&quot; but it was actually Marcus, or nobody actually committed at all, it creates confusion and erodes trust in the documentation process.')">
+        <span class="opt-letter">C</span><span>Misattribution — wrong person credited with statements or commitments</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz1',3,2,'Misattribution is the biggest risk because it can damage professional relationships and create false accountability. When AI says &quot;Sarah committed to X&quot; but it was actually Marcus, or nobody actually committed at all, it creates confusion and erodes trust in the documentation process.')">
+        <span class="opt-letter">D</span><span>The formatting might not match company style</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Quick check before we move into the verification system."]
+Key talking points:
+• Correct answer: C — Misattribution
+• Grammar and formatting are easy to fix. Misattribution damages relationships.
+• This connects directly to Blind Spots #1 and #5
+• Reinforce: "If minutes say you committed to something you didn't, that's a REAL problem"
+Facilitation tip: If many pick A or B, emphasise that AI writing quality is usually fine — the CONTENT accuracy is what fails.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 13: CHAPTER 04 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">04</div>
+    <div class="chapter-title">Verification</div>
+    <div class="chapter-sub">The 4-Check System — your quality gate for AI-generated documentation</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Now you know what goes wrong. Let's build the system that catches it every time."]
+Key talking points:
+• This is the systematic approach — not just "read it and hope you notice errors"
+• 4 checks, under 2 minutes total, catches 95% of issues
+Facilitation tip: "This system turns verification from 'I'll glance at it' into a reliable, repeatable process."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 14: THE 4-CHECK SYSTEM ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">The 4-Check Verification System</h2>
+    <div class="accent-bar"></div>
+    <p style="font-size:14px;color:var(--text-muted);margin-bottom:10px;">Run these 4 checks on EVERY AI-generated document. Total time: ~90 seconds.</p>
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <div class="check-row fragment fade-up" style="padding:8px 0;">
+        <span class="check-icon">1️⃣</span>
+        <div><strong style="color:var(--mint);">Attribution Check</strong> <span style="color:var(--text-muted);font-size:14px;">(30s)</span> — Did each person actually say/commit to what the minutes claim?</div>
+      </div>
+      <div class="check-row fragment fade-up" style="padding:8px 0;">
+        <span class="check-icon">2️⃣</span>
+        <div><strong style="color:var(--mint);">Completeness Check</strong> <span style="color:var(--text-muted);font-size:14px;">(20s)</span> — Are any discussed topics or decisions missing from the output?</div>
+      </div>
+      <div class="check-row fragment fade-up" style="padding:8px 0;">
+        <span class="check-icon">3️⃣</span>
+        <div><strong style="color:var(--mint);">Accuracy Check</strong> <span style="color:var(--text-muted);font-size:14px;">(20s)</span> — Are dates, numbers, and specifics correct? No invented details?</div>
+      </div>
+      <div class="check-row fragment fade-up" style="padding:8px 0;">
+        <span class="check-icon">4️⃣</span>
+        <div><strong style="color:var(--mint);">Tone Check</strong> <span style="color:var(--text-muted);font-size:14px;">(15s)</span> — Does the language match the actual certainty level? No upgraded discussions to decisions?</div>
+      </div>
+    </div>
+    <div class="loop-footer fragment fade-up" style="margin-top:14px;">🛡️ Check #1 catches Blind Spots 1-2. Check #4 catches Blind Spot #5 (the commitment trap).</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Here's your verification system — 4 checks, 90 seconds, catches almost everything."]
+Key talking points:
+• Walk through each check with timing — emphasise this is FAST
+• Attribution (30s): scan every "X said" or "X will" — verify against raw notes
+• Completeness (20s): were all topics covered? Any missing decisions?
+• Accuracy (20s): dates, numbers, names — quick factual scan
+• Tone (15s): "committed to" vs "discussed" vs "proposed" — language precision
+Discussion prompt: "Which check do you think most people would skip? That's probably the most important one."
+Facilitation tip: Answer: Tone check. People assume language is fine if facts are right — but tone errors create false commitments.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 15: QA PROMPT TECHNIQUE ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">QA Prompt Technique — Self-Critique</h2>
+    <div class="accent-bar"></div>
+    <p style="font-size:14px;color:var(--text-muted);margin-bottom:12px;">Use these prompts AFTER generating minutes to make AI check its own work:</p>
+    <div class="card fragment fade-up" style="border:1px solid var(--mint);padding:14px 16px;margin-bottom:10px;">
+      <div style="font-size:13px;font-weight:700;color:var(--mint);letter-spacing:1px;margin-bottom:6px;">QA PROMPT 1: Attribution Audit</div>
+      <div style="font-size:14px;color:var(--text-light);line-height:1.6;font-family:monospace;background:rgba(0,0,0,0.3);padding:10px 14px;border-radius:6px;">"Review the minutes you just generated against the raw notes I provided. For each statement attributed to a specific person, confirm it appears in the original notes. Flag any attribution you're uncertain about."</div>
+    </div>
+    <div class="card fragment fade-up" style="border:1px solid var(--blue);padding:14px 16px;">
+      <div style="font-size:13px;font-weight:700;color:var(--blue);letter-spacing:1px;margin-bottom:6px;">QA PROMPT 2: Commitment Audit</div>
+      <div style="font-size:14px;color:var(--text-light);line-height:1.6;font-family:monospace;background:rgba(0,0,0,0.3);padding:10px 14px;border-radius:6px;">"Check each action item and commitment in the output. For each one, rate your confidence (high/medium/low) that this was actually AGREED vs merely discussed. Flag anything below 'high' confidence."</div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:10px;">💡 These prompts catch ~60% of errors automatically. Human review catches the remaining 40%.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Here's the power move — make AI critique its OWN output before you even start your manual check."]
+Key talking points:
+• QA Prompt 1 targets Blind Spots #1 and #2 (attribution, invented attendees)
+• QA Prompt 2 targets Blind Spot #5 (decisions vs discussions)
+• These don't replace human verification — they pre-filter the obvious issues
+• You'll use these in the hands-on exercise
+Discussion prompt: "Why do you think asking AI to check itself works at all?"
+Facilitation tip: Answer: it forces re-examination of the original input. The model re-reads your notes with a critical lens instead of a generative one.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 16: CHAPTER 05 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">05</div>
+    <div class="chapter-title">Hands-On Practice</div>
+    <div class="chapter-sub">Full pipeline exercise — from raw notes to verified follow-up email</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Time to put the full pipeline into practice. You're going to do all 5 steps right now."]
+Key talking points:
+• This is the extended exercise — ~20 minutes for the full pipeline
+• They'll use the raw meeting notes provided (or their own)
+• Each step builds on the previous one
+Facilitation tip: "This is where it all comes together. By the end you'll have a complete, verified documentation package."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 17: EXERCISE INTRO — RAW NOTES ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:12px;">
+    <div class="practical-badge" style="padding:4px 14px;font-size:13px;margin-bottom:10px;">🔨 PIPELINE EXERCISE</div>
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Your Raw Meeting Notes</h2>
+    <div class="accent-bar"></div>
+    <div style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Use these notes for the next 4 steps — or substitute your own real notes.</div>
+    <div class="card" style="border:1px solid var(--mint);padding:14px 16px;">
+      <div style="font-size:13px;font-weight:700;color:var(--mint);letter-spacing:1px;margin-bottom:8px;">RAW NOTES — PRODUCT SYNC</div>
+      <div style="font-size:14px;color:var(--text-light);line-height:1.7;font-family:monospace;white-space:pre-wrap;">Product sync 10am — Sarah, Marcus, Tom, Jenna (remote)
+
+Sarah: dashboard redesign going well, Q2 metrics ready
+Marcus: API integration 2 weeks behind, vendor issue
+  - might need to push phase 1 by a week
+Tom: mobile deprioritised for now, focus on web
+Sarah: can we do phased launch? phase 1 = overview metrics only
+Marcus: screenshots by Mar 15, will use Figma
+Jenna: widget feature pushed to Q3, won't make this sprint
+Tom: staging env flaky again, Sarah to escalate to infra team
+wrap up, next sync Weds</div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Here are your raw meeting notes. Messy, shorthand, incomplete — exactly like real life."]
+Key talking points:
+• Point out what's messy: no timestamps, incomplete sentences, informal language
+• Note the ambiguity: "might need to push" — is that a decision? "can we do phased launch?" — was it agreed?
+• If participants have their own notes, they can use those instead
+Discussion prompt: "What's ambiguous in these notes? What would you need to clarify?"
+Facilitation tip: Highlight 2-3 ambiguities before they start. This primes their verification instinct.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 18: STEP 1 — GENERATE MINUTES ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:12px;">
+    <div class="practical-badge" style="padding:4px 14px;font-size:13px;margin-bottom:10px;">🔨 STEP 1</div>
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Generate Meeting Minutes</h2>
+    <div class="accent-bar"></div>
+    <div style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">⏱️ 4 minutes — paste the raw notes into your AI chat</div>
+    <ul class="practical-steps" style="margin:8px 0;">
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">1</span> Paste the raw meeting notes into your AI tool</li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">2</span> Use a CRAFT prompt: <em style="color:var(--text-muted);">Role: meeting secretary. Action: produce formal minutes. Format: attendees, discussion points, decisions, action items. Constraints: only use information from the notes provided.</em></li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">3</span> Include the <strong style="color:var(--mint);">Anchor Guardrail</strong>: "Do not invent any details not in the notes."</li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">4</span> Review the output — <strong style="color:var(--mint);">don't verify yet</strong>, just note your first impression.</li>
+    </ul>
+    <div class="card fragment fade-up" style="margin-top:8px;border-left:3px solid var(--mint);padding:10px 14px;">
+      <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">💡 Pro tip:</div>
+      <div style="font-size:13px;color:var(--text-muted);">Ask for a "Decisions" section separate from "Discussion" — this forces AI to distinguish them (though verify!).</div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Step 1 — generate the minutes. Don't verify yet, just get the raw output."]
+Key talking points:
+• Emphasise: step 1 is GENERATION only. Verification comes later.
+• The prompt should include Anchor Guardrail — remind them
+• Walk the room — help anyone stuck on prompt construction
+• Note: AI will likely make errors here. That's intentional — they'll catch them in Step 4.
+Discussion prompt: (After) "Did the output look professional? Did anything feel 'off' at first glance?"
+Facilitation tip: Don't reveal errors yet. Let them generate and move to extraction. Verification comes in Step 4.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 19: STEP 2 — EXTRACT ACTION ITEMS ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:12px;">
+    <div class="practical-badge" style="padding:4px 14px;font-size:13px;margin-bottom:10px;">🔨 STEP 2</div>
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Extract Action Items</h2>
+    <div class="accent-bar"></div>
+    <div style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">⏱️ 3 minutes — ask AI to pull out specific commitments</div>
+    <ul class="practical-steps" style="margin:8px 0;">
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">1</span> In the same conversation, ask: <em style="color:var(--text-muted);">"Extract all action items as a table: Owner | Action | Deadline | Confidence Level"</em></li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">2</span> Add constraint: <strong style="color:var(--mint);">"Only include items where someone explicitly agreed to do something. Mark anything uncertain as 'tentative'."</strong></li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">3</span> Review the table — does each action have a clear owner and deadline?</li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">4</span> Note which items feel certain vs which feel assumed by AI.</li>
+    </ul>
+    <div class="card fragment fade-up" style="margin-top:8px;border-left:3px solid #F59E0B;padding:10px 14px;">
+      <div style="font-size:14px;font-weight:700;color:#F59E0B;margin-bottom:4px;">⚠️ Watch for the commitment trap:</div>
+      <div style="font-size:13px;color:var(--text-muted);">Did AI turn "might need to push phase 1" into a firm action item? Did it assign deadlines that weren't stated?</div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Step 2 — extract specific action items. This is where AI gets dangerously creative."]
+Key talking points:
+• The "Confidence Level" column forces AI to flag its own uncertainty
+• Watch for: "Marcus to push phase 1 deadline by 1 week" — was that decided or just floated?
+• The constraint "only include explicit agreements" helps but doesn't guarantee accuracy
+• This step produces the artifact most likely to contain errors
+Discussion prompt: "How many action items did AI find? Do all of them feel like actual commitments?"
+Facilitation tip: Most will get 4-6 action items. Only 2-3 are genuinely committed in the raw notes.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 20: STEP 3 — FOLLOW-UP EMAIL ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:12px;">
+    <div class="practical-badge" style="padding:4px 14px;font-size:13px;margin-bottom:10px;">🔨 STEP 3</div>
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Write Follow-up Email</h2>
+    <div class="accent-bar"></div>
+    <div style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">⏱️ 3 minutes — draft the email you'd send to attendees</div>
+    <ul class="practical-steps" style="margin:8px 0;">
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">1</span> Ask AI: <em style="color:var(--text-muted);">"Based on these minutes, write a follow-up email to all attendees summarising key outcomes and next steps."</em></li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">2</span> Specify format: <strong style="color:var(--mint);">3 sections — Summary, Action Items, Next Meeting. Under 150 words. Professional but warm tone.</strong></li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">3</span> Add constraint: <em style="color:var(--text-muted);">"Use 'discussed' for items not yet decided. Use 'agreed' only for confirmed commitments."</em></li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">4</span> Read the email — would you send this? What needs adjustment?</li>
+    </ul>
+    <div class="card fragment fade-up" style="margin-top:8px;border-left:3px solid var(--mint);padding:10px 14px;">
+      <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">💡 The language precision constraint:</div>
+      <div style="font-size:13px;color:var(--text-muted);">Forcing AI to use "discussed" vs "agreed" prevents the #1 email error — false commitments going to the whole team.</div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Step 3 — turn the minutes into a follow-up email. This is the output people actually read."]
+Key talking points:
+• The email is what gets sent — it's the highest-stakes artifact
+• The language precision constraint is CRITICAL: "discussed" ≠ "agreed" ≠ "committed"
+• Under 150 words forces conciseness — most follow-ups should be scannable
+• The tone should match how they actually write to their team
+Discussion prompt: "Would you send this email as-is? What would you change?"
+Facilitation tip: Most will notice the email sounds "too formal" or "too generic." That's the AI voice problem — fixable with iteration.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 21: STEP 4 — QA SELF-CRITIQUE ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:12px;">
+    <div class="practical-badge" style="padding:4px 14px;font-size:13px;margin-bottom:10px;">🔨 STEP 4</div>
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Run QA Self-Critique</h2>
+    <div class="accent-bar"></div>
+    <div style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">⏱️ 4 minutes — make AI audit its own work, then run your 4-check system</div>
+    <ul class="practical-steps" style="margin:8px 0;">
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">1</span> Use <strong style="color:var(--mint);">QA Prompt 1</strong>: "Review the minutes against the raw notes. Flag any attribution you're uncertain about."</li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">2</span> Use <strong style="color:var(--mint);">QA Prompt 2</strong>: "Rate confidence for each action item: was it agreed or merely discussed?"</li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">3</span> Now run YOUR <strong style="color:var(--mint);">4-Check System</strong> manually: Attribution → Completeness → Accuracy → Tone</li>
+      <li class="fragment fade-up" style="padding:6px 0;"><span class="step-num">4</span> Fix any errors found. How many did AI catch vs how many did YOU catch?</li>
+    </ul>
+    <div class="card fragment fade-up" style="margin-top:8px;border-left:3px solid #27AE60;padding:10px 14px;">
+      <div style="font-size:14px;font-weight:700;color:#27AE60;margin-bottom:4px;">🎯 Success criteria:</div>
+      <div style="font-size:13px;color:var(--text-muted);">After QA, you should have minutes and an email you'd confidently send. All attributions verified, all commitments confirmed.</div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Final step — verification. Make AI check itself, then run your own 4-check system."]
+Key talking points:
+• This is the step most people will want to skip. DON'T.
+• AI self-critique catches ~60% of errors. Your manual check catches the rest.
+• Common findings: AI invented a deadline, AI upgraded "discussed" to "agreed," AI added context not in notes
+• After this step, they should have CLEAN, VERIFIED output
+Discussion prompt: "What did the QA prompts catch that you might have missed? What did YOU catch that AI missed?"
+Facilitation tip: Celebrate catches. "Finding an error is SUCCESS — it means the system works."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 22: QUIZ 2 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz2">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🧠 KNOWLEDGE CHECK</div>
+    <div class="quiz-question">What's the first thing to verify in AI-generated action items?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz2',0,1,'The first check should be: did this person ACTUALLY commit to this task? AI frequently upgrades discussions into commitments. &quot;Marcus mentioned the deadline might slip&quot; becomes &quot;Marcus to push deadline by 1 week&quot; — but nobody agreed to that.')">
+        <span class="opt-letter">A</span><span>That the formatting is consistent</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz2',1,1,'The first check should be: did this person ACTUALLY commit to this task? AI frequently upgrades discussions into commitments. &quot;Marcus mentioned the deadline might slip&quot; becomes &quot;Marcus to push deadline by 1 week&quot; — but nobody agreed to that.')">
+        <span class="opt-letter">B</span><span>That the person actually committed to the task</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz2',2,1,'The first check should be: did this person ACTUALLY commit to this task? AI frequently upgrades discussions into commitments. &quot;Marcus mentioned the deadline might slip&quot; becomes &quot;Marcus to push deadline by 1 week&quot; — but nobody agreed to that.')">
+        <span class="opt-letter">C</span><span>That the deadline is realistic</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz2',3,1,'The first check should be: did this person ACTUALLY commit to this task? AI frequently upgrades discussions into commitments. &quot;Marcus mentioned the deadline might slip&quot; becomes &quot;Marcus to push deadline by 1 week&quot; — but nobody agreed to that.')">
+        <span class="opt-letter">D</span><span>That the grammar is correct</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Quick check on verification priorities."]
+Key talking points:
+• Correct answer: B — That the person actually committed to the task
+• This is the Attribution Check + Tone Check combined
+• Formatting and grammar are almost never wrong with AI — facts and commitments are
+• Realistic deadlines are important but secondary to "did anyone actually agree to this"
+Facilitation tip: Connect back to Blind Spot #5 — the commitment trap is the most dangerous AI error in operational writing.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 23: CHAPTER 06 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">06</div>
+    <div class="chapter-title">Wrap-up</div>
+    <div class="chapter-sub">The commitment trap, key takeaways, and what's next</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Let's close with the most important warning and your takeaways."]
+Key talking points:
+• This closing section reinforces the single most dangerous pattern
+• Then locks in the key habits they're taking away
+Facilitation tip: "This last section is short but critical. The commitment trap slide is what I want you to remember in 6 months."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 24: THE COMMITMENT TRAP ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">⚠️ The Commitment Trap</h2>
+    <div class="accent-bar"></div>
+    <div class="card" style="border:2px solid #E74C3C;padding:18px 20px;margin-bottom:14px;">
+      <div style="font-size:16px;font-weight:700;color:#E74C3C;margin-bottom:10px;">AI's #1 Operational Writing Failure</div>
+      <div style="font-size:15px;color:var(--text-light);line-height:1.7;">
+        AI systematically <strong>upgrades tentative language into firm commitments</strong>.<br><br>
+        <span style="color:var(--text-muted);">What was said:</span> "We might need to push the deadline"<br>
+        <span style="color:#E74C3C;">What AI writes:</span> "Team agreed to extend the deadline by one week"<br><br>
+        <span style="color:var(--text-muted);">What was said:</span> "Can we do a phased launch?"<br>
+        <span style="color:#E74C3C;">What AI writes:</span> "Team committed to phased launch approach"
+      </div>
+    </div>
+    <div class="grid-2col fragment fade-up" style="gap:10px;">
+      <div class="card" style="border-left:3px solid #27AE60;padding:12px 14px;">
+        <div style="font-size:14px;font-weight:700;color:#27AE60;margin-bottom:4px;">Prevention</div>
+        <div style="font-size:13px;color:var(--text-muted);">Add constraint: "Use 'discussed' for items not confirmed. Only use 'agreed' or 'committed' for explicit decisions."</div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--mint);padding:12px 14px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">Detection</div>
+        <div style="font-size:13px;color:var(--text-muted);">In verification, search for "agreed," "committed," "will," "confirmed" — each one needs source verification.</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "This is the single most important warning from today's module."]
+Key talking points:
+• This pattern causes REAL workplace damage — people get held to commitments they never made
+• AI does this because it's trained on formal minutes that use decisive language
+• Prevention: language precision constraints in your prompt
+• Detection: ctrl+F for "agreed" and "committed" in any AI-generated minutes
+• This happens in EVERY AI tool — it's not a bug, it's a fundamental pattern
+Discussion prompt: "Can you think of a scenario where this could cause serious problems at your workplace?"
+Facilitation tip: Share a concrete story: "Imagine sending minutes saying 'VP approved budget increase' when she only said 'interesting idea, let's discuss next week.'"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 25: QUIZ 3 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz3">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🧠 KNOWLEDGE CHECK</div>
+    <div class="quiz-question">AI follow-up email says "team committed to March 30 deadline" but it was only discussed as a possibility. What do you do?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz3',0,2,'Soften to &quot;under discussion&quot; is the correct approach. Sending false commitments damages trust. Deleting entirely loses the information. The right fix preserves the content but corrects the certainty level: &quot;March 30 was discussed as a possible target&quot; or &quot;timeline under discussion.&quot;')">
+        <span class="opt-letter">A</span><span>Send it anyway — close enough to what was discussed</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz3',1,2,'Soften to &quot;under discussion&quot; is the correct approach. Sending false commitments damages trust. Deleting entirely loses the information. The right fix preserves the content but corrects the certainty level: &quot;March 30 was discussed as a possible target&quot; or &quot;timeline under discussion.&quot;')">
+        <span class="opt-letter">B</span><span>Delete the line entirely</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz3',2,2,'Soften to &quot;under discussion&quot; is the correct approach. Sending false commitments damages trust. Deleting entirely loses the information. The right fix preserves the content but corrects the certainty level: &quot;March 30 was discussed as a possible target&quot; or &quot;timeline under discussion.&quot;')">
+        <span class="opt-letter">C</span><span>Soften to "March 30 timeline under discussion" — preserve info, fix certainty</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz3',3,2,'Soften to &quot;under discussion&quot; is the correct approach. Sending false commitments damages trust. Deleting entirely loses the information. The right fix preserves the content but corrects the certainty level: &quot;March 30 was discussed as a possible target&quot; or &quot;timeline under discussion.&quot;')">
+        <span class="opt-letter">D</span><span>Ask AI to rewrite it with more context</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "One more scenario quiz — the commitment trap in action."]
+Key talking points:
+• Correct answer: C — Soften the language to match actual certainty
+• A is dangerous: false commitments erode trust
+• B loses valuable information: the date WAS discussed
+• D might help but doesn't address the core issue (you need to fix it yourself)
+• The fix pattern: keep the fact, adjust the certainty level
+Facilitation tip: Emphasise this is a 5-second fix that prevents major problems. "discussed as possible" vs "committed to" is the difference.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 26: KEY TAKEAWAYS ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Key Takeaways</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2x2" style="margin-top:10px;gap:10px;">
+      <div class="closing-card fragment scale-in" style="padding:14px 16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">🔄 Use the 5-step pipeline</div>
+        <div>Capture → Structure → Minutes → Actions → Follow-up. Under 7 minutes per meeting for complete documentation.</div>
+      </div>
+      <div class="closing-card fragment scale-in" style="padding:14px 16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">👁️ Know the 5 blind spots</div>
+        <div>Attribution, invented attendees, missing context, org hierarchy, decisions vs discussions. Check for all five.</div>
+      </div>
+      <div class="closing-card fragment scale-in" style="padding:14px 16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">✅ Always run the 4-check system</div>
+        <div>Attribution (30s) → Completeness (20s) → Accuracy (20s) → Tone (15s). Non-negotiable before sending.</div>
+      </div>
+      <div class="closing-card fragment scale-in" style="padding:14px 16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">⚠️ Watch the commitment trap</div>
+        <div>AI upgrades "discussed" to "committed." Search for decisive language and verify every instance against source.</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:10px;">💡 Start with your next meeting. Raw notes in → verified minutes out. Under 7 minutes. Every time.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Let's lock in the key habits from today."]
+Key talking points:
+• Walk through each card — 1 sentence per takeaway
+• The pipeline is the workflow, the blind spots are the risks, the 4-check is the safety net
+• The commitment trap is the #1 thing to watch for
+• Challenge them: "Use this system for your very next meeting"
+Discussion prompt: "Which takeaway will you apply first? Which feels most urgent?"
+Facilitation tip: Go around — have each person commit to using the pipeline for one specific meeting this week.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 27: NEXT MODULE PREVIEW ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Coming Next: Module 4</h2>
+    <div class="accent-bar"></div>
+    <div class="card" style="border:1px solid var(--mint);margin-bottom:12px;padding:16px;">
+      <div style="font-size:17px;font-weight:700;color:var(--mint);margin-bottom:8px;">Data Analysis &amp; Decision Support</div>
+      <div style="font-size:14px;color:var(--text-muted);line-height:1.6;">
+        • Turning spreadsheets and reports into insights with AI<br>
+        • Chain-of-thought prompting for complex analysis<br>
+        • Building decision frameworks with AI assistance<br>
+        • Working with structured data: tables, CSVs, dashboards<br>
+        • When to trust AI analysis — and when to verify manually
+      </div>
+    </div>
+    <div class="card fragment fade-up" style="border-left:3px solid #F59E0B;padding:12px 16px;">
+      <div style="font-size:14px;font-weight:700;color:#F59E0B;margin-bottom:4px;">📝 Before Module 4:</div>
+      <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">
+        1. Use the full pipeline on at least <strong style="color:var(--text-light);">2 real meetings</strong> this week<br>
+        2. Run the 4-check system every time — track how many errors you catch<br>
+        3. Save your best prompts as templates for meeting documentation
+      </div>
+    </div>
+    <div class="teaser fragment fade-up" style="margin-top:10px;">🔮 Module 4 takes your prompt skills into data territory — where AI really shines (and really misleads)</div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Here's what's coming next — and what to practice between now and then."]
+Key talking points:
+• Module 4 builds on the verification habit established here
+• Homework: use the pipeline on 2+ real meetings. Track errors caught.
+• The more they practice, the faster verification becomes
+• Module 4 preview: same verification principles, applied to data analysis
+Discussion prompt: "What meeting this week will you try the pipeline on first?"
+Facilitation tip: End with forward momentum — "You now have a complete system. Go use it. Come back with stories."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 28: THANK YOU ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:60px;text-align:center;">
+    <div style="width:100%;height:4px;background:linear-gradient(90deg,var(--blue),var(--mint));border-radius:2px;margin-bottom:40px;"></div>
+    <div style="font-size:32px;font-weight:800;color:var(--text-light);margin-bottom:12px;">Thank You! 🎉</div>
+    <div style="font-size:18px;color:var(--mint);margin-bottom:8px;">Module 3: AI as Notetaker &amp; Operational Writing — Complete</div>
+    <div style="font-size:15px;color:var(--text-muted);margin-bottom:40px;">You now have: 5-step pipeline • Blind spot awareness • 4-check verification • QA prompts • Commitment trap detection</div>
+    <div class="title-rule" style="margin:0 auto 24px auto;"></div>
+    <div class="title-author" style="text-align:center;">Gen AI Inc</div>
+    <div class="title-date" style="text-align:center;">AI Skills Studio 2025</div>
+    <div class="keyboard-hint" style="justify-content:center;position:static;margin-top:40px;">
+      <span style="font-size:14px;color:var(--text-muted);">Questions? Connect during the break or on the course channel.</span>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: Final wrap-up and dismissal]
+Key talking points:
+• Thank them for their participation and hands-on engagement
+• Remind: homework is 2 real meetings with the full pipeline
+• Module 4 date/time reminder
+• Offer to stay for questions
+Facilitation tip: End on time and with energy. "Your next meeting is your testing ground. See you at Module 4."
+  </aside>
+</section>
+
+</div><!-- /.slides -->
+</div><!-- /.reveal -->
+
+<!-- Reveal.js & Initialization -->
+<script type="module">
+  import Reveal from 'https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.esm.js';
+  import RevealNotes from 'https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.esm.js';
+
+  const deck = Reveal.initialize({
+    hash: true,
+    slideNumber: function(slide) {
+      const h = Reveal.getIndices(slide).h + 1;
+      return [h + ' / 28'];
+    },
+    showSlideNumber: 'all',
+    progress: true,
+    keyboard: true,
+    overview: true,
+    center: true,
+    touch: true,
+    loop: false,
+    autoSlide: 0,
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    width: 1280,
+    height: 720,
+    margin: 0.06,
+    minScale: 0.2,
+    maxScale: 2.0,
+    plugins: [RevealNotes]
+  });
+
+  deck.then(() => {
+    const navLinks = document.querySelectorAll('#session-nav a');
+    const chapters = [3, 5, 8, 12, 15, 22];
+
+    function updateNav() {
+      const current = Reveal.getIndices().h;
+      navLinks.forEach((link, i) => {
+        link.classList.remove('nav-active');
+        if (i < chapters.length - 1 && current >= chapters[i] && current < chapters[i+1]) {
+          link.classList.add('nav-active');
+        } else if (i === chapters.length - 1 && current >= chapters[i]) {
+          link.classList.add('nav-active');
+        }
+      });
+    }
+
+    Reveal.on('slidechanged', updateNav);
+    updateNav();
+  });
+</script>
+
+<!-- Graceful fallback for offline use -->
+<noscript>
+  <style>
+    .reveal .fragment { opacity: 1 !important; transform: none !important; }
+    .reveal .slides section { display: block !important; }
+  </style>
+</noscript>
+<script>
+  window.addEventListener('error', function(e) {
+    if (e.filename && e.filename.includes('reveal')) {
+      document.querySelectorAll('.fragment').forEach(function(el) {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+      document.querySelector('.reveal').style.overflow = 'auto';
+      document.querySelectorAll('.reveal .slides section').forEach(function(s) {
+        s.style.display = 'block';
+        s.style.position = 'relative';
+        s.style.width = '100%';
+        s.style.minHeight = '100vh';
+        s.style.padding = '48px';
+        s.style.boxSizing = 'border-box';
+        s.style.borderBottom = '2px solid rgba(8,145,178,0.3)';
+      });
+    }
+  }, true);
+</script>
+
+<!-- Quiz handler -->
+<script>
+  function quizAnswer(slideId, selectedIdx, correctIdx, explanation) {
+    var container = document.getElementById(slideId);
+    if (!container) return;
+    var opts = container.querySelectorAll('.quiz-opt');
+    opts.forEach(function(opt, i) {
+      opt.classList.add('disabled');
+      if (i === correctIdx) {
+        opt.classList.add('correct');
+        opt.querySelector('.opt-letter').textContent = '✓';
+      }
+      if (i === selectedIdx && selectedIdx !== correctIdx) {
+        opt.classList.add('wrong');
+        opt.querySelector('.opt-letter').textContent = '✗';
+      }
+    });
+    var explainEl = container.querySelector('.quiz-explain');
+    if (explainEl) {
+      explainEl.textContent = explanation;
+      explainEl.classList.add('show');
+    }
+  }
+  window.quizAnswer = quizAnswer;
+</script>
+
+<!-- Tooltip mobile tap-to-toggle -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.tip').forEach(function(el) {
+      el.setAttribute('tabindex', '0');
+      el.addEventListener('click', function(e) {
+        e.stopPropagation();
+        document.querySelectorAll('.tip .tip-content').forEach(function(t) {
+          t.style.display = 'none';
+        });
+        var content = el.querySelector('.tip-content');
+        if (content) {
+          content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        }
+      });
+    });
+    document.addEventListener('click', function() {
+      document.querySelectorAll('.tip .tip-content').forEach(function(t) {
+        t.style.display = '';
+      });
+    });
+  });
+</script>
+
+<!-- Passcode Gate -->
+<script>
+  (function() {
+    var PASSCODE = 'G2026';
+    var gate = document.getElementById('passcode-gate');
+    var input = document.getElementById('gate-input');
+    var error = document.getElementById('gate-error');
+    var nav = document.getElementById('session-nav');
+
+    if (sessionStorage.getItem('ai-studio-auth') === 'true') {
+      gate.style.display = 'none';
+      nav.style.display = 'flex';
+    } else {
+      document.querySelector('.reveal').style.display = 'none';
+    }
+
+    input.addEventListener('input', function() {
+      error.style.display = 'none';
+      if (input.value.length === 5) {
+        if (input.value.toUpperCase() === PASSCODE) {
+          sessionStorage.setItem('ai-studio-auth', 'true');
+          gate.style.display = 'none';
+          nav.style.display = 'flex';
+          document.querySelector('.reveal').style.display = '';
+          setTimeout(function() {
+            if (window.Reveal && window.Reveal.layout) {
+              window.Reveal.layout();
+            }
+          }, 100);
+        } else {
+          error.style.display = 'block';
+          input.value = '';
+          input.focus();
+        }
+      }
+    });
+
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && input.value.length >= 4) {
+        if (input.value.toUpperCase() === PASSCODE) {
+          sessionStorage.setItem('ai-studio-auth', 'true');
+          gate.style.display = 'none';
+          nav.style.display = 'flex';
+          document.querySelector('.reveal').style.display = '';
+          setTimeout(function() {
+            if (window.Reveal && window.Reveal.layout) {
+              window.Reveal.layout();
+            }
+          }, 100);
+        } else {
+          error.style.display = 'block';
+          input.value = '';
+        }
+      }
+    });
+
+    setTimeout(function() { input.focus(); }, 300);
+  })();
+</script>
+</body>
+</html>
