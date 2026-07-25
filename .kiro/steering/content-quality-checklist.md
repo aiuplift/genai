@@ -70,14 +70,28 @@ Use this checklist before finalising any module content (both trainer slides and
 
 | Content Type | Layout Pattern |
 |-------------|---------------|
+| **Recap (opening)** | Summary card (2-col: prior module key points) + 3-4 quiz slides from previous modules |
 | Concept introduction | Chapter slide (big number + title + subtitle) |
 | Comparison (A vs B) | 2-column grid with contrasting colours |
 | List of items (3-6) | Card grid (2×3 or 3-col) |
-| Process/pipeline | Numbered steps with icons |
+| Process/pipeline | Numbered steps with icons (loop-steps pattern) |
 | Case study | Quote + scenario cards |
 | Quiz | Full-width question + 2×2 option grid |
-| Activity prompt | Highlighted card with timer/instructions |
+| Activity prompt | Highlighted card with timer/instructions on #1A1050 background |
 | Transition | Chapter slide with rule line |
+
+### Recap Slide Standard (Module 3+)
+Every module from Module 3 onward MUST open with:
+1. **Recap summary slide** — 2-column card layout with bullet-point key takeaways from ALL prior modules
+2. **3-4 recap quiz slides** — one question per slide, mixing concepts from prior modules, with explanations that bridge to the current module's topic
+3. This section takes ~5-6 minutes and serves as warm-up + knowledge validation
+
+### Example & Scenario Guidelines
+- All examples MUST be industry-agnostic (finance, HR, admin, law, teaching, operations)
+- NEVER use software engineering examples (no APIs, sprints, deployments, code reviews)
+- Use recurring characters: Rachel (dept head/CFO), Amit (operations), Priya (finance/accounts), Kenji (HR)
+- Scenarios should feel familiar to professionals in ANY white-collar role
+- Include variety: meetings, emails, reports, proposals, performance reviews, budgets, compliance
 
 ## 4. Student Exercise View Standards
 
@@ -133,8 +147,11 @@ For each completed module, these files must exist:
 - [ ] **Real tool names** — use actual product names (ChatGPT, Claude, Gemini, not "AI tool")
 - [ ] **Current information** — tool capabilities and pricing reflect 2025 reality
 - [ ] **Professional context** — every example relates to workplace scenarios professionals encounter
+- [ ] **Industry-agnostic examples** — use scenarios from general administration, finance, HR, law, teaching, operations — NOT software engineering. Professionals from any field should see themselves in the examples.
 - [ ] **Engagement prompts** — at least 3 "pause and think" or "discuss with your neighbour" moments per module
 - [ ] **No filler** — every paragraph earns its place; cut anything that doesn't teach or prompt action
+- [ ] **Recap at start** — every module from Module 3 onward starts with: 1 recap summary slide (prior modules' key points) + 3-4 quiz questions from previous modules
+- [ ] **Consistent characters** — use recurring professional characters across modules (Rachel/CFO, Amit/ops, Priya/finance, Kenji/HR) to build familiarity
 
 ## 10. Common Issues & Fixes
 
