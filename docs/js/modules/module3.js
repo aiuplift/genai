@@ -50,7 +50,7 @@ Research consistently shows that 73% of action items from undocumented meetings 
 
 <strong>What good operational documentation does:</strong>
 
-• <strong>Creates accountability.</strong> When "Marcus will deliver mockups by March 15" is written in official minutes and emailed to all attendees, it's a commitment. When it's just something someone said during a rambling discussion, it's a hope.
+• <strong>Creates accountability.</strong> When "Amit will submit the revised budget forecast by December 15" is written in official minutes and emailed to all attendees, it's a commitment. When it's just something someone said during a rambling discussion, it's a hope.
 
 • <strong>Protects against revisionism.</strong> Three weeks from now, when someone says "We never agreed to that timeline," documented minutes are your evidence. Without them, it's your word against theirs.
 
@@ -74,7 +74,7 @@ But here's the critical caveat: AI-generated documentation that contains errors 
 <strong>Step 1: Raw Capture</strong>
 This is what you actually produce during a meeting — shorthand, half-sentences, abbreviations, arrows, names without context. It might be typed notes, a voice transcript, or a Slack thread summary. The key characteristic: it makes sense to you right now, but it won't make sense to anyone else (or to you in two weeks).
 
-<em>Example:</em> "Sarah — dashboard Q2, Marcus API behind 2wks, phased launch? phase1=overview metrics, Tom mobile deprioritised, screenshots Mar15 Marcus Figma, Jenna widget NO q3, staging flaky Sarah escalate infra"
+<em>Example:</em> "Rachel — Q3 results good retention up, Amit ops stretched need 2 hires? contractors cheaper?, Priya budget review Dec 15 waiting on revenue, training $40K underspent reallocate?, Kenji reviews due EOM 3 leads late, push to Jan 5? check compliance, Amit lease renewal Nov 30"
 
 <strong>Step 2: Structure</strong>
 AI takes the raw capture and identifies the underlying structure: who was present, what topics were discussed, what decisions were made, what remains unresolved. This is where AI shines — it's essentially a pattern-recognition task, extracting signal from noise.
@@ -122,7 +122,7 @@ Give AI a 2000-word stream-of-consciousness meeting transcript, and it will iden
 
 AI is remarkably good at distinguishing between "things that were discussed" and "things someone actually committed to doing." It picks up linguistic cues: "I'll handle that," "Can you send me," "Let's make sure we," "The deadline is." When prompted correctly, it separates aspirational discussion from concrete commitments.
 
-<em>Real example:</em> In the same meeting transcript, the AI correctly identifies that "We should think about mobile responsiveness" is a discussion point (no owner, no deadline, no commitment), while "Marcus, can you get mockups to product marketing by March 15?" is an action item with a clear owner and deadline.
+<em>Real example:</em> In the same meeting transcript, the AI correctly identifies that "We should think about expanding to the Melbourne office" is a discussion point (no owner, no deadline, no commitment), while "Priya, can you get the revised budget to Rachel by December 15?" is an action item with a clear owner and deadline.
 
 <strong>3. Maintaining Consistent Formatting</strong>
 
@@ -149,15 +149,15 @@ This is the underrated benefit. When documentation takes 15-30 minutes, you skip
 
 AI frequently gets wrong who said what, who made which decision, and who committed to which action item. This happens because AI doesn't "know" the speakers as individuals — it's working from text patterns and making probabilistic guesses about which statement belongs to which person.
 
-<em>Workplace scenario:</em> Your meeting notes say "Sarah suggested phased launch, Marcus agreed." AI generates minutes stating "Marcus proposed a phased launch approach, which Sarah endorsed." Now Marcus gets credit for Sarah's idea, and Sarah's contribution is erased. If Sarah reads these minutes, she'll question whether you were paying attention — or whether you're playing politics.
+<em>Workplace scenario:</em> Your meeting notes say "Rachel suggested freezing discretionary spending, Amit agreed it was worth considering." AI generates minutes stating "Amit proposed a spending freeze, which Rachel endorsed." Now Amit gets credit for Rachel's idea, and the tentative nature of the suggestion is lost. If Amit reads these minutes, he'll wonder why he's now the sponsor of a policy he merely acknowledged.
 
-<em>Worse scenario:</em> AI attributes a controversial statement to the wrong person. "Tom expressed concerns about the timeline being unrealistic" — but it was actually the VP who said that. Now Tom looks like he's pushing back on leadership's plan, when he was actually supportive.
+<em>Worse scenario:</em> AI attributes a controversial statement to the wrong person. "Kenji expressed concerns about the performance review timeline being unrealistic" — but it was actually the department head who said that. Now Kenji looks like he's pushing back on the process, when he was actually just checking compliance requirements.
 
 <strong>2. Invented Attendees and Participants</strong>
 
 If your notes mention names without specifying roles or attendance, AI may add people to the attendee list who weren't present, or assign roles and titles that don't match reality. It fills gaps with plausible-sounding information rather than flagging uncertainty.
 
-<em>Workplace scenario:</em> Your notes mention "Jenna's widget request." AI generates an attendee list that includes Jenna — but Jenna wasn't at the meeting. Her request was just referenced in discussion. Now Jenna gets a follow-up email about "action items from our meeting" and is confused because she never attended.
+<em>Workplace scenario:</em> Your notes mention "the external auditor's recommendations." AI generates an attendee list that includes the external auditor — but they weren't at the meeting. Their report was just referenced in discussion. Now the auditor gets a follow-up email about "action items from our meeting" and is confused because they never attended.
 
 <strong>3. Context-Dependent Decisions That AI Can't Interpret</strong>
 
@@ -237,7 +237,7 @@ Read the follow-up email or distribution copy from the recipient's perspective. 
 What to look for:
 • Language that's more formal or informal than your organisation's norms
 • Phrasing that could sound accusatory when reporting who's responsible for delays
-• Commitments stated more strongly than they were actually made ("Sarah committed to..." vs "Sarah said she'd try to...")
+• Commitments stated more strongly than they were actually made ("Rachel committed to approving the budget..." vs "Rachel said she'd review it next week...")
 • Missing acknowledgments or courtesies your team expects
 
 <em>Technique:</em> Imagine the most sensitive person on the recipient list reading this document. Would anything make them uncomfortable, confused, or defensive? Adjust accordingly.
