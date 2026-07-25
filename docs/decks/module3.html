@@ -119,12 +119,12 @@
 <!-- SESSION NAV BAR -->
 <div id="session-nav" style="display:none;">
   <span class="nav-label">MODULE 3:</span>
-  <a href="#" data-nav="0" onclick="Reveal.slide(5);return false;">01 Why It Matters</a>
-  <a href="#" data-nav="1" onclick="Reveal.slide(7);return false;">02 Pipeline</a>
-  <a href="#" data-nav="2" onclick="Reveal.slide(10);return false;">03 Blind Spots</a>
-  <a href="#" data-nav="3" onclick="Reveal.slide(14);return false;">04 Verification</a>
-  <a href="#" data-nav="4" onclick="Reveal.slide(17);return false;">05 Practice</a>
-  <a href="#" data-nav="5" onclick="Reveal.slide(24);return false;">06 Wrap-up</a>
+  <a href="#" data-nav="0" onclick="Reveal.slide(8);return false;">01 Why It Matters</a>
+  <a href="#" data-nav="1" onclick="Reveal.slide(10);return false;">02 Pipeline</a>
+  <a href="#" data-nav="2" onclick="Reveal.slide(13);return false;">03 Blind Spots</a>
+  <a href="#" data-nav="3" onclick="Reveal.slide(17);return false;">04 Verification</a>
+  <a href="#" data-nav="4" onclick="Reveal.slide(20);return false;">05 Practice</a>
+  <a href="#" data-nav="5" onclick="Reveal.slide(27);return false;">06 Wrap-up</a>
 </div>
 
 <div class="reveal">
@@ -199,35 +199,111 @@ Facilitation tip: Spend 30 seconds collecting 1-2 quick stories from homework. V
   </aside>
 </section>
 
-<!-- ==================== SLIDE 3: RECAP QUIZ ==================== -->
-<section data-background-color="#0F0A2E" id="quiz-recap">
+<!-- ==================== SLIDE 3: RECAP QUIZ 1 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-recap1">
   <div style="padding-top:28px;">
-    <div class="quiz-label">🔄 RECAP CHECK</div>
-    <div class="quiz-question">In the CRAFT framework, what does the "Anchor Guardrail" constraint do?</div>
+    <div class="quiz-label">🔄 RECAP — QUESTION 1 of 4</div>
+    <div class="quiz-question">How does Generative AI produce its output?</div>
     <div class="quiz-options">
-      <div class="quiz-opt" onclick="quizAnswer('quiz-recap',0,1,'The Anchor Guardrail — &quot;Do not invent details I have not provided&quot; — prevents AI from hallucinating specific facts, policies, dates, or statistics. It forces the model to work only with information you supply, dramatically reducing fabrication.')">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',0,1,'GenAI predicts the most likely next token based on patterns learned during training. It doesn\'t search databases, understand meaning, or reason — it calculates probabilities one token at a time.')">
+        <span class="opt-letter">A</span><span>It searches the internet for the best answer</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',1,1,'GenAI predicts the most likely next token based on patterns learned during training. It doesn\'t search databases, understand meaning, or reason — it calculates probabilities one token at a time.')">
+        <span class="opt-letter">B</span><span>It predicts the next most likely token based on learned patterns</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',2,1,'GenAI predicts the most likely next token based on patterns learned during training. It doesn\'t search databases, understand meaning, or reason — it calculates probabilities one token at a time.')">
+        <span class="opt-letter">C</span><span>It copies from a database of pre-written responses</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',3,1,'GenAI predicts the most likely next token based on patterns learned during training. It doesn\'t search databases, understand meaning, or reason — it calculates probabilities one token at a time.')">
+        <span class="opt-letter">D</span><span>It truly understands and reasons about the question</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] [TRANSITION: "Let's warm up with 4 quick recap questions from Modules 1 and 2."]
+Key talking points: Module 1 core concept. Answer B. If they don't get this, briefly revisit the autocomplete model.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 4: RECAP QUIZ 2 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-recap2">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🔄 RECAP — QUESTION 2 of 4</div>
+    <div class="quiz-question">What does the "Anchor Guardrail" constraint do?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',0,1,'The Anchor Guardrail — &quot;Do not invent details I have not provided&quot; — prevents AI from hallucinating specific facts, policies, dates, or statistics. Essential for today\'s module on meeting documentation.')">
         <span class="opt-letter">A</span><span>Makes AI write longer and more detailed responses</span>
       </div>
-      <div class="quiz-opt" onclick="quizAnswer('quiz-recap',1,1,'The Anchor Guardrail — &quot;Do not invent details I have not provided&quot; — prevents AI from hallucinating specific facts, policies, dates, or statistics. It forces the model to work only with information you supply, dramatically reducing fabrication.')">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',1,1,'The Anchor Guardrail — &quot;Do not invent details I have not provided&quot; — prevents AI from hallucinating specific facts, policies, dates, or statistics. Essential for today\'s module on meeting documentation.')">
         <span class="opt-letter">B</span><span>Prevents AI from inventing details you didn't provide</span>
       </div>
-      <div class="quiz-opt" onclick="quizAnswer('quiz-recap',2,1,'The Anchor Guardrail — &quot;Do not invent details I have not provided&quot; — prevents AI from hallucinating specific facts, policies, dates, or statistics. It forces the model to work only with information you supply, dramatically reducing fabrication.')">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',2,1,'The Anchor Guardrail — &quot;Do not invent details I have not provided&quot; — prevents AI from hallucinating specific facts, policies, dates, or statistics. Essential for today\'s module on meeting documentation.')">
         <span class="opt-letter">C</span><span>Forces AI to use formal academic language</span>
       </div>
-      <div class="quiz-opt" onclick="quizAnswer('quiz-recap',3,1,'The Anchor Guardrail — &quot;Do not invent details I have not provided&quot; — prevents AI from hallucinating specific facts, policies, dates, or statistics. It forces the model to work only with information you supply, dramatically reducing fabrication.')">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',3,1,'The Anchor Guardrail — &quot;Do not invent details I have not provided&quot; — prevents AI from hallucinating specific facts, policies, dates, or statistics. Essential for today\'s module on meeting documentation.')">
         <span class="opt-letter">D</span><span>Makes AI ask clarifying questions before responding</span>
       </div>
     </div>
     <div class="quiz-explain"></div>
   </div>
   <aside class="notes">
-[TIMING: 2 min] [TRANSITION: "Quick check — do we remember the key concept from Module 2?"]
-Key talking points:
-• Correct answer: B — prevents hallucination of details
-• This is CRITICAL for Module 3: meeting minutes are full of specific details AI might invent
-• If participants get this wrong, briefly re-explain the Anchor Guardrail before proceeding
-Discussion prompt: "Who has already used the Anchor Guardrail since Module 2? Did it help?"
-Facilitation tip: If most get it right, move quickly. If many get it wrong, spend 60 extra seconds on the concept — it's essential for today.
+[TIMING: 1 min] Key talking points: Module 2 core concept. Answer B. This is the foundation of today's verification approach.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 5: RECAP QUIZ 3 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-recap3">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🔄 RECAP — QUESTION 3 of 4</div>
+    <div class="quiz-question">In the 3-step iteration workflow, what is the purpose of Step 3 (Verify)?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',0,2,'Step 3 asks the AI to self-critique: &quot;What did you assume? What might be wrong?&quot; This catches hallucinations and assumptions that slip through the first two steps. Critical for meeting documentation.')">
+        <span class="opt-letter">A</span><span>Ask AI to make the output longer</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',1,2,'Step 3 asks the AI to self-critique: &quot;What did you assume? What might be wrong?&quot; This catches hallucinations and assumptions that slip through the first two steps. Critical for meeting documentation.')">
+        <span class="opt-letter">B</span><span>Submit the output to a different AI tool for comparison</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',2,2,'Step 3 asks the AI to self-critique: &quot;What did you assume? What might be wrong?&quot; This catches hallucinations and assumptions that slip through the first two steps. Critical for meeting documentation.')">
+        <span class="opt-letter">C</span><span>Ask AI to challenge its own output — flag assumptions and potential errors</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',3,2,'Step 3 asks the AI to self-critique: &quot;What did you assume? What might be wrong?&quot; This catches hallucinations and assumptions that slip through the first two steps. Critical for meeting documentation.')">
+        <span class="opt-letter">D</span><span>Translate the output into a different language to check meaning</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] Key talking points: Module 2 iteration concept. Answer C. We'll use this exact technique today as "QA Self-Critique" for meeting minutes.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 6: RECAP QUIZ 4 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-recap4">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🔄 RECAP — QUESTION 4 of 4</div>
+    <div class="quiz-question">An AI-generated email references "our company's flexible Friday policy." You never mentioned this. Which AI failure pattern is this?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap4',0,2,'This is Invented Details (hallucination). AI fabricated a specific policy name that sounds plausible but doesn\'t exist. In meeting minutes, this same pattern appears when AI invents commitments, deadlines, or attendees not in your notes.')">
+        <span class="opt-letter">A</span><span>Tone Mismatch — wrong voice for the audience</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap4',1,2,'This is Invented Details (hallucination). AI fabricated a specific policy name that sounds plausible but doesn\'t exist. In meeting minutes, this same pattern appears when AI invents commitments, deadlines, or attendees not in your notes.')">
+        <span class="opt-letter">B</span><span>Over-Polishing — too formal and generic</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap4',2,2,'This is Invented Details (hallucination). AI fabricated a specific policy name that sounds plausible but doesn\'t exist. In meeting minutes, this same pattern appears when AI invents commitments, deadlines, or attendees not in your notes.')">
+        <span class="opt-letter">C</span><span>Invented Details — AI fabricated a policy that doesn't exist</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap4',3,2,'This is Invented Details (hallucination). AI fabricated a specific policy name that sounds plausible but doesn\'t exist. In meeting minutes, this same pattern appears when AI invents commitments, deadlines, or attendees not in your notes.')">
+        <span class="opt-letter">D</span><span>Wrong Assumptions — AI guessed the wrong industry</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] Key talking points: Module 2 failure patterns. Answer C. Bridge: "This EXACT failure pattern is what we'll encounter — and learn to catch — in meeting minutes today."
+Facilitation tip: After all 4 questions, say "Great — you remember the foundations. Now let's apply them to a real workflow."
+  </aside>
+</section>
   </aside>
 </section>
 
@@ -1100,7 +1176,7 @@ Facilitation tip: End on time and with energy. "Your next meeting is your testin
     hash: true,
     slideNumber: function(slide) {
       const h = Reveal.getIndices(slide).h + 1;
-      return [h + ' / 30'];
+      return [h + ' / 33'];
     },
     showSlideNumber: 'all',
     progress: true,
@@ -1123,7 +1199,7 @@ Facilitation tip: End on time and with energy. "Your next meeting is your testin
 
   deck.then(() => {
     const navLinks = document.querySelectorAll('#session-nav a');
-    const chapters = [5, 7, 10, 14, 17, 24];
+    const chapters = [8, 10, 13, 17, 20, 27];
 
     function updateNav() {
       const current = Reveal.getIndices().h;
