@@ -86,6 +86,16 @@ Every module from Module 3 onward MUST open with:
 2. **3-4 recap quiz slides** — one question per slide, mixing concepts from prior modules, with explanations that bridge to the current module's topic
 3. This section takes ~5-6 minutes and serves as warm-up + knowledge validation
 
+### Character Dialogue Slides
+Every module MUST include **2-3 comic-style dialogue slides** inserted between theory sections to:
+- Break up dense content and recapture attention
+- Illustrate concepts through relatable workplace stories
+- Use recurring characters (Priya/Finance, Amit/Operations, Kenji/HR, Rachel/CFO)
+- Format: DiceBear avataaars avatars + white/coloured speech bubbles with triangular tails
+- Pattern: character makes a mistake → consequences → lesson character explains the fix
+- Place dialogues BEFORE the corresponding practical exercise (primes the learning)
+- Each dialogue should be 3-4 messages max (fits on one slide)
+
 ### Example & Scenario Guidelines
 - All examples MUST be industry-agnostic (finance, HR, admin, law, teaching, operations)
 - NEVER use software engineering examples (no APIs, sprints, deployments, code reviews)
