@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 4: Privacy &amp; Responsible AI Use — AI Skills Studio</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+<style>
+  :root{--navy:#1E1045;--blue:#6C3AED;--mint:#0891B2;--dark-bg:#0F0A2E;--light-bg:#F5F3FF;--card-bg:#1E1B4B;--text-light:#FFFFFF;--text-muted:#A8B4D8;--font:system-ui,'Segoe UI',sans-serif;--practical-bg:#1A1050}
+  .reveal{font-family:var(--font)}.reveal .slides section{text-align:left;padding:0 48px}
+  .reveal .progress{height:4px;color:var(--mint)}.reveal .progress span{background:var(--mint)}
+  .reveal .slide-number{background:rgba(0,0,0,0.4);color:var(--text-muted);font-size:13px;padding:4px 10px;border-radius:4px;font-family:var(--font)}
+  .reveal h1,.reveal h2,.reveal h3{font-family:var(--font);text-transform:none;letter-spacing:-0.5px}
+  .slide-title-dark{color:var(--text-light)!important}.slide-title-light{color:var(--navy)!important}
+  .accent-bar{width:80px;height:4px;background:var(--mint);margin:6px 0 16px 0;border-radius:2px}
+  .card{background:var(--card-bg);border-radius:10px;padding:18px 20px;box-shadow:0 4px 16px rgba(0,0,0,0.25)}
+  .card-light{background:#fff;border-radius:10px;padding:18px 20px;box-shadow:0 2px 12px rgba(30,16,69,0.10)}
+  .card-navy{background:var(--navy);border-radius:10px;padding:18px 20px;box-shadow:0 4px 16px rgba(0,0,0,0.2)}
+  .grid-2col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid-3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .grid-2x3{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:12px}
+  .grid-2x2{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px}
+  .flex-row{display:flex;gap:16px;align-items:stretch}
+  .chapter-num{font-size:96px;font-weight:900;color:var(--mint);opacity:0.85;line-height:1;margin-bottom:8px}
+  .chapter-title{font-size:38px;font-weight:700;color:var(--text-light);margin:0 0 8px 0}
+  .chapter-sub{font-size:17px;color:var(--text-muted);font-style:italic;margin:0}
+  .chapter-rule{width:100px;height:4px;background:var(--mint);border-radius:2px;margin-top:20px}
+  .agenda-num{font-size:28px;font-weight:800;color:var(--mint);margin-bottom:6px}
+  .agenda-title{font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:4px}
+  .agenda-sub{font-size:14px;color:var(--text-muted)}
+  .limit-row{display:flex;align-items:center;background:var(--card-bg);border-radius:8px;padding:10px 18px;margin-bottom:8px;gap:12px}
+  .limit-txt{font-size:16px;color:var(--text-light)}
+  .loop-steps{display:flex;align-items:stretch;gap:0}
+  .loop-step{flex:1;background:var(--navy);border-radius:10px;padding:16px 10px;text-align:center}
+  .loop-step-label{font-size:13px;font-weight:800;color:var(--mint);margin-bottom:10px;letter-spacing:1px}
+  .loop-step-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .loop-arrow{display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--mint);flex-shrink:0;padding:0 6px}
+  .loop-footer{background:rgba(8,145,178,0.12);border-radius:8px;padding:10px 18px;margin-top:16px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .closing-card{background:var(--card-bg);border-radius:10px;padding:16px 18px;border-left:3px solid var(--mint);font-size:15px;color:var(--text-light);line-height:1.5}
+  .footer-bar{background:rgba(8,145,178,0.08);border-radius:8px;padding:8px 16px;margin-top:10px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .footer-bar-dark{background:var(--card-bg);border-radius:8px;padding:8px 16px;margin-top:10px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .teaser{background:var(--card-bg);border-left:3px solid var(--mint);border-radius:8px;padding:10px 16px;font-size:14px;color:var(--text-muted);margin-top:12px;font-style:italic}
+  .tip{position:relative;border-bottom:1px dashed var(--mint);cursor:help;color:inherit;font-weight:inherit}
+  .tip:hover{color:var(--mint)}
+  .tip .tip-content{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--navy);color:var(--text-light);padding:14px 18px;border-radius:10px;font-size:14px;font-weight:400;line-height:1.6;width:340px;max-width:90vw;box-shadow:0 12px 40px rgba(0,0,0,0.7);border:2px solid var(--mint);z-index:99999;text-align:left;font-style:normal}
+  .tip .tip-content::before{content:'💡';display:block;font-size:14px;margin-bottom:6px}
+  .tip:hover .tip-content,.tip:focus .tip-content{display:block}
+  .light-tip .tip-content{background:#fff;color:var(--navy);border-color:var(--blue)}.light-tip{border-bottom-color:var(--blue)}.light-tip:hover{color:var(--blue)}
+  .quiz-label{font-size:13px;font-weight:700;color:var(--mint);letter-spacing:2px;margin-bottom:12px}
+  .quiz-question{font-size:24px;font-weight:700;color:var(--text-light);margin-bottom:24px;line-height:1.4}
+  .quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .quiz-opt{background:var(--card-bg);border-radius:10px;padding:16px 20px;font-size:15px;color:var(--text-light);cursor:pointer;border:2px solid transparent;transition:all 0.2s;display:flex;align-items:center;gap:12px}
+  .quiz-opt:hover{border-color:var(--mint);background:rgba(8,145,178,0.1)}
+  .quiz-opt.correct{background:#1D4A3A!important;border-color:#27AE60!important;cursor:default}
+  .quiz-opt.wrong{background:#4A1D1D!important;border-color:#E74C3C!important;cursor:default;opacity:0.7}
+  .quiz-opt.disabled{pointer-events:none;opacity:0.6}
+  .quiz-opt .opt-letter{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+  .quiz-opt.correct .opt-letter{background:#27AE60;color:#fff}
+  .quiz-opt.wrong .opt-letter{background:#E74C3C;color:#fff}
+  .quiz-explain{margin-top:16px;padding:12px 18px;border-radius:8px;background:rgba(8,145,178,0.1);border-left:3px solid var(--mint);font-size:14px;color:var(--text-muted);display:none;line-height:1.6}
+  .quiz-explain.show{display:block}
+  #session-nav{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;justify-content:center;align-items:center;gap:6px;padding:6px 12px;background:rgba(15,10,46,0.92);backdrop-filter:blur(6px);border-bottom:1px solid rgba(8,145,178,0.2);font-family:var(--font);font-size:11px}
+  #session-nav .nav-label{color:var(--text-muted);font-size:10px;font-weight:700;letter-spacing:1px;margin-right:4px;flex-shrink:0}
+  #session-nav a{color:var(--text-muted);text-decoration:none;padding:3px 10px;border-radius:20px;border:1px solid transparent;transition:all 0.2s;font-size:11px;white-space:nowrap}
+  #session-nav a:hover{color:var(--mint);border-color:var(--mint);background:rgba(8,145,178,0.1)}
+  #session-nav a.nav-active{color:var(--mint);border-color:rgba(8,145,178,0.4)}
+  .title-series{font-size:34px;font-weight:800;color:var(--text-light);margin-bottom:8px;line-height:1.2}
+  .title-session{font-size:19px;font-weight:600;color:var(--mint);margin-bottom:8px}
+  .title-tagline{font-size:15px;color:var(--text-muted);font-style:italic;margin-bottom:32px}
+  .title-rule{width:80px;height:3px;background:var(--mint);border-radius:2px;margin-bottom:24px}
+  .title-author{font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:4px}
+  .title-date{font-size:13px;color:var(--text-muted)}
+  .keyboard-hint{position:absolute;bottom:28px;right:0;font-size:11px;color:rgba(168,180,216,0.6);display:flex;gap:12px;align-items:center}
+  .key{display:inline-block;border:1px solid rgba(168,180,216,0.3);border-radius:4px;padding:2px 7px;font-size:11px;color:rgba(168,180,216,0.7)}
+  .reveal .fragment{opacity:0.15;transition:opacity 0.4s,transform 0.4s}
+  .reveal .fragment.visible{opacity:1}
+  .reveal .fragment.fade-up{transform:translateY(20px)}.reveal .fragment.fade-up.visible{transform:translateY(0)}
+  .reveal .fragment.scale-in{transform:scale(0.85)}.reveal .fragment.scale-in.visible{transform:scale(1)}
+  .light-slide p,.light-slide li{color:var(--navy)}
+  .practical-badge{display:inline-block;background:linear-gradient(135deg,var(--blue),var(--mint));color:#fff;font-size:14px;font-weight:800;padding:6px 16px;border-radius:20px;letter-spacing:1px;margin-bottom:14px}
+  .practical-steps{list-style:none;padding:0;margin:12px 0}
+  .practical-steps li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;font-size:16px;color:var(--text-light)}
+  .practical-steps li .step-num{background:var(--mint);color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+  .check-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(108,58,237,0.15);font-size:16px;color:var(--text-light)}
+  .check-icon{color:var(--mint);font-size:17px;flex-shrink:0}
+  .vs-arrow{display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--mint);font-weight:800;flex-shrink:0;padding:0 8px}
+  #passcode-gate{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--dark-bg);display:flex;align-items:center;justify-content:center;z-index:99999;flex-direction:column;gap:16px}
+  #passcode-gate input{padding:12px 24px;font-size:18px;border-radius:8px;border:2px solid var(--mint);background:var(--card-bg);color:var(--text-light);text-align:center;letter-spacing:4px;width:200px;outline:none}
+  #passcode-gate input:focus{box-shadow:0 0 12px rgba(8,145,178,0.4)}
+  #passcode-gate .gate-title{font-size:24px;color:var(--text-light);font-weight:700}
+  #passcode-gate .gate-hint{font-size:13px;color:var(--text-muted)}
+  #passcode-gate .gate-error{font-size:13px;color:#E74C3C;display:none}
+  .craft-card{background:var(--card-bg);border-radius:10px;padding:16px 14px;text-align:center;border-top:4px solid var(--mint)}
+  .craft-letter{font-size:36px;font-weight:900;color:var(--mint);margin-bottom:4px}
+  .craft-word{font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px}
+  .craft-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .constraint-card{background:var(--card-bg);border-radius:10px;padding:18px 16px;border-left:4px solid var(--mint)}
+  .constraint-title{font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:6px}
+  .constraint-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .failure-card{background:var(--card-bg);border-radius:10px;padding:16px;text-align:center}
+  .failure-icon{font-size:28px;margin-bottom:6px}
+  .failure-title{font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px}
+  .failure-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  /* Global overflow safety net */
+  .reveal .slides section > div { max-height: calc(720px * 0.88 - 40px); overflow: hidden; }
+</style>
+</head>
+<body>
+
+<!-- PASSCODE GATE -->
+<div id="passcode-gate">
+  <div class="gate-title">🔒 AI Skills Studio</div>
+  <div class="gate-hint">Enter session passcode to continue</div>
+  <input type="text" id="gate-input" maxlength="5" placeholder="•••••" autocomplete="off">
+  <div class="gate-error" id="gate-error">Incorrect passcode. Try again.</div>
+</div>
+
+<!-- SESSION NAV BAR -->
+<div id="session-nav" style="display:none;">
+  <span class="nav-label">MODULE 4:</span>
+  <a href="#" data-nav="0" onclick="Reveal.slide(6);return false;">01 Data Problem</a>
+  <a href="#" data-nav="1" onclick="Reveal.slide(9);return false;">02 Framework</a>
+  <a href="#" data-nav="2" onclick="Reveal.slide(13);return false;">03 Anonymize</a>
+  <a href="#" data-nav="3" onclick="Reveal.slide(17);return false;">04 Safe Pattern</a>
+  <a href="#" data-nav="4" onclick="Reveal.slide(20);return false;">05 Governance</a>
+  <a href="#" data-nav="5" onclick="Reveal.slide(23);return false;">06 Practice</a>
+</div>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- ==================== SLIDE 1: TITLE ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:40px;">
+    <div style="width:100%;height:4px;background:linear-gradient(90deg,var(--blue),var(--mint));border-radius:2px;margin-bottom:32px;"></div>
+    <div class="title-series">AI Skills Studio</div>
+    <div class="title-session">Module 4: Privacy &amp; Responsible AI Use</div>
+    <div class="title-tagline">What to share, what to protect, and how to build responsible habits</div>
+    <div class="title-rule"></div>
+    <div class="title-author">Gen AI Inc</div>
+    <div class="title-date">2025 &nbsp;|&nbsp; 75 minutes</div>
+    <div class="keyboard-hint">
+      <span><span class="key">←→</span> Navigate</span>
+      <span><span class="key">F</span> Fullscreen</span>
+      <span><span class="key">S</span> Speaker Notes</span>
+      <span><span class="key">O</span> Overview</span>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] [TRANSITION: Welcome participants to Module 4]
+Key talking points:
+• Welcome to Module 4 — privacy and responsible AI use
+• This module is about the decisions you make BEFORE you hit Enter
+• Every paste into an AI tool is a data governance decision
+• 75 minutes: classification, anonymization, governance, and hands-on practice
+Discussion prompt: "Has anyone ever hesitated before pasting something into ChatGPT? That instinct is what we're sharpening today."
+Facilitation tip: This is a sensitive topic. Set a non-judgmental tone from the start — everyone has made mistakes here.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 2: RECAP SUMMARY ==================== -->
+<section data-background-color="#F5F3FF">
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-light" style="font-size:26px;font-weight:800;margin-bottom:4px;">Quick Recap — Modules 1–3</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-3col" style="gap:10px;margin-top:8px;">
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid var(--blue);" class="fragment fade-up">
+        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:6px;">Module 1: AI Landscape</div>
+        <div style="font-size:13px;color:var(--navy);line-height:1.5;">
+          • AI = pattern prediction<br>
+          • Advanced autocomplete, not understanding<br>
+          • Key risks: hallucination, privacy, bias
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid var(--mint);" class="fragment fade-up">
+        <div style="font-size:13px;font-weight:700;color:var(--mint);margin-bottom:6px;">Module 2: Prompt Engineering</div>
+        <div style="font-size:13px;color:var(--navy);line-height:1.5;">
+          • CRAFT framework for structured prompts<br>
+          • Constraints: Change, Keep, Avoid<br>
+          • 3-step iteration: Structure → Refine → Verify
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid #F59E0B;" class="fragment fade-up">
+        <div style="font-size:13px;font-weight:700;color:#F59E0B;margin-bottom:6px;">Module 3: AI as Notetaker</div>
+        <div style="font-size:13px;color:var(--navy);line-height:1.5;">
+          • 5-step documentation pipeline<br>
+          • 4-check verification system<br>
+          • The Commitment Trap: AI upgrades language
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="background:rgba(30,16,69,0.12);color:var(--navy);margin-top:12px;">💡 Module 4 addresses the privacy risk we flagged in Module 1 — now we solve it systematically</div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: From title → recap of all prior modules]
+Key talking points:
+• Module 1: AI is prediction — it doesn't "know" your data is sensitive
+• Module 2: CRAFT gives structure, but what about the DATA inside the prompt?
+• Module 3: We pasted meeting notes — but were those safe to paste?
+• Module 4 addresses the gap: WHAT you put in matters as much as HOW you prompt
+Discussion prompt: "In Module 3, we pasted meeting notes into AI. Did anyone wonder whether those notes were safe to share externally?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 3: RECAP QUIZ 1 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-recap1">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🔄 RECAP — QUESTION 1 of 3</div>
+    <div class="quiz-question">What's the biggest risk of unverified AI-generated meeting minutes?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',0,1,'The biggest risk is misattribution — AI assigns actions or statements to people who never said or agreed to them. This damages trust and creates false commitments.')">
+        <span class="opt-letter">A</span><span>Poor grammar and formatting</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',1,1,'The biggest risk is misattribution — AI assigns actions or statements to people who never said or agreed to them. This damages trust and creates false commitments.')">
+        <span class="opt-letter">B</span><span>Misattribution — assigning actions to people who never agreed</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',2,1,'The biggest risk is misattribution — AI assigns actions or statements to people who never said or agreed to them. This damages trust and creates false commitments.')">
+        <span class="opt-letter">C</span><span>The minutes are too short</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',3,1,'The biggest risk is misattribution — AI assigns actions or statements to people who never said or agreed to them. This damages trust and creates false commitments.')">
+        <span class="opt-letter">D</span><span>AI uses too much jargon</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] [TRANSITION: "Let's warm up with 3 quick recap questions."]
+Key talking points: Module 3 core concept. Answer B. Misattribution is the #1 danger — people get held to things they never said.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 4: RECAP QUIZ 2 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-recap2">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🔄 RECAP — QUESTION 2 of 3</div>
+    <div class="quiz-question">What does the "Anchor Guardrail" constraint do?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',0,1,'The Anchor Guardrail — &quot;Do not invent details I have not provided&quot; — prevents AI from hallucinating facts. It anchors output to YOUR input only.')">
+        <span class="opt-letter">A</span><span>Makes AI respond faster</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',1,1,'The Anchor Guardrail — &quot;Do not invent details I have not provided&quot; — prevents AI from hallucinating facts. It anchors output to YOUR input only.')">
+        <span class="opt-letter">B</span><span>Prevents AI from inventing details you didn't provide</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',2,1,'The Anchor Guardrail — &quot;Do not invent details I have not provided&quot; — prevents AI from hallucinating facts. It anchors output to YOUR input only.')">
+        <span class="opt-letter">C</span><span>Forces AI to cite its sources</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',3,1,'The Anchor Guardrail — &quot;Do not invent details I have not provided&quot; — prevents AI from hallucinating facts. It anchors output to YOUR input only.')">
+        <span class="opt-letter">D</span><span>Limits the response to 100 words</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] Key talking points: Module 2 concept. Answer B. The Anchor Guardrail prevents hallucination by constraining output to provided data only.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 5: RECAP QUIZ 3 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-recap3">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🔄 RECAP — QUESTION 3 of 3</div>
+    <div class="quiz-question">In the 3-step iteration process, what is Step 3?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',0,2,'Step 3 is Self-Critique / Verify. The 3-step process is: Structure (build a CRAFT prompt) → Refine (iterate with constraints) → Verify (self-critique and human check). Never skip Step 3.')">
+        <span class="opt-letter">A</span><span>Write the initial prompt</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',1,2,'Step 3 is Self-Critique / Verify. The 3-step process is: Structure (build a CRAFT prompt) → Refine (iterate with constraints) → Verify (self-critique and human check). Never skip Step 3.')">
+        <span class="opt-letter">B</span><span>Add more constraints</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',2,2,'Step 3 is Self-Critique / Verify. The 3-step process is: Structure (build a CRAFT prompt) → Refine (iterate with constraints) → Verify (self-critique and human check). Never skip Step 3.')">
+        <span class="opt-letter">C</span><span>Self-critique and verify the output</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',3,2,'Step 3 is Self-Critique / Verify. The 3-step process is: Structure (build a CRAFT prompt) → Refine (iterate with constraints) → Verify (self-critique and human check). Never skip Step 3.')">
+        <span class="opt-letter">D</span><span>Share with your team for review</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] Key talking points: Module 2 concept. Answer C. Verification is the non-negotiable final step — and today we'll add a privacy check to that process.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 6: GROUND RULES ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Ground Rules for This Module</h2>
+    <div class="accent-bar"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px;">
+      <div class="card fragment fade-up" style="border-left:3px solid var(--mint);padding:14px 18px;">
+        <div style="font-size:15px;color:var(--text-light);line-height:1.6;">🤝 <strong>No judgment.</strong> Everyone has pasted something they shouldn't have. This is about building better habits, not assigning blame.</div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid #F59E0B;padding:14px 18px;">
+        <div style="font-size:15px;color:var(--text-light);line-height:1.6;">🏢 <strong>Real scenarios.</strong> We'll use realistic workplace examples. If something feels familiar — that's intentional.</div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid var(--blue);padding:14px 18px;">
+        <div style="font-size:15px;color:var(--text-light);line-height:1.6;">⚖️ <strong>Practical, not paranoid.</strong> The goal isn't to stop using AI — it's to use it safely. Every task can be made safe with the right technique.</div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid #27AE60;padding:14px 18px;">
+        <div style="font-size:15px;color:var(--text-light);line-height:1.6;">🔒 <strong>What's shared here stays here.</strong> We'll discuss real data types and real mistakes — keep examples confidential.</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Before we dive in, some ground rules."]
+Key talking points:
+• This module handles sensitive topics — data breaches, compliance, personal information
+• No one is here to be shamed. The Samsung engineers who leaked code via ChatGPT weren't careless — they just didn't have training
+• Frame as "professional development" not "compliance lecture"
+• Practical: every problem has a solution. We'll teach the solution.
+Discussion prompt: "Quick show of hands — who has a formal AI acceptable use policy at their workplace? Who's not sure?"
+Facilitation tip: The hand-raise usually reveals most people don't know their policy. That's the gap this module fills.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 7: CHAPTER 01 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">01</div>
+    <div class="chapter-title">The Data You're Feeding AI</div>
+    <div class="chapter-sub">What happens after you hit Enter</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Let's start with the uncomfortable truth about where your data goes."]
+Key talking points:
+• This chapter reveals what actually happens to data you paste into AI tools
+• Most people have never thought about this — it feels like a private conversation
+• It's not. It's a data transfer to an external company.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 8: WHAT HAPPENS TO YOUR INPUT ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">What Happens to Your Input</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-3col" style="gap:10px;margin-top:10px;">
+      <div class="card fragment fade-up" style="border-top:3px solid #E74C3C;padding:16px;">
+        <div style="font-size:24px;margin-bottom:6px;">💾</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px;">Storage</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">Your text is stored on provider servers — often 30 days minimum. Some providers retain indefinitely for safety reviews.</div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:3px solid #F59E0B;padding:16px;">
+        <div style="font-size:24px;margin-bottom:6px;">🧠</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px;">Training Use</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">Free-tier tools often use your inputs for model training. Your client's financials could influence future model outputs.</div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:3px solid var(--blue);padding:16px;">
+        <div style="font-size:24px;margin-bottom:6px;">🌍</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px;">Jurisdiction</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">Data may cross borders. EU client data on US servers? That's potentially a GDPR violation — regardless of your intent.</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:14px;">⚠️ Treat the AI input box like a public billboard — if you wouldn't post it publicly, don't paste it</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Three things happen the moment you hit Enter."]
+Key talking points:
+• Storage: your data lives on someone else's server. You don't control retention policies.
+• Training: free tools use your data to improve. That client name is now in a training set.
+• Jurisdiction: data crosses borders instantly. EU-originating data on US servers = potential GDPR issue.
+• The billboard test: if you wouldn't tape it to the office notice board, don't paste it.
+Discussion prompt: "How many of you use free-tier AI tools for work tasks? Do you know their data retention policy?"
+Facilitation tip: Don't scare — inform. The point is awareness, not paralysis.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 9: DIALOGUE 1 — PRIYA'S PASTE ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:8px;max-height:none;overflow:visible;">
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:2px;">💬 Priya's "Quick Analysis"</h2>
+    <div class="accent-bar" style="margin:4px 0 8px 0;"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=PriyaFinance" width="50" height="50" style="border-radius:50%;border:3px solid var(--blue);background:#F5F3FF;flex-shrink:0;" alt="Priya">
+        <div style="position:relative;background:#ffffff;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;">
+          <div style="position:absolute;bottom:12px;left:-10px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-right:12px solid #ffffff;"></div>
+          <div style="font-size:11px;font-weight:700;color:var(--blue);margin-bottom:3px;">PRIYA — FINANCE</div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;">I just pasted our client invoice data into ChatGPT to help analyse spending trends. Saved me hours! 🎉</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;flex-direction:row-reverse;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=KenjiHR" width="50" height="50" style="border-radius:50%;border:3px solid #27AE60;background:#ECFDF5;flex-shrink:0;" alt="Kenji">
+        <div style="position:relative;background:#ECFDF5;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;">
+          <div style="position:absolute;bottom:12px;right:-10px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:12px solid #ECFDF5;"></div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;">Priya… that data is now on OpenAI's servers. It may be used for training. Your client's name is now associated with their financials in an external system.</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=PriyaFinance" width="50" height="50" style="border-radius:50%;border:3px solid var(--blue);background:#F5F3FF;flex-shrink:0;" alt="Priya">
+        <div style="position:relative;background:#ffffff;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;">
+          <div style="position:absolute;bottom:12px;left:-10px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-right:12px solid #ffffff;"></div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;">But it's just ChatGPT… it's like a calculator, right? 😰</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;flex-direction:row-reverse;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=KenjiHR" width="50" height="50" style="border-radius:50%;border:3px solid #27AE60;background:#ECFDF5;flex-shrink:0;" alt="Kenji">
+        <div style="position:relative;background:#ECFDF5;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;border:2px solid #27AE60;">
+          <div style="position:absolute;bottom:12px;right:-12px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:12px solid #27AE60;"></div>
+          <div style="font-size:11px;font-weight:700;color:#166534;margin-bottom:3px;">💡 KENJI — LESSON</div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;">A calculator doesn't store your inputs or share them with its manufacturer. <strong>Treat the AI input box like a public billboard.</strong> If the client saw you'd shared their data — would they be OK with it?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Let's see what this looks like in practice."]
+Key talking points:
+• Priya's mistake is incredibly common — most people don't think of AI as an external data transfer
+• Kenji's response is educational, not punishing — model this tone
+• The billboard test is the memorable takeaway from this dialogue
+• Connect: "This isn't about Priya being careless. It's about a gap in training that we're fixing right now."
+Discussion prompt: "Has anyone done something similar? No names needed — just a show of hands."
+Facilitation tip: Normalise the mistake. The lesson is the solution, not the shame.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 10: CHAPTER 02 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">02</div>
+    <div class="chapter-title">The Three-Tier Framework</div>
+    <div class="chapter-sub">Classify before you paste</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "So how do we decide what's safe? We need a classification system."]
+Key talking points:
+• This framework gives you a decision tool for EVERY paste
+• Three tiers: Safe, Redaction Required, Avoid Entirely
+• Simple enough to use in 10 seconds, robust enough for real decisions
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 11: SAFE / REDACTION / AVOID ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">The Three-Tier Classification</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-3col" style="gap:10px;margin-top:10px;">
+      <div class="card fragment fade-up" style="border-top:4px solid #27AE60;padding:16px;">
+        <div style="font-size:20px;margin-bottom:4px;">🟢</div>
+        <div style="font-size:16px;font-weight:700;color:#27AE60;margin-bottom:8px;">SAFE</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">
+          • Public information (press releases, published reports)<br>
+          • Generic templates and formats<br>
+          • General knowledge questions<br>
+          • Your own creative writing<br>
+          • De-identified sample data
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:4px solid #F59E0B;padding:16px;">
+        <div style="font-size:20px;margin-bottom:4px;">🟡</div>
+        <div style="font-size:16px;font-weight:700;color:#F59E0B;margin-bottom:8px;">REDACTION REQUIRED</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">
+          • Internal docs (anonymize first)<br>
+          • Meeting notes (remove names/projects)<br>
+          • Performance feedback (strip identifiers)<br>
+          • Client scenarios (generalize details)<br>
+          • Financial patterns (remove amounts)
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:4px solid #E74C3C;padding:16px;">
+        <div style="font-size:20px;margin-bottom:4px;">🔴</div>
+        <div style="font-size:16px;font-weight:700;color:#E74C3C;margin-bottom:8px;">AVOID ENTIRELY</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">
+          • Passwords, API keys, credentials<br>
+          • Personal health or medical data<br>
+          • Legal privileged communications<br>
+          • Trade secrets and IP<br>
+          • Unredactable unique scenarios
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:12px;">💡 When in doubt, move UP one tier. Yellow → treat as Red. Green → treat as Yellow.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 5 min] [TRANSITION: "Here's your decision framework. Three tiers, colour-coded."]
+Key talking points:
+• GREEN: paste freely. Public data, generic questions, templates.
+• YELLOW: usable but ONLY after anonymization. Most workplace data lives here.
+• RED: never paste, even anonymized. Some data is too risky at any level.
+• The "when in doubt, move up" rule prevents edge-case mistakes
+• Most people are currently treating YELLOW as GREEN — that's the gap
+Discussion prompt: "Think about your last 5 AI prompts. How many were genuinely GREEN?"
+Facilitation tip: Spend time on YELLOW — that's where the practical skill is. RED is obvious once you know it.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 12: PRACTICAL — CLASSIFY SCENARIOS ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:10px;">
+    <div class="practical-badge">🔨 PRACTICAL</div>
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Classify These 4 Scenarios</h2>
+    <div class="accent-bar"></div>
+    <div style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">⏱️ 4 minutes — decide: 🟢 Safe, 🟡 Redact First, or 🔴 Avoid</div>
+    <div class="grid-2x2" style="gap:10px;">
+      <div class="card fragment fade-up" style="padding:14px;">
+        <div style="font-size:14px;font-weight:700;color:var(--text-light);margin-bottom:6px;">Scenario 1</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">"Help me write a job description for a Marketing Manager role based on our company's standard template."</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;">
+        <div style="font-size:14px;font-weight:700;color:var(--text-light);margin-bottom:6px;">Scenario 2</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">"Summarise this client contract and highlight the key payment terms." [pastes full contract with client name, amounts, dates]</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;">
+        <div style="font-size:14px;font-weight:700;color:var(--text-light);margin-bottom:6px;">Scenario 3</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">"What are best practices for running quarterly business reviews?"</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;">
+        <div style="font-size:14px;font-weight:700;color:var(--text-light);margin-bottom:6px;">Scenario 4</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">"Here's an employee's performance review with their name, ID, and salary. Help me write improvement talking points."</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:10px;">Answers: 1 = 🟢 Safe | 2 = 🟡 Redact (remove client name, amounts) | 3 = 🟢 Safe | 4 = 🟡/🔴 Redact heavily or Avoid</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Let's practice. Four real scenarios — classify each one."]
+Key talking points:
+• Scenario 1: GREEN — generic template request, no sensitive data
+• Scenario 2: YELLOW — the task is fine but the data needs anonymization first
+• Scenario 3: GREEN — general knowledge question, no company data
+• Scenario 4: RED/YELLOW border — employee PII + salary is very sensitive. Could be YELLOW if heavily anonymized, but the unique scenario might make re-identification possible
+• The hard ones are 2 and 4 — discuss why
+Discussion prompt: "Did anyone classify differently? What was your reasoning?"
+Facilitation tip: Encourage debate on #4. The "unique scenario" problem leads into Chapter 3 (anonymization techniques).
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 13: QUIZ 1 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz1">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🧠 KNOWLEDGE CHECK</div>
+    <div class="quiz-question">Which of these is safe to paste into a public AI tool without any modification?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz1',0,0,'A public press release is already approved for public distribution — it contains no confidential information. It\'s the definition of GREEN tier: information that\'s already in the public domain.')">
+        <span class="opt-letter">A</span><span>A public press release already approved for distribution</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz1',1,0,'A public press release is already approved for public distribution — it contains no confidential information. It\'s the definition of GREEN tier: information that\'s already in the public domain.')">
+        <span class="opt-letter">B</span><span>Internal meeting notes with project codenames</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz1',2,0,'A public press release is already approved for public distribution — it contains no confidential information. It\'s the definition of GREEN tier: information that\'s already in the public domain.')">
+        <span class="opt-letter">C</span><span>A client email asking about pricing</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz1',3,0,'A public press release is already approved for public distribution — it contains no confidential information. It\'s the definition of GREEN tier: information that\'s already in the public domain.')">
+        <span class="opt-letter">D</span><span>An employee's annual leave request</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Quick check — can you apply the framework?"]
+Key talking points:
+• Correct answer: A — a public press release is already public information
+• B has internal project codenames — YELLOW (redact codenames)
+• C contains client communication — YELLOW (client identity + pricing = sensitive)
+• D is employee PII — YELLOW/RED (personal data about a specific person)
+• The test: "Is this already in the public domain?" If yes → GREEN.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 14: CHAPTER 03 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">03</div>
+    <div class="chapter-title">Making Data Safe</div>
+    <div class="chapter-sub">Anonymization techniques that preserve utility</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "So YELLOW data needs redaction. How do we actually do that?"]
+Key talking points:
+• This chapter teaches the practical skill of anonymization
+• The goal: strip identifying info while keeping the task useful
+• Five techniques that work for any scenario
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 15: 5 TECHNIQUES ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:10px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">5 Anonymization Techniques</h2>
+    <div class="accent-bar"></div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
+      <div class="card fragment fade-up" style="padding:12px 16px;display:flex;align-items:center;gap:14px;">
+        <div style="font-size:22px;flex-shrink:0;">👤</div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--text-light);">1. Replace names with roles</div>
+          <div style="font-size:13px;color:var(--text-muted);">"Sarah Chen" → "the team lead" | "Acme Corp" → "the client"</div>
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="padding:12px 16px;display:flex;align-items:center;gap:14px;">
+        <div style="font-size:22px;flex-shrink:0;">💰</div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--text-light);">2. Remove or generalize financials</div>
+          <div style="font-size:13px;color:var(--text-muted);">"$2.4M contract" → "a mid-six-figure contract" | "$85K salary" → "mid-range salary"</div>
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="padding:12px 16px;display:flex;align-items:center;gap:14px;">
+        <div style="font-size:22px;flex-shrink:0;">📅</div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--text-light);">3. Generalize dates and timelines</div>
+          <div style="font-size:13px;color:var(--text-muted);">"March 15, 2025" → "mid-Q1" | "due December 3" → "due in 6 weeks"</div>
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="padding:12px 16px;display:flex;align-items:center;gap:14px;">
+        <div style="font-size:22px;flex-shrink:0;">🏢</div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--text-light);">4. Abstract company details</div>
+          <div style="font-size:13px;color:var(--text-muted);">"our London office expansion" → "office expansion project" | "Project Phoenix" → "the migration project"</div>
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="padding:12px 16px;display:flex;align-items:center;gap:14px;">
+        <div style="font-size:22px;flex-shrink:0;">🎯</div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--text-light);">5. Preserve the task</div>
+          <div style="font-size:13px;color:var(--text-muted);">Keep the structure, question, and intent intact. AI doesn't need real names to help you write feedback or analyse patterns.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Five techniques. Simple but powerful."]
+Key talking points:
+• Walk through each with the example — show how information is preserved while identity is removed
+• Technique 5 is the principle: AI doesn't need to know WHO to help you with WHAT
+• The goal isn't to obscure — it's to remove the link between data and identity
+• These take 30-60 seconds once you build the habit
+Discussion prompt: "Which of these techniques would you use most often in your daily work?"
+Facilitation tip: Relate to their specific roles. Finance → technique 2. HR → technique 1. Operations → technique 4.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 16: BEFORE/AFTER EXAMPLES ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:10px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Before &amp; After: Sensitive → Safe</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="gap:12px;margin-top:10px;">
+      <div class="card fragment fade-up" style="border-top:3px solid #E74C3C;padding:14px;">
+        <div style="font-size:13px;font-weight:700;color:#E74C3C;margin-bottom:8px;">❌ BEFORE (Sensitive)</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.6;font-family:monospace;">
+          "Help me write performance improvement<br>
+          talking points for Sarah Chen (EMP-4521),<br>
+          Senior Analyst in the London office.<br>
+          She missed 3 deadlines on Project Phoenix<br>
+          and her Q3 rating was 'needs improvement.'<br>
+          Salary: £68,000."
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:3px solid #27AE60;padding:14px;">
+        <div style="font-size:13px;font-weight:700;color:#27AE60;margin-bottom:8px;">✅ AFTER (Safe)</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.6;font-family:monospace;">
+          "Help me write performance improvement<br>
+          talking points for a senior analyst who<br>
+          missed 3 deadlines on a key project<br>
+          and received a 'needs improvement' rating<br>
+          last quarter. Focus on constructive<br>
+          framing and specific behaviour changes."
+        </div>
+      </div>
+    </div>
+    <div class="card fragment fade-up" style="border-left:3px solid var(--mint);padding:12px 16px;margin-top:10px;">
+      <div style="font-size:14px;color:var(--text-light);line-height:1.5;">
+        <strong style="color:var(--mint);">What was removed:</strong> Name, employee ID, office location, project name, salary<br>
+        <strong style="color:var(--mint);">What was preserved:</strong> Role level, behaviour pattern, rating, the actual task (writing talking points)
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Here's what anonymization looks like in practice."]
+Key talking points:
+• Left side: everything you'd WANT to paste — it's the natural way to ask AI for help
+• Right side: equally useful to AI, but zero privacy risk
+• The AI doesn't need to know it's Sarah Chen to help you frame feedback
+• Removed: 5 identifying elements. Preserved: the actual task and all relevant context.
+• Time to anonymize: ~30 seconds once you know what to strip
+Discussion prompt: "Would this anonymized prompt still get you useful output? What's missing?"
+Facilitation tip: Point out that AI actually performs BETTER with the clean version — less noise, clearer task.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 17: PRACTICAL — REWRITE SENSITIVE PROMPT ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:10px;">
+    <div class="practical-badge">🔨 PRACTICAL</div>
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Rewrite This Sensitive Prompt</h2>
+    <div class="accent-bar"></div>
+    <div style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">⏱️ 5 minutes — apply the 5 techniques to make this prompt safe</div>
+    <div class="card" style="border-left:3px solid #E74C3C;padding:14px 16px;margin-bottom:12px;">
+      <div style="font-size:13px;font-weight:700;color:#E74C3C;margin-bottom:6px;">THE PROMPT TO FIX:</div>
+      <div style="font-size:14px;color:var(--text-light);line-height:1.6;font-family:monospace;">"Summarise the key risks from the board meeting on Feb 12. Attendees: CEO James Wright, CFO Maria Santos, CTO David Park. Main concern: the Nexus acquisition ($45M) may face regulatory challenge from the EU. David wants to delay by 3 months. Maria disagrees — cash reserves drop below threshold by Q3."</div>
+    </div>
+    <ul class="practical-steps" style="margin:8px 0;">
+      <li class="fragment fade-up" style="padding:5px 0;"><span class="step-num">1</span> Identify all sensitive elements (names, amounts, dates, projects)</li>
+      <li class="fragment fade-up" style="padding:5px 0;"><span class="step-num">2</span> Apply the 5 techniques — replace, remove, generalize, abstract, preserve task</li>
+      <li class="fragment fade-up" style="padding:5px 0;"><span class="step-num">3</span> Read your rewrite — would AI still produce useful output?</li>
+      <li class="fragment fade-up" style="padding:5px 0;"><span class="step-num">4</span> Check: could a colleague identify the real people/company from your version?</li>
+    </ul>
+  </div>
+  <aside class="notes">
+[TIMING: 5 min] [TRANSITION: "Your turn. This is a realistic board-level scenario — anonymize it."]
+Key talking points:
+• This is deliberately hard — board-level data with multiple sensitive elements
+• Names → roles (CEO, CFO, CTO). Amount → "significant acquisition." Date → "recent board meeting."
+• Project name → "a planned acquisition." Regulatory detail → "potential regulatory concerns."
+• The disagreement pattern can stay — AI needs to understand the dynamic
+• Step 4 is critical: even anonymized, if there's only one major acquisition in flight, people might guess
+Discussion prompt: (After) "Share your rewrite with a partner. Can they identify the real scenario?"
+Facilitation tip: Walk the room. Common mistake: keeping the date + "EU regulatory" together narrows identification too much.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 18: CHAPTER 04 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">04</div>
+    <div class="chapter-title">The Safe Prompt Pattern</div>
+    <div class="chapter-sub">A repeatable 4-step process for every sensitive task</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Now let's turn those techniques into a repeatable process."]
+Key talking points:
+• The 5 techniques are skills — this chapter gives you a systematic process
+• 4 steps, every time, for any sensitive prompt
+• Takes 30-60 seconds once it becomes habit
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 19: 4-STEP FRAMEWORK ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">The Safe Prompt Pattern</h2>
+    <div class="accent-bar"></div>
+    <div class="loop-steps" style="margin-top:12px;">
+      <div class="loop-step fragment fade-up" style="padding:14px 8px;">
+        <div class="loop-step-label">STEP 1</div>
+        <div style="font-size:22px;margin-bottom:6px;">🎯</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:4px;">Identify the Task</div>
+        <div class="loop-step-desc">What do you actually need AI to help with? Separate the task from the data.</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step fragment fade-up" style="padding:14px 8px;">
+        <div class="loop-step-label">STEP 2</div>
+        <div style="font-size:22px;margin-bottom:6px;">✂️</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:4px;">Strip Identifying Info</div>
+        <div class="loop-step-desc">Remove names, IDs, amounts, dates, locations, project names.</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step fragment fade-up" style="padding:14px 8px;">
+        <div class="loop-step-label">STEP 3</div>
+        <div style="font-size:22px;margin-bottom:6px;">🔄</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:4px;">Replace with Generics</div>
+        <div class="loop-step-desc">Use roles, ranges, and abstractions. Keep the structure intact.</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step fragment fade-up" style="padding:14px 8px;">
+        <div class="loop-step-label">STEP 4</div>
+        <div style="font-size:22px;margin-bottom:6px;">✅</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:4px;">Verify Utility</div>
+        <div class="loop-step-desc">Will AI still produce useful output? If not, add more context (without identity).</div>
+      </div>
+    </div>
+    <div class="loop-footer fragment fade-up">⏱️ This takes 30–60 seconds once it's habit. Faster than fixing a data breach.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Four steps. Every time. For any sensitive task."]
+Key talking points:
+• Step 1: Most people skip this — they paste everything and let AI figure out what's relevant
+• Step 2: The mechanical removal. Names, IDs, amounts, dates — if it identifies a person or deal, strip it.
+• Step 3: Replace with generics that preserve meaning. "The team lead" not just "[REDACTED]"
+• Step 4: Critical — if you strip too much, AI can't help. Find the balance.
+• The whole thing: 30-60 seconds. Compare to the hours spent on a data breach response.
+Discussion prompt: "Which step do you think people skip most often? Why?"
+Facilitation tip: Step 4 is where judgment lives. Teach them to test: "Would AI still understand the task?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 20: DIALOGUE 2 — AMIT'S PERFORMANCE REVIEW ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:8px;max-height:none;overflow:visible;">
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:2px;">💬 Amit's Performance Review</h2>
+    <div class="accent-bar" style="margin:4px 0 8px 0;"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=AmitOps" width="50" height="50" style="border-radius:50%;border:3px solid #F59E0B;background:#FEF3C7;flex-shrink:0;" alt="Amit">
+        <div style="position:relative;background:#FEF3C7;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;">
+          <div style="position:absolute;bottom:12px;left:-10px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-right:12px solid #FEF3C7;"></div>
+          <div style="font-size:11px;font-weight:700;color:#92400E;margin-bottom:3px;">AMIT — OPERATIONS</div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;">I need to write improvement talking points for a direct report. Let me just paste their full review into Claude…</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;flex-direction:row-reverse;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=RachelCFO" width="50" height="50" style="border-radius:50%;border:3px solid #E74C3C;background:#FEE2E2;flex-shrink:0;" alt="Rachel">
+        <div style="position:relative;background:#ffffff;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;">
+          <div style="position:absolute;bottom:12px;right:-10px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:12px solid #ffffff;"></div>
+          <div style="font-size:11px;font-weight:700;color:#991B1B;margin-bottom:3px;">RACHEL — CFO</div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;">Stop! Strip the name, employee ID, and project names. Keep the behaviour patterns. AI doesn't need to know WHO to help you frame feedback.</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=AmitOps" width="50" height="50" style="border-radius:50%;border:3px solid #F59E0B;background:#FEF3C7;flex-shrink:0;" alt="Amit">
+        <div style="position:relative;background:#FEF3C7;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;">
+          <div style="position:absolute;bottom:12px;left:-10px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-right:12px solid #FEF3C7;"></div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;">But won't it be less useful without the specifics?</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;flex-direction:row-reverse;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=RachelCFO" width="50" height="50" style="border-radius:50%;border:3px solid #E74C3C;background:#FEE2E2;flex-shrink:0;" alt="Rachel">
+        <div style="position:relative;background:#ffffff;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;border:2px solid #27AE60;">
+          <div style="position:absolute;bottom:12px;right:-12px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:12px solid #27AE60;"></div>
+          <div style="font-size:11px;font-weight:700;color:#166534;margin-bottom:3px;">💡 RACHEL — LESSON</div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;">Try it both ways — you'll see the output is <strong>equally useful</strong>. "A team member who misses deadlines" works just as well as "Sarah Chen EMP-4521." The task stays useful, the data stays safe.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Here's what the Safe Prompt Pattern looks like in conversation."]
+Key talking points:
+• Amit's instinct is natural — paste everything, let AI sort it out
+• Rachel catches him BEFORE he sends — this is the habit we're building
+• The key insight: AI doesn't need identity to perform tasks about behaviour patterns
+• "Try it both ways" is a great teaching moment — challenge participants to test this
+Discussion prompt: "Would you have caught yourself in Amit's position? Be honest."
+Facilitation tip: Validate Amit's concern — "But won't it be less useful?" is a legitimate question. Address it directly.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 21: CHAPTER 05 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">05</div>
+    <div class="chapter-title">The Bigger Picture</div>
+    <div class="chapter-sub">Governance, regulation, and organizational responsibility</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Individual habits matter — but so does organizational structure."]
+Key talking points:
+• We've covered personal skills. Now zoom out to the org level.
+• Good governance means you're not making these decisions alone
+• Regulation is catching up — organizations need to be ready
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 22: GOOD GOVERNANCE CHECKLIST ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">What Good AI Governance Looks Like</h2>
+    <div class="accent-bar"></div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px;">
+      <div class="check-row fragment fade-up">
+        <span class="check-icon">✅</span>
+        <div><strong style="color:var(--mint);">Acceptable Use Policy</strong> — Clear rules on which AI tools are approved and for what purposes</div>
+      </div>
+      <div class="check-row fragment fade-up">
+        <span class="check-icon">✅</span>
+        <div><strong style="color:var(--mint);">Approved Tool List</strong> — Enterprise-tier tools with data processing agreements (not free-tier consumer tools)</div>
+      </div>
+      <div class="check-row fragment fade-up">
+        <span class="check-icon">✅</span>
+        <div><strong style="color:var(--mint);">Data Classification Guide</strong> — Organization-specific version of the three-tier framework (like what we learned today)</div>
+      </div>
+      <div class="check-row fragment fade-up">
+        <span class="check-icon">✅</span>
+        <div><strong style="color:var(--mint);">Incident Response Plan</strong> — What to do if sensitive data IS accidentally shared with an AI tool</div>
+      </div>
+      <div class="check-row fragment fade-up">
+        <span class="check-icon">✅</span>
+        <div><strong style="color:var(--mint);">Training Programme</strong> — Regular upskilling (like this course!) so everyone knows the rules and techniques</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:10px;">💡 If your org doesn't have these yet — you now know enough to advocate for them</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Five elements of good AI governance."]
+Key talking points:
+• Walk through each element. Most orgs have 1-2 of these. Very few have all 5.
+• Acceptable Use Policy: the "can I use ChatGPT for work?" question, answered officially
+• Approved Tools: enterprise tiers have data processing agreements. Free tiers don't.
+• Classification Guide: what we built today, but customized to the org's specific data types
+• Incident Response: not "if" but "when." Having a plan reduces damage.
+• Training: one-off awareness isn't enough. Regular upskilling as tools evolve.
+Discussion prompt: "Which of these does your organization have? Which is the biggest gap?"
+Facilitation tip: This isn't about criticizing employers. Frame as: "You can be the person who champions this."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 23: REGULATORY LANDSCAPE ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Regulatory Landscape 2025</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-3col" style="gap:10px;margin-top:10px;">
+      <div class="card fragment fade-up" style="border-top:3px solid var(--blue);padding:16px;">
+        <div style="font-size:20px;margin-bottom:6px;">🇪🇺</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px;">GDPR</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">
+          • Personal data requires legal basis for processing<br>
+          • Pasting into AI = data transfer to third party<br>
+          • Fines up to 4% of global revenue<br>
+          • <span class="tip">Article 33<span class="tip-content">💡 Article 33 requires notification of a personal data breach to the supervisory authority within 72 hours of becoming aware of it.</span></span>: 72-hour breach notification
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:3px solid var(--mint);padding:16px;">
+        <div style="font-size:20px;margin-bottom:6px;">🤖</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px;">EU AI Act</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">
+          • Risk-based classification of AI systems<br>
+          • Transparency requirements for AI-generated content<br>
+          • High-risk AI use (HR, finance) has extra obligations<br>
+          • Effective from 2025 — applies to EU operations
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:3px solid #F59E0B;padding:16px;">
+        <div style="font-size:20px;margin-bottom:6px;">🏛️</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px;">Sector Rules</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">
+          • Finance: FCA/SEC data handling rules<br>
+          • Healthcare: patient data is always RED tier<br>
+          • Legal: privilege rules apply to AI communications<br>
+          • Education: student data requires special handling
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:10px;">💡 You don't need to memorize these — you need to know they exist and that your classification habits keep you compliant</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "The regulatory environment is evolving fast."]
+Key talking points:
+• GDPR: already in force. Pasting personal data into AI = processing. Needs legal basis.
+• EU AI Act: new regulation, risk-based. Using AI for HR decisions = high-risk category.
+• Sector rules: on top of general regulation, sector-specific rules add more restrictions.
+• The good news: if you use the classification framework correctly, you're likely compliant by default.
+• The message: "The rules are catching up to the technology. Be ahead of them, not behind."
+Discussion prompt: "Does anyone work in a regulated sector? How does this affect your AI use?"
+Facilitation tip: Don't get bogged down in legal detail. The point is awareness + the framework handles compliance.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 24: CHAPTER 06 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">06</div>
+    <div class="chapter-title">Practice</div>
+    <div class="chapter-sub">Triage, rewrite, and learn from consequences</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Time to put everything together. Hands-on practice."]
+Key talking points:
+• Three exercises: triage, rewrite, and a scenario discussion
+• Apply classification + anonymization to realistic workplace data
+• This is where the skills become automatic
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 25: PRACTICAL — TRIAGE EXERCISE ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:10px;">
+    <div class="practical-badge">🔨 PRACTICAL</div>
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Triage Exercise: Classify &amp; Decide</h2>
+    <div class="accent-bar"></div>
+    <div style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">⏱️ 5 minutes — for each scenario, classify the tier AND state your action</div>
+    <div class="grid-2x2" style="gap:10px;">
+      <div class="card fragment fade-up" style="padding:12px 14px;">
+        <div style="font-size:13px;font-weight:700;color:var(--mint);margin-bottom:4px;">Scenario A</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.4;">You want AI to help draft a company-wide policy on remote work. You'll include your org's current headcount and office locations.</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:12px 14px;">
+        <div style="font-size:13px;font-weight:700;color:var(--mint);margin-bottom:4px;">Scenario B</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.4;">A colleague asks you to use AI to summarise a legal dispute with a supplier, including the settlement amount and terms.</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:12px 14px;">
+        <div style="font-size:13px;font-weight:700;color:var(--mint);margin-bottom:4px;">Scenario C</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.4;">You need AI to proofread a LinkedIn post you've written about industry trends (no company-specific data included).</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:12px 14px;">
+        <div style="font-size:13px;font-weight:700;color:var(--mint);margin-bottom:4px;">Scenario D</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.4;">You want to use AI to identify patterns in customer complaints, using a spreadsheet with customer names, emails, and complaint text.</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:8px;">A = 🟡 Redact (headcount/locations) | B = 🔴 Avoid (legal privilege) | C = 🟢 Safe | D = 🟡 Redact (remove PII, keep complaint patterns)</div>
+  </div>
+  <aside class="notes">
+[TIMING: 5 min] [TRANSITION: "Four more scenarios — classify and decide your action."]
+Key talking points:
+• A: YELLOW — headcount and office locations are internal data. Generalize: "a mid-size company with multiple office locations"
+• B: RED — legal privilege. Settlement terms are confidential. Even anonymized, this is too risky. Use a different approach.
+• C: GREEN — it's your own writing about public industry trends. No sensitive data.
+• D: YELLOW — the complaint patterns are useful, but customer PII must be stripped first.
+• Key learning: B is the one that trips people up. Legal privilege means the entire communication is protected.
+Discussion prompt: "Who got B wrong? What would you do differently now?"
+Facilitation tip: Debate is good here. Some might argue B could be YELLOW with heavy redaction — discuss why privilege makes it RED.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 26: PRACTICAL — SAFE PROMPT REWRITE ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:10px;">
+    <div class="practical-badge">🔨 PRACTICAL</div>
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Safe Prompt Rewrite Challenge</h2>
+    <div class="accent-bar"></div>
+    <div style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">⏱️ 5 minutes — rewrite both prompts to be safe, then paste and test with your AI tool</div>
+    <div class="grid-2col" style="gap:12px;">
+      <div class="card fragment fade-up" style="border-left:3px solid #E74C3C;padding:14px;">
+        <div style="font-size:13px;font-weight:700;color:#E74C3C;margin-bottom:6px;">PROMPT 1 — Needs Fixing</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;font-family:monospace;">"Draft talking points for my meeting with client ABC Industries tomorrow. They owe us £125,000 on invoice #4891, 60 days overdue. Key contact is Mike Thompson, their FD. We've worked together for 8 years."</div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid #E74C3C;padding:14px;">
+        <div style="font-size:13px;font-weight:700;color:#E74C3C;margin-bottom:6px;">PROMPT 2 — Needs Fixing</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;font-family:monospace;">"Help me respond to this employee grievance: 'My manager David refused my flexible working request citing team needs but approved Lisa's identical request last month. I believe this is discrimination.'"</div>
+      </div>
+    </div>
+    <ul class="practical-steps fragment fade-up" style="margin:10px 0;">
+      <li style="padding:5px 0;"><span class="step-num">1</span> Apply the 4-step Safe Prompt Pattern to each</li>
+      <li style="padding:5px 0;"><span class="step-num">2</span> Paste your SAFE version into your AI tool — compare the output quality</li>
+      <li style="padding:5px 0;"><span class="step-num">3</span> Verify: could someone reconstruct the original identities from your version?</li>
+    </ul>
+  </div>
+  <aside class="notes">
+[TIMING: 5 min] [TRANSITION: "Two realistic prompts that professionals send every day. Make them safe."]
+Key talking points:
+• Prompt 1: client debt recovery. Strip: client name, amount, invoice number, contact name. Keep: the relationship context (long-term client), the situation (overdue payment), the task (talking points).
+• Prompt 2: HR grievance. Strip: all names, the specific request type if it's identifying. Keep: the pattern (inconsistent decision-making), the allegation (discrimination), the task (draft response).
+• Step 2 is key: they'll see the output is just as good — this builds confidence in the technique
+• Step 3 catches the "unique scenario" problem — if only one person filed a grievance this month, anonymization alone may not be enough
+Discussion prompt: "Was the AI output from your safe version noticeably worse? Or essentially the same?"
+Facilitation tip: Most will be surprised the quality is equivalent. This is the breakthrough moment.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 27: DIALOGUE 3 — GDPR CONSEQUENCE ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:8px;max-height:none;overflow:visible;">
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:2px;">💬 The GDPR Inquiry</h2>
+    <div class="accent-bar" style="margin:4px 0 8px 0;"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;flex-direction:row-reverse;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=RachelCFO" width="50" height="50" style="border-radius:50%;border:3px solid #E74C3C;background:#FEE2E2;flex-shrink:0;" alt="Rachel">
+        <div style="position:relative;background:#FEE2E2;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;">
+          <div style="position:absolute;bottom:12px;right:-10px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:12px solid #FEE2E2;"></div>
+          <div style="font-size:11px;font-weight:700;color:#991B1B;margin-bottom:3px;">RACHEL — CFO</div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;">Legal just called. A client discovered their financial data appeared in an AI tool's training set. We're facing an Article 33 notification requirement. 72 hours to report. 😰</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=PriyaFinance" width="50" height="50" style="border-radius:50%;border:3px solid var(--blue);background:#F5F3FF;flex-shrink:0;" alt="Priya">
+        <div style="position:relative;background:#ffffff;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;">
+          <div style="position:absolute;bottom:12px;left:-10px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-right:12px solid #ffffff;"></div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;">I thought it was just a quick analysis… I didn't think pasting an invoice counted as a "data transfer." 😓</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;flex-direction:row-reverse;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=KenjiHR" width="50" height="50" style="border-radius:50%;border:3px solid #27AE60;background:#ECFDF5;flex-shrink:0;" alt="Kenji">
+        <div style="position:relative;background:#ECFDF5;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;border:2px solid #27AE60;">
+          <div style="position:absolute;bottom:12px;right:-12px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:12px solid #27AE60;"></div>
+          <div style="font-size:11px;font-weight:700;color:#166534;margin-bottom:3px;">💡 KENJI — LESSON</div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;">Every paste is a data transfer decision. That's why classification exists — it takes 10 seconds to check the tier, and it prevents situations like this. <strong>The framework isn't bureaucracy. It's protection.</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Let's see what happens when classification is skipped."]
+Key talking points:
+• Rachel brings the real-world consequence: legal action, regulatory notification, reputational damage
+• Priya's line is key: "I didn't think it counted as a data transfer" — this is the awareness gap
+• Kenji reframes: classification isn't bureaucracy, it's protection. 10 seconds prevents this.
+• Connect back: "Everything we learned today exists to prevent this exact scenario."
+Discussion prompt: "What would this cost YOUR organization? Not just fines — client trust, reputation, management time."
+Facilitation tip: Let the weight of this land. Then pivot to: "But you now have the tools to prevent it."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 28: QUIZ 2 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz2">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🧠 KNOWLEDGE CHECK</div>
+    <div class="quiz-question">A colleague anonymized a prompt but the scenario is so unique that a colleague could identify the people involved. Is it safe?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz2',0,1,'No — contextual re-identification is still a privacy risk. If the scenario is unique enough that someone familiar with the organization could identify the people involved (even without names), the anonymization is insufficient. You need to further generalize or avoid using AI for this task entirely.')">
+        <span class="opt-letter">A</span><span>Yes — names are removed, so it's fine</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz2',1,1,'No — contextual re-identification is still a privacy risk. If the scenario is unique enough that someone familiar with the organization could identify the people involved (even without names), the anonymization is insufficient. You need to further generalize or avoid using AI for this task entirely.')">
+        <span class="opt-letter">B</span><span>No — contextual re-identification is still a privacy risk</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz2',2,1,'No — contextual re-identification is still a privacy risk. If the scenario is unique enough that someone familiar with the organization could identify the people involved (even without names), the anonymization is insufficient. You need to further generalize or avoid using AI for this task entirely.')">
+        <span class="opt-letter">C</span><span>Yes — AI tools don't know who works at your company</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz2',3,1,'No — contextual re-identification is still a privacy risk. If the scenario is unique enough that someone familiar with the organization could identify the people involved (even without names), the anonymization is insufficient. You need to further generalize or avoid using AI for this task entirely.')">
+        <span class="opt-letter">D</span><span>It depends on which AI tool you use</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "One more knowledge check on the subtlety of anonymization."]
+Key talking points:
+• Correct answer: B — contextual re-identification is a real privacy risk
+• Just removing names isn't enough if the scenario is unique
+• Example: "The only person in our 50-person company who was on a PIP last quarter" — everyone knows who that is
+• The fix: either generalize further (make the scenario less specific) or move to RED tier
+• This connects to Step 4 of the Safe Prompt Pattern: verify that utility AND privacy are maintained
+Facilitation tip: This is the most nuanced concept in the module. Make sure they get it — it's the difference between mechanical anonymization and thoughtful privacy.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 29: KEY TAKEAWAYS ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Key Takeaways</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2x2" style="margin-top:10px;gap:10px;">
+      <div class="closing-card fragment scale-in" style="padding:14px 16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">🚦 Classify before you paste</div>
+        <div>Three tiers: 🟢 Safe, 🟡 Redact First, 🔴 Avoid. Takes 10 seconds. Prevents hours of damage control.</div>
+      </div>
+      <div class="closing-card fragment scale-in" style="padding:14px 16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">✂️ Anonymize with purpose</div>
+        <div>5 techniques: replace names with roles, remove financials, generalize dates, abstract details, preserve the task.</div>
+      </div>
+      <div class="closing-card fragment scale-in" style="padding:14px 16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">🔄 Use the Safe Prompt Pattern</div>
+        <div>Identify task → Strip identifiers → Replace with generics → Verify utility. 30-60 seconds, every time.</div>
+      </div>
+      <div class="closing-card fragment scale-in" style="padding:14px 16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">🏢 Advocate for governance</div>
+        <div>Push for acceptable use policies, approved tools, and classification guides in your organization.</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:10px;">💡 The billboard test: if you wouldn't post it on a public notice board, don't paste it into AI without anonymization</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Let's lock in the key habits."]
+Key talking points:
+• Walk through each card — one sentence per takeaway
+• Classification is the first decision. Anonymization is the skill. The pattern is the process. Governance is the system.
+• The billboard test is the memorable shorthand they'll carry away
+• Challenge: "This week, classify every single thing before you paste it. Build the habit."
+Discussion prompt: "Which takeaway changes your immediate behaviour the most?"
+Facilitation tip: Go around — have each person commit to one specific change this week.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 30: NEXT MODULE + THANK YOU ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Coming Next: Module 5</h2>
+    <div class="accent-bar"></div>
+    <div class="card" style="border:1px solid var(--mint);margin-bottom:12px;padding:16px;">
+      <div style="font-size:17px;font-weight:700;color:var(--mint);margin-bottom:8px;">Data Analysis &amp; Decision Support</div>
+      <div style="font-size:14px;color:var(--text-muted);line-height:1.6;">
+        • Turning spreadsheets and reports into insights with AI<br>
+        • Chain-of-thought prompting for complex analysis<br>
+        • Building decision frameworks with AI assistance<br>
+        • Working with structured data: tables, CSVs, dashboards<br>
+        • When to trust AI analysis — and when to verify manually
+      </div>
+    </div>
+    <div class="card fragment fade-up" style="border-left:3px solid #F59E0B;padding:12px 16px;">
+      <div style="font-size:14px;font-weight:700;color:#F59E0B;margin-bottom:4px;">📝 Before Module 5:</div>
+      <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">
+        1. Classify every prompt you send this week — track your 🟢/🟡/🔴 ratio<br>
+        2. Practice the Safe Prompt Pattern on at least 3 real tasks<br>
+        3. Check if your org has an AI acceptable use policy — and read it
+      </div>
+    </div>
+    <div class="teaser fragment fade-up" style="margin-top:10px;">🔮 Module 5 applies your privacy skills to data analysis — where the stakes (and the payoff) get even higher</div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Here's what's coming — and your homework."]
+Key talking points:
+• Module 5 builds on privacy habits: you'll be analysing data, so classification matters even more
+• Homework: track your classification decisions. Most people start at 80% GREEN (unsafe) and move to a healthier ratio.
+• Reading the org's AI policy is homework AND professional development
+• Module 5 preview: same privacy principles, applied to structured data and analysis
+Discussion prompt: "What's the first thing you'll classify differently after today?"
+Facilitation tip: End with forward momentum. "You now have a complete privacy toolkit. Go practice."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 31: THANK YOU ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:60px;text-align:center;">
+    <div style="width:100%;height:4px;background:linear-gradient(90deg,var(--blue),var(--mint));border-radius:2px;margin-bottom:40px;"></div>
+    <div style="font-size:32px;font-weight:800;color:var(--text-light);margin-bottom:12px;">Thank You! 🎉</div>
+    <div style="font-size:18px;color:var(--mint);margin-bottom:8px;">Module 4: Privacy &amp; Responsible AI Use — Complete</div>
+    <div style="font-size:15px;color:var(--text-muted);margin-bottom:40px;">You now have: Three-tier classification • 5 anonymization techniques • Safe Prompt Pattern • Governance awareness • Billboard test</div>
+    <div class="title-rule" style="margin:0 auto 24px auto;"></div>
+    <div class="title-author" style="text-align:center;">Gen AI Inc</div>
+    <div class="title-date" style="text-align:center;">AI Skills Studio 2025</div>
+    <div class="keyboard-hint" style="justify-content:center;position:static;margin-top:40px;">
+      <span style="font-size:14px;color:var(--text-muted);">Questions? Connect during the break or on the course channel.</span>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: Final wrap-up and dismissal]
+Key talking points:
+• Thank them for engaging with a sensitive topic openly
+• Remind: homework is classification tracking + Safe Prompt Pattern practice + reading the org policy
+• Module 5 date/time reminder
+• Offer to stay for questions — privacy topics often generate private questions afterward
+Facilitation tip: End warmly. "No judgment, remember? You're now ahead of 90% of professionals on AI privacy. Go share what you've learned."
+  </aside>
+</section>
+
+</div><!-- /.slides -->
+</div><!-- /.reveal -->
+
+<!-- Reveal.js & Initialization -->
+<script type="module">
+  import Reveal from 'https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.esm.js';
+  import RevealNotes from 'https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.esm.js';
+
+  const deck = Reveal.initialize({
+    hash: true,
+    slideNumber: function(slide) {
+      const h = Reveal.getIndices(slide).h + 1;
+      return [h + ' / 31'];
+    },
+    showSlideNumber: 'all',
+    progress: true,
+    keyboard: true,
+    overview: true,
+    center: true,
+    touch: true,
+    loop: false,
+    autoSlide: 0,
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    width: 1280,
+    height: 720,
+    margin: 0.06,
+    minScale: 0.2,
+    maxScale: 2.0,
+    plugins: [RevealNotes]
+  });
+
+  deck.then(() => {
+    const navLinks = document.querySelectorAll('#session-nav a');
+    const chapters = [6, 9, 13, 17, 20, 23];
+
+    function updateNav() {
+      const current = Reveal.getIndices().h;
+      navLinks.forEach((link, i) => {
+        link.classList.remove('nav-active');
+        if (i < chapters.length - 1 && current >= chapters[i] && current < chapters[i+1]) {
+          link.classList.add('nav-active');
+        } else if (i === chapters.length - 1 && current >= chapters[i]) {
+          link.classList.add('nav-active');
+        }
+      });
+    }
+
+    Reveal.on('slidechanged', updateNav);
+    updateNav();
+  });
+</script>
+
+<!-- Graceful fallback for offline use -->
+<noscript>
+  <style>
+    .reveal .fragment { opacity: 1 !important; transform: none !important; }
+    .reveal .slides section { display: block !important; }
+  </style>
+</noscript>
+<script>
+  window.addEventListener('error', function(e) {
+    if (e.filename && e.filename.includes('reveal')) {
+      document.querySelectorAll('.fragment').forEach(function(el) {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+      document.querySelector('.reveal').style.overflow = 'auto';
+      document.querySelectorAll('.reveal .slides section').forEach(function(s) {
+        s.style.display = 'block';
+        s.style.position = 'relative';
+        s.style.width = '100%';
+        s.style.minHeight = '100vh';
+        s.style.padding = '48px';
+        s.style.boxSizing = 'border-box';
+        s.style.borderBottom = '2px solid rgba(8,145,178,0.3)';
+      });
+    }
+  }, true);
+</script>
+
+<!-- Quiz handler -->
+<script>
+  function quizAnswer(slideId, selectedIdx, correctIdx, explanation) {
+    var container = document.getElementById(slideId);
+    if (!container) return;
+    var opts = container.querySelectorAll('.quiz-opt');
+    opts.forEach(function(opt, i) {
+      opt.classList.add('disabled');
+      if (i === correctIdx) {
+        opt.classList.add('correct');
+        opt.querySelector('.opt-letter').textContent = '✓';
+      }
+      if (i === selectedIdx && selectedIdx !== correctIdx) {
+        opt.classList.add('wrong');
+        opt.querySelector('.opt-letter').textContent = '✗';
+      }
+    });
+    var explainEl = container.querySelector('.quiz-explain');
+    if (explainEl) {
+      explainEl.textContent = explanation;
+      explainEl.classList.add('show');
+    }
+  }
+  window.quizAnswer = quizAnswer;
+</script>
+
+<!-- Tooltip mobile tap-to-toggle -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.tip').forEach(function(el) {
+      el.setAttribute('tabindex', '0');
+      el.addEventListener('click', function(e) {
+        e.stopPropagation();
+        document.querySelectorAll('.tip .tip-content').forEach(function(t) {
+          t.style.display = 'none';
+        });
+        var content = el.querySelector('.tip-content');
+        if (content) {
+          content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        }
+      });
+    });
+    document.addEventListener('click', function() {
+      document.querySelectorAll('.tip .tip-content').forEach(function(t) {
+        t.style.display = '';
+      });
+    });
+  });
+</script>
+
+<!-- Passcode Gate -->
+<script>
+  (function() {
+    var PASSCODE = 'G2026';
+    var gate = document.getElementById('passcode-gate');
+    var input = document.getElementById('gate-input');
+    var error = document.getElementById('gate-error');
+    var nav = document.getElementById('session-nav');
+
+    if (sessionStorage.getItem('ai-studio-auth') === 'true') {
+      gate.style.display = 'none';
+      nav.style.display = 'flex';
+    } else {
+      document.querySelector('.reveal').style.display = 'none';
+    }
+
+    input.addEventListener('input', function() {
+      error.style.display = 'none';
+      if (input.value.length === 5) {
+        if (input.value.toUpperCase() === PASSCODE) {
+          sessionStorage.setItem('ai-studio-auth', 'true');
+          gate.style.display = 'none';
+          nav.style.display = 'flex';
+          document.querySelector('.reveal').style.display = '';
+          setTimeout(function() {
+            if (window.Reveal && window.Reveal.layout) {
+              window.Reveal.layout();
+            }
+          }, 100);
+        } else {
+          error.style.display = 'block';
+          input.value = '';
+          input.focus();
+        }
+      }
+    });
+
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && input.value.length >= 4) {
+        if (input.value.toUpperCase() === PASSCODE) {
+          sessionStorage.setItem('ai-studio-auth', 'true');
+          gate.style.display = 'none';
+          nav.style.display = 'flex';
+          document.querySelector('.reveal').style.display = '';
+          setTimeout(function() {
+            if (window.Reveal && window.Reveal.layout) {
+              window.Reveal.layout();
+            }
+          }, 100);
+        } else {
+          error.style.display = 'block';
+          input.value = '';
+        }
+      }
+    });
+
+    setTimeout(function() { input.focus(); }, 300);
+  })();
+</script>
+</body>
+</html>
