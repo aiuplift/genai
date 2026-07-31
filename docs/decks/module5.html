@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 5: Data Analysis &amp; Visualisation with AI — AI Skills Studio</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+<style>
+  :root{--navy:#1E1045;--blue:#6C3AED;--mint:#0891B2;--dark-bg:#0F0A2E;--light-bg:#F5F3FF;--card-bg:#1E1B4B;--text-light:#FFFFFF;--text-muted:#A8B4D8;--font:system-ui,'Segoe UI',sans-serif;--practical-bg:#1A1050}
+  .reveal{font-family:var(--font)}.reveal .slides section{text-align:left;padding:0 48px}
+  .reveal .progress{height:4px;color:var(--mint)}.reveal .progress span{background:var(--mint)}
+  .reveal .slide-number{background:rgba(0,0,0,0.4);color:var(--text-muted);font-size:13px;padding:4px 10px;border-radius:4px;font-family:var(--font)}
+  .reveal h1,.reveal h2,.reveal h3{font-family:var(--font);text-transform:none;letter-spacing:-0.5px}
+  .slide-title-dark{color:var(--text-light)!important}.slide-title-light{color:var(--navy)!important}
+  .accent-bar{width:80px;height:4px;background:var(--mint);margin:6px 0 16px 0;border-radius:2px}
+  .card{background:var(--card-bg);border-radius:10px;padding:18px 20px;box-shadow:0 4px 16px rgba(0,0,0,0.25)}
+  .card-light{background:#fff;border-radius:10px;padding:18px 20px;box-shadow:0 2px 12px rgba(30,16,69,0.10)}
+  .card-navy{background:var(--navy);border-radius:10px;padding:18px 20px;box-shadow:0 4px 16px rgba(0,0,0,0.2)}
+  .grid-2col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid-3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .grid-2x3{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:12px}
+  .grid-2x2{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px}
+  .flex-row{display:flex;gap:16px;align-items:stretch}
+  .chapter-num{font-size:96px;font-weight:900;color:var(--mint);opacity:0.85;line-height:1;margin-bottom:8px}
+  .chapter-title{font-size:38px;font-weight:700;color:var(--text-light);margin:0 0 8px 0}
+  .chapter-sub{font-size:17px;color:var(--text-muted);font-style:italic;margin:0}
+  .chapter-rule{width:100px;height:4px;background:var(--mint);border-radius:2px;margin-top:20px}
+  .agenda-num{font-size:28px;font-weight:800;color:var(--mint);margin-bottom:6px}
+  .agenda-title{font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:4px}
+  .agenda-sub{font-size:14px;color:var(--text-muted)}
+  .limit-row{display:flex;align-items:center;background:var(--card-bg);border-radius:8px;padding:10px 18px;margin-bottom:8px;gap:12px}
+  .limit-txt{font-size:16px;color:var(--text-light)}
+  .loop-steps{display:flex;align-items:stretch;gap:0}
+  .loop-step{flex:1;background:var(--navy);border-radius:10px;padding:16px 10px;text-align:center}
+  .loop-step-label{font-size:13px;font-weight:800;color:var(--mint);margin-bottom:10px;letter-spacing:1px}
+  .loop-step-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .loop-arrow{display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--mint);flex-shrink:0;padding:0 6px}
+  .loop-footer{background:rgba(8,145,178,0.12);border-radius:8px;padding:10px 18px;margin-top:16px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .closing-card{background:var(--card-bg);border-radius:10px;padding:16px 18px;border-left:3px solid var(--mint);font-size:15px;color:var(--text-light);line-height:1.5}
+  .footer-bar{background:rgba(8,145,178,0.08);border-radius:8px;padding:8px 16px;margin-top:10px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .footer-bar-dark{background:var(--card-bg);border-radius:8px;padding:8px 16px;margin-top:10px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .teaser{background:var(--card-bg);border-left:3px solid var(--mint);border-radius:8px;padding:10px 16px;font-size:14px;color:var(--text-muted);margin-top:12px;font-style:italic}
+  .tip{position:relative;border-bottom:1px dashed var(--mint);cursor:help;color:inherit;font-weight:inherit}
+  .tip:hover{color:var(--mint)}
+  .tip .tip-content{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--navy);color:var(--text-light);padding:14px 18px;border-radius:10px;font-size:14px;font-weight:400;line-height:1.6;width:340px;max-width:90vw;box-shadow:0 12px 40px rgba(0,0,0,0.7);border:2px solid var(--mint);z-index:99999;text-align:left;font-style:normal}
+  .tip .tip-content::before{content:'💡';display:block;font-size:14px;margin-bottom:6px}
+  .tip:hover .tip-content,.tip:focus .tip-content{display:block}
+  .light-tip .tip-content{background:#fff;color:var(--navy);border-color:var(--blue)}.light-tip{border-bottom-color:var(--blue)}.light-tip:hover{color:var(--blue)}
+  .quiz-label{font-size:13px;font-weight:700;color:var(--mint);letter-spacing:2px;margin-bottom:12px}
+  .quiz-question{font-size:24px;font-weight:700;color:var(--text-light);margin-bottom:24px;line-height:1.4}
+  .quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .quiz-opt{background:var(--card-bg);border-radius:10px;padding:16px 20px;font-size:15px;color:var(--text-light);cursor:pointer;border:2px solid transparent;transition:all 0.2s;display:flex;align-items:center;gap:12px}
+  .quiz-opt:hover{border-color:var(--mint);background:rgba(8,145,178,0.1)}
+  .quiz-opt.correct{background:#1D4A3A!important;border-color:#27AE60!important;cursor:default}
+  .quiz-opt.wrong{background:#4A1D1D!important;border-color:#E74C3C!important;cursor:default;opacity:0.7}
+  .quiz-opt.disabled{pointer-events:none;opacity:0.6}
+  .quiz-opt .opt-letter{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+  .quiz-opt.correct .opt-letter{background:#27AE60;color:#fff}
+  .quiz-opt.wrong .opt-letter{background:#E74C3C;color:#fff}
+  .quiz-explain{margin-top:16px;padding:12px 18px;border-radius:8px;background:rgba(8,145,178,0.1);border-left:3px solid var(--mint);font-size:14px;color:var(--text-muted);display:none;line-height:1.6}
+  .quiz-explain.show{display:block}
+  #session-nav{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;justify-content:center;align-items:center;gap:6px;padding:6px 12px;background:rgba(15,10,46,0.92);backdrop-filter:blur(6px);border-bottom:1px solid rgba(8,145,178,0.2);font-family:var(--font);font-size:11px}
+  #session-nav .nav-label{color:var(--text-muted);font-size:10px;font-weight:700;letter-spacing:1px;margin-right:4px;flex-shrink:0}
+  #session-nav a{color:var(--text-muted);text-decoration:none;padding:3px 10px;border-radius:20px;border:1px solid transparent;transition:all 0.2s;font-size:11px;white-space:nowrap}
+  #session-nav a:hover{color:var(--mint);border-color:var(--mint);background:rgba(8,145,178,0.1)}
+  #session-nav a.nav-active{color:var(--mint);border-color:rgba(8,145,178,0.4)}
+  .title-series{font-size:34px;font-weight:800;color:var(--text-light);margin-bottom:8px;line-height:1.2}
+  .title-session{font-size:19px;font-weight:600;color:var(--mint);margin-bottom:8px}
+  .title-tagline{font-size:15px;color:var(--text-muted);font-style:italic;margin-bottom:32px}
+  .title-rule{width:80px;height:3px;background:var(--mint);border-radius:2px;margin-bottom:24px}
+  .title-author{font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:4px}
+  .title-date{font-size:13px;color:var(--text-muted)}
+  .keyboard-hint{position:absolute;bottom:28px;right:0;font-size:11px;color:rgba(168,180,216,0.6);display:flex;gap:12px;align-items:center}
+  .key{display:inline-block;border:1px solid rgba(168,180,216,0.3);border-radius:4px;padding:2px 7px;font-size:11px;color:rgba(168,180,216,0.7)}
+  .reveal .fragment{opacity:0.15;transition:opacity 0.4s,transform 0.4s}
+  .reveal .fragment.visible{opacity:1}
+  .reveal .fragment.fade-up{transform:translateY(20px)}.reveal .fragment.fade-up.visible{transform:translateY(0)}
+  .reveal .fragment.scale-in{transform:scale(0.85)}.reveal .fragment.scale-in.visible{transform:scale(1)}
+  .light-slide p,.light-slide li{color:var(--navy)}
+  .practical-badge{display:inline-block;background:linear-gradient(135deg,var(--blue),var(--mint));color:#fff;font-size:14px;font-weight:800;padding:6px 16px;border-radius:20px;letter-spacing:1px;margin-bottom:14px}
+  .practical-steps{list-style:none;padding:0;margin:12px 0}
+  .practical-steps li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;font-size:16px;color:var(--text-light)}
+  .practical-steps li .step-num{background:var(--mint);color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+  .check-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(108,58,237,0.15);font-size:16px;color:var(--text-light)}
+  .check-icon{color:var(--mint);font-size:17px;flex-shrink:0}
+  .vs-arrow{display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--mint);font-weight:800;flex-shrink:0;padding:0 8px}
+  #passcode-gate{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--dark-bg);display:flex;align-items:center;justify-content:center;z-index:99999;flex-direction:column;gap:16px}
+  #passcode-gate input{padding:12px 24px;font-size:18px;border-radius:8px;border:2px solid var(--mint);background:var(--card-bg);color:var(--text-light);text-align:center;letter-spacing:4px;width:200px;outline:none}
+  #passcode-gate input:focus{box-shadow:0 0 12px rgba(8,145,178,0.4)}
+  #passcode-gate .gate-title{font-size:24px;color:var(--text-light);font-weight:700}
+  #passcode-gate .gate-hint{font-size:13px;color:var(--text-muted)}
+  #passcode-gate .gate-error{font-size:13px;color:#E74C3C;display:none}
+  .craft-card{background:var(--card-bg);border-radius:10px;padding:16px 14px;text-align:center;border-top:4px solid var(--mint)}
+  .craft-letter{font-size:36px;font-weight:900;color:var(--mint);margin-bottom:4px}
+  .craft-word{font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px}
+  .craft-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .constraint-card{background:var(--card-bg);border-radius:10px;padding:18px 16px;border-left:4px solid var(--mint)}
+  .constraint-title{font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:6px}
+  .constraint-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .failure-card{background:var(--card-bg);border-radius:10px;padding:16px;text-align:center}
+  .failure-icon{font-size:28px;margin-bottom:6px}
+  .failure-title{font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px}
+  .failure-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .messy-table{width:100%;font-size:12px;border-collapse:collapse;background:var(--card-bg);border-radius:8px;overflow:hidden}
+  .messy-table th{background:var(--navy);color:var(--mint);padding:8px 10px;text-align:left;font-size:11px;font-weight:700;letter-spacing:0.5px}
+  .messy-table td{padding:7px 10px;color:var(--text-light);border-bottom:1px solid rgba(108,58,237,0.15);font-size:12px}
+  .messy-table tr.issue-row td{background:rgba(231,76,60,0.08)}
+  /* Global overflow safety net */
+  .reveal .slides section > div { max-height: calc(720px * 0.88 - 40px); overflow: hidden; }
+</style>
+</head>
+<body>
+
+<!-- PASSCODE GATE -->
+<div id="passcode-gate">
+  <div class="gate-title">🔒 AI Skills Studio</div>
+  <div class="gate-hint">Enter session passcode to continue</div>
+  <input type="text" id="gate-input" maxlength="5" placeholder="•••••" autocomplete="off">
+  <div class="gate-error" id="gate-error">Incorrect passcode. Try again.</div>
+</div>
+
+<!-- SESSION NAV BAR -->
+<div id="session-nav" style="display:none;">
+  <span class="nav-label">MODULE 5:</span>
+  <a href="#" data-nav="0" onclick="Reveal.slide(6);return false;">01 Data Analyst</a>
+  <a href="#" data-nav="1" onclick="Reveal.slide(9);return false;">02 Formulas</a>
+  <a href="#" data-nav="2" onclick="Reveal.slide(13);return false;">03 Cleaning</a>
+  <a href="#" data-nav="3" onclick="Reveal.slide(18);return false;">04 Analysis</a>
+  <a href="#" data-nav="4" onclick="Reveal.slide(23);return false;">05 Communication</a>
+  <a href="#" data-nav="5" onclick="Reveal.slide(28);return false;">06 Wrap-up</a>
+</div>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- ==================== SLIDE 1: TITLE ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:40px;">
+    <div style="width:100%;height:4px;background:linear-gradient(90deg,var(--blue),var(--mint));border-radius:2px;margin-bottom:32px;"></div>
+    <div class="title-series">AI Skills Studio</div>
+    <div class="title-session">Module 5: Data Analysis &amp; Visualisation with AI</div>
+    <div class="title-tagline">Turn messy spreadsheets into clear insights — no formulas expertise needed</div>
+    <div class="title-rule"></div>
+    <div class="title-author">Gen AI Inc</div>
+    <div class="title-date">2025 &nbsp;|&nbsp; 75 minutes</div>
+    <div class="keyboard-hint">
+      <span><span class="key">←→</span> Navigate</span>
+      <span><span class="key">F</span> Fullscreen</span>
+      <span><span class="key">S</span> Speaker Notes</span>
+      <span><span class="key">O</span> Overview</span>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] [TRANSITION: Welcome participants to Module 5]
+Key talking points:
+• Welcome to Module 5 — Data Analysis & Visualisation with AI
+• This is our most hands-on module yet: 70% practical exercises
+• You do NOT need to be a data expert or spreadsheet wizard
+• AI bridges the gap between "I know what I want to find out" and "I know the formula to do it"
+• 75 minutes: formula generation, data cleaning, analysis, and communication
+Discussion prompt: "Quick show of hands — who enjoys working with spreadsheets? Who dreads it? Today we make friends with data."
+Facilitation tip: Set expectations that this is exploratory. No one will be judged for not knowing VLOOKUP.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 2: RECAP SUMMARY ==================== -->
+<section data-background-color="#F5F3FF">
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-light" style="font-size:26px;font-weight:800;margin-bottom:4px;">Quick Recap — Modules 1–4</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-3col" style="gap:10px;margin-top:8px;">
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid var(--blue);" class="fragment fade-up">
+        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:6px;">M1–M2: AI Basics & Prompting</div>
+        <div style="font-size:13px;color:var(--navy);line-height:1.5;">
+          • AI = pattern prediction, not understanding<br>
+          • CRAFT framework for prompts<br>
+          • Constraints: Change, Keep, Avoid<br>
+          • 3-step: Structure → Refine → Verify
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid var(--mint);" class="fragment fade-up">
+        <div style="font-size:13px;font-weight:700;color:var(--mint);margin-bottom:6px;">M3: AI as Notetaker</div>
+        <div style="font-size:13px;color:var(--navy);line-height:1.5;">
+          • 5-step documentation pipeline<br>
+          • 4-check verification system<br>
+          • Commitment Trap: AI upgrades language<br>
+          • Anchor Guardrail prevents hallucination
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid #F59E0B;" class="fragment fade-up">
+        <div style="font-size:13px;font-weight:700;color:#F59E0B;margin-bottom:6px;">M4: Privacy & Responsible AI</div>
+        <div style="font-size:13px;color:var(--navy);line-height:1.5;">
+          • Traffic-light classification (R/A/G)<br>
+          • Safe Prompt Pattern: Identify → Classify → Anonymise → Prompt → Verify<br>
+          • Data stays on provider servers
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="background:rgba(30,16,69,0.12);color:var(--navy);margin-top:12px;">💡 Module 5 takes everything you've learned and applies it to real data tasks</div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: From title → recap of all prior modules]
+Key talking points:
+• M1-M2: You know AI predicts patterns, and you know how to write structured prompts with CRAFT
+• M3: You've used AI for documentation — now we'll use it for analysis
+• M4: You know the privacy rules — apply them when handling real datasets
+• Module 5 connects all of these: you'll prompt AI with data, verify its outputs, and communicate results safely
+Bridge: "Now, let's add data analysis to your AI toolkit."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 3: RECAP QUIZ 1 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-recap1">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🔄 RECAP — QUESTION 1 of 3</div>
+    <div class="quiz-question">What's the first step in the Safe Prompt Pattern?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',0,0,'Correct! Step 1 is &quot;Identify the task.&quot; The full pattern is: Identify → Classify → Anonymise → Prompt → Verify. Always know WHAT you're doing before you decide HOW to handle the data.')">
+        <span class="opt-letter">A</span><span>Identify the task</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',1,0,'Correct answer is A. Step 1 is &quot;Identify the task.&quot; The full pattern is: Identify → Classify → Anonymise → Prompt → Verify. Always know WHAT you're doing before you decide HOW to handle the data.')">
+        <span class="opt-letter">B</span><span>Anonymise the data</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',2,0,'Correct answer is A. Step 1 is &quot;Identify the task.&quot; The full pattern is: Identify → Classify → Anonymise → Prompt → Verify. Always know WHAT you're doing before you decide HOW to handle the data.')">
+        <span class="opt-letter">C</span><span>Classify the sensitivity</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',3,0,'Correct answer is A. Step 1 is &quot;Identify the task.&quot; The full pattern is: Identify → Classify → Anonymise → Prompt → Verify. Always know WHAT you're doing before you decide HOW to handle the data.')">
+        <span class="opt-letter">D</span><span>Write the prompt</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] [TRANSITION: "Let's warm up with 3 recap questions."]
+Key talking points: Module 4 core concept. Answer A — Identify the task. Before you can classify data, you need to know what you're trying to do.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 4: RECAP QUIZ 2 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-recap2">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🔄 RECAP — QUESTION 2 of 3</div>
+    <div class="quiz-question">AI tells you "Revenue grew 15% last quarter." What's your first step?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',0,1,'Correct! Always verify numerical claims yourself. Pull the actual numbers from Q1 and Q2, do the calculation manually. AI can hallucinate statistics just like it hallucates facts.')">
+        <span class="opt-letter">A</span><span>Share it with your manager immediately</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',1,1,'Correct! Always verify numerical claims yourself. Pull the actual numbers from Q1 and Q2, do the calculation manually. AI can hallucinate statistics just like it hallucates facts.')">
+        <span class="opt-letter">B</span><span>Calculate it yourself from the raw data</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',2,1,'Correct answer is B. Always verify numerical claims yourself. Pull the actual numbers from Q1 and Q2, do the calculation manually. AI can hallucinate statistics just like it hallucates facts.')">
+        <span class="opt-letter">C</span><span>Ask AI to double-check its own answer</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',3,1,'Correct answer is B. Always verify numerical claims yourself. Pull the actual numbers from Q1 and Q2, do the calculation manually. AI can hallucinate statistics just like it hallucates facts.')">
+        <span class="opt-letter">D</span><span>Add it to the report with a caveat</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] Key talking points: Verification is non-negotiable. Answer B. AI cannot verify itself. You need to check the actual numbers. This is a theme we'll reinforce heavily today.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 5: RECAP QUIZ 3 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-recap3">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🔄 RECAP — QUESTION 3 of 3</div>
+    <div class="quiz-question">Which task is AI MOST reliably helpful for?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',0,2,'Correct answer is C. AI is excellent at suggesting cleaning steps and identifying quality issues in data — this is pattern matching, which AI excels at. It&apos;s less reliable for calculations and causation claims.')">
+        <span class="opt-letter">A</span><span>Predicting next quarter's revenue accurately</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',1,2,'Correct answer is C. AI is excellent at suggesting cleaning steps and identifying quality issues in data — this is pattern matching, which AI excels at. It&apos;s less reliable for calculations and causation claims.')">
+        <span class="opt-letter">B</span><span>Determining why sales dropped in March</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',2,2,'Correct! AI is excellent at suggesting cleaning steps and identifying quality issues in data — this is pattern matching, which AI excels at. It&apos;s less reliable for calculations and causation claims.')">
+        <span class="opt-letter">C</span><span>Suggesting data cleaning steps and identifying quality issues</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',3,2,'Correct answer is C. AI is excellent at suggesting cleaning steps and identifying quality issues in data — this is pattern matching, which AI excels at. It&apos;s less reliable for calculations and causation claims.')">
+        <span class="opt-letter">D</span><span>Guaranteeing your spreadsheet has no errors</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] Key talking points: Answer C. AI is great at structured pattern matching — identifying issues, suggesting steps. It's NOT reliable for causation claims or guaranteeing accuracy. This sets up the whole module.
+Bridge: "That last answer is exactly what Module 5 is about — the things AI IS good at with data."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 6: GROUND RULES ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Ground Rules for This Module</h2>
+    <div class="accent-bar"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px;">
+      <div class="card fragment fade-up" style="border-left:3px solid var(--mint);padding:14px 18px;">
+        <div style="font-size:15px;color:var(--text-light);line-height:1.6;">📊 <strong>This is hands-on.</strong> 70% of this module is you doing things with AI and data. Have your AI tool open and ready.</div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid #F59E0B;padding:14px 18px;">
+        <div style="font-size:15px;color:var(--text-light);line-height:1.6;">🙅 <strong>You don't need to be a data expert.</strong> If you've never written a formula, that's fine. AI bridges the gap between what you want and what Excel needs.</div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid var(--blue);padding:14px 18px;">
+        <div style="font-size:15px;color:var(--text-light);line-height:1.6;">✅ <strong>Always verify.</strong> AI is your analyst assistant, not your analyst. Every number it produces needs a human sanity check.</div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid #27AE60;padding:14px 18px;">
+        <div style="font-size:15px;color:var(--text-light);line-height:1.6;">🔒 <strong>Privacy applies here too.</strong> Use the Safe Prompt Pattern from Module 4 when working with real organisational data.</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Before we dive in, some ground rules for today."]
+Key talking points:
+• This module is deliberately practical-heavy — you'll generate real formulas, clean real data, and write real summaries
+• Reassure: no one will be embarrassed for not knowing Excel. That's literally the point — AI makes it accessible
+• Verification: this is the #1 theme. AI makes mistakes with numbers. Always check.
+• Privacy reminder: if using real work data, apply the Module 4 framework first
+Discussion prompt: "Who has a spreadsheet at work that confuses them? Keep that in mind — by the end of today, you'll have a strategy to tackle it."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 7: CHAPTER 01 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">01</div>
+    <div class="chapter-title">AI as Your Data Analyst</div>
+    <div class="chapter-sub">You don't need to learn formulas — you need to describe what you want</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Let's start with the fundamental shift in how non-data people can work with data."]
+Key talking points:
+• This chapter reframes who data analysis is for
+• Traditional approach: spend months learning Excel/SQL/Python
+• AI approach: describe what you need in plain English, AI writes the technical bits
+• This isn't about replacing data teams — it's about empowering everyone to do basic analysis
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 8: YOU DON'T NEED TO BE A DATA EXPERT ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">You Don't Need to Be a Data Expert</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="gap:14px;margin-top:10px;">
+      <div class="card fragment fade-up" style="border-top:3px solid #E74C3C;padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:#E74C3C;margin-bottom:8px;">❌ THE OLD WAY</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.6;">
+          • Learn Excel formulas (weeks)<br>
+          • Take a SQL course (months)<br>
+          • Study Python/R for analysis (months)<br>
+          • Master pivot tables and charts<br>
+          • Still ask the "data person" for help
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:3px solid #27AE60;padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:#27AE60;margin-bottom:8px;">✅ THE NEW WAY</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.6;">
+          • Describe what you want in plain language<br>
+          • AI generates the formula or query<br>
+          • You understand what it does (AI explains)<br>
+          • You verify the result manually<br>
+          • You build confidence over time
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:14px;">🎯 The democratisation of data: AI makes analysis accessible to everyone who can describe what they need</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Here's the key mindset shift."]
+Key talking points:
+• The old way created a barrier: only "technical" people could work with data
+• The new way: if you can describe what you need, AI can help you get there
+• This doesn't replace data professionals — it elevates baseline capability
+• Example: "I want to find the average revenue by region" — you don't need to know =AVERAGEIF
+• Caveat: you still need to verify. AI is the bridge, not the destination.
+Discussion prompt: "Think of a time you needed data analysis but didn't know how to do it yourself. What would you have asked for in plain language?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 9: DIALOGUE 1 — PRIYA DISCOVERS FORMULAS ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:8px;max-height:none;overflow:visible;">
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:2px;">💬 Priya's Formula Breakthrough</h2>
+    <div class="accent-bar" style="margin:4px 0 8px 0;"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=PriyaFinance" width="50" height="50" style="border-radius:50%;border:3px solid var(--blue);background:#F5F3FF;flex-shrink:0;" alt="Priya">
+        <div style="position:relative;background:#ffffff;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;">
+          <div style="position:absolute;bottom:12px;left:-10px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-right:12px solid #ffffff;"></div>
+          <div style="font-size:11px;font-weight:700;color:var(--blue);margin-bottom:3px;">PRIYA — FINANCE</div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;">I've never written a formula in my life. Every time I need something from a spreadsheet, I have to wait for Amit to help me. 😩</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;flex-direction:row-reverse;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=RachelCFO" width="50" height="50" style="border-radius:50%;border:3px solid #27AE60;background:#ECFDF5;flex-shrink:0;" alt="Rachel">
+        <div style="position:relative;background:#ECFDF5;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;">
+          <div style="position:absolute;bottom:12px;right:-10px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:12px solid #ECFDF5;"></div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;">Try this: tell ChatGPT "I have monthly revenue in column B. Write me a formula to calculate the percentage change between each month." See what happens.</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=PriyaFinance" width="50" height="50" style="border-radius:50%;border:3px solid var(--blue);background:#F5F3FF;flex-shrink:0;" alt="Priya">
+        <div style="position:relative;background:#ffffff;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;">
+          <div style="position:absolute;bottom:12px;left:-10px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-right:12px solid #ffffff;"></div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;">Wait… it gave me =(B3-B2)/B2 AND explained what each part does? I actually understand this! 🤯</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;flex-direction:row-reverse;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=RachelCFO" width="50" height="50" style="border-radius:50%;border:3px solid #27AE60;background:#ECFDF5;flex-shrink:0;" alt="Rachel">
+        <div style="position:relative;background:#ECFDF5;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;border:2px solid #27AE60;">
+          <div style="position:absolute;bottom:12px;right:-10px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:12px solid #ECFDF5;"></div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;"><strong>That's the trick:</strong> you describe what you want, AI writes the formula AND teaches you what it does. Now test it — pick two months and verify the percentage manually.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Here's how this looks in practice."]
+Key talking points:
+• Priya is a finance professional who has always relied on others for spreadsheet work
+• Rachel shows her the key insight: just describe what you need in plain language
+• AI gives you the formula AND explains it — so you learn as you go
+• Critical last step: Rachel says "verify manually" — this is always the final step
+• Audience connection: many people in the room are Priya. That's completely fine.
+Facilitation tip: Point out that Priya also understands the formula after AI explains it. This is learning by doing.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 10: CHAPTER 02 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">02</div>
+    <div class="chapter-title">AI-Powered Formulas</div>
+    <div class="chapter-sub">Describe what you need — let AI write the technical syntax</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Now let's get practical. Formula generation is one of the highest-value AI use cases for non-data people."]
+Key talking points:
+• Formula generation is where most people feel the AI benefit immediately
+• You'll practice a specific 4-step workflow
+• By the end of this section, you'll generate and verify 3 real formulas
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 11: THE FORMULA WORKFLOW ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">The Formula Workflow</h2>
+    <div class="accent-bar"></div>
+    <div class="loop-steps fragment fade-up" style="margin-top:14px;">
+      <div class="loop-step">
+        <div class="loop-step-label">STEP 1</div>
+        <div style="font-size:22px;margin-bottom:6px;">💬</div>
+        <div class="loop-step-desc"><strong style="color:var(--text-light);">Describe</strong><br>What you want in plain language</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step">
+        <div class="loop-step-label">STEP 2</div>
+        <div style="font-size:22px;margin-bottom:6px;">⚡</div>
+        <div class="loop-step-desc"><strong style="color:var(--text-light);">Get Formula</strong><br>AI generates the Excel/Sheets syntax</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step">
+        <div class="loop-step-label">STEP 3</div>
+        <div style="font-size:22px;margin-bottom:6px;">🧠</div>
+        <div class="loop-step-desc"><strong style="color:var(--text-light);">Understand</strong><br>Ask AI to explain what each part does</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step">
+        <div class="loop-step-label">STEP 4</div>
+        <div style="font-size:22px;margin-bottom:6px;">✅</div>
+        <div class="loop-step-desc"><strong style="color:var(--text-light);">Verify</strong><br>Test on known data you can check manually</div>
+      </div>
+    </div>
+    <div class="loop-footer fragment fade-up">🔑 Never use a formula you can't explain. If you don't understand it, ask AI to explain again — simpler.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Here's the systematic workflow for generating formulas with AI."]
+Key talking points:
+• Step 1: The better you describe, the better the formula. Include column names, what's in each column, and what you want to calculate.
+• Step 2: AI generates the formula — but don't use it yet!
+• Step 3: Ask "explain this formula to me like I'm a beginner" — you should understand every piece
+• Step 4: Test on a small sample where you know the answer. If =AVERAGE gives you 42 but you know it should be 40, something's wrong.
+• Key insight: this workflow means you learn formulas gradually through use, not through courses
+Discussion prompt: "Who has ever pasted a formula they found on Google without understanding it? We've all done it. This workflow prevents that."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 12: PRACTICAL — GENERATE 3 FORMULAS ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:10px;">
+    <div class="practical-badge">🔨 PRACTICAL</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:10px;">Generate 3 Formulas</h2>
+    <div style="font-size:14px;color:var(--text-muted);margin-bottom:14px;">Open your AI tool. For each description below, ask AI to generate the formula, explain it, then verify it makes sense.</div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="card fragment fade-up" style="padding:14px 18px;border-left:3px solid var(--mint);">
+        <div style="font-size:13px;font-weight:700;color:var(--mint);margin-bottom:4px;">FORMULA 1: Percentage Change</div>
+        <div style="font-size:15px;color:var(--text-light);line-height:1.5;">"Calculate the percentage change between cell B2 and B3"</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">💡 Verify: if B2=100 and B3=115, result should be 15%</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px 18px;border-left:3px solid #F59E0B;">
+        <div style="font-size:13px;font-weight:700;color:#F59E0B;margin-bottom:4px;">FORMULA 2: Conditional Average</div>
+        <div style="font-size:15px;color:var(--text-light);line-height:1.5;">"Find the average of column D, but only for rows where column A says 'London'"</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">💡 Verify: manually average the London rows — does it match?</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px 18px;border-left:3px solid var(--blue);">
+        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:4px;">FORMULA 3: Count Unique Values</div>
+        <div style="font-size:15px;color:var(--text-light);line-height:1.5;">"Count how many unique values are in column E"</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">💡 Verify: scroll through column E and count distinct entries yourself</div>
+      </div>
+    </div>
+    <div class="footer-bar-dark fragment fade-up" style="margin-top:10px;">⏱️ 8 minutes — Generate all 3, explain to a neighbour what each does</div>
+  </div>
+  <aside class="notes">
+[TIMING: 8 min] [TRANSITION: "Time to get hands-on. Open your AI tool."]
+Key talking points:
+• Give students 8 minutes to generate all 3 formulas
+• Formula 1 should give: =(B3-B2)/B2 (percentage change)
+• Formula 2 should give: =AVERAGEIF(A:A,"London",D:D) or similar
+• Formula 3 might give different approaches (SUMPRODUCT with COUNTIF, or newer UNIQUE function)
+• Encourage students to ask AI "explain this to me" for each formula
+• Walk around and help anyone stuck on their first AI query
+Facilitation tip: If students finish early, ask them to try a 4th: "What percentage of my total revenue comes from each region?"
+Expected answers: =(B3-B2)/B2, =AVERAGEIF(A:A,"London",D:D), varies by Excel version
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 13: QUIZ 1 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-m5-1">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🧠 MODULE 5 — QUIZ 1</div>
+    <div class="quiz-question">You ask AI for a SUM formula. It gives you one. What should you do before using it?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-m5-1',0,2,'Correct answer is C. Always test formulas on sample data you can verify manually. If AI gives you =SUM(B2:B50), try it on 3 cells where you know the answer. Trust builds through verification, not faith.')">
+        <span class="opt-letter">A</span><span>Paste it directly into your spreadsheet</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-m5-1',1,2,'Correct answer is C. Always test formulas on sample data you can verify manually. If AI gives you =SUM(B2:B50), try it on 3 cells where you know the answer. Trust builds through verification, not faith.')">
+        <span class="opt-letter">B</span><span>Ask AI if the formula is correct</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-m5-1',2,2,'Correct! Always test formulas on sample data you can verify manually. If AI gives you =SUM(B2:B50), try it on 3 cells where you know the answer. Trust builds through verification, not faith.')">
+        <span class="opt-letter">C</span><span>Test it on sample data you can verify manually</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-m5-1',3,2,'Correct answer is C. Always test formulas on sample data you can verify manually. If AI gives you =SUM(B2:B50), try it on 3 cells where you know the answer. Trust builds through verification, not faith.')">
+        <span class="opt-letter">D</span><span>Google the formula to confirm it's real</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] Key talking points: Answer C. The verification imperative applies to formulas too. Test on known data. AI can give you a formula that LOOKS right but references wrong cells or uses wrong logic.
+Bridge: "Now that you can generate formulas, what happens when your data is a mess? Let's tackle that next."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 14: CHAPTER 03 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">03</div>
+    <div class="chapter-title">Cleaning Messy Data</div>
+    <div class="chapter-sub">Real data is never clean — AI helps you tame the chaos</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Formulas are great — when your data is clean. But real-world data almost never is."]
+Key talking points:
+• Most time spent on data analysis is actually data CLEANING (80% by most estimates)
+• AI doesn't fix your data automatically, but it gives you a strategy
+• You'll learn to identify data quality issues and describe them to AI for solutions
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 15: THREE TYPES OF DATA ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Three Types of Data You'll Encounter</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-3col" style="gap:12px;margin-top:12px;">
+      <div class="card fragment fade-up" style="border-top:4px solid #27AE60;padding:16px;text-align:center;">
+        <div style="font-size:28px;margin-bottom:8px;">✨</div>
+        <div style="font-size:16px;font-weight:700;color:#27AE60;margin-bottom:6px;">Clean Data</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">Consistent formats, no gaps, no duplicates. Ready to analyse immediately.</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:8px;font-style:italic;">Rare in the wild 🦄</div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:4px solid #E74C3C;padding:16px;text-align:center;">
+        <div style="font-size:28px;margin-bottom:8px;">🗑️</div>
+        <div style="font-size:16px;font-weight:700;color:#E74C3C;margin-bottom:6px;">Garbage Data</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">Missing values, errors, impossible numbers, corrupted entries. Needs repair.</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:8px;font-style:italic;">Common from imports & legacy systems</div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:4px solid #F59E0B;padding:16px;text-align:center;">
+        <div style="font-size:28px;margin-bottom:8px;">🔀</div>
+        <div style="font-size:16px;font-weight:700;color:#F59E0B;margin-bottom:6px;">Unorganised Data</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">Inconsistent formats, mixed naming, duplicates with variations. Needs standardising.</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:8px;font-style:italic;">Most common in multi-person spreadsheets</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:14px;">💡 Most real data is a mix of garbage AND unorganised. AI helps you identify which problems you have.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Before we clean data, let's name the problems."]
+Key talking points:
+• Clean data is the unicorn — you'll rarely get it from external sources
+• Garbage data: missing revenue cells, dates that say "TBC", phone numbers in the email field
+• Unorganised data: "London", "london", "LONDON", "Ldn" — all the same city, but the spreadsheet doesn't know that
+• Most real datasets combine both problems
+• AI is excellent at identifying these patterns — it's literally pattern matching
+Discussion prompt: "Think of a spreadsheet you've received from a colleague or client. Which category does it fall into?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 16: THE 5-STEP CLEANING PROCESS ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">The 5-Step Data Cleaning Process</h2>
+    <div class="accent-bar"></div>
+    <div class="loop-steps fragment fade-up" style="margin-top:14px;">
+      <div class="loop-step">
+        <div class="loop-step-label">1. ASSESS</div>
+        <div style="font-size:18px;margin-bottom:4px;">🔍</div>
+        <div class="loop-step-desc">Look at your data.<br>How many rows?<br>What's obviously wrong?</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step">
+        <div class="loop-step-label">2. IDENTIFY</div>
+        <div style="font-size:18px;margin-bottom:4px;">📋</div>
+        <div class="loop-step-desc">List specific issues:<br>missing values,<br>duplicates, formats</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step">
+        <div class="loop-step-label">3. ASK AI</div>
+        <div style="font-size:18px;margin-bottom:4px;">🤖</div>
+        <div class="loop-step-desc">Describe the issues.<br>Ask AI for a<br>cleaning strategy</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step">
+        <div class="loop-step-label">4. EXECUTE</div>
+        <div style="font-size:18px;margin-bottom:4px;">⚡</div>
+        <div class="loop-step-desc">Apply fixes:<br>formulas, find/replace,<br>remove duplicates</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step">
+        <div class="loop-step-label">5. VALIDATE</div>
+        <div style="font-size:18px;margin-bottom:4px;">✅</div>
+        <div class="loop-step-desc">Check row counts,<br>spot-check values,<br>verify no data lost</div>
+      </div>
+    </div>
+    <div class="loop-footer fragment fade-up">🔁 This is iterative — you may cycle through steps 2-5 multiple times for complex datasets</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Here's your systematic process for cleaning any dataset."]
+Key talking points:
+• Step 1: Don't start fixing immediately. Look at the whole picture first. How big is the problem?
+• Step 2: Be specific. "The dates are messy" isn't enough. "Column B has 4 different date formats" is useful.
+• Step 3: This is where AI shines. Describe the exact issues, AI gives you step-by-step instructions.
+• Step 4: Execute the strategy. AI might suggest formulas, find/replace patterns, or sorting approaches.
+• Step 5: Always validate. Did you lose rows? Did cleaning change values it shouldn't have?
+• The iterative nature: complex datasets need multiple passes. That's normal.
+Facilitation tip: Emphasise step 2 — the quality of your AI interaction depends on how well you describe the problems.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 17: PRACTICAL — DIAGNOSE THIS DATASET ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:6px;">
+    <div class="practical-badge">🔨 PRACTICAL</div>
+    <h2 class="slide-title-dark" style="font-size:20px;font-weight:800;margin-bottom:8px;">Diagnose This Dataset</h2>
+    <div style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">How many issues can you spot? Describe them to AI and ask for a cleaning strategy.</div>
+    <table class="messy-table fragment fade-up">
+      <thead>
+        <tr><th>Name</th><th>Date Joined</th><th>Revenue</th><th>Region</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Acme Corp</td><td>15/03/2024</td><td>$45,000</td><td>london</td><td>Active</td></tr>
+        <tr><td>Beta Ltd</td><td>2024-04-22</td><td>38000</td><td>LONDON</td><td>active</td></tr>
+        <tr class="issue-row"><td>Acme Corp</td><td>15/03/2024</td><td>$45,000</td><td>london</td><td>Active</td></tr>
+        <tr class="issue-row"><td>Gamma Inc</td><td>March 2024</td><td style="color:#E74C3C;font-style:italic;">(empty)</td><td>Manchester</td><td>Inactive</td></tr>
+        <tr><td>Delta Co</td><td>2024-01-15</td><td>$62,500</td><td>Edinburgh</td><td>Active</td></tr>
+        <tr class="issue-row"><td>Beta Ltd</td><td>22 Apr 2024</td><td>£38,000</td><td>London</td><td>ACTIVE</td></tr>
+      </tbody>
+    </table>
+    <div class="grid-2col fragment fade-up" style="gap:10px;margin-top:10px;">
+      <div class="card" style="padding:12px 14px;border-left:3px solid #E74C3C;">
+        <div style="font-size:13px;font-weight:700;color:#E74C3C;margin-bottom:4px;">🎯 Your Task</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">1. List every issue you can see<br>2. Describe them to AI in plain language<br>3. Ask: "What steps should I take to clean this?"</div>
+      </div>
+      <div class="card" style="padding:12px 14px;border-left:3px solid var(--mint);">
+        <div style="font-size:13px;font-weight:700;color:var(--mint);margin-bottom:4px;">🔎 Issues to Find</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">Duplicates, mixed date formats, inconsistent capitalisation, missing values, mixed currency symbols, near-duplicates</div>
+      </div>
+    </div>
+    <div class="footer-bar-dark fragment fade-up" style="margin-top:8px;">⏱️ 5 minutes — List the issues, then ask AI for a cleaning strategy</div>
+  </div>
+  <aside class="notes">
+[TIMING: 5 min] [TRANSITION: "Let's put the 5-step process into practice immediately."]
+Key talking points:
+• Issues in this dataset: (1) Exact duplicate: Acme Corp row 1 & 3, (2) Mixed date formats: DD/MM/YYYY, YYYY-MM-DD, "March 2024", "22 Apr 2024", (3) Inconsistent region: london, LONDON, London, (4) Missing revenue for Gamma Inc, (5) Mixed currency: $45,000 vs 38000 vs £38,000, (6) Inconsistent status capitalisation: Active, active, ACTIVE, (7) Near-duplicate: Beta Ltd appears twice with slightly different data
+• Have students describe these to AI and compare the cleaning strategies they get
+• Walk around and check: are they being specific enough in their descriptions?
+Facilitation tip: After 5 minutes, ask 2-3 students to share what AI suggested. Compare approaches.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 18: DIALOGUE 2 — AMIT'S GARBAGE SPREADSHEET ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:8px;max-height:none;overflow:visible;">
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:2px;">💬 Amit's Client Spreadsheet Nightmare</h2>
+    <div class="accent-bar" style="margin:4px 0 8px 0;"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=AmitOps" width="50" height="50" style="border-radius:50%;border:3px solid var(--blue);background:#F5F3FF;flex-shrink:0;" alt="Amit">
+        <div style="position:relative;background:#ffffff;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;">
+          <div style="position:absolute;bottom:12px;left:-10px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-right:12px solid #ffffff;"></div>
+          <div style="font-size:11px;font-weight:700;color:var(--blue);margin-bottom:3px;">AMIT — OPERATIONS</div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;">A client just sent me a spreadsheet with 2,000 rows. Half the dates are text, there are duplicates everywhere, and some cells just say "TBC". Where do I even start? 😫</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;flex-direction:row-reverse;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=KenjiHR" width="50" height="50" style="border-radius:50%;border:3px solid #27AE60;background:#ECFDF5;flex-shrink:0;" alt="Kenji">
+        <div style="position:relative;background:#ECFDF5;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;">
+          <div style="position:absolute;bottom:12px;right:-10px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:12px solid #ECFDF5;"></div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;">Start by describing the mess to AI. Paste a sample of 5-10 rows and say: "Here's a sample from my dataset. What quality issues do you see, and what's a step-by-step plan to fix them?"</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=AmitOps" width="50" height="50" style="border-radius:50%;border:3px solid var(--blue);background:#F5F3FF;flex-shrink:0;" alt="Amit">
+        <div style="position:relative;background:#ffffff;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;">
+          <div style="position:absolute;bottom:12px;left:-10px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-right:12px solid #ffffff;"></div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;">That worked brilliantly! It spotted issues I'd missed and gave me a priority order. Took 20 minutes instead of 3 hours. 💪</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;flex-direction:row-reverse;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=KenjiHR" width="50" height="50" style="border-radius:50%;border:3px solid #27AE60;background:#ECFDF5;flex-shrink:0;" alt="Kenji">
+        <div style="position:relative;background:#ECFDF5;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;border:2px solid #27AE60;">
+          <div style="position:absolute;bottom:12px;right:-10px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:12px solid #ECFDF5;"></div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;"><strong>Key tip:</strong> Don't paste the whole 2,000 rows. Send a representative sample. And remember Module 4 — anonymise client names if the data is sensitive before sharing with AI.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Here's how this looks in a real workplace scenario."]
+Key talking points:
+• Amit's situation is extremely common — messy client data that needs cleaning before you can do anything useful
+• Kenji's advice: don't try to paste 2,000 rows. Send a sample (5-10 rows that represent the variety of issues)
+• Time savings: 20 minutes vs 3 hours because AI gives you a structured plan
+• Privacy callback: Kenji reminds Amit about Module 4. If the client data contains names/financials, anonymise first!
+• The sample approach also protects against token limits in AI tools
+Facilitation tip: Ask "Has anyone been in Amit's situation? What did you do?" — most people will say they either struggled alone or asked a colleague.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 19: CHAPTER 04 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">04</div>
+    <div class="chapter-title">From Data to Insight</div>
+    <div class="chapter-sub">Analysis, patterns, and the verification imperative</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Now your data is clean. Let's extract insights from it — carefully."]
+Key talking points:
+• Clean data is just the starting point — the value is in what it tells you
+• AI can spot patterns, but it can also hallucinate patterns
+• This chapter teaches you what AI CAN and CAN'T do with data analysis
+• The verification imperative: every AI insight needs a human sanity check
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 20: WHAT AI CAN SEE VS WHAT IT CAN'T ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">What AI Can See vs What It Can't</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="gap:14px;margin-top:12px;">
+      <div class="card fragment fade-up" style="border-top:4px solid #27AE60;padding:16px;">
+        <div style="font-size:15px;font-weight:700;color:#27AE60;margin-bottom:10px;">✅ AI CAN Identify</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="check-row" style="border:0;padding:4px 0;"><span class="check-icon">📈</span><span style="font-size:14px;">Patterns and trends in numbers</span></div>
+          <div class="check-row" style="border:0;padding:4px 0;"><span class="check-icon">🔴</span><span style="font-size:14px;">Outliers and anomalies</span></div>
+          <div class="check-row" style="border:0;padding:4px 0;"><span class="check-icon">🔗</span><span style="font-size:14px;">Correlations between columns</span></div>
+          <div class="check-row" style="border:0;padding:4px 0;"><span class="check-icon">📊</span><span style="font-size:14px;">Summary statistics and groupings</span></div>
+          <div class="check-row" style="border:0;padding:4px 0;"><span class="check-icon">🧹</span><span style="font-size:14px;">Data quality issues</span></div>
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:4px solid #E74C3C;padding:16px;">
+        <div style="font-size:15px;font-weight:700;color:#E74C3C;margin-bottom:10px;">❌ AI CANNOT Determine</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="check-row" style="border:0;padding:4px 0;"><span style="color:#E74C3C;font-size:17px;flex-shrink:0;">⚠️</span><span style="font-size:14px;">Causation (why something happened)</span></div>
+          <div class="check-row" style="border:0;padding:4px 0;"><span style="color:#E74C3C;font-size:17px;flex-shrink:0;">⚠️</span><span style="font-size:14px;">Business context you haven't provided</span></div>
+          <div class="check-row" style="border:0;padding:4px 0;"><span style="color:#E74C3C;font-size:17px;flex-shrink:0;">⚠️</span><span style="font-size:14px;">Whether the data itself is reliable</span></div>
+          <div class="check-row" style="border:0;padding:4px 0;"><span style="color:#E74C3C;font-size:17px;flex-shrink:0;">⚠️</span><span style="font-size:14px;">Business judgment and decisions</span></div>
+          <div class="check-row" style="border:0;padding:4px 0;"><span style="color:#E74C3C;font-size:17px;flex-shrink:0;">⚠️</span><span style="font-size:14px;">Whether a trend will continue</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:14px;">⚠️ If AI says "sales dropped BECAUSE of..." — that's a red flag. Correlation ≠ causation.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "This is the most important slide in the chapter."]
+Key talking points:
+• LEFT column: These are pattern-matching tasks. AI is genuinely good at these. Trust but verify.
+• RIGHT column: These require context, domain knowledge, and judgment that AI doesn't have.
+• The big trap: AI will CONFIDENTLY state causation. "Sales dropped because of the price increase" — but it doesn't know if you raised prices. It's just guessing from patterns.
+• Key rule: if AI uses the word "because" in analysis, treat it as a hypothesis to test, not a fact.
+• The data reliability point: if someone entered wrong numbers in the spreadsheet, AI can't know that. Garbage in = garbage out.
+Discussion prompt: "Has anyone had AI make a confident causal claim? What was it?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 21: THE VERIFICATION IMPERATIVE ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">The Verification Imperative for Data</h2>
+    <div class="accent-bar"></div>
+    <div style="font-size:14px;color:var(--text-muted);margin-bottom:14px;">Every AI data insight must pass three checks before you trust it:</div>
+    <div class="grid-3col" style="gap:12px;">
+      <div class="card fragment fade-up" style="border-top:4px solid var(--mint);padding:16px;text-align:center;">
+        <div style="font-size:28px;margin-bottom:8px;">🧮</div>
+        <div style="font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:8px;">1. Verify Calculations</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">Pick 2-3 numbers AI claims.<br>Calculate them yourself.<br>Do they match?</div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:4px solid var(--blue);padding:16px;text-align:center;">
+        <div style="font-size:28px;margin-bottom:8px;">📈</div>
+        <div style="font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:8px;">2. Verify Trends</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">If AI says "increasing trend"—<br>check the actual numbers.<br>Is the trend real and significant?</div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:4px solid #F59E0B;padding:16px;text-align:center;">
+        <div style="font-size:28px;margin-bottom:8px;">🔍</div>
+        <div style="font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:8px;">3. Verify Causation</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">If AI claims X caused Y—<br>ask: "Do I have evidence<br>beyond correlation?"</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:14px;">🎯 Rule: Never present an AI-generated number to a stakeholder without manually checking it first</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Here's your 3-check system for any AI data output."]
+Key talking points:
+• Check 1 — Calculations: AI might say "average revenue is £45,200" — pull out a calculator, add the values, divide. Does it match?
+• Check 2 — Trends: AI says "revenue grew steadily" — but did it? Maybe it grew in Q1-Q3 then dropped in Q4. "Steady" is subjective.
+• Check 3 — Causation: The hardest one. AI might say "the new marketing campaign caused the growth" — but it can't know that without experiments.
+• The stakeholder rule: if you're putting a number in a report, email, or presentation — verify it first. Your reputation depends on accuracy, not AI's.
+Facilitation tip: Emphasise that this isn't paranoia — it's professionalism. Doctors check test results. Accountants check figures. AI users should too.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 22: PRACTICAL — ANALYSE AND VERIFY ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:10px;">
+    <div class="practical-badge">🔨 PRACTICAL</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:10px;">Analyse and Verify</h2>
+    <div style="font-size:14px;color:var(--text-muted);margin-bottom:14px;">Use the dataset from the cleaning exercise (or your own data). Ask AI for insights — then verify at least one claim.</div>
+    <ol class="practical-steps">
+      <li class="fragment fade-up"><span class="step-num">1</span><span>Paste a small dataset (5-10 rows) into your AI tool</span></li>
+      <li class="fragment fade-up"><span class="step-num">2</span><span>Ask: "What trends or patterns do you see in this data?"</span></li>
+      <li class="fragment fade-up"><span class="step-num">3</span><span>Note one specific numerical claim AI makes (e.g., "average is X" or "grew by Y%")</span></li>
+      <li class="fragment fade-up"><span class="step-num">4</span><span>Calculate that number yourself — does it match what AI said?</span></li>
+      <li class="fragment fade-up"><span class="step-num">5</span><span>If AI claims causation, write down: "What evidence do I have beyond this data?"</span></li>
+    </ol>
+    <div class="footer-bar-dark fragment fade-up" style="margin-top:10px;">⏱️ 7 minutes — The goal is to catch AI in at least one inaccuracy or unsupported claim</div>
+  </div>
+  <aside class="notes">
+[TIMING: 7 min] [TRANSITION: "Time for the verification challenge."]
+Key talking points:
+• Students should use the messy dataset from slide 17 (now cleaned) or their own sample data
+• The goal is explicitly to find something AI gets wrong or overstates — this builds healthy scepticism
+• Common findings: AI might average incorrectly if it misreads the data, claim trends that don't exist, or state causation without evidence
+• If students can't find an error, that's fine — the habit of checking is what matters
+• After 7 minutes, ask: "Who caught AI making an incorrect claim? What was it?"
+Facilitation tip: Celebrate when students find errors. This is the skill — not using AI, but knowing when it's wrong.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 23: QUIZ 2 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-m5-2">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🧠 MODULE 5 — QUIZ 2</div>
+    <div class="quiz-question">AI says "Sales grew 23% in Q3." What's your first verification step?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-m5-2',0,0,'Correct! Get the actual Q2 and Q3 numbers, calculate (Q3-Q2)/Q2 yourself. If it&apos;s not 23%, AI hallucinated a number. This takes 30 seconds but prevents presenting false data to stakeholders.')">
+        <span class="opt-letter">A</span><span>Check the actual Q2 and Q3 numbers and calculate the growth yourself</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-m5-2',1,0,'Correct answer is A. Get the actual Q2 and Q3 numbers, calculate (Q3-Q2)/Q2 yourself. If it&apos;s not 23%, AI hallucinated a number. This takes 30 seconds but prevents presenting false data to stakeholders.')">
+        <span class="opt-letter">B</span><span>Ask AI "are you sure about that percentage?"</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-m5-2',2,0,'Correct answer is A. Get the actual Q2 and Q3 numbers, calculate (Q3-Q2)/Q2 yourself. If it&apos;s not 23%, AI hallucinated a number. This takes 30 seconds but prevents presenting false data to stakeholders.')">
+        <span class="opt-letter">C</span><span>Include it in your report with "AI-generated" disclaimer</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-m5-2',3,0,'Correct answer is A. Get the actual Q2 and Q3 numbers, calculate (Q3-Q2)/Q2 yourself. If it&apos;s not 23%, AI hallucinated a number. This takes 30 seconds but prevents presenting false data to stakeholders.')">
+        <span class="opt-letter">D</span><span>Run the analysis again to see if you get the same number</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] Key talking points: Answer A. Calculate it yourself. Don't ask AI to self-verify (it will just agree with itself). Don't add disclaimers to dodge responsibility. Don't rely on reproducibility (AI can be consistently wrong).
+Bridge: "Now you have verified insights. The last step? Communicating them clearly."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 24: CHAPTER 05 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">05</div>
+    <div class="chapter-title">Communicating Results</div>
+    <div class="chapter-sub">From raw numbers to clear narratives and stakeholder emails</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Data analysis is only useful if you can communicate what you found."]
+Key talking points:
+• The best analysis in the world is useless if no one understands it
+• This chapter connects data analysis to communication (summarisation + email writing)
+• You'll use CRAFT and the Anchor Guardrail from Modules 2-3 to produce stakeholder-ready summaries
+• AI helps with: chart selection, executive summaries, and stakeholder emails
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 25: CHART SELECTION WITH AI ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Chart Selection with AI</h2>
+    <div class="accent-bar"></div>
+    <div style="font-size:14px;color:var(--text-muted);margin-bottom:12px;">Ask AI: "What chart type best shows [your goal]?" — here's the general guide:</div>
+    <div class="grid-2x2" style="gap:12px;margin-top:8px;">
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;border-top:3px solid var(--mint);">
+        <div style="font-size:24px;margin-bottom:6px;">📊</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:4px;">Comparison</div>
+        <div style="font-size:14px;color:var(--text-muted);">Bar Chart</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:4px;font-style:italic;">"Which region performed best?"</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;border-top:3px solid var(--blue);">
+        <div style="font-size:24px;margin-bottom:6px;">📈</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:4px;">Trend Over Time</div>
+        <div style="font-size:14px;color:var(--text-muted);">Line Chart</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:4px;font-style:italic;">"How has revenue changed monthly?"</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;border-top:3px solid #F59E0B;">
+        <div style="font-size:24px;margin-bottom:6px;">🥧</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:4px;">Composition</div>
+        <div style="font-size:14px;color:var(--text-muted);">Pie Chart</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:4px;font-style:italic;">"What share does each product have?"</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;border-top:3px solid #27AE60;">
+        <div style="font-size:24px;margin-bottom:6px;">🔵</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:4px;">Relationship</div>
+        <div style="font-size:14px;color:var(--text-muted);">Scatter Plot</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:4px;font-style:italic;">"Is spend correlated with revenue?"</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:12px;">💡 Prompt: "I want to show [goal] to [audience]. What chart type and why?"</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Before you write a summary, think about how to visualise the data."]
+Key talking points:
+• Chart selection is a common stumbling block — people default to whatever they know (usually bar charts)
+• AI can recommend chart types based on what you're trying to show
+• The key question is always: "What story am I trying to tell with this data?"
+• Comparison = bar, Trend = line, Composition = pie, Relationship = scatter
+• Advanced tip: you can ask AI "write me the Excel/Sheets steps to create this chart" too
+Discussion prompt: "Think about the last chart you made. Was it the right type for what you were showing?"
+Facilitation tip: Note that pie charts are overused. AI will sometimes suggest better alternatives.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 26: PRACTICAL — DRAFT THE EXECUTIVE SUMMARY ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:10px;">
+    <div class="practical-badge">🔨 PRACTICAL</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:10px;">Draft the Executive Summary</h2>
+    <div style="font-size:14px;color:var(--text-muted);margin-bottom:14px;">Using your analysis from the previous exercise, ask AI to produce two things:</div>
+    <div class="grid-2col" style="gap:12px;">
+      <div class="card fragment fade-up" style="padding:16px;border-left:3px solid var(--mint);">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:8px;">📝 Task 1: Executive Summary</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.6;">
+          Ask AI to write a 3-paragraph summary of your data findings.<br><br>
+          <strong style="color:var(--text-light);">Apply CRAFT:</strong><br>
+          • Context: "I analysed client data for Q1"<br>
+          • Role: "Write as a business analyst"<br>
+          • Action: "Produce a 3-paragraph summary"<br>
+          • Format: "Short paragraphs, no jargon"<br>
+          • Target: "For the leadership team"
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="padding:16px;border-left:3px solid var(--blue);">
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:8px;">📧 Task 2: Stakeholder Email</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.6;">
+          Turn your summary into a follow-up email to stakeholders.<br><br>
+          <strong style="color:var(--text-light);">Add Anchor Guardrail:</strong><br>
+          "Do not invent statistics or percentages I have not provided. Only reference numbers from my data."<br><br>
+          <em>Check: did AI add any numbers you didn't provide?</em>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar-dark fragment fade-up" style="margin-top:12px;">⏱️ 7 minutes — Generate both outputs, then verify: are all numbers in the email YOUR numbers?</div>
+  </div>
+  <aside class="notes">
+[TIMING: 7 min] [TRANSITION: "The final practical exercise ties everything together."]
+Key talking points:
+• This exercise connects Module 2 (CRAFT), Module 3 (summarisation), Module 4 (Anchor Guardrail), and Module 5 (data analysis)
+• Task 1: The executive summary should be concise, factual, and based only on verified data
+• Task 2: The email should be professional and actionable — include next steps
+• Anchor Guardrail check: students should scan the AI output for any numbers they didn't provide
+• Common finding: AI will often "enhance" summaries with invented percentages. The Anchor Guardrail prevents this.
+• Walk around and check: is anyone finding hallucinated statistics?
+Facilitation tip: After the exercise, ask 1-2 people to share their email. Have the group spot-check: "Are all those numbers real?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 27: DIALOGUE 3 — RACHEL CATCHES A HALLUCINATION ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:8px;max-height:none;overflow:visible;">
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:2px;">💬 Rachel Catches a Hallucinated Percentage</h2>
+    <div class="accent-bar" style="margin:4px 0 8px 0;"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=AmitOps" width="50" height="50" style="border-radius:50%;border:3px solid var(--blue);background:#F5F3FF;flex-shrink:0;" alt="Amit">
+        <div style="position:relative;background:#ffffff;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;">
+          <div style="position:absolute;bottom:12px;left:-10px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-right:12px solid #ffffff;"></div>
+          <div style="font-size:11px;font-weight:700;color:var(--blue);margin-bottom:3px;">AMIT — OPERATIONS</div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;">Rachel, I used AI to draft the dashboard summary for the board. It says "operational efficiency improved by 18% year-on-year." Sounds great, right?</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;flex-direction:row-reverse;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=RachelCFO" width="50" height="50" style="border-radius:50%;border:3px solid #E74C3C;background:#FEF2F2;flex-shrink:0;" alt="Rachel">
+        <div style="position:relative;background:#FEF2F2;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;">
+          <div style="position:absolute;bottom:12px;right:-10px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:12px solid #FEF2F2;"></div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;">Hold on — where did 18% come from? I'm looking at the raw data and I get 11.3%. Did you give AI that 18% figure, or did it invent it?</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=AmitOps" width="50" height="50" style="border-radius:50%;border:3px solid var(--blue);background:#F5F3FF;flex-shrink:0;" alt="Amit">
+        <div style="position:relative;background:#ffffff;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;">
+          <div style="position:absolute;bottom:12px;left:-10px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-right:12px solid #ffffff;"></div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;">I… didn't check. I assumed it calculated correctly. That would have gone to the board wrong. 😰</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;flex-direction:row-reverse;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=RachelCFO" width="50" height="50" style="border-radius:50%;border:3px solid #27AE60;background:#ECFDF5;flex-shrink:0;" alt="Rachel">
+        <div style="position:relative;background:#ECFDF5;border-radius:16px;padding:12px 16px;flex:1;max-width:80%;border:2px solid #27AE60;">
+          <div style="position:absolute;bottom:12px;right:-10px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:12px solid #ECFDF5;"></div>
+          <div style="font-size:14px;color:#1E1045;line-height:1.4;"><strong>The rule:</strong> every number in a board paper gets verified manually. AI is your drafting assistant, not your fact-checker. Add the Anchor Guardrail to prevent this next time.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "This is exactly the scenario we need to prevent."]
+Key talking points:
+• Amit trusted AI's number without checking — classic hallucination of a specific percentage
+• Rachel caught it because she checked the raw data — the real figure was 11.3%, not 18%
+• If this went to the board, it would be a credibility-destroying moment for Amit
+• The fix: Anchor Guardrail ("Do not invent statistics I have not provided") + manual verification
+• This is NOT a rare scenario — AI frequently "improves" numbers to make them sound more impressive
+• Key takeaway: your name is on the report, not AI's. You own the accuracy.
+Facilitation tip: Ask "What would happen at YOUR organisation if you presented a wrong number to the board?" — make it real.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 28: QUIZ 3 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-m5-3">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🧠 MODULE 5 — QUIZ 3</div>
+    <div class="quiz-question">Which data task is AI MOST reliable for?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-m5-3',0,2,'Correct answer is C. AI excels at identifying data quality issues and suggesting cleaning steps — this is structured pattern matching, its strongest capability. It&apos;s less reliable for precise calculations and causation claims.')">
+        <span class="opt-letter">A</span><span>Calculating exact financial totals for reports</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-m5-3',1,2,'Correct answer is C. AI excels at identifying data quality issues and suggesting cleaning steps — this is structured pattern matching, its strongest capability. It&apos;s less reliable for precise calculations and causation claims.')">
+        <span class="opt-letter">B</span><span>Explaining why a metric changed last quarter</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-m5-3',2,2,'Correct! AI excels at identifying data quality issues and suggesting cleaning steps — this is structured pattern matching, its strongest capability. It&apos;s less reliable for precise calculations and causation claims.')">
+        <span class="opt-letter">C</span><span>Suggesting data cleaning steps and identifying quality issues</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-m5-3',3,2,'Correct answer is C. AI excels at identifying data quality issues and suggesting cleaning steps — this is structured pattern matching, its strongest capability. It&apos;s less reliable for precise calculations and causation claims.')">
+        <span class="opt-letter">D</span><span>Predicting future performance from historical data</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] Key talking points: Answer C. We asked this in the recap quiz too — now students have experienced it firsthand. AI is best at pattern identification and strategy suggestion, less reliable for precise maths and causation.
+Bridge: "Let's wrap up with the full workflow and your takeaways."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 29: CHAPTER 06 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">06</div>
+    <div class="chapter-title">Wrap-up</div>
+    <div class="chapter-sub">Your complete data analysis workflow with AI</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Let's bring it all together."]
+Key talking points:
+• Quick wrap-up of the complete workflow
+• 4 key takeaways to remember
+• Homework preview and Module 6 teaser
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 30: THE FULL WORKFLOW ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">The Data Analysis Workflow</h2>
+    <div class="accent-bar"></div>
+    <div class="loop-steps fragment fade-up" style="margin-top:14px;">
+      <div class="loop-step">
+        <div class="loop-step-label">GET DATA</div>
+        <div style="font-size:18px;margin-bottom:4px;">📥</div>
+        <div class="loop-step-desc">Receive or collect your dataset</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step">
+        <div class="loop-step-label">CLEAN</div>
+        <div style="font-size:18px;margin-bottom:4px;">🧹</div>
+        <div class="loop-step-desc">Assess, identify issues, fix with AI help</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step">
+        <div class="loop-step-label">ANALYSE</div>
+        <div style="font-size:18px;margin-bottom:4px;">🔍</div>
+        <div class="loop-step-desc">Generate formulas, spot patterns, extract insights</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step">
+        <div class="loop-step-label">VERIFY</div>
+        <div style="font-size:18px;margin-bottom:4px;">✅</div>
+        <div class="loop-step-desc">Check calculations, trends, and causation claims</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step">
+        <div class="loop-step-label">COMMUNICATE</div>
+        <div style="font-size:18px;margin-bottom:4px;">📧</div>
+        <div class="loop-step-desc">Summarise, visualise, email stakeholders</div>
+      </div>
+    </div>
+    <div class="loop-footer fragment fade-up">🔁 This is a loop — communication may reveal questions that send you back to analysis or cleaning</div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Here's your complete workflow, start to finish."]
+Key talking points:
+• This is the end-to-end process you've practised today
+• Get Data: receive the spreadsheet, CSV, or export
+• Clean: use the 5-step process to fix quality issues (AI helps identify and strategise)
+• Analyse: generate formulas, ask AI for patterns, explore the data
+• Verify: the non-negotiable step — check every number before sharing
+• Communicate: summaries, charts, emails — using CRAFT and Anchor Guardrail
+• It's a loop: a stakeholder might ask "what about Q2?" — back to analysis you go
+• Key message: AI accelerates every step, but YOU remain the quality gate
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 31: KEY TAKEAWAYS ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Key Takeaways</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2x2" style="gap:12px;margin-top:12px;">
+      <div class="closing-card fragment fade-up">
+        <div style="font-size:18px;margin-bottom:6px;">🌉</div>
+        <strong style="color:var(--mint);">AI bridges the gap.</strong> You don't need to learn Excel, SQL, or Python to work with data. Describe what you need in plain language — AI translates.
+      </div>
+      <div class="closing-card fragment fade-up">
+        <div style="font-size:18px;margin-bottom:6px;">🧹</div>
+        <strong style="color:var(--mint);">Clean before you analyse.</strong> 80% of data work is cleaning. Use the 5-step process: Assess → Identify → Ask AI → Execute → Validate.
+      </div>
+      <div class="closing-card fragment fade-up">
+        <div style="font-size:18px;margin-bottom:6px;">🔍</div>
+        <strong style="color:var(--mint);">Verify every number.</strong> AI hallucinates statistics. Check calculations, question trends, and never present a number you haven't confirmed yourself.
+      </div>
+      <div class="closing-card fragment fade-up">
+        <div style="font-size:18px;margin-bottom:6px;">📧</div>
+        <strong style="color:var(--mint);">Communication is the final step.</strong> Use CRAFT + Anchor Guardrail to turn data into clear summaries and stakeholder emails that contain only verified facts.
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Four things to remember from today."]
+Key talking points:
+• Takeaway 1: Democratisation — data analysis is no longer just for "data people"
+• Takeaway 2: Cleaning — most time is spent here, and AI makes it dramatically faster
+• Takeaway 3: Verification — the one non-negotiable. Your reputation depends on accuracy.
+• Takeaway 4: Communication — analysis without clear communication is wasted effort
+• Reinforce: these aren't just ideas. You DID all of these today. You generated formulas, diagnosed data, verified claims, and wrote summaries.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 32: NEXT MODULE + HOMEWORK ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Before Next Time</h2>
+    <div class="accent-bar"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px;">
+      <div class="card fragment fade-up" style="padding:14px 18px;border-left:3px solid var(--mint);">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:4px;">📊 HOMEWORK 1: Formula Practice</div>
+        <div style="font-size:15px;color:var(--text-light);line-height:1.5;">Find a spreadsheet you use at work. Generate 3 formulas using AI that would save you time. Verify each one.</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px 18px;border-left:3px solid var(--blue);">
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:4px;">🧹 HOMEWORK 2: Clean Something Real</div>
+        <div style="font-size:15px;color:var(--text-light);line-height:1.5;">Take a messy dataset (sample from a real one or the practice dataset) through the full 5-step cleaning process.</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px 18px;border-left:3px solid #F59E0B;">
+        <div style="font-size:14px;font-weight:700;color:#F59E0B;margin-bottom:4px;">📧 HOMEWORK 3: Summarise & Email</div>
+        <div style="font-size:15px;color:var(--text-light);line-height:1.5;">Use AI to write an executive summary of any analysis. Apply the Anchor Guardrail. Verify all numbers before "sending."</div>
+      </div>
+    </div>
+    <div class="teaser fragment fade-up" style="margin-top:14px;">
+      <strong style="color:var(--mint);">Coming Next — Module 6:</strong> AI for Writing & Communication — emails, proposals, reports, and professional writing with AI as your co-author.
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Here's what to practice before next time."]
+Key talking points:
+• Homework 1: Practical formula generation — find real formulas you'd use in your day job
+• Homework 2: The cleaning process — apply the 5-step process to something real (remember privacy rules!)
+• Homework 3: End-to-end exercise — analysis to communication, with verification
+• Module 6 preview: We'll focus on professional writing — emails, proposals, reports. This builds directly on the summarisation and email skills from today.
+• Remind students to apply Module 4 privacy rules if using real organisational data
+Facilitation tip: "If you only do one homework, do #1 — it has the most immediate impact on your day-to-day work."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 33: THANK YOU ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:60px;text-align:center;">
+    <div style="font-size:42px;margin-bottom:16px;">📊</div>
+    <div style="font-size:32px;font-weight:800;color:var(--text-light);margin-bottom:12px;">Thank You</div>
+    <div style="font-size:17px;color:var(--mint);margin-bottom:8px;">Module 5: Data Analysis & Visualisation with AI</div>
+    <div style="font-size:14px;color:var(--text-muted);margin-bottom:32px;">You're now equipped to clean, analyse, verify, and communicate data — with AI as your assistant.</div>
+    <div style="width:80px;height:3px;background:var(--mint);border-radius:2px;margin:0 auto 24px auto;"></div>
+    <div style="font-size:14px;color:var(--text-muted);">
+      Gen AI Inc &nbsp;|&nbsp; AI Skills Studio &nbsp;|&nbsp; 2025
+    </div>
+    <div class="teaser" style="max-width:500px;margin:24px auto 0 auto;text-align:center;">
+      💡 Remember: AI is the bridge, not the destination. You provide the judgment.
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] [TRANSITION: Final wrap-up and dismissal]
+Key talking points:
+• Thank them for a very hands-on session
+• Remind: the key skill isn't using AI — it's knowing when AI is wrong
+• Homework reminder: formulas, cleaning, and summarisation practice
+• Module 6 date/time reminder
+• Offer to stay for questions — data analysis often generates follow-up questions about specific tools
+Facilitation tip: "You've just done in 75 minutes what would have taken a full-day Excel course to cover. The difference? You can now do this with AI at your desk tomorrow."
+  </aside>
+</section>
+
+</div><!-- /.slides -->
+</div><!-- /.reveal -->
+
+<!-- Reveal.js & Initialization -->
+<script type="module">
+  import Reveal from 'https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.esm.js';
+  import RevealNotes from 'https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.esm.js';
+
+  const deck = Reveal.initialize({
+    hash: true,
+    slideNumber: function(slide) {
+      const h = Reveal.getIndices(slide).h + 1;
+      return [h + ' / 33'];
+    },
+    showSlideNumber: 'all',
+    progress: true,
+    keyboard: true,
+    overview: true,
+    center: true,
+    touch: true,
+    loop: false,
+    autoSlide: 0,
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    width: 1280,
+    height: 720,
+    margin: 0.06,
+    minScale: 0.2,
+    maxScale: 2.0,
+    plugins: [RevealNotes]
+  });
+
+  deck.then(() => {
+    const navLinks = document.querySelectorAll('#session-nav a');
+    const chapters = [6, 9, 13, 18, 23, 28];
+
+    function updateNav() {
+      const current = Reveal.getIndices().h;
+      navLinks.forEach((link, i) => {
+        link.classList.remove('nav-active');
+        if (i < chapters.length - 1 && current >= chapters[i] && current < chapters[i+1]) {
+          link.classList.add('nav-active');
+        } else if (i === chapters.length - 1 && current >= chapters[i]) {
+          link.classList.add('nav-active');
+        }
+      });
+    }
+
+    Reveal.on('slidechanged', updateNav);
+    updateNav();
+  });
+</script>
+
+<!-- Graceful fallback for offline use -->
+<noscript>
+  <style>
+    .reveal .fragment { opacity: 1 !important; transform: none !important; }
+    .reveal .slides section { display: block !important; }
+  </style>
+</noscript>
+<script>
+  window.addEventListener('error', function(e) {
+    if (e.filename && e.filename.includes('reveal')) {
+      document.querySelectorAll('.fragment').forEach(function(el) {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+      document.querySelector('.reveal').style.overflow = 'auto';
+      document.querySelectorAll('.reveal .slides section').forEach(function(s) {
+        s.style.display = 'block';
+        s.style.position = 'relative';
+        s.style.width = '100%';
+        s.style.minHeight = '100vh';
+        s.style.padding = '48px';
+        s.style.boxSizing = 'border-box';
+        s.style.borderBottom = '2px solid rgba(8,145,178,0.3)';
+      });
+    }
+  }, true);
+</script>
+
+<!-- Quiz handler -->
+<script>
+  function quizAnswer(slideId, selectedIdx, correctIdx, explanation) {
+    var container = document.getElementById(slideId);
+    if (!container) return;
+    var opts = container.querySelectorAll('.quiz-opt');
+    opts.forEach(function(opt, i) {
+      opt.classList.add('disabled');
+      if (i === correctIdx) {
+        opt.classList.add('correct');
+        opt.querySelector('.opt-letter').textContent = '✓';
+      }
+      if (i === selectedIdx && selectedIdx !== correctIdx) {
+        opt.classList.add('wrong');
+        opt.querySelector('.opt-letter').textContent = '✗';
+      }
+    });
+    var explainEl = container.querySelector('.quiz-explain');
+    if (explainEl) {
+      explainEl.textContent = explanation;
+      explainEl.classList.add('show');
+    }
+  }
+  window.quizAnswer = quizAnswer;
+</script>
+
+<!-- Tooltip mobile tap-to-toggle -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.tip').forEach(function(el) {
+      el.setAttribute('tabindex', '0');
+      el.addEventListener('click', function(e) {
+        e.stopPropagation();
+        document.querySelectorAll('.tip .tip-content').forEach(function(t) {
+          t.style.display = 'none';
+        });
+        var content = el.querySelector('.tip-content');
+        if (content) {
+          content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        }
+      });
+    });
+    document.addEventListener('click', function() {
+      document.querySelectorAll('.tip .tip-content').forEach(function(t) {
+        t.style.display = '';
+      });
+    });
+  });
+</script>
+
+<!-- Passcode Gate -->
+<script>
+  (function() {
+    var PASSCODE = 'G2026';
+    var gate = document.getElementById('passcode-gate');
+    var input = document.getElementById('gate-input');
+    var error = document.getElementById('gate-error');
+    var nav = document.getElementById('session-nav');
+
+    if (sessionStorage.getItem('ai-studio-auth') === 'true') {
+      gate.style.display = 'none';
+      nav.style.display = 'flex';
+    } else {
+      document.querySelector('.reveal').style.display = 'none';
+    }
+
+    input.addEventListener('input', function() {
+      error.style.display = 'none';
+      if (input.value.length === 5) {
+        if (input.value.toUpperCase() === PASSCODE) {
+          sessionStorage.setItem('ai-studio-auth', 'true');
+          gate.style.display = 'none';
+          nav.style.display = 'flex';
+          document.querySelector('.reveal').style.display = '';
+          setTimeout(function() {
+            if (window.Reveal && window.Reveal.layout) {
+              window.Reveal.layout();
+            }
+          }, 100);
+        } else {
+          error.style.display = 'block';
+          input.value = '';
+          input.focus();
+        }
+      }
+    });
+
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && input.value.length >= 4) {
+        if (input.value.toUpperCase() === PASSCODE) {
+          sessionStorage.setItem('ai-studio-auth', 'true');
+          gate.style.display = 'none';
+          nav.style.display = 'flex';
+          document.querySelector('.reveal').style.display = '';
+          setTimeout(function() {
+            if (window.Reveal && window.Reveal.layout) {
+              window.Reveal.layout();
+            }
+          }, 100);
+        } else {
+          error.style.display = 'block';
+          input.value = '';
+        }
+      }
+    });
+
+    setTimeout(function() { input.focus(); }, 300);
+  })();
+</script>
+</body>
+</html>
