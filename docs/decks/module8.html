@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 8: Visualisation &amp; Presentation — AI Skills Studio</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+<style>
+  :root{--navy:#1E1045;--blue:#6C3AED;--mint:#0891B2;--dark-bg:#0F0A2E;--light-bg:#F5F3FF;--card-bg:#1E1B4B;--text-light:#FFFFFF;--text-muted:#A8B4D8;--font:system-ui,'Segoe UI',sans-serif;--practical-bg:#1A1050}
+  .reveal{font-family:var(--font)}.reveal .slides section{text-align:left;padding:0 48px}
+  .reveal .progress{height:4px;color:var(--mint)}.reveal .progress span{background:var(--mint)}
+  .reveal .slide-number{background:rgba(0,0,0,0.4);color:var(--text-muted);font-size:13px;padding:4px 10px;border-radius:4px;font-family:var(--font)}
+  .reveal h1,.reveal h2,.reveal h3{font-family:var(--font);text-transform:none;letter-spacing:-0.5px}
+  .slide-title-dark{color:var(--text-light)!important}.slide-title-light{color:var(--navy)!important}
+  .accent-bar{width:80px;height:4px;background:var(--mint);margin:6px 0 16px 0;border-radius:2px}
+  .card{background:var(--card-bg);border-radius:10px;padding:18px 20px;box-shadow:0 4px 16px rgba(0,0,0,0.25)}
+  .card-light{background:#fff;border-radius:10px;padding:18px 20px;box-shadow:0 2px 12px rgba(30,16,69,0.10)}
+  .card-navy{background:var(--navy);border-radius:10px;padding:18px 20px;box-shadow:0 4px 16px rgba(0,0,0,0.2)}
+  .grid-2col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid-3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .grid-2x2{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px}
+  .flex-row{display:flex;gap:16px;align-items:stretch}
+  .chapter-num{font-size:96px;font-weight:900;color:var(--mint);opacity:0.85;line-height:1;margin-bottom:8px}
+  .chapter-title{font-size:38px;font-weight:700;color:var(--text-light);margin:0 0 8px 0}
+  .chapter-sub{font-size:17px;color:var(--text-muted);font-style:italic;margin:0}
+  .chapter-rule{width:100px;height:4px;background:var(--mint);border-radius:2px;margin-top:20px}
+</style>
+<![CDATA[  .agenda-num{font-size:28px;font-weight:800;color:var(--mint);margin-bottom:6px}
+  .agenda-title{font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:4px}
+  .agenda-sub{font-size:14px;color:var(--text-muted)}
+  .loop-steps{display:flex;align-items:stretch;gap:0}
+  .loop-step{flex:1;background:var(--navy);border-radius:10px;padding:16px 10px;text-align:center}
+  .loop-step-label{font-size:13px;font-weight:800;color:var(--mint);margin-bottom:10px;letter-spacing:1px}
+  .loop-step-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .loop-arrow{display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--mint);flex-shrink:0;padding:0 6px}
+  .loop-footer{background:rgba(8,145,178,0.12);border-radius:8px;padding:10px 18px;margin-top:16px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .closing-card{background:var(--card-bg);border-radius:10px;padding:16px 18px;border-left:3px solid var(--mint);font-size:15px;color:var(--text-light);line-height:1.5}
+  .footer-bar{background:rgba(8,145,178,0.08);border-radius:8px;padding:8px 16px;margin-top:10px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .footer-bar-dark{background:var(--card-bg);border-radius:8px;padding:8px 16px;margin-top:10px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .teaser{background:var(--card-bg);border-left:3px solid var(--mint);border-radius:8px;padding:10px 16px;font-size:14px;color:var(--text-muted);margin-top:12px;font-style:italic}
+  .tip{position:relative;border-bottom:1px dashed var(--mint);cursor:help;color:inherit;font-weight:inherit}
+  .tip:hover{color:var(--mint)}
+  .tip .tip-content{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--navy);color:var(--text-light);padding:14px 18px;border-radius:10px;font-size:14px;font-weight:400;line-height:1.6;width:340px;max-width:90vw;box-shadow:0 12px 40px rgba(0,0,0,0.7);border:2px solid var(--mint);z-index:99999;text-align:left;font-style:normal}
+  .tip .tip-content::before{content:'💡';display:block;font-size:14px;margin-bottom:6px}
+  .tip:hover .tip-content,.tip:focus .tip-content{display:block}
+  .light-tip .tip-content{background:#fff;color:var(--navy);border-color:var(--blue)}.light-tip{border-bottom-color:var(--blue)}.light-tip:hover{color:var(--blue)}
+  .quiz-label{font-size:13px;font-weight:700;color:var(--mint);letter-spacing:2px;margin-bottom:12px}
+  .quiz-question{font-size:24px;font-weight:700;color:var(--text-light);margin-bottom:24px;line-height:1.4}
+  .quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .quiz-opt{background:var(--card-bg);border-radius:10px;padding:16px 20px;font-size:15px;color:var(--text-light);cursor:pointer;border:2px solid transparent;transition:all 0.2s;display:flex;align-items:center;gap:12px}
+  .quiz-opt:hover{border-color:var(--mint);background:rgba(8,145,178,0.1)}
+  .quiz-opt.correct{background:#1D4A3A!important;border-color:#27AE60!important;cursor:default}
+  .quiz-opt.wrong{background:#4A1D1D!important;border-color:#E74C3C!important;cursor:default;opacity:0.7}
+  .quiz-opt.disabled{pointer-events:none;opacity:0.6}
+  .quiz-opt .opt-letter{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+  .quiz-opt.correct .opt-letter{background:#27AE60;color:#fff}
+  .quiz-opt.wrong .opt-letter{background:#E74C3C;color:#fff}
+  .quiz-explain{margin-top:16px;padding:12px 18px;border-radius:8px;background:rgba(8,145,178,0.1);border-left:3px solid var(--mint);font-size:14px;color:var(--text-muted);display:none;line-height:1.6}
+  .quiz-explain.show{display:block}
+  #session-nav{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;justify-content:center;align-items:center;gap:6px;padding:6px 12px;background:rgba(15,10,46,0.92);backdrop-filter:blur(6px);border-bottom:1px solid rgba(8,145,178,0.2);font-family:var(--font);font-size:11px}
+  #session-nav .nav-label{color:var(--text-muted);font-size:10px;font-weight:700;letter-spacing:1px;margin-right:4px;flex-shrink:0}
+  #session-nav a{color:var(--text-muted);text-decoration:none;padding:3px 10px;border-radius:20px;border:1px solid transparent;transition:all 0.2s;font-size:11px;white-space:nowrap}
+  #session-nav a:hover{color:var(--mint);border-color:var(--mint);background:rgba(8,145,178,0.1)}
+  #session-nav a.nav-active{color:var(--mint);border-color:rgba(8,145,178,0.4)}
+  .title-series{font-size:34px;font-weight:800;color:var(--text-light);margin-bottom:8px;line-height:1.2}
+  .title-session{font-size:19px;font-weight:600;color:var(--mint);margin-bottom:8px}
+  .title-tagline{font-size:15px;color:var(--text-muted);font-style:italic;margin-bottom:32px}
+  .title-rule{width:80px;height:3px;background:var(--mint);border-radius:2px;margin-bottom:24px}
+  .title-author{font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:4px}
+  .title-date{font-size:13px;color:var(--text-muted)}
+  .keyboard-hint{position:absolute;bottom:28px;right:0;font-size:11px;color:rgba(168,180,216,0.6);display:flex;gap:12px;align-items:center}
+  .key{display:inline-block;border:1px solid rgba(168,180,216,0.3);border-radius:4px;padding:2px 7px;font-size:11px;color:rgba(168,180,216,0.7)}
+]]>
+<![CDATA[  .reveal .fragment{opacity:0.15;transition:opacity 0.4s,transform 0.4s}
+  .reveal .fragment.visible{opacity:1}
+  .reveal .fragment.fade-up{transform:translateY(20px)}.reveal .fragment.fade-up.visible{transform:translateY(0)}
+  .reveal .fragment.scale-in{transform:scale(0.85)}.reveal .fragment.scale-in.visible{transform:scale(1)}
+  .light-slide p,.light-slide li{color:var(--navy)}
+  .practical-badge{display:inline-block;background:linear-gradient(135deg,var(--blue),var(--mint));color:#fff;font-size:14px;font-weight:800;padding:6px 16px;border-radius:20px;letter-spacing:1px;margin-bottom:14px}
+  .practical-steps{list-style:none;padding:0;margin:12px 0}
+  .practical-steps li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;font-size:16px;color:var(--text-light)}
+  .practical-steps li .step-num{background:var(--mint);color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+  .check-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(108,58,237,0.15);font-size:16px;color:var(--text-light)}
+  .check-icon{color:var(--mint);font-size:17px;flex-shrink:0}
+  .vs-arrow{display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--mint);font-weight:800;flex-shrink:0;padding:0 8px}
+  #passcode-gate{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--dark-bg);display:flex;align-items:center;justify-content:center;z-index:99999;flex-direction:column;gap:16px}
+  #passcode-gate input{padding:12px 24px;font-size:18px;border-radius:8px;border:2px solid var(--mint);background:var(--card-bg);color:var(--text-light);text-align:center;letter-spacing:4px;width:200px;outline:none}
+  #passcode-gate input:focus{box-shadow:0 0 12px rgba(8,145,178,0.4)}
+  #passcode-gate .gate-title{font-size:24px;color:var(--text-light);font-weight:700}
+  .gate-hint{font-size:13px;color:var(--text-muted)}
+  #passcode-gate .gate-error{font-size:13px;color:#E74C3C;display:none}
+  .group-badge{display:inline-block;background:linear-gradient(135deg,#F97316,#EF4444);color:#fff;font-size:14px;font-weight:800;padding:6px 16px;border-radius:20px;letter-spacing:1px;margin-bottom:14px}
+  .dialogue-slide{max-height:none!important;overflow:visible!important}
+  .bubble{position:relative;background:#fff;border-radius:12px;padding:12px 16px;font-size:14px;color:var(--navy);line-height:1.5;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+  .bubble-dark{background:var(--card-bg);color:var(--text-light)}
+  .bubble::after{content:'';position:absolute;bottom:-8px;left:24px;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid #fff}
+  .bubble-dark::after{border-top-color:var(--card-bg)}
+  .bubble-right{text-align:right}.bubble-right::after{left:auto;right:24px}
+  /* Global overflow safety net */
+  .reveal .slides section > div { max-height: calc(720px * 0.88 - 40px); overflow: hidden; }
+</style>
+</head>
+<body>
+
+<!-- PASSCODE GATE -->
+<div id="passcode-gate">
+  <div class="gate-title">🔒 AI Skills Studio</div>
+  <div class="gate-hint">Enter session passcode to continue</div>
+  <input type="text" id="gate-input" maxlength="5" placeholder="•••••" autocomplete="off">
+  <div class="gate-error" id="gate-error">Incorrect passcode. Try again.</div>
+</div>
+
+<!-- SESSION NAV BAR -->
+<div id="session-nav" style="display:none;">
+  <span class="nav-label">MODULE 8:</span>
+  <a href="#" onclick="Reveal.slide(6);return false;">01 AI Image Generation</a>
+  <a href="#" onclick="Reveal.slide(14);return false;">02 AI Presentations</a>
+  <a href="#" onclick="Reveal.slide(22);return false;">03 Visual Communication</a>
+  <a href="#" onclick="Reveal.slide(29);return false;">04 Wrap-up</a>
+</div>
+
+<div class="reveal">
+<div class="slides">
+]]>
+<![CDATA[
+<!-- ==================== SLIDE 1: TITLE ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:40px;">
+    <div style="width:100%;height:4px;background:linear-gradient(90deg,var(--blue),var(--mint));border-radius:2px;margin-bottom:32px;"></div>
+    <div class="title-series">AI Skills Studio</div>
+    <div class="title-session">Module 8: Visualisation &amp; Presentation</div>
+    <div class="title-tagline">Use AI to generate images, build presentations, and communicate visually</div>
+    <div class="title-rule"></div>
+    <div class="title-author">Gen AI Inc</div>
+    <div class="title-date">2025 &nbsp;|&nbsp; 75 minutes</div>
+    <div class="keyboard-hint">
+      <span><span class="key">←→</span> Navigate</span>
+      <span><span class="key">F</span> Fullscreen</span>
+      <span><span class="key">S</span> Speaker Notes</span>
+      <span><span class="key">O</span> Overview</span>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] [TRANSITION: Welcome participants to Module 8]
+Key talking points:
+• Welcome to Module 8 — Visualisation and Presentation
+• Today we move from text-based AI use to VISUAL outputs: images, slides, infographics
+• You'll learn when AI-generated visuals help and when they hurt
+• 75 minutes: image generation, AI presentations, visual communication principles
+Discussion prompt: "Has anyone tried generating images with AI? What did you use it for?"
+Facilitation tip: This module is highly hands-on — participants will be generating and critiquing visuals throughout.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 2: RECAP SUMMARY ==================== -->
+<section data-background-color="#F5F3FF">
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-light" style="font-size:26px;font-weight:800;margin-bottom:4px;">Quick Recap — Modules 1–7</h2>
+    <div class="accent-bar" style="background:var(--blue);"></div>
+    <div class="grid-2col" style="gap:10px;margin-top:8px;">
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid var(--blue);" class="fragment fade-up">
+        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:6px;">M1–M3: Foundations &amp; Writing</div>
+        <div style="font-size:13px;color:var(--navy);line-height:1.5;">
+          • AI = pattern prediction, not understanding<br>
+          • CRAFT framework for structured prompts<br>
+          • Constraints: Change, Keep, Avoid<br>
+          • 5-step documentation pipeline<br>
+          • Anchor Guardrail prevents hallucination
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid var(--mint);" class="fragment fade-up">
+        <div style="font-size:13px;font-weight:700;color:var(--mint);margin-bottom:6px;">M4–M5: Privacy &amp; Data</div>
+        <div style="font-size:13px;color:var(--navy);line-height:1.5;">
+          • Traffic-light data classification (R/A/G)<br>
+          • Safe Prompt Pattern: Identify → Classify → Anonymise<br>
+          • AI as formula generator (not calculator)<br>
+          • Multi-resolution summaries<br>
+          • Always verify AI-generated formulas
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid #F59E0B;" class="fragment fade-up">
+        <div style="font-size:13px;font-weight:700;color:#F59E0B;margin-bottom:6px;">M6: Document Review</div>
+        <div style="font-size:13px;color:var(--navy);line-height:1.5;">
+          • Extraction lenses for specific info<br>
+          • Document synthesis across sources<br>
+          • Watch for hallucinated consensus<br>
+          • Summarising ≠ extracting
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid #27AE60;" class="fragment fade-up">
+        <div style="font-size:13px;font-weight:700;color:#27AE60;margin-bottom:6px;">M7: Research &amp; Grounded Answers</div>
+        <div style="font-size:13px;color:var(--navy);line-height:1.5;">
+          • Grounded vs ungrounded AI tools<br>
+          • Research brief methodology<br>
+          • Source verification workflow<br>
+          • Trust spectrum: scepticism is essential
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="background:rgba(30,16,69,0.12);color:var(--navy);margin-top:10px;">💡 Module 8 shifts to VISUAL communication — images, slides, and data visualisation with AI</div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: From title → recap of all prior modules]
+Key talking points:
+• M1-M3: You can write and structure prompts effectively
+• M4-M5: You handle data safely and use AI for analysis
+• M6: You summarise and synthesise documents
+• M7: You research with scepticism and verify sources
+• Module 8 is different: we move from TEXT outputs to VISUAL outputs
+Bridge: "Everything so far produced text. Today we ask AI to produce images, slides, and visual communications — and that brings completely new challenges."
+  </aside>
+</section>
+]]>
+<![CDATA[
+<!-- ==================== SLIDE 3: RECAP QUIZ 1 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-recap1">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🔄 RECAP — QUESTION 1 of 4</div>
+    <div class="quiz-question">What is the difference between grounded and ungrounded AI?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',0,0,'Correct! Grounded AI searches real sources and provides citations. Ungrounded AI generates answers from training patterns without connecting to live data or verifiable sources.')">
+        <span class="opt-letter">A</span><span>Grounded searches real sources; ungrounded generates from patterns</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',1,0,'Not quite. Both types can produce long or short answers. The key difference is whether the AI connects to verifiable, real-time sources or generates from memory.')">
+        <span class="opt-letter">B</span><span>Grounded gives longer answers; ungrounded gives shorter ones</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',2,0,'Not quite. Grounded doesn&apos;t mean paid — it means the AI retrieves from real sources. Some free tools are grounded (Google Search AI), some paid tools are ungrounded.')">
+        <span class="opt-letter">C</span><span>Grounded is paid; ungrounded is free</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',3,0,'Not quite. Both can handle multiple topics. Grounded = connects to sources. Ungrounded = generates from training data patterns.')">
+        <span class="opt-letter">D</span><span>Grounded focuses on one topic; ungrounded covers many</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] Key talking points: Module 7 concept. Answer A — grounded searches real sources; ungrounded generates from patterns. This matters today because image generation is UNGROUNDED — it creates from patterns, not references.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 4: RECAP QUIZ 2 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-recap2">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🔄 RECAP — QUESTION 2 of 4</div>
+    <div class="quiz-question">In the CRAFT framework, what does the "F" stand for?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',0,2,'Correct answer is C — Format. CRAFT = Context, Role, Action, Format, Tone. Format tells the AI what shape the output should take (list, table, paragraph, email, etc.).')">
+        <span class="opt-letter">A</span><span>Focus</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',1,2,'Correct answer is C — Format. CRAFT = Context, Role, Action, Format, Tone. Format specifies the output structure you want.')">
+        <span class="opt-letter">B</span><span>Feedback</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',2,2,'Correct! CRAFT = Context, Role, Action, Format, Tone. Format tells the AI what shape the output should take — a crucial skill for visual content where format is everything.')">
+        <span class="opt-letter">C</span><span>Format</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',3,2,'Correct answer is C — Format. CRAFT = Context, Role, Action, Format, Tone.')">
+        <span class="opt-letter">D</span><span>Function</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] Key talking points: Module 2 concept. Answer C — Format. This bridges perfectly: in visual work, FORMAT is 80% of the battle. You must be extremely specific about visual format when prompting for images or slides.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 5: RECAP QUIZ 3 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-recap3">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🔄 RECAP — QUESTION 3 of 4</div>
+    <div class="quiz-question">Why is "AI as formula generator, not calculator" important?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',0,1,'Correct answer is B. AI can generate the approach/formula but shouldn&apos;t be trusted to execute calculations. You verify the formula, THEN run it on real data yourself.')">
+        <span class="opt-letter">A</span><span>AI can only do math, not writing</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',1,1,'Correct! AI generates approaches and structures, but you must verify and execute them yourself. Same principle applies today: AI generates visual ideas, but YOU judge if they communicate effectively.')">
+        <span class="opt-letter">B</span><span>AI generates the approach; you verify and execute</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',2,1,'Correct answer is B. It&apos;s not about cost — it&apos;s about reliability. AI suggests formulas/approaches but can&apos;t guarantee correctness.')">
+        <span class="opt-letter">C</span><span>Calculators are cheaper than AI</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',3,1,'Correct answer is B. The principle applies broadly: AI suggests; you verify and apply.')">
+        <span class="opt-letter">D</span><span>AI formulas are always wrong</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] Key talking points: Module 5 concept. Answer B — AI generates the approach, you verify and execute. Bridge: "Today this applies to visuals: AI generates images and slides, but YOU must evaluate whether they communicate your message. AI is the brush, you're the art director."
+  </aside>
+</section>
+]]>
+<![CDATA[
+<!-- ==================== SLIDE 6: RECAP QUIZ 4 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-recap4">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🔄 RECAP — QUESTION 4 of 4</div>
+    <div class="quiz-question">What does the traffic-light system classify?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap4',0,0,'Correct! Red = never share with AI (personal data, secrets). Amber = share with caution (internal, non-sensitive). Green = safe to share freely. Today: think about whether your IMAGES contain sensitive info before using AI.')">
+        <span class="opt-letter">A</span><span>Data sensitivity levels for AI sharing (Red/Amber/Green)</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap4',1,0,'Correct answer is A — data sensitivity. Red/Amber/Green classifies what you can safely share with AI tools.')">
+        <span class="opt-letter">B</span><span>How fast AI responds to prompts</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap4',2,0,'Correct answer is A — data sensitivity. It classifies information by how safe it is to share with AI tools.')">
+        <span class="opt-letter">C</span><span>Quality levels of AI outputs</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap4',3,0,'Correct answer is A — data sensitivity levels. Red = never share, Amber = caution, Green = safe.')">
+        <span class="opt-letter">D</span><span>Priority of tasks in a project</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] Key talking points: Module 4 concept. Answer A — data sensitivity levels. Bridge: "Privacy applies to visuals too. If you upload a photo containing client logos to an AI image tool, that's potentially an Amber/Red action. Keep the traffic light in mind for visual content."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 7: CHAPTER 01 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">01</div>
+    <div class="chapter-title">AI Image Generation</div>
+    <div class="chapter-sub">From text prompts to professional visuals — how it works and when to use it</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Let's start with the most exciting and misunderstood capability: AI image generation."]
+Key talking points:
+• This chapter covers how image generation works and best practices for professional use
+• We'll look at tools, prompt techniques, limitations, and ethics
+• By the end of this chapter you'll write effective image prompts for real workplace scenarios
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 8: HOW IMAGE GENERATION WORKS ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">How AI Image Generation Works</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="gap:14px;margin-top:10px;">
+      <div class="card fragment fade-up" style="border-top:3px solid var(--mint);padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:8px;">🎨 Diffusion Models</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          • Start with random noise (static)<br>
+          • Gradually remove noise, guided by your text prompt<br>
+          • Like a sculptor revealing a shape from marble<br>
+          • Each step brings the image closer to your description
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:3px solid var(--blue);padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:8px;">📝 Text-to-Image Process</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          • Your prompt is converted into mathematical vectors<br>
+          • AI matches those vectors to visual patterns it learned<br>
+          • Trained on billions of image-text pairs from the internet<br>
+          • Creates NEW images — doesn't copy existing ones
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:14px;">🎯 Key insight: AI doesn't "understand" your image — it matches patterns. Specificity in your prompt = better results</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Let's understand what's happening under the hood."]
+Key talking points:
+• Diffusion models are the dominant approach (DALL-E, Midjourney, Stable Diffusion all use variants)
+• Think of it like starting with TV static and slowly tuning the picture based on your description
+• The AI learned patterns from billions of images — "sunset over ocean" triggers certain colour patterns, "professional headshot" triggers others
+• Important: it creates NEW images that look like what it learned — it doesn't retrieve or copy existing images
+• This means: it CAN'T generate your specific company logo accurately, or replicate a real person's face perfectly
+Discussion prompt: "What does this mean for accuracy? If it's generating from patterns, can it get precise details right?"
+  </aside>
+</section>
+]]>
+<![CDATA[
+<!-- ==================== SLIDE 9: POPULAR TOOLS ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">AI Image Generation Tools</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2x2" style="gap:10px;margin-top:10px;">
+      <div class="card fragment fade-up" style="padding:14px;border-left:3px solid var(--mint);">
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px;">🖼️ DALL-E (OpenAI)</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Built into ChatGPT Plus. Great for quick concepts, illustrations, and diagrams. Good at following precise instructions.</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;border-left:3px solid var(--blue);">
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px;">🎭 Midjourney</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Artistic quality, best for creative/stylised visuals. Accessed via Discord or web app. Premium aesthetic feel.</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;border-left:3px solid #F59E0B;">
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px;">🔥 Adobe Firefly</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Trained on licensed content — safest for commercial use. Integrated with Photoshop and Illustrator. Brand-safe.</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;border-left:3px solid #27AE60;">
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px;">✨ Canva AI (Magic Media)</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Built into Canva — no extra subscription. Great for social media, presentations, and quick marketing visuals.</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:10px;">💡 For workplace use: Adobe Firefly (safest commercially) or DALL-E via ChatGPT (most accessible)</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Here are the main tools you'll encounter."]
+Key talking points:
+• DALL-E: Most accessible if you already have ChatGPT Plus. Best at following complex instructions.
+• Midjourney: Stunning artistic quality but harder to get "corporate" or precise layouts
+• Adobe Firefly: KEY selling point — trained only on licensed/Adobe Stock content, so commercially safe
+• Canva AI: Already in many workplaces, familiar interface, good for quick social/presentation graphics
+• For most professionals: start with whatever you already have access to (ChatGPT or Canva)
+Discussion prompt: "Which of these tools does your organisation already have access to?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 10: PROMPT ENGINEERING FOR IMAGES ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Prompt Engineering for Images</h2>
+    <div class="accent-bar"></div>
+    <div style="margin-top:8px;">
+      <div class="loop-steps">
+        <div class="loop-step fragment fade-up">
+          <div class="loop-step-label">SUBJECT</div>
+          <div class="loop-step-desc">What's in the image?<br><em style="color:var(--mint);">"A bar chart showing Q3 revenue growth"</em></div>
+        </div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-step fragment fade-up">
+          <div class="loop-step-label">STYLE</div>
+          <div class="loop-step-desc">What aesthetic?<br><em style="color:var(--mint);">"Flat design, corporate, minimal"</em></div>
+        </div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-step fragment fade-up">
+          <div class="loop-step-label">COMPOSITION</div>
+          <div class="loop-step-desc">How is it arranged?<br><em style="color:var(--mint);">"Centred, white background, landscape"</em></div>
+        </div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-step fragment fade-up">
+          <div class="loop-step-label">DETAILS</div>
+          <div class="loop-step-desc">Colours, lighting, mood?<br><em style="color:var(--mint);">"Blue/teal palette, soft shadows"</em></div>
+        </div>
+      </div>
+      <div class="loop-footer fragment fade-up">🔑 Formula: [Subject] + [Style] + [Composition] + [Details] = Effective image prompt</div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Just like text prompts, image prompts need structure."]
+Key talking points:
+• Subject: Be specific. "A chart" → vague. "A horizontal bar chart comparing 4 departments" → clear.
+• Style: Without style guidance, AI picks randomly. Say "flat design" or "photorealistic" or "watercolour"
+• Composition: Layout matters. Say "landscape orientation" or "centred with white space around edges"
+• Details: Colours, lighting, mood, text (though AI struggles with text in images)
+• Key principle: MORE SPECIFIC = BETTER RESULTS. Vague prompts get generic outputs.
+Example comparison: "Generate a business image" vs "A clean, modern flat illustration of a diverse team collaborating around a whiteboard, corporate blue palette, minimal style, landscape 16:9"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 11: LIMITATIONS & ETHICS ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Limitations &amp; Ethics</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="gap:12px;margin-top:10px;">
+      <div class="card fragment fade-up" style="border-top:3px solid #E74C3C;padding:14px;">
+        <div style="font-size:14px;font-weight:700;color:#E74C3C;margin-bottom:8px;">⚠️ Technical Limitations</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          • <strong style="color:var(--text-light);">Text in images</strong> — often garbled or misspelled<br>
+          • <strong style="color:var(--text-light);">Hands/fingers</strong> — frequently wrong count<br>
+          • <strong style="color:var(--text-light);">Specific logos</strong> — can't reproduce accurately<br>
+          • <strong style="color:var(--text-light);">Exact data</strong> — charts won't show real numbers
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:3px solid #F59E0B;padding:14px;">
+        <div style="font-size:14px;font-weight:700;color:#F59E0B;margin-bottom:8px;">⚖️ Ethical Concerns</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          • <strong style="color:var(--text-light);">Bias</strong> — "CEO" generates mostly white males<br>
+          • <strong style="color:var(--text-light);">Copyright</strong> — who owns AI-generated images?<br>
+          • <strong style="color:var(--text-light);">Deepfakes</strong> — never generate real people's faces<br>
+          • <strong style="color:var(--text-light);">Disclosure</strong> — should you label AI images?
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:12px;">🏢 Workplace rule: Use AI images for concepts and placeholders — never pass them off as photographs or real data</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Before we practice, let's be clear about what AI CAN'T do with images."]
+Key talking points:
+• Text in images: AI is terrible at it. If you need text on an image, generate the image first, add text in Canva/PowerPoint
+• Hands: A famous weakness. Models are improving but still often get fingers wrong.
+• Logos: AI can approximate but never perfectly reproduce a specific logo. Use real logo files.
+• Bias: Ask for "a nurse" and you'll likely get a woman. Ask for "a CEO" and you'll likely get a man. Be specific about diversity.
+• Copyright: Legal landscape is evolving. Adobe Firefly is safest (trained on licensed content). Use AI images for internal docs, not client-facing materials without checking your org's policy.
+• Deepfakes: NEVER generate realistic images of real people. This is a serious ethical and legal issue.
+Discussion prompt: "What's your organisation's policy on AI-generated images? Do you know?"
+  </aside>
+</section>
+]]>
+<![CDATA[
+<!-- ==================== SLIDE 12: DIALOGUE — PRIYA & RACHEL ==================== -->
+<section data-background-color="#0F0A2E">
+  <div class="dialogue-slide" style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:12px;">🎭 When Image Prompts Go Wrong</h2>
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:700px;margin:0 auto;">
+      <div class="fragment fade-up" style="display:flex;align-items:flex-start;gap:12px;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=PriyaFinance" alt="Priya" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;border:2px solid var(--mint);">
+        <div>
+          <div style="font-size:12px;color:var(--mint);font-weight:700;margin-bottom:4px;">Priya (Finance)</div>
+          <div class="bubble">I asked DALL-E for "a chart showing our Q3 budget performance" and got a cartoon pie chart with made-up numbers and Comic Sans labels. I need this for a board meeting!</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;align-items:flex-start;gap:12px;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=RachelCFO" alt="Rachel" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;border:2px solid var(--blue);">
+        <div>
+          <div style="font-size:12px;color:var(--blue);font-weight:700;margin-bottom:4px;">Rachel (CFO)</div>
+          <div class="bubble">That's because you asked AI to create a DATA chart. AI can't work with your real numbers! Instead, ask for: "A clean, professional infographic LAYOUT for presenting quarterly budget data, corporate blue palette, minimal flat design, placeholder sections for 4 departments"</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;align-items:flex-start;gap:12px;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=PriyaFinance" alt="Priya" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;border:2px solid var(--mint);">
+        <div>
+          <div style="font-size:12px;color:var(--mint);font-weight:700;margin-bottom:4px;">Priya</div>
+          <div class="bubble">So I use AI for the LAYOUT and STYLE, then add my real data in PowerPoint?</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;align-items:flex-start;gap:12px;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=RachelCFO" alt="Rachel" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;border:2px solid var(--blue);">
+        <div>
+          <div style="font-size:12px;color:var(--blue);font-weight:700;margin-bottom:4px;">Rachel</div>
+          <div class="bubble">Exactly. AI = visual concept generator. You = data accuracy layer. Never trust AI with real numbers in images.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Let's see a common mistake in action."]
+Key talking points:
+• This is the #1 mistake professionals make: asking AI to visualise THEIR data
+• AI generates plausible-looking charts with MADE UP numbers — it can't access your spreadsheet
+• The right workflow: AI generates the visual TEMPLATE/STYLE, you add real data in proper tools
+• Use AI for: layout inspiration, colour palette ideas, infographic structures, illustration concepts
+• Don't use AI for: actual data charts, precise diagrams with measurements, images with specific text
+Facilitation tip: Ask participants if anyone has made this exact mistake. It's very common!
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 13: PRACTICAL — IMAGE PROMPTS ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="practical-badge">🔨 PRACTICAL</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:10px;">Write 3 Image Generation Prompts</h2>
+    <div style="font-size:15px;color:var(--text-muted);margin-bottom:16px;">Using the Subject + Style + Composition + Details formula, write prompts for these workplace scenarios:</div>
+    <ul class="practical-steps">
+      <li class="fragment fade-up"><span class="step-num">1</span><span><strong>Event poster:</strong> Your department is hosting a "Future of Work" panel discussion. Generate a promotional image for the internal newsletter.</span></li>
+      <li class="fragment fade-up"><span class="step-num">2</span><span><strong>Report cover:</strong> You're creating the Q4 Annual Report cover page. Generate a professional, abstract visual that conveys "growth and innovation."</span></li>
+      <li class="fragment fade-up"><span class="step-num">3</span><span><strong>Social media:</strong> Your company is hiring. Generate an image for a LinkedIn "We're hiring" post that feels welcoming and diverse.</span></li>
+    </ul>
+    <div class="footer-bar fragment fade-up" style="margin-top:12px;">⏱️ 8 minutes — Write all 3 prompts. If you have access to DALL-E or Canva AI, generate at least one image.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 8 min] [TRANSITION: "Time to practice. Open your prompt writing tool."]
+Key talking points:
+• Give participants 8 minutes to write all 3 prompts
+• Remind them: Subject + Style + Composition + Details
+• Example for #1: "A modern flat illustration for an internal company event poster, showing silhouettes of professionals in a panel discussion format, geometric abstract background, corporate blue and teal colour palette, landscape 16:9 format, clean minimal style with bold sans-serif placeholder text area at bottom"
+• If they have tool access, encourage them to actually generate at least one and see the result
+• Walk around and help anyone struggling — the key coaching point is SPECIFICITY
+Debrief: Ask 2-3 people to share their prompts. Have class critique: what's specific? What's vague?
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 14: GROUP TASK — PROMPT SWAP ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="group-badge">👥 GROUP TASK</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:10px;">Prompt Swap &amp; Critique</h2>
+    <div class="grid-2col" style="gap:14px;margin-top:12px;">
+      <div class="card fragment fade-up" style="padding:16px;border-left:3px solid var(--mint);">
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:8px;">📋 Instructions</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          1. Swap your 3 prompts with a partner<br>
+          2. Each person generates ONE image from their partner's prompt<br>
+          3. Show the result to your partner<br>
+          4. Discuss: Did the prompt produce what was intended?
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="padding:16px;border-left:3px solid #F59E0B;">
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:8px;">🔍 Critique Questions</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          • Was the prompt specific enough?<br>
+          • What was missing (style? composition? colour?)<br>
+          • Would this image work for its intended purpose?<br>
+          • What one change would most improve the prompt?
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:12px;">⏱️ 6 minutes — Swap, generate, critique. Be honest about what worked and what didn't.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 6 min] [TRANSITION: "Now let's test your prompts with fresh eyes."]
+Key talking points:
+• The purpose: prompts that seem clear to YOU may be vague to AI (or to another human)
+• If a partner reads your prompt and imagines something different from what you intended, the prompt needs work
+• Common discoveries: "I forgot to specify orientation" or "I assumed 'professional' would be enough style guidance"
+• Debrief: Ask 2 pairs to share their biggest learning. Usually it's about missing details.
+Facilitation tip: If no AI tool access, have pairs DESCRIBE what they imagine from the prompt, then compare.
+  </aside>
+</section>
+]]>
+<![CDATA[
+<!-- ==================== SLIDE 15: CHAPTER 02 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">02</div>
+    <div class="chapter-title">AI-Assisted Presentations</div>
+    <div class="chapter-sub">Tools that build slides for you — when they help and when they hurt</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Now we move from single images to full presentations."]
+Key talking points:
+• AI presentation tools can generate entire slide decks from a single prompt
+• This chapter covers: tools landscape, when to use them, common traps, and the right workflow
+• The key message: AI presentations save time but can destroy quality if used carelessly
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 16: TOOLS LANDSCAPE ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">AI Presentation Tools</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-3col" style="gap:10px;margin-top:10px;">
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;border-top:3px solid var(--mint);">
+        <div style="font-size:24px;margin-bottom:6px;">🌊</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:4px;">Gamma</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">Full deck from a topic. Beautiful templates. Best for quick first drafts.</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;border-top:3px solid var(--blue);">
+        <div style="font-size:24px;margin-bottom:6px;">✨</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:4px;">Beautiful.ai</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">Smart templates that auto-format. Great for consistent corporate decks.</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;border-top:3px solid #F59E0B;">
+        <div style="font-size:24px;margin-bottom:6px;">🎨</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:4px;">Canva AI</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">Magic Design generates slides. Easy to customise afterward. Familiar interface.</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;border-top:3px solid #27AE60;">
+        <div style="font-size:24px;margin-bottom:6px;">📊</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:4px;">Google Slides AI</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">Gemini generates slides in Workspace. Best for Google-centric teams.</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;border-top:3px solid #E74C3C;">
+        <div style="font-size:24px;margin-bottom:6px;">📑</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:4px;">SlidesAI</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">Google Slides add-on. Converts text/docs to slides. Good for document → deck conversion.</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;border-top:3px solid var(--text-muted);">
+        <div style="font-size:24px;margin-bottom:6px;">💡</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:4px;">ChatGPT + Export</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">Outline slides in chat, export to PowerPoint. Best for content-first approach.</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Here's the tools landscape for AI-assisted presentations."]
+Key talking points:
+• Gamma: Probably the most impressive for quick full decks. Give it a topic, get 10+ slides in seconds.
+• Beautiful.ai: Focuses on DESIGN consistency. Good if your problem is ugly slides, not missing content.
+• Canva AI: Most organisations already have Canva. Magic Design is improving rapidly.
+• Google Slides AI: Available free with Google Workspace. Good basic generation.
+• SlidesAI: Niche but useful for converting existing documents into slide format.
+• ChatGPT: Not a slide tool per se, but excellent for OUTLINING presentation structure before building.
+Key message: These tools are best for FIRST DRAFTS. No tool produces a presentation-ready deck without human editing.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 17: WHEN AI PRESENTATIONS HELP vs HURT ==================== -->
+<section data-background-color="#F5F3FF">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-light" style="font-size:24px;font-weight:800;margin-bottom:4px;">When AI Presentations Help vs. Hurt</h2>
+    <div class="accent-bar" style="background:var(--blue);"></div>
+    <div class="grid-2col" style="gap:14px;margin-top:10px;">
+      <div style="background:#fff;border-radius:10px;padding:16px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-top:3px solid #27AE60;" class="fragment fade-up">
+        <div style="font-size:14px;font-weight:700;color:#27AE60;margin-bottom:8px;">✅ AI Presentations HELP When</div>
+        <div style="font-size:14px;color:var(--navy);line-height:1.7;">
+          • You need a quick internal update (not high-stakes)<br>
+          • You want design inspiration for layout/structure<br>
+          • You're converting an existing document to slides<br>
+          • You need a first-draft outline to iterate on<br>
+          • Time matters more than perfection
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:10px;padding:16px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-top:3px solid #E74C3C;" class="fragment fade-up">
+        <div style="font-size:14px;font-weight:700;color:#E74C3C;margin-bottom:8px;">❌ AI Presentations HURT When</div>
+        <div style="font-size:14px;color:var(--navy);line-height:1.7;">
+          • It's a client-facing or board-level presentation<br>
+          • Your story arc matters (AI generates generic flow)<br>
+          • You need precise data visualisation<br>
+          • Brand guidelines must be followed exactly<br>
+          • You accept the AI output without editing
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="background:rgba(30,16,69,0.12);color:var(--navy);margin-top:12px;">🎯 Golden rule: AI is your first-draft assistant, never your final-draft creator</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "AI presentations are powerful but they have a specific sweet spot."]
+Key talking points:
+• The HELP column is about using AI as accelerator: getting from zero to rough draft faster
+• The HURT column is about trusting AI with things it can't do: storytelling, brand compliance, data accuracy
+• Most common failure: someone generates a deck, doesn't edit it, presents it. It's generic and forgettable.
+• Most common success: someone uses AI to get structure/layout ideas, then rewrites the content with their expertise
+• "The slide factory trap" (next slide) is the biggest risk
+Discussion prompt: "Think of your last presentation. Would AI have helped or hurt?"
+  </aside>
+</section>
+]]>
+<![CDATA[
+<!-- ==================== SLIDE 18: THE SLIDE FACTORY TRAP ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">The "Slide Factory" Trap</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="gap:14px;margin-top:10px;">
+      <div class="card fragment fade-up" style="border-left:3px solid #E74C3C;padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:#E74C3C;margin-bottom:8px;">🏭 The Trap</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          AI generates 40 slides for a 10-minute slot.<br><br>
+          Each slide has a title and 5 bullet points.<br><br>
+          Every slide looks the same.<br><br>
+          The audience is bored by slide 3.
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid #27AE60;padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:#27AE60;margin-bottom:8px;">✅ The Fix</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          <strong style="color:var(--text-light);">1. Start with your MESSAGE, not your slides</strong><br>
+          What's the ONE thing the audience must remember?<br><br>
+          <strong style="color:var(--text-light);">2. Structure BEFORE generating</strong><br>
+          Plan your arc: Hook → Problem → Solution → Call-to-Action<br><br>
+          <strong style="color:var(--text-light);">3. One message per slide</strong><br>
+          If it has more than one point, split it or cut it.
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:12px;">💡 AI produces QUANTITY. Your job is to enforce QUALITY. Fewer slides = stronger presentation.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "This is the single biggest problem with AI presentations."]
+Key talking points:
+• AI's default behaviour: given a topic, it generates LOTS of slides with LOTS of text
+• This is the opposite of good presentation design
+• Good presentations: fewer slides, one idea each, visual-heavy, text-light
+• The fix is simple: decide your structure BEFORE using AI, then use AI to help fill in that structure
+• "One message per slide" — if you can't summarise the slide's point in 6 words, it's too complex
+• Real-world example: 10-minute meeting slot = 5-8 slides maximum. AI will generate 25. You must CUT.
+Discussion prompt: "Have you ever sat through a presentation with too many slides? How did it feel?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 19: STRUCTURING BEFORE AI ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Structure Content BEFORE Using AI</h2>
+    <div class="accent-bar"></div>
+    <div class="loop-steps" style="margin-top:12px;">
+      <div class="loop-step fragment fade-up">
+        <div class="loop-step-label">1. AUDIENCE</div>
+        <div class="loop-step-desc">Who are they?<br>What do they care about?<br>What do they already know?</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step fragment fade-up">
+        <div class="loop-step-label">2. KEY MESSAGE</div>
+        <div class="loop-step-desc">ONE sentence:<br>What must they remember<br>after you finish?</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step fragment fade-up">
+        <div class="loop-step-label">3. STORY ARC</div>
+        <div class="loop-step-desc">Hook → Context →<br>Problem → Solution →<br>Call-to-Action</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step fragment fade-up">
+        <div class="loop-step-label">4. AI ASSIST</div>
+        <div class="loop-step-desc">NOW use AI to<br>expand each section<br>and suggest visuals</div>
+      </div>
+    </div>
+    <div class="loop-footer fragment fade-up">🔑 AI is step 4, not step 1. Start with your brain, finish with AI assistance.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Here's the workflow that actually produces good AI-assisted presentations."]
+Key talking points:
+• Step 1 - Audience: A presentation for the board is different from one for your team. AI doesn't know your audience.
+• Step 2 - Key Message: Force yourself to write ONE sentence. "We should approve the budget increase because retention costs less than recruitment."
+• Step 3 - Story Arc: Not just "list of topics" — an actual NARRATIVE. Hook grabs attention, context sets the scene, etc.
+• Step 4 - NOW use AI: "I have a 5-slide presentation for the executive team. My key message is X. Here's my arc. Help me write compelling slide titles and suggest one visual per slide."
+• This approach uses AI as amplifier of YOUR thinking, not as replacement for it.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 20: DIALOGUE — AMIT & KENJI ==================== -->
+<section data-background-color="#0F0A2E">
+  <div class="dialogue-slide" style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:12px;">🎭 The 40-Slide Disaster</h2>
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:700px;margin:0 auto;">
+      <div class="fragment fade-up" style="display:flex;align-items:flex-start;gap:12px;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=AmitOps" alt="Amit" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;border:2px solid var(--mint);">
+        <div>
+          <div style="font-size:12px;color:var(--mint);font-weight:700;margin-bottom:4px;">Amit (Operations)</div>
+          <div class="bubble">I used Gamma to create my quarterly ops review. It made 40 beautiful slides! I'm presenting in 10 minutes though... should be fine, right?</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;align-items:flex-start;gap:12px;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=KenjiHR" alt="Kenji" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;border:2px solid var(--blue);">
+        <div>
+          <div style="font-size:12px;color:var(--blue);font-weight:700;margin-bottom:4px;">Kenji (HR)</div>
+          <div class="bubble">40 slides in 10 minutes? That's 15 seconds per slide! Your audience won't absorb anything. What's the ONE thing you need them to know?</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;align-items:flex-start;gap:12px;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=AmitOps" alt="Amit" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;border:2px solid var(--mint);">
+        <div>
+          <div style="font-size:12px;color:var(--mint);font-weight:700;margin-bottom:4px;">Amit</div>
+          <div class="bubble">That we reduced processing time by 30% and need budget to scale it further...</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;align-items:flex-start;gap:12px;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=KenjiHR" alt="Kenji" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;border:2px solid var(--blue);">
+        <div>
+          <div style="font-size:12px;color:var(--blue);font-weight:700;margin-bottom:4px;">Kenji</div>
+          <div class="bubble">Perfect. That's 5 slides: the win, the data, the opportunity, the ask, the next step. Cut 35 slides and you'll be 10x more persuasive.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Here's what the slide factory trap looks like in real life."]
+Key talking points:
+• Amit's mistake: letting AI decide how many slides he needs based on the topic breadth
+• Kenji's fix: start from the OUTCOME (what do you need the audience to do?) and work backward
+• The "one message per slide" rule: if you have 10 minutes, you have 5-8 messages max
+• Key lesson: AI generates volume. Humans provide judgement about what to KEEP and what to CUT.
+• This is true for all AI use: the editing/curation skill is often more important than the generation skill
+Facilitation tip: This usually resonates strongly. Ask if anyone has been in Amit's situation.
+  </aside>
+</section>
+]]>
+<![CDATA[
+<!-- ==================== SLIDE 21: PRACTICAL — PRESENTATION OUTLINE ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="practical-badge">🔨 PRACTICAL</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:10px;">Create a 5-Slide Presentation Outline</h2>
+    <div style="font-size:15px;color:var(--text-muted);margin-bottom:16px;">Pick a real topic from your work and create a structured outline BEFORE using AI:</div>
+    <ul class="practical-steps">
+      <li class="fragment fade-up"><span class="step-num">1</span><span><strong>Define audience:</strong> Who will see this? What do they already know?</span></li>
+      <li class="fragment fade-up"><span class="step-num">2</span><span><strong>Key message:</strong> Write ONE sentence — what must they remember?</span></li>
+      <li class="fragment fade-up"><span class="step-num">3</span><span><strong>5-slide outline:</strong> Write a title + one sentence for each slide (Hook, Context, Evidence, Solution, Call-to-Action)</span></li>
+      <li class="fragment fade-up"><span class="step-num">4</span><span><strong>AI expansion:</strong> Paste your outline into ChatGPT/Claude and ask it to suggest bullet points, visual ideas, and a speaker note for each slide</span></li>
+    </ul>
+    <div class="footer-bar fragment fade-up" style="margin-top:12px;">⏱️ 8 minutes — Complete steps 1-4. Your outline should fit on half a page.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 8 min] [TRANSITION: "Now apply the structure-first approach to YOUR work."]
+Key talking points:
+• Topics could be: a project update, a proposal, a training session intro, a budget request
+• Steps 1-3 should take 3-4 minutes (force brevity — if it takes longer, you're over-thinking)
+• Step 4 uses AI as EXPANDER, not creator. You provide the structure, AI helps fill it out.
+• Walk around and help anyone stuck on step 2 (key message is the hardest part)
+• Common mistakes: making the outline too detailed (it's 5 slides, keep it simple) or picking a topic they don't know well enough
+Debrief: "How did it feel to structure BEFORE using AI vs. letting AI generate first?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 22: GROUP TASK — PRESENT & FEEDBACK ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="group-badge">👥 GROUP TASK</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:10px;">Present &amp; Peer Feedback</h2>
+    <div class="grid-2col" style="gap:14px;margin-top:12px;">
+      <div class="card fragment fade-up" style="padding:16px;border-left:3px solid var(--mint);">
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:8px;">📋 What To Do</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          1. Present your 5-slide outline to a partner (2 min each)<br>
+          2. Walk them through your story arc<br>
+          3. Explain why you chose this structure<br>
+          4. Partner gives structured feedback
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="padding:16px;border-left:3px solid #F59E0B;">
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:8px;">💬 Feedback Framework</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          <strong style="color:var(--text-light);">What worked:</strong> Which slide/idea landed best?<br>
+          <strong style="color:var(--text-light);">What confused:</strong> Where did you lose the thread?<br>
+          <strong style="color:var(--text-light);">What to cut:</strong> Which slide could you remove and still deliver the message?
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:12px;">⏱️ 6 minutes — 2 min present + 1 min feedback per person. Be specific in your critique.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 6 min] [TRANSITION: "Time to test your presentation with a real audience."]
+Key talking points:
+• Presenting an OUTLINE (not full slides) forces you to focus on the story, not the design
+• The feedback framework is intentionally structured: what worked / what confused / what to cut
+• "What to cut" is the most valuable: if partners can identify a removable slide, the outline is tighter
+• Debrief: Ask 2-3 people what their partner suggested cutting. Did they agree?
+Facilitation tip: Enforce the 2-minute time limit strictly. It simulates the constraint of real presentations.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 23: CHAPTER 03 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">03</div>
+    <div class="chapter-title">Visual Communication Principles</div>
+    <div class="chapter-sub">Charts, colours, layouts — the fundamentals AI can't decide for you</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "For our final chapter, we focus on the PRINCIPLES behind good visual communication."]
+Key talking points:
+• AI can generate visuals, but it can't judge whether they COMMUNICATE effectively
+• This chapter: data viz best practices, colour psychology, layout hierarchy, brand consistency
+• These principles are what separate AI-generated visuals from genuinely effective communication
+  </aside>
+</section>
+]]>
+<![CDATA[
+<!-- ==================== SLIDE 24: CHOOSING THE RIGHT CHART ==================== -->
+<section data-background-color="#F5F3FF">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-light" style="font-size:24px;font-weight:800;margin-bottom:4px;">Choosing the Right Chart Type</h2>
+    <div class="accent-bar" style="background:var(--blue);"></div>
+    <div class="grid-2x2" style="gap:10px;margin-top:10px;">
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid var(--blue);" class="fragment fade-up">
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:6px;">📊 Bar Chart</div>
+        <div style="font-size:13px;color:var(--navy);line-height:1.5;">
+          <strong>Use for:</strong> Comparing categories<br>
+          <em>"Which department spent most?"</em><br>
+          <span style="color:#27AE60;">✓ Easy to read, compare, rank</span>
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid var(--mint);" class="fragment fade-up">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:6px;">📈 Line Chart</div>
+        <div style="font-size:13px;color:var(--navy);line-height:1.5;">
+          <strong>Use for:</strong> Trends over time<br>
+          <em>"How did revenue change month to month?"</em><br>
+          <span style="color:#27AE60;">✓ Shows direction, patterns, momentum</span>
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid #F59E0B;" class="fragment fade-up">
+        <div style="font-size:14px;font-weight:700;color:#F59E0B;margin-bottom:6px;">🥧 Pie Chart</div>
+        <div style="font-size:13px;color:var(--navy);line-height:1.5;">
+          <strong>Use for:</strong> Parts of a whole (MAX 5 slices)<br>
+          <em>"What % of budget goes to each area?"</em><br>
+          <span style="color:#E74C3C;">⚠️ Avoid with 6+ categories</span>
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid #27AE60;" class="fragment fade-up">
+        <div style="font-size:14px;font-weight:700;color:#27AE60;margin-bottom:6px;">🔢 Table</div>
+        <div style="font-size:13px;color:var(--navy);line-height:1.5;">
+          <strong>Use for:</strong> Precise values, comparisons<br>
+          <em>"What are the exact numbers?"</em><br>
+          <span style="color:#27AE60;">✓ When precision > patterns</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="background:rgba(30,16,69,0.12);color:var(--navy);margin-top:10px;">🎯 Ask: "What QUESTION does my data answer?" — that determines the chart type</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Now let's talk about choosing the RIGHT visualisation for your data."]
+Key talking points:
+• The most common mistake: choosing a chart type because it looks pretty, not because it fits the data
+• Bar chart = comparison. Line chart = trend. Pie chart = proportion (MAX 5 slices). Table = precision.
+• The PIE CHART RULE: if you have more than 5 categories, use a bar chart instead. Pie charts with 12 slices are unreadable.
+• Ask yourself: "What question am I helping the audience answer?" — the answer tells you the chart type.
+• AI tools will often suggest pie charts for everything. You need to override with better judgement.
+Discussion prompt: "What's the worst chart you've seen in a presentation? What made it bad?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 25: COLOUR PSYCHOLOGY ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Colour Psychology in Business</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-3col" style="gap:10px;margin-top:10px;">
+      <div class="card fragment fade-up" style="padding:14px;border-top:4px solid #2563EB;">
+        <div style="font-size:14px;font-weight:700;color:#60A5FA;margin-bottom:6px;">🔵 Blue</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Trust, stability, professionalism. Most common corporate colour. Safe for finance, legal, governance.</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;border-top:4px solid #16A34A;">
+        <div style="font-size:14px;font-weight:700;color:#4ADE80;margin-bottom:6px;">🟢 Green</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Growth, success, sustainability. Use for positive metrics, "go" signals, environmental topics.</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;border-top:4px solid #DC2626;">
+        <div style="font-size:14px;font-weight:700;color:#F87171;margin-bottom:6px;">🔴 Red</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Urgency, danger, losses. Use sparingly for warnings, negative trends, critical alerts.</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;border-top:4px solid #F59E0B;">
+        <div style="font-size:14px;font-weight:700;color:#FBBF24;margin-bottom:6px;">🟡 Amber/Yellow</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Caution, attention, optimism. Good for "needs review" status, moderate risk indicators.</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;border-top:4px solid #7C3AED;">
+        <div style="font-size:14px;font-weight:700;color:#A78BFA;margin-bottom:6px;">🟣 Purple</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Innovation, creativity, premium. Good for new initiatives, strategy, forward-looking content.</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;border-top:4px solid #475569;">
+        <div style="font-size:14px;font-weight:700;color:#94A3B8;margin-bottom:6px;">⚪ Grey/Neutral</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Calm, background, secondary. Use for context, non-critical data, supporting elements.</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Colour isn't just decoration — it communicates meaning."]
+Key talking points:
+• Colour carries MEANING in business context. Red on a financial chart means "loss" — even if you meant it as decoration.
+• The traffic light convention is universal: Red = bad/stop, Amber = caution, Green = good/go
+• AI image generators often use random colours. You should override with intentional colour choices.
+• Consistency matters: once you assign blue to "Department A" on slide 3, it must stay blue on slide 7.
+• Accessibility: ~8% of men are colour-blind. Never rely on colour ALONE to convey meaning — add labels or patterns.
+• Quick rule: limit to 3-4 colours per visualisation. More than that = visual chaos.
+  </aside>
+</section>
+]]>
+<![CDATA[
+<!-- ==================== SLIDE 26: LAYOUT HIERARCHY ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Layout Hierarchy &amp; Whitespace</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="gap:14px;margin-top:10px;">
+      <div class="card fragment fade-up" style="padding:16px;border-left:3px solid var(--mint);">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:8px;">📐 Visual Hierarchy</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          • <strong style="color:var(--text-light);">Size:</strong> Bigger = more important<br>
+          • <strong style="color:var(--text-light);">Position:</strong> Top-left reads first (in English)<br>
+          • <strong style="color:var(--text-light);">Contrast:</strong> High contrast draws the eye<br>
+          • <strong style="color:var(--text-light);">Isolation:</strong> Space around an element = emphasis
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="padding:16px;border-left:3px solid var(--blue);">
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:8px;">🫧 The Power of Whitespace</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          • Whitespace is not "wasted" space<br>
+          • It guides the eye and reduces cognitive load<br>
+          • Crowded slides = audience stops reading<br>
+          • Rule: 40% of slide surface should be empty
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:14px;">💡 AI-generated slides are often TOO DENSE. Your edit should usually be: remove elements, add whitespace.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Good visual communication follows principles of layout hierarchy."]
+Key talking points:
+• Visual hierarchy tells the audience WHERE TO LOOK FIRST. Without it, they scan randomly and miss your point.
+• The 4 tools: size, position, contrast, isolation. Use them intentionally.
+• Whitespace: AI-generated presentations often cram every pixel with content. This is the opposite of good design.
+• The 40% rule: if more than 60% of your slide has content on it, it's too crowded
+• When you receive an AI-generated slide deck, your first edit should be: identify the ONE key message per slide, and remove everything that doesn't support it
+• This creates whitespace naturally
+Discussion prompt: "Think of a billboard you've seen. It probably had very few words and lots of space. Why? Because you have 3 seconds to read it. Slides are the same."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 27: BRAND CONSISTENCY ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Brand Consistency with AI Assets</h2>
+    <div class="accent-bar"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
+      <div class="card fragment fade-up" style="border-left:3px solid var(--mint);padding:14px 18px;">
+        <div style="font-size:15px;color:var(--text-light);line-height:1.6;">🎨 <strong>Define your palette first</strong> — give AI your exact hex codes. "Use only #1E1045, #0891B2, and #FFFFFF" keeps outputs on-brand.</div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid var(--blue);padding:14px 18px;">
+        <div style="font-size:15px;color:var(--text-light);line-height:1.6;">📝 <strong>Specify your style</strong> — "flat illustration" produces different results than "3D render" or "watercolour." Lock in ONE style per project.</div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid #F59E0B;padding:14px 18px;">
+        <div style="font-size:15px;color:var(--text-light);line-height:1.6;">🔄 <strong>Create a prompt template</strong> — "Every image for this project must include: [style: flat minimal], [palette: brand blues], [composition: landscape 16:9], [mood: professional, warm]"</div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid #27AE60;padding:14px 18px;">
+        <div style="font-size:15px;color:var(--text-light);line-height:1.6;">✅ <strong>Quality gate</strong> — before using any AI image: Does it match our brand? Would I use this in a client meeting? Does it look consistent with our other materials?</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "How do you keep AI-generated visuals consistent with your brand?"]
+Key talking points:
+• The challenge: AI generates varied styles each time. Slide 1 looks photorealistic, slide 5 looks cartoonish.
+• Solution: Create a PROMPT TEMPLATE that enforces consistency across all generations
+• Hex codes: AI image tools CAN be guided by specific colours if you specify hex codes in your prompt
+• Style lock: Pick ONE visual style for your project and stick with it. Don't mix "watercolour" with "3D render."
+• Quality gate: Every AI-generated asset should pass a "brand consistency check" before going into a final presentation
+• Practical tip: Save your best prompt as a template. Reuse it with only the subject line changing.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 28: DIALOGUE — RACHEL & PRIYA ==================== -->
+<section data-background-color="#0F0A2E">
+  <div class="dialogue-slide" style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:12px;">🎭 The Pie Chart Problem</h2>
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:700px;margin:0 auto;">
+      <div class="fragment fade-up" style="display:flex;align-items:flex-start;gap:12px;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=RachelCFO" alt="Rachel" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;border:2px solid var(--blue);">
+        <div>
+          <div style="font-size:12px;color:var(--blue);font-weight:700;margin-bottom:4px;">Rachel (CFO)</div>
+          <div class="bubble">I'm presenting our revenue breakdown to the board. I've got a pie chart with 12 slices — one for each business unit. Looks colourful!</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;align-items:flex-start;gap:12px;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=PriyaFinance" alt="Priya" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;border:2px solid var(--mint);">
+        <div>
+          <div style="font-size:12px;color:var(--mint);font-weight:700;margin-bottom:4px;">Priya (Finance)</div>
+          <div class="bubble">Rachel, can you honestly tell the difference between a 7% slice and an 8% slice in a pie chart? Neither can your board. That's 12 nearly-identical slices!</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;align-items:flex-start;gap:12px;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=RachelCFO" alt="Rachel" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;border:2px solid var(--blue);">
+        <div>
+          <div style="font-size:12px;color:var(--blue);font-weight:700;margin-bottom:4px;">Rachel</div>
+          <div class="bubble">So what do I use instead?</div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;align-items:flex-start;gap:12px;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=PriyaFinance" alt="Priya" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;border:2px solid var(--mint);">
+        <div>
+          <div style="font-size:12px;color:var(--mint);font-weight:700;margin-bottom:4px;">Priya</div>
+          <div class="bubble">Horizontal bar chart, sorted by value. The board can instantly see which units lead and which lag. OR: group the 12 into 4 categories, THEN a pie chart works.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "A perfect example of choosing the wrong chart type."]
+Key talking points:
+• Pie charts ONLY work with 2-5 slices that are noticeably different sizes
+• 12 slices that are all roughly 7-10% each = impossible to compare visually
+• The alternative: horizontal bar chart, sorted largest to smallest. Instant comparison.
+• Or: group 12 units into 3-4 categories (by region or function), then pie chart works
+• Key lesson: the chart type should match the QUESTION, not your aesthetic preference
+• AI tools will happily generate a 12-slice pie chart if you ask. You need the judgement to say "no."
+  </aside>
+</section>
+]]>
+<![CDATA[
+<!-- ==================== SLIDE 29: PRACTICAL — DATA VIZ ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="practical-badge">🔨 PRACTICAL</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:10px;">Create 3 Visualisations from One Dataset</h2>
+    <div style="font-size:15px;color:var(--text-muted);margin-bottom:14px;">Use this sample data: "Q1-Q4 revenue for 5 departments: Sales £2.1M, Marketing £0.8M, Operations £1.4M, HR £0.3M, Finance £0.5M"</div>
+    <ul class="practical-steps">
+      <li class="fragment fade-up"><span class="step-num">1</span><span><strong>Bar chart:</strong> Ask AI to describe/sketch a bar chart comparing departments. Which department stands out?</span></li>
+      <li class="fragment fade-up"><span class="step-num">2</span><span><strong>Pie chart:</strong> Ask AI to describe this as a pie chart. Can you easily compare Operations vs Marketing?</span></li>
+      <li class="fragment fade-up"><span class="step-num">3</span><span><strong>Evaluate:</strong> Which visualisation answers "Which department has highest revenue?" fastest?</span></li>
+    </ul>
+    <div class="footer-bar fragment fade-up" style="margin-top:12px;">⏱️ 6 minutes — Use ChatGPT/Claude to describe each viz. Decide which communicates most clearly for a board audience.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 6 min] [TRANSITION: "Let's apply chart selection to real data."]
+Key talking points:
+• This exercise forces participants to see the SAME data in different formats and judge which works best
+• Bar chart: immediately shows Sales > Operations > Marketing > Finance > HR
+• Pie chart: 5 slices is borderline OK, but the £2.1M vs £0.3M difference doesn't pop as clearly
+• The answer for "highest revenue?" is BAR CHART — it's designed for comparison
+• If the question were "what % of total revenue does Sales represent?" — then pie chart works better
+• Key insight: chart type depends on the QUESTION, not the data
+Debrief: "Which did you find clearest? Why? How would you advise AI if it suggested the wrong chart?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 30: GROUP TASK — VIZ CRITIQUE ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="group-badge">👥 GROUP TASK</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:10px;">Visualisation Critique Circle</h2>
+    <div class="grid-2col" style="gap:14px;margin-top:12px;">
+      <div class="card fragment fade-up" style="padding:16px;border-left:3px solid var(--mint);">
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:8px;">📋 Instructions</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          1. Form groups of 3<br>
+          2. Each person presents their preferred visualisation<br>
+          3. Group critiques using the rubric (right)<br>
+          4. Agree on which viz works best for a board audience
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="padding:16px;border-left:3px solid #F59E0B;">
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:8px;">📊 Critique Rubric</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          <strong style="color:var(--text-light);">Clarity (1-5):</strong> Can you understand it in 5 seconds?<br>
+          <strong style="color:var(--text-light);">Accuracy (1-5):</strong> Does it fairly represent the data?<br>
+          <strong style="color:var(--text-light);">Aesthetics (1-5):</strong> Is it visually appealing and clean?
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:12px;">⏱️ 6 minutes — Critique, score, and agree on the winner. Be ready to share your group's choice.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 6 min] [TRANSITION: "Now let's get group feedback on your visualisation choices."]
+Key talking points:
+• The rubric forces structured critique: clarity, accuracy, aesthetics (in that priority order!)
+• Clarity should always win over aesthetics. A beautiful chart that confuses people is worse than a plain one that communicates.
+• Groups should reach consensus on which viz works best — this mirrors real workplace decisions
+• Debrief: Ask each group which viz they chose and WHY. Focus on the reasoning, not just the answer.
+Facilitation tip: This exercise often generates healthy debate. Let groups argue a bit — that's the learning.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 31: KEY TAKEAWAYS ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Key Takeaways</h2>
+    <div class="accent-bar"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
+      <div class="closing-card fragment fade-up">🎨 <strong>AI generates visuals, not communication.</strong> You must judge whether the output actually communicates your message to your specific audience.</div>
+      <div class="closing-card fragment fade-up">📝 <strong>Specificity drives quality.</strong> Subject + Style + Composition + Details = effective image prompts. Vague prompts = generic results.</div>
+      <div class="closing-card fragment fade-up">🏭 <strong>Avoid the slide factory.</strong> Structure your presentation (audience, message, arc) BEFORE using AI. AI expands your thinking, doesn't replace it.</div>
+      <div class="closing-card fragment fade-up">📊 <strong>Chart type follows the question.</strong> What question does your audience need answered? That determines bar, line, pie, or table.</div>
+      <div class="closing-card fragment fade-up">🫧 <strong>Whitespace is your friend.</strong> AI-generated visuals are often too dense. Edit by removing, not adding.</div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 3 min] [TRANSITION: "Let's consolidate what we've learned today."]
+Key talking points:
+• Run through each takeaway, connecting back to the exercises
+• 1: Image generation exercise showed this — AI made images but not all communicated effectively
+• 2: The prompt swap exercise proved this — specific prompts got better results
+• 3: The 5-slide outline exercise demonstrated this — structure first, AI second
+• 4: The data viz exercise showed this — same data, different chart, different clarity
+• 5: Layout hierarchy principle — your first edit of AI output should be subtraction, not addition
+Action: "From today, whenever you use AI for visual content, apply the 'Art Director' mindset: you brief, AI drafts, you critique and edit."
+  </aside>
+</section>
+]]>
+<![CDATA[
+<!-- ==================== SLIDE 32: NEXT SESSION TEASER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:20px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Coming Next...</h2>
+    <div class="accent-bar"></div>
+    <div class="card fragment fade-up" style="border-left:3px solid var(--mint);padding:18px;margin-top:16px;">
+      <div style="font-size:18px;font-weight:700;color:var(--text-light);margin-bottom:8px;">Module 9: Building Without Coding</div>
+      <div style="font-size:15px;color:var(--text-muted);line-height:1.7;">
+        • No-code tools: build apps, automations, and workflows without writing code<br>
+        • AI agents that take actions on your behalf<br>
+        • Automation platforms: Zapier, Make, Power Automate with AI<br>
+        • When to build vs. when to buy vs. when to ask IT
+      </div>
+    </div>
+    <div class="teaser fragment fade-up">💡 "In Module 9, you'll build a working automation that saves you 30 minutes a week — no programming required."</div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] [TRANSITION: "Here's a taste of what's coming next."]
+Key talking points:
+• Module 9 is about DOING things with AI — not just generating content, but building tools and automations
+• No coding required — these are drag-and-drop platforms enhanced with AI
+• Preview: you'll create an actual automation by end of session (like auto-summarising meeting notes, or routing emails)
+• Bridge: "Today you learned to generate visual content. Next time you'll learn to build systems that work FOR you, 24/7."
+Homework suggestion: "Between now and next session, try using one AI presentation tool (Gamma, Canva AI) for a real work task. Notice what works and what you need to edit."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 33: END SLIDE ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:60px;text-align:center;">
+    <div style="font-size:48px;margin-bottom:16px;">🎨</div>
+    <div style="font-size:28px;font-weight:800;color:var(--text-light);margin-bottom:8px;">Module 8 Complete</div>
+    <div style="font-size:16px;color:var(--text-muted);margin-bottom:32px;">Visualisation &amp; Presentation</div>
+    <div style="width:80px;height:3px;background:var(--mint);border-radius:2px;margin:0 auto 32px auto;"></div>
+    <div style="font-size:14px;color:var(--text-muted);">AI Skills Studio &nbsp;|&nbsp; Gen AI Inc &nbsp;|&nbsp; 2025</div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] End of session. Thank participants for their engagement. Remind them of homework: try one AI visual tool before next session. Collect any questions for follow-up.
+  </aside>
+</section>
+
+</div><!-- /.slides -->
+</div><!-- /.reveal -->
+
+<!-- Reveal.js & Initialization -->
+<script type="module">
+  import Reveal from 'https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.esm.js';
+  import RevealNotes from 'https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.esm.js';
+
+  const deck = Reveal.initialize({
+    hash: true,
+    slideNumber: function(slide) {
+      const h = Reveal.getIndices(slide).h + 1;
+      return [h + ' / 33'];
+    },
+    showSlideNumber: 'all',
+    progress: true,
+    keyboard: true,
+    overview: true,
+    center: true,
+    touch: true,
+    loop: false,
+    autoSlide: 0,
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    width: 1280,
+    height: 720,
+    margin: 0.06,
+    minScale: 0.2,
+    maxScale: 2.0,
+    plugins: [RevealNotes]
+  });
+
+  deck.then(() => {
+    const navLinks = document.querySelectorAll('#session-nav a');
+    const chapters = [6, 14, 22, 29];
+
+    function updateNav() {
+      const current = Reveal.getIndices().h;
+      navLinks.forEach((link, i) => {
+        link.classList.remove('nav-active');
+        if (i < chapters.length - 1 && current >= chapters[i] && current < chapters[i+1]) {
+          link.classList.add('nav-active');
+        } else if (i === chapters.length - 1 && current >= chapters[i]) {
+          link.classList.add('nav-active');
+        }
+      });
+    }
+
+    Reveal.on('slidechanged', updateNav);
+    updateNav();
+  });
+</script>
+]]>
+<![CDATA[
+<!-- Graceful fallback for offline use -->
+<noscript>
+  <style>
+    .reveal .fragment { opacity: 1 !important; transform: none !important; }
+    .reveal .slides section { display: block !important; }
+  </style>
+</noscript>
+<script>
+  window.addEventListener('error', function(e) {
+    if (e.filename && e.filename.includes('reveal')) {
+      document.querySelectorAll('.fragment').forEach(function(el) {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+      document.querySelector('.reveal').style.overflow = 'auto';
+      document.querySelectorAll('.reveal .slides section').forEach(function(s) {
+        s.style.display = 'block';
+        s.style.position = 'relative';
+        s.style.width = '100%';
+        s.style.minHeight = '100vh';
+        s.style.padding = '48px';
+        s.style.boxSizing = 'border-box';
+        s.style.borderBottom = '2px solid rgba(8,145,178,0.3)';
+      });
+    }
+  }, true);
+</script>
+
+<!-- Quiz handler -->
+<script>
+  function quizAnswer(slideId, selectedIdx, correctIdx, explanation) {
+    var container = document.getElementById(slideId);
+    if (!container) return;
+    var opts = container.querySelectorAll('.quiz-opt');
+    opts.forEach(function(opt, i) {
+      opt.classList.add('disabled');
+      if (i === correctIdx) {
+        opt.classList.add('correct');
+        opt.querySelector('.opt-letter').textContent = '✓';
+      }
+      if (i === selectedIdx && selectedIdx !== correctIdx) {
+        opt.classList.add('wrong');
+        opt.querySelector('.opt-letter').textContent = '✗';
+      }
+    });
+    var explainEl = container.querySelector('.quiz-explain');
+    if (explainEl) {
+      explainEl.textContent = explanation;
+      explainEl.classList.add('show');
+    }
+  }
+  window.quizAnswer = quizAnswer;
+</script>
+
+<!-- Tooltip mobile tap-to-toggle -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.tip').forEach(function(el) {
+      el.setAttribute('tabindex', '0');
+      el.addEventListener('click', function(e) {
+        e.stopPropagation();
+        document.querySelectorAll('.tip .tip-content').forEach(function(t) {
+          t.style.display = 'none';
+        });
+        var content = el.querySelector('.tip-content');
+        if (content) {
+          content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        }
+      });
+    });
+    document.addEventListener('click', function() {
+      document.querySelectorAll('.tip .tip-content').forEach(function(t) {
+        t.style.display = '';
+      });
+    });
+  });
+</script>
+
+<!-- Passcode Gate -->
+<script>
+  (function() {
+    var PASSCODE = 'G2026';
+    var gate = document.getElementById('passcode-gate');
+    var input = document.getElementById('gate-input');
+    var error = document.getElementById('gate-error');
+    var nav = document.getElementById('session-nav');
+
+    if (sessionStorage.getItem('ai-studio-auth') === 'true') {
+      gate.style.display = 'none';
+      nav.style.display = 'flex';
+    } else {
+      document.querySelector('.reveal').style.display = 'none';
+    }
+
+    input.addEventListener('input', function() {
+      error.style.display = 'none';
+      if (input.value.length === 5) {
+        if (input.value.toUpperCase() === PASSCODE) {
+          sessionStorage.setItem('ai-studio-auth', 'true');
+          gate.style.display = 'none';
+          nav.style.display = 'flex';
+          document.querySelector('.reveal').style.display = '';
+          setTimeout(function() {
+            if (window.Reveal && window.Reveal.layout) {
+              window.Reveal.layout();
+            }
+          }, 100);
+        } else {
+          error.style.display = 'block';
+          input.value = '';
+          input.focus();
+        }
+      }
+    });
+
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && input.value.length >= 4) {
+        if (input.value.toUpperCase() === PASSCODE) {
+          sessionStorage.setItem('ai-studio-auth', 'true');
+          gate.style.display = 'none';
+          nav.style.display = 'flex';
+          document.querySelector('.reveal').style.display = '';
+          setTimeout(function() {
+            if (window.Reveal && window.Reveal.layout) {
+              window.Reveal.layout();
+            }
+          }, 100);
+        } else {
+          error.style.display = 'block';
+          input.value = '';
+        }
+      }
+    });
+
+    setTimeout(function() { input.focus(); }, 300);
+  })();
+</script>
+</body>
+</html>
+]]>
