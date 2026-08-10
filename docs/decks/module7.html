@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 7: Research &amp; Grounded Answers — AI Skills Studio</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+<style>
+  :root{--navy:#1E1045;--blue:#6C3AED;--mint:#0891B2;--dark-bg:#0F0A2E;--light-bg:#F5F3FF;--card-bg:#1E1B4B;--text-light:#FFFFFF;--text-muted:#A8B4D8;--font:system-ui,'Segoe UI',sans-serif;--practical-bg:#1A1050}
+  .reveal{font-family:var(--font)}.reveal .slides section{text-align:left;padding:0 48px}
+  .reveal .progress{height:4px;color:var(--mint)}.reveal .progress span{background:var(--mint)}
+  .reveal .slide-number{background:rgba(0,0,0,0.4);color:var(--text-muted);font-size:13px;padding:4px 10px;border-radius:4px;font-family:var(--font)}
+  .reveal h1,.reveal h2,.reveal h3{font-family:var(--font);text-transform:none;letter-spacing:-0.5px}
+  .slide-title-dark{color:var(--text-light)!important}.slide-title-light{color:var(--navy)!important}
+  .accent-bar{width:80px;height:4px;background:var(--mint);margin:6px 0 16px 0;border-radius:2px}
+  .card{background:var(--card-bg);border-radius:10px;padding:18px 20px;box-shadow:0 4px 16px rgba(0,0,0,0.25)}
+  .card-light{background:#fff;border-radius:10px;padding:18px 20px;box-shadow:0 2px 12px rgba(30,16,69,0.10)}
+  .card-navy{background:var(--navy);border-radius:10px;padding:18px 20px;box-shadow:0 4px 16px rgba(0,0,0,0.2)}
+  .grid-2col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid-3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .grid-2x3{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:12px}
+  .grid-2x2{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px}
+  .flex-row{display:flex;gap:16px;align-items:stretch}
+  .chapter-num{font-size:96px;font-weight:900;color:var(--mint);opacity:0.85;line-height:1;margin-bottom:8px}
+  .chapter-title{font-size:38px;font-weight:700;color:var(--text-light);margin:0 0 8px 0}
+  .chapter-sub{font-size:17px;color:var(--text-muted);font-style:italic;margin:0}
+  .chapter-rule{width:100px;height:4px;background:var(--mint);border-radius:2px;margin-top:20px}
+  .agenda-num{font-size:28px;font-weight:800;color:var(--mint);margin-bottom:6px}
+  .agenda-title{font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:4px}
+  .agenda-sub{font-size:14px;color:var(--text-muted)}
+  .limit-row{display:flex;align-items:center;background:var(--card-bg);border-radius:8px;padding:10px 18px;margin-bottom:8px;gap:12px}
+  .limit-txt{font-size:16px;color:var(--text-light)}
+  .loop-steps{display:flex;align-items:stretch;gap:0}
+  .loop-step{flex:1;background:var(--navy);border-radius:10px;padding:16px 10px;text-align:center}
+  .loop-step-label{font-size:13px;font-weight:800;color:var(--mint);margin-bottom:10px;letter-spacing:1px}
+  .loop-step-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .loop-arrow{display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--mint);flex-shrink:0;padding:0 6px}
+  .loop-footer{background:rgba(8,145,178,0.12);border-radius:8px;padding:10px 18px;margin-top:16px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .closing-card{background:var(--card-bg);border-radius:10px;padding:16px 18px;border-left:3px solid var(--mint);font-size:15px;color:var(--text-light);line-height:1.5}
+  .footer-bar{background:rgba(8,145,178,0.08);border-radius:8px;padding:8px 16px;margin-top:10px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .footer-bar-dark{background:var(--card-bg);border-radius:8px;padding:8px 16px;margin-top:10px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .teaser{background:var(--card-bg);border-left:3px solid var(--mint);border-radius:8px;padding:10px 16px;font-size:14px;color:var(--text-muted);margin-top:12px;font-style:italic}
+  .tip{position:relative;border-bottom:1px dashed var(--mint);cursor:help;color:inherit;font-weight:inherit}
+  .tip:hover{color:var(--mint)}
+  .tip .tip-content{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--navy);color:var(--text-light);padding:14px 18px;border-radius:10px;font-size:14px;font-weight:400;line-height:1.6;width:340px;max-width:90vw;box-shadow:0 12px 40px rgba(0,0,0,0.7);border:2px solid var(--mint);z-index:99999;text-align:left;font-style:normal}
+  .tip .tip-content::before{content:'💡';display:block;font-size:14px;margin-bottom:6px}
+  .tip:hover .tip-content,.tip:focus .tip-content{display:block}
+  .light-tip .tip-content{background:#fff;color:var(--navy);border-color:var(--blue)}.light-tip{border-bottom-color:var(--blue)}.light-tip:hover{color:var(--blue)}
+  .quiz-label{font-size:13px;font-weight:700;color:var(--mint);letter-spacing:2px;margin-bottom:12px}
+  .quiz-question{font-size:24px;font-weight:700;color:var(--text-light);margin-bottom:24px;line-height:1.4}
+  .quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .quiz-opt{background:var(--card-bg);border-radius:10px;padding:16px 20px;font-size:15px;color:var(--text-light);cursor:pointer;border:2px solid transparent;transition:all 0.2s;display:flex;align-items:center;gap:12px}
+  .quiz-opt:hover{border-color:var(--mint);background:rgba(8,145,178,0.1)}
+  .quiz-opt.correct{background:#1D4A3A!important;border-color:#27AE60!important;cursor:default}
+  .quiz-opt.wrong{background:#4A1D1D!important;border-color:#E74C3C!important;cursor:default;opacity:0.7}
+  .quiz-opt.disabled{pointer-events:none;opacity:0.6}
+  .quiz-opt .opt-letter{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+  .quiz-opt.correct .opt-letter{background:#27AE60;color:#fff}
+  .quiz-opt.wrong .opt-letter{background:#E74C3C;color:#fff}
+  .quiz-explain{margin-top:16px;padding:12px 18px;border-radius:8px;background:rgba(8,145,178,0.1);border-left:3px solid var(--mint);font-size:14px;color:var(--text-muted);display:none;line-height:1.6}
+  .quiz-explain.show{display:block}
+  #session-nav{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;justify-content:center;align-items:center;gap:6px;padding:6px 12px;background:rgba(15,10,46,0.92);backdrop-filter:blur(6px);border-bottom:1px solid rgba(8,145,178,0.2);font-family:var(--font);font-size:11px}
+  #session-nav .nav-label{color:var(--text-muted);font-size:10px;font-weight:700;letter-spacing:1px;margin-right:4px;flex-shrink:0}
+  #session-nav a{color:var(--text-muted);text-decoration:none;padding:3px 10px;border-radius:20px;border:1px solid transparent;transition:all 0.2s;font-size:11px;white-space:nowrap}
+  #session-nav a:hover{color:var(--mint);border-color:var(--mint);background:rgba(8,145,178,0.1)}
+  #session-nav a.nav-active{color:var(--mint);border-color:rgba(8,145,178,0.4)}
+  .title-series{font-size:34px;font-weight:800;color:var(--text-light);margin-bottom:8px;line-height:1.2}
+  .title-session{font-size:19px;font-weight:600;color:var(--mint);margin-bottom:8px}
+  .title-tagline{font-size:15px;color:var(--text-muted);font-style:italic;margin-bottom:32px}
+  .title-rule{width:80px;height:3px;background:var(--mint);border-radius:2px;margin-bottom:24px}
+  .title-author{font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:4px}
+  .title-date{font-size:13px;color:var(--text-muted)}
+  .keyboard-hint{position:absolute;bottom:28px;right:0;font-size:11px;color:rgba(168,180,216,0.6);display:flex;gap:12px;align-items:center}
+  .key{display:inline-block;border:1px solid rgba(168,180,216,0.3);border-radius:4px;padding:2px 7px;font-size:11px;color:rgba(168,180,216,0.7)}
+  .reveal .fragment{opacity:0.15;transition:opacity 0.4s,transform 0.4s}
+  .reveal .fragment.visible{opacity:1}
+  .reveal .fragment.fade-up{transform:translateY(20px)}.reveal .fragment.fade-up.visible{transform:translateY(0)}
+  .reveal .fragment.scale-in{transform:scale(0.85)}.reveal .fragment.scale-in.visible{transform:scale(1)}
+  .light-slide p,.light-slide li{color:var(--navy)}
+  .practical-badge{display:inline-block;background:linear-gradient(135deg,var(--blue),var(--mint));color:#fff;font-size:14px;font-weight:800;padding:6px 16px;border-radius:20px;letter-spacing:1px;margin-bottom:14px}
+  .practical-steps{list-style:none;padding:0;margin:12px 0}
+  .practical-steps li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;font-size:16px;color:var(--text-light)}
+  .practical-steps li .step-num{background:var(--mint);color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+  .check-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(108,58,237,0.15);font-size:16px;color:var(--text-light)}
+  .check-icon{color:var(--mint);font-size:17px;flex-shrink:0}
+  .vs-arrow{display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--mint);font-weight:800;flex-shrink:0;padding:0 8px}
+  #passcode-gate{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--dark-bg);display:flex;align-items:center;justify-content:center;z-index:99999;flex-direction:column;gap:16px}
+  #passcode-gate input{padding:12px 24px;font-size:18px;border-radius:8px;border:2px solid var(--mint);background:var(--card-bg);color:var(--text-light);text-align:center;letter-spacing:4px;width:200px;outline:none}
+  #passcode-gate input:focus{box-shadow:0 0 12px rgba(8,145,178,0.4)}
+  #passcode-gate .gate-title{font-size:24px;color:var(--text-light);font-weight:700}
+  .gate-hint{font-size:13px;color:var(--text-muted)}
+  #passcode-gate .gate-error{font-size:13px;color:#E74C3C;display:none}
+  .craft-card{background:var(--card-bg);border-radius:10px;padding:16px 14px;text-align:center;border-top:4px solid var(--mint)}
+  .craft-letter{font-size:36px;font-weight:900;color:var(--mint);margin-bottom:4px}
+  .craft-word{font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px}
+  .craft-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .constraint-card{background:var(--card-bg);border-radius:10px;padding:18px 16px;border-left:4px solid var(--mint)}
+  .constraint-title{font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:6px}
+  .constraint-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .failure-card{background:var(--card-bg);border-radius:10px;padding:16px;text-align:center}
+  .failure-icon{font-size:28px;margin-bottom:6px}
+  .failure-title{font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px}
+  .failure-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .messy-table{width:100%;font-size:12px;border-collapse:collapse;background:var(--card-bg);border-radius:8px;overflow:hidden}
+  .messy-table th{background:var(--navy);color:var(--mint);padding:8px 10px;text-align:left;font-size:11px;font-weight:700;letter-spacing:0.5px}
+  .messy-table td{padding:7px 10px;color:var(--text-light);border-bottom:1px solid rgba(108,58,237,0.15);font-size:12px}
+  .messy-table tr.issue-row td{background:rgba(231,76,60,0.08)}
+  .group-badge{display:inline-block;background:linear-gradient(135deg,#E74C3C,#F39C12);color:#fff;font-size:14px;font-weight:800;padding:6px 16px;border-radius:20px;letter-spacing:1px;margin-bottom:14px}
+  /* Global overflow safety net */
+  .reveal .slides section > div { max-height: calc(720px * 0.88 - 40px); overflow: hidden; }
+</style>
+</head>
+<body>
+
+<!-- PASSCODE GATE -->
+<div id="passcode-gate">
+  <div class="gate-title">🔒 AI Skills Studio</div>
+  <div class="gate-hint">Enter session passcode to continue</div>
+  <input type="text" id="gate-input" maxlength="5" placeholder="•••••" autocomplete="off">
+  <div class="gate-error" id="gate-error">Incorrect passcode. Try again.</div>
+</div>
+
+<!-- SESSION NAV BAR -->
+<div id="session-nav" style="display:none;">
+  <span class="nav-label">MODULE 7:</span>
+  <a href="#" data-nav="0" onclick="Reveal.slide(6);return false;">01 Grounded vs Ungrounded</a>
+  <a href="#" data-nav="1" onclick="Reveal.slide(10);return false;">02 Research Brief</a>
+  <a href="#" data-nav="2" onclick="Reveal.slide(15);return false;">03 Comparison</a>
+  <a href="#" data-nav="3" onclick="Reveal.slide(19);return false;">04 Verification</a>
+  <a href="#" data-nav="4" onclick="Reveal.slide(23);return false;">05 Trust Spectrum</a>
+  <a href="#" data-nav="5" onclick="Reveal.slide(26);return false;">06 Wrap-up</a>
+</div>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- ==================== SLIDE 1: TITLE ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:40px;">
+    <div style="width:100%;height:4px;background:linear-gradient(90deg,var(--blue),var(--mint));border-radius:2px;margin-bottom:32px;"></div>
+    <div class="title-series">AI Skills Studio</div>
+    <div class="title-session">Module 7: Research &amp; Grounded Answers</div>
+    <div class="title-tagline">Use AI for research that requires accuracy, sources, and verification</div>
+    <div class="title-rule"></div>
+    <div class="title-author">Gen AI Inc</div>
+    <div class="title-date">2025 &nbsp;|&nbsp; 75 minutes</div>
+    <div class="keyboard-hint">
+      <span><span class="key">←→</span> Navigate</span>
+      <span><span class="key">F</span> Fullscreen</span>
+      <span><span class="key">S</span> Speaker Notes</span>
+      <span><span class="key">O</span> Overview</span>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] [TRANSITION: Welcome participants to Module 7]
+Key talking points:
+• Welcome to Module 7 — Research and Grounded Answers
+• Today we tackle one of the trickiest areas of AI use: research that requires accuracy and sources
+• You'll learn the difference between AI that invents answers and AI that finds them
+• 75 minutes: grounded vs ungrounded tools, research briefs, comparison methods, source verification
+Discussion prompt: "Have you ever used AI for research and later found the answer was wrong? Today we fix that."
+Facilitation tip: This module is about healthy scepticism — AI as starting point, not endpoint.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 2: RECAP SUMMARY ==================== -->
+<section data-background-color="#F5F3FF">
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-light" style="font-size:26px;font-weight:800;margin-bottom:4px;">Quick Recap — Modules 1–6</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-3col" style="gap:10px;margin-top:8px;">
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid var(--blue);" class="fragment fade-up">
+        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:6px;">M1–M2: AI Basics &amp; Prompting</div>
+        <div style="font-size:13px;color:var(--navy);line-height:1.5;">
+          • AI = pattern prediction, not understanding<br>
+          • CRAFT framework for structured prompts<br>
+          • Constraints: Change, Keep, Avoid<br>
+          • 3-step: Structure → Refine → Verify
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid var(--mint);" class="fragment fade-up">
+        <div style="font-size:13px;font-weight:700;color:var(--mint);margin-bottom:6px;">M3–M4: Notetaking &amp; Privacy</div>
+        <div style="font-size:13px;color:var(--navy);line-height:1.5;">
+          • 5-step documentation pipeline<br>
+          • Anchor Guardrail prevents hallucination<br>
+          • Traffic-light data classification (R/A/G)<br>
+          • Safe Prompt Pattern: Identify → Classify → Anonymise → Prompt → Verify
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid #F59E0B;" class="fragment fade-up">
+        <div style="font-size:13px;font-weight:700;color:#F59E0B;margin-bottom:6px;">M5–M6: Data &amp; Doc Review</div>
+        <div style="font-size:13px;color:var(--navy);line-height:1.5;">
+          • AI as formula generator (not calculator)<br>
+          • Multi-resolution summaries<br>
+          • Extraction lenses for specific info<br>
+          • Document synthesis across sources
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="background:rgba(30,16,69,0.12);color:var(--navy);margin-top:12px;">💡 Module 7 adds the critical skill: using AI for research that must be accurate and source-backed</div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: From title → recap of all prior modules]
+Key talking points:
+• M1-M2: You can write structured prompts — essential for research queries
+• M3-M4: Anchor Guardrail and verification mindset — both critical today
+• M5-M6: You've summarised and extracted from documents — now we go further: finding NEW information
+• Module 7 is different: we're not processing documents we have, we're FINDING information we don't have
+Bridge: "Everything so far was about processing existing information. Today we tackle discovering NEW information — and that's where AI gets dangerous if you're not careful."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 3: RECAP QUIZ 1 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-recap1">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🔄 RECAP — QUESTION 1 of 3</div>
+    <div class="quiz-question">What's the difference between summarising and extracting?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',0,0,'Correct! Summarising compresses the whole document into fewer words while preserving overall meaning. Extracting pulls out specific types of information (dates, names, actions) regardless of the rest.')">
+        <span class="opt-letter">A</span><span>Summarising compresses; extracting pulls specific types</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',1,0,'Not quite. Both work on the same document. The difference is: summarising compresses everything shorter, while extracting targets specific categories of information.')">
+        <span class="opt-letter">B</span><span>Summarising uses AI; extracting is manual</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',2,0,'Not quite. Both can produce short outputs. Summarising gives you the whole picture compressed; extracting gives you only the specific items you asked for.')">
+        <span class="opt-letter">C</span><span>Summarising is longer; extracting is shorter</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',3,0,'Not quite. Both can be done on any document. Summarising = compress the whole; extracting = pull specific types of data from it.')">
+        <span class="opt-letter">D</span><span>Summarising is for reports; extracting is for emails</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] Key talking points: Module 6 concept. Answer A — summarising compresses, extracting pulls specific types. This matters today because research requires both: finding broad answers (like summarising) AND pulling specific facts with citations (like extracting).
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 4: RECAP QUIZ 2 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-recap2">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🔄 RECAP — QUESTION 2 of 3</div>
+    <div class="quiz-question">When synthesising documents, what should you watch for?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',0,1,'Correct answer is B. Hallucinated consensus is when AI claims multiple sources agree on something when they actually don&apos;t — or invents agreement that doesn&apos;t exist in the originals.')">
+        <span class="opt-letter">A</span><span>Documents being too long</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',1,1,'Correct! Hallucinated consensus is AI&apos;s tendency to smooth over disagreements between sources and present a unified view that doesn&apos;t actually exist. Always check: do the sources REALLY agree, or did AI invent that agreement?')">
+        <span class="opt-letter">B</span><span>Hallucinated consensus</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',2,1,'Correct answer is B — hallucinated consensus. While formatting matters, the bigger risk is AI claiming sources agree when they actually contradict each other.')">
+        <span class="opt-letter">C</span><span>Inconsistent formatting</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',3,1,'Correct answer is B — hallucinated consensus. Token limits are a practical concern, but the critical risk is AI fabricating agreement between sources that don&apos;t actually align.')">
+        <span class="opt-letter">D</span><span>Running out of tokens</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] Key talking points: Module 6 concept. Answer B — hallucinated consensus. This is directly relevant to today: when AI researches a topic, it often presents a confident unified answer even when sources actually disagree. Bridge: "This exact problem gets WORSE when AI is generating research answers from its training data."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 5: RECAP QUIZ 3 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-recap3">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🔄 RECAP — QUESTION 3 of 3</div>
+    <div class="quiz-question">The Anchor Guardrail prevents what?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',0,0,'Correct! The Anchor Guardrail prevents AI from inventing details not present in the source material. It keeps outputs anchored to what was actually provided, blocking hallucinated additions.')">
+        <span class="opt-letter">A</span><span>Inventing details not provided in the source</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',1,0,'Correct answer is A. The Anchor Guardrail specifically prevents hallucinated additions — details that sound plausible but weren&apos;t in the original material. It&apos;s about faithfulness to source, not length.')">
+        <span class="opt-letter">B</span><span>Outputs being too long</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',2,0,'Correct answer is A. The Anchor Guardrail is about preventing invented content, not about privacy. That&apos;s the Safe Prompt Pattern&apos;s job.')">
+        <span class="opt-letter">C</span><span>Sharing sensitive data with AI</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',3,0,'Correct answer is A. Grammar isn&apos;t the issue — the Anchor Guardrail prevents AI from adding facts, claims, or details that weren&apos;t in the original source material.')">
+        <span class="opt-letter">D</span><span>Using incorrect grammar</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] Key talking points: Module 3 concept. Answer A — inventing details not provided. This is the FOUNDATION of today's module. When AI researches a topic, it has no "source material" to anchor to — which is exactly why grounded tools matter. Bridge: "Without source material to anchor to, general AI just... makes things up. That's the problem we solve today."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 6: GROUND RULES ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Ground Rules for This Module</h2>
+    <div class="accent-bar"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px;">
+      <div class="card fragment fade-up" style="border-left:3px solid var(--mint);padding:14px 18px;">
+        <div style="font-size:15px;color:var(--text-light);line-height:1.6;">📚 <strong>Research requires sources.</strong> Any claim without a traceable source is an opinion, not research. Today we learn to demand citations.</div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid #F59E0B;padding:14px 18px;">
+        <div style="font-size:15px;color:var(--text-light);line-height:1.6;">🚀 <strong>AI is a starting point, not an end point.</strong> Use AI to accelerate research — find leads, draft briefs, compare sources — but never as your final answer.</div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid var(--blue);padding:14px 18px;">
+        <div style="font-size:15px;color:var(--text-light);line-height:1.6;">🔍 <strong>Verification is critical.</strong> AI confidently cites papers that don't exist, quotes statistics that are fabricated, and states "facts" that are outdated. Always verify.</div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid #27AE60;padding:14px 18px;">
+        <div style="font-size:15px;color:var(--text-light);line-height:1.6;">💻 <strong>Devices ready.</strong> Have both a general AI chat (ChatGPT/Claude) AND a grounded tool (Perplexity/Google) open — you'll compare them side-by-side.</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Before we begin, three principles that define this module."]
+Key talking points:
+• This module has a different flavour — it's about SCEPTICISM more than skill
+• The core message: AI is incredibly useful for research, but only if you verify what it tells you
+• Most people treat AI answers like Google results — but AI doesn't just find information, it generates plausible-sounding text
+• Today's exercises require you to actually CHECK what AI tells you — not just accept it
+Discussion prompt: "Has anyone here cited something from AI without checking the source? Be honest — we've all done it. Today we build the habit of checking."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 7: CHAPTER 01 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">01</div>
+    <div class="chapter-title">Grounded vs Ungrounded</div>
+    <div class="chapter-sub">Not all AI answers are created equal — some search, some guess</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Let's start with the most important distinction in AI research."]
+Key talking points:
+• This chapter introduces the fundamental concept: grounded vs ungrounded AI
+• Most people don't realise there are fundamentally different TYPES of AI answers
+• Some tools search real sources and cite them; others generate from patterns in training data
+• Understanding this difference is the single most important research skill with AI
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 8: THE PROBLEM WITH GENERAL CHAT ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">The Problem with General Chat</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="gap:14px;margin-top:10px;">
+      <div class="card fragment fade-up" style="border-top:3px solid #E74C3C;padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:#E74C3C;margin-bottom:8px;">⚠️ What Goes Wrong</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          • AI generates <strong style="color:var(--text-light);">plausible-sounding</strong> answers without sources<br>
+          • Sounds confident even when <strong style="color:var(--text-light);">completely wrong</strong><br>
+          • Fine for brainstorming, <strong style="color:var(--text-light);">dangerous for research</strong><br>
+          • No way to verify without doing the research yourself
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:3px solid #F59E0B;padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:#F59E0B;margin-bottom:8px;">🧪 Real Examples of Confident Errors</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          • "The UK GDPR fine limit is £500,000" <span style="color:#E74C3C;">(outdated — it's £17.5M)</span><br>
+          • "This paper by Smith et al. (2022)..." <span style="color:#E74C3C;">(paper doesn't exist)</span><br>
+          • "The regulation was updated in March 2024" <span style="color:#E74C3C;">(actually June 2023)</span><br>
+          • "According to the ONS report..." <span style="color:#E74C3C;">(fabricated citation)</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:14px;">🎯 The problem isn't that AI is always wrong — it's that you can't tell WHEN it's wrong without checking</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Here's why using general AI chat for research is risky."]
+Key talking points:
+• General chat AI (ChatGPT, Claude) generates text from training patterns — it's not searching the web
+• The problem: it sounds EQUALLY confident whether right or wrong. There's no "uncertainty signal"
+• Real-world consequence: professionals cite AI-generated "facts" in reports, proposals, emails — and get caught
+• This isn't rare — studies show AI hallucinates facts in 15-30% of factual responses
+• The examples on right are all things AI has confidently stated — all wrong
+Discussion prompt: "Which of these errors would cause the most damage in YOUR workplace?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 9: GROUNDED VS UNGROUNDED COMPARISON ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">What "Grounded" Means</h2>
+    <div class="accent-bar"></div>
+    <div style="display:flex;gap:12px;margin-top:10px;align-items:stretch;">
+      <div class="card fragment fade-up" style="flex:1;border-top:3px solid #E74C3C;padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:#E74C3C;margin-bottom:10px;">❌ Ungrounded (ChatGPT / Claude)</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.8;">
+          • Generates from <span class="tip">training data<span class="tip-content">Training data is the text AI learned from during development. It's a frozen snapshot — like an encyclopedia that stopped printing months or years ago.</span></span><br>
+          • No real-time web access<br>
+          • No citations provided<br>
+          • May hallucinate confidently<br>
+          • Best for: brainstorming, drafting, creative work
+        </div>
+      </div>
+      <div class="vs-arrow fragment scale-in">VS</div>
+      <div class="card fragment fade-up" style="flex:1;border-top:3px solid #27AE60;padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:#27AE60;margin-bottom:10px;">✅ Grounded (Perplexity / Google AI Overview)</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.8;">
+          • Searches the <span class="tip">real-time web<span class="tip-content">Grounded tools actually perform web searches, read the pages, and synthesise answers from what they find — like a research assistant who Googles for you and summarises.</span></span><br>
+          • Accesses current information<br>
+          • Provides citations with links<br>
+          • Claims are traceable to sources<br>
+          • Best for: research, fact-checking, current events
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:14px;">💡 For research tasks: always start with a grounded tool. Use ungrounded tools for drafting your findings.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "So what's the alternative? Grounded AI tools."]
+Key talking points:
+• KEY distinction: ungrounded AI generates from patterns; grounded AI SEARCHES and cites
+• Ungrounded isn't "bad" — it's great for drafting, brainstorming, rewriting. Just not for research
+• Grounded tools actually search the web, read pages, and cite what they found
+• The citation is the key feature: you can CHECK the source yourself
+• Neither is perfect — grounded tools can still misinterpret sources — but they give you a trail to follow
+• Name real tools: Perplexity AI, Google AI Overviews, Microsoft Copilot with web search enabled
+Discussion prompt: "Who here has used Perplexity or a similar tool? What was different about the experience?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 10: DIALOGUE — AMIT & KENJI ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:12px;">💬 When Confidence Misleads</h2>
+    <div style="display:flex;flex-direction:column;gap:10px;max-width:780px;">
+      <div class="fragment fade-up" style="display:flex;gap:12px;align-items:flex-start;">
+        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=AmitOps" alt="Amit" style="width:44px;height:44px;border-radius:50%;flex-shrink:0;border:2px solid var(--blue);">
+        <div style="background:var(--card-bg);border-radius:12px;padding:12px 16px;font-size:14px;color:var(--text-light);line-height:1.6;position:relative;">
+          <div style="font-size:11px;color:var(--mint);font-weight:700;margin-bottom:4px;">Amit — Operations</div>
+          I asked ChatGPT about the new workplace pension auto-enrolment thresholds. It gave me a clear answer with specific numbers — I nearly put it straight into my compliance report.
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:12px;align-items:flex-start;">
+        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=KenjiHR" alt="Kenji" style="width:44px;height:44px;border-radius:50%;flex-shrink:0;border:2px solid var(--mint);">
+        <div style="background:rgba(8,145,178,0.12);border-radius:12px;padding:12px 16px;font-size:14px;color:var(--text-light);line-height:1.6;">
+          <div style="font-size:11px;color:var(--mint);font-weight:700;margin-bottom:4px;">Kenji — HR</div>
+          I asked the same question in Perplexity. It gave me the answer WITH links to the Pensions Regulator website. When I checked — ChatGPT's numbers were from 2019. The thresholds changed in 2024.
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:12px;align-items:flex-start;">
+        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=AmitOps" alt="Amit" style="width:44px;height:44px;border-radius:50%;flex-shrink:0;border:2px solid var(--blue);">
+        <div style="background:var(--card-bg);border-radius:12px;padding:12px 16px;font-size:14px;color:var(--text-light);line-height:1.6;">
+          <div style="font-size:11px;color:var(--mint);font-weight:700;margin-bottom:4px;">Amit — Operations</div>
+          So ChatGPT gave me an answer from its training data — outdated but confident. Perplexity actually searched for the current info and showed me where it came from. Lesson learned.
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:12px;">🎯 Grounded tools show their working. Ungrounded tools show their confidence.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Let's see this play out in a real scenario."]
+Key talking points:
+• This is a very common scenario — regulatory/compliance information changes frequently
+• ChatGPT's training data has a cutoff — anything that changed after that date will be wrong
+• Perplexity searched the web and found the CURRENT information with a link to verify
+• The danger: ChatGPT's answer looked just as authoritative — maybe more so because it was cleaner
+• Key lesson: for anything time-sensitive or regulatory, ALWAYS use a grounded tool
+Facilitation tip: Ask "Has anyone had a similar experience? Old information presented as current?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 11: CHAPTER 02 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">02</div>
+    <div class="chapter-title">The Manager-Ready Brief</div>
+    <div class="chapter-sub">Structure your research so others can trust it — and verify it</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Now that you know HOW to get grounded answers, let's structure them."]
+Key talking points:
+• Knowing how to find information is step one — presenting it well is step two
+• A research brief isn't just a summary — it's a structured, verifiable document
+• The format we'll learn is designed for busy managers who need to trust your findings fast
+• Key difference from regular summaries: a research brief always acknowledges what you DON'T know
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 12: ANATOMY OF A RESEARCH BRIEF ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Anatomy of a Research Brief</h2>
+    <div class="accent-bar"></div>
+    <div style="display:flex;gap:0;margin-top:10px;align-items:stretch;">
+      <div class="loop-step fragment fade-up" style="border-top:3px solid var(--mint);">
+        <div class="loop-step-label">1. QUESTION</div>
+        <div class="loop-step-desc">What specific question are we answering?<br><br><em style="color:var(--mint);font-size:12px;">Why: Forces clarity. Vague questions = vague research.</em></div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step fragment fade-up" style="border-top:3px solid var(--blue);">
+        <div class="loop-step-label">2. SOURCES</div>
+        <div class="loop-step-desc">What sources support the answer? (With links)<br><br><em style="color:var(--mint);font-size:12px;">Why: Makes claims verifiable. No source = no credibility.</em></div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step fragment fade-up" style="border-top:3px solid #F59E0B;">
+        <div class="loop-step-label">3. RECOMMENDATION</div>
+        <div class="loop-step-desc">What do the sources suggest we should do?<br><br><em style="color:var(--mint);font-size:12px;">Why: Research without action is academic. Managers need decisions.</em></div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step fragment fade-up" style="border-top:3px solid #E74C3C;">
+        <div class="loop-step-label">4. UNKNOWNS</div>
+        <div class="loop-step-desc">What couldn't we confirm? What gaps remain?<br><br><em style="color:var(--mint);font-size:12px;">Why: Honest uncertainty builds trust. Hidden gaps destroy it.</em></div>
+      </div>
+    </div>
+    <div class="loop-footer fragment fade-up">🎯 The "Unknowns" section is what separates professional research from AI copy-paste</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Here's the structure that makes research trustworthy."]
+Key talking points:
+• This 4-part structure works for any research task — from "should we switch vendors?" to "what are the new regulations?"
+• QUESTION: Be specific. "What are the GDPR implications of our new CRM?" not "Tell me about GDPR"
+• SOURCES: Every factual claim needs a traceable source. No source = opinion, not research
+• RECOMMENDATION: Connect findings to action. What should the reader DO with this information?
+• UNKNOWNS: This is the game-changer. Acknowledging what you DON'T know builds more trust than pretending you know everything
+• AI never volunteers its unknowns — YOU must add this section yourself
+Discussion prompt: "In your experience, do research reports usually include what they DON'T know?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 13: PRACTICAL — WRITE A RESEARCH BRIEF ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="practical-badge">🔨 PRACTICAL</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:4px;">Write a Research Brief</h2>
+    <div class="accent-bar"></div>
+    <ol class="practical-steps">
+      <li class="fragment fade-up"><span class="step-num">1</span><span>Choose a real work question you need answered (e.g., "What are the current rules on…?" or "What options exist for…?")</span></li>
+      <li class="fragment fade-up"><span class="step-num">2</span><span>Use a <strong>grounded AI tool</strong> (Perplexity, Google AI) to research the question — collect cited answers</span></li>
+      <li class="fragment fade-up"><span class="step-num">3</span><span>Structure your findings into the 4-part brief: Question → Sources → Recommendation → Unknowns</span></li>
+      <li class="fragment fade-up"><span class="step-num">4</span><span>Your "Unknowns" section must include at least <strong>2 things</strong> you couldn't confirm or that need further investigation</span></li>
+    </ol>
+    <div class="footer-bar fragment fade-up" style="margin-top:14px;">⏱️ 10 minutes — use a real question from your work if possible | You'll swap briefs with a partner next</div>
+  </div>
+  <aside class="notes">
+[TIMING: 10 min] [TRANSITION: "Time to build your first research brief."]
+Key talking points:
+• This is the core practical of the module — give them the full 10 minutes
+• Encourage REAL questions from their actual work — it's more engaging and useful
+• If they can't think of a question, suggest: "What are the latest guidelines on [something in your industry]?"
+• Walk around and check: Are they using a grounded tool? Are they noting sources?
+• The "Unknowns" section is the hardest part — many will want to skip it. Push them to include it
+• Remind: this brief will be verified by a partner, so don't fake the sources!
+Facilitation tip: Project the 4-part structure on screen while they work. Set a 5-minute halfway reminder.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 14: GROUP TASK — SOURCE CHECK ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="group-badge">👥 GROUP TASK</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:4px;">Source Check</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="gap:14px;margin-top:10px;">
+      <div class="card fragment fade-up" style="border-left:3px solid var(--mint);padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:8px;">📋 Instructions</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          1. Swap your research brief with a partner<br>
+          2. Pick <strong style="color:var(--text-light);">2 cited sources</strong> from their brief<br>
+          3. Try to verify each one:<br>
+          &nbsp;&nbsp;• Does the source actually exist?<br>
+          &nbsp;&nbsp;• Does it say what the brief claims?<br>
+          4. Report back: ✅ Verified or ❌ Problem found
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid #F59E0B;padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:#F59E0B;margin-bottom:8px;">🔍 What to Look For</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          • Broken or dead links<br>
+          • Source exists but says something <em>different</em><br>
+          • Source is real but outdated<br>
+          • Source is a blog, not an authority<br>
+          • Claim in brief overstates what source actually says
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:14px;">⏱️ 5 minutes in pairs | Debrief: "What did you find? Any surprises?"</div>
+  </div>
+  <aside class="notes">
+[TIMING: 7 min (5 min activity + 2 min debrief)] [TRANSITION: "Now let's test each other's research."]
+Key talking points:
+• This exercise makes verification feel real — someone is checking YOUR work
+• Pairs swap briefs. Each person tries to verify 2 sources from their partner's brief
+• Common findings: links that don't work, sources that say something slightly different, outdated info
+• Debrief questions: "Did anyone find a source that didn't exist? A source that said something different?"
+• This builds the habit: if you know someone will check, you check first yourself
+Facilitation tip: Ask 2-3 pairs to share their findings. Celebrate anyone who found a problem — that's the skill working.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 15: QUIZ 1 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-m7-1">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🧠 MODULE 7 — QUIZ 1</div>
+    <div class="quiz-question">What must a research brief always include?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-m7-1',0,2,'Correct answer is C. A &quot;What We Don&apos;t Know&quot; section is what separates professional research from AI copy-paste. Acknowledging uncertainty builds trust — hiding gaps destroys it.')">
+        <span class="opt-letter">A</span><span>At least 10 sources</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-m7-1',1,2,'Correct answer is C. Executive summaries are nice but optional. The critical element is acknowledging what you couldn&apos;t confirm — the &quot;Unknowns&quot; section.')">
+        <span class="opt-letter">B</span><span>An executive summary</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-m7-1',2,2,'Correct! A &quot;What We Don&apos;t Know&quot; section acknowledges uncertainty honestly. This is what separates credible research from overconfident guessing — and it&apos;s the one thing AI will never add for you.')">
+        <span class="opt-letter">C</span><span>A "What We Don't Know" section</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-m7-1',3,2,'Correct answer is C. Graphs can help but aren&apos;t essential. What IS essential is honestly stating what you couldn&apos;t confirm — the Unknowns section.')">
+        <span class="opt-letter">D</span><span>A graph or chart</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] Key talking points: Answer C — a "What We Don't Know" section. This is the distinguishing feature of professional research. AI gives you confident answers; YOU add the uncertainty. This honest acknowledgment is what makes your brief trustworthy.
+Bridge: "Now let's add another tool to your research toolkit — comparison."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 16: CHAPTER 03 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">03</div>
+    <div class="chapter-title">Compare Before You Trust</div>
+    <div class="chapter-sub">When two tools disagree, that's your signal to verify</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Chapter 3 — the comparison method."]
+Key talking points:
+• This chapter teaches a simple but powerful technique: ask the SAME question to two different AI tools
+• Where they agree → likely correct (but still worth checking)
+• Where they disagree → DEFINITELY needs verification
+• Divergence is a signal, not a failure — it tells you where to focus your checking effort
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 17: THE COMPARISON METHOD ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">The Comparison Method</h2>
+    <div class="accent-bar"></div>
+    <div class="loop-steps fragment fade-up" style="margin-top:12px;">
+      <div class="loop-step" style="border-top:3px solid var(--mint);">
+        <div class="loop-step-label">STEP 1</div>
+        <div class="loop-step-desc">Ask the <strong>same question</strong> to a grounded tool AND a general chat tool</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step" style="border-top:3px solid var(--blue);">
+        <div class="loop-step-label">STEP 2</div>
+        <div class="loop-step-desc">Document: Where do they <strong>agree</strong>? Where do they <strong>diverge</strong>?</div>
+      </div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step" style="border-top:3px solid #F59E0B;">
+        <div class="loop-step-label">STEP 3</div>
+        <div class="loop-step-desc"><strong>Divergence = verify.</strong> Any disagreement needs a human check against the source.</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;" class="fragment fade-up">
+      <div class="grid-3col" style="gap:10px;">
+        <div class="card" style="padding:12px;text-align:center;border-top:2px solid #27AE60;">
+          <div style="font-size:14px;font-weight:700;color:#27AE60;margin-bottom:4px;">✅ Both Agree</div>
+          <div style="font-size:13px;color:var(--text-muted);">Likely correct — still cite source but higher confidence</div>
+        </div>
+        <div class="card" style="padding:12px;text-align:center;border-top:2px solid #F59E0B;">
+          <div style="font-size:14px;font-weight:700;color:#F59E0B;margin-bottom:4px;">⚠️ Partial Overlap</div>
+          <div style="font-size:13px;color:var(--text-muted);">Core facts match but details differ — verify the details</div>
+        </div>
+        <div class="card" style="padding:12px;text-align:center;border-top:2px solid #E74C3C;">
+          <div style="font-size:14px;font-weight:700;color:#E74C3C;margin-bottom:4px;">❌ They Disagree</div>
+          <div style="font-size:13px;color:var(--text-muted);">Stop and verify manually — one or both may be wrong</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:12px;">💡 This takes 2 extra minutes but catches errors that would take hours to fix later</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Here's a simple method that catches most AI research errors."]
+Key talking points:
+• The comparison method is deceptively simple but incredibly effective
+• It works because different AI tools fail in different ways — they have different training data, different search strategies
+• When both agree, you can have higher confidence (though not certainty)
+• When they disagree, that's your SIGNAL — something needs checking
+• This is especially important for: regulatory info, statistics, recent events, technical specifications
+• The 3-colour system: green (agree = likely OK), amber (partial = check details), red (disagree = verify manually)
+Discussion prompt: "Where in your work would this 2-minute check save the most pain?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 18: PRACTICAL — SIDE-BY-SIDE TEST ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="practical-badge">🔨 PRACTICAL</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:4px;">Side-by-Side Test</h2>
+    <div class="accent-bar"></div>
+    <ol class="practical-steps">
+      <li class="fragment fade-up"><span class="step-num">1</span><span>Choose a factual research question (e.g., "What are the current rules on…?" or "What changed in…?")</span></li>
+      <li class="fragment fade-up"><span class="step-num">2</span><span>Ask the <strong>exact same question</strong> to both a general AI chat AND a grounded tool</span></li>
+      <li class="fragment fade-up"><span class="step-num">3</span><span>Document your comparison:<br>
+        &nbsp;&nbsp;• What's the <strong>same</strong> in both answers?<br>
+        &nbsp;&nbsp;• What's <strong>different</strong>?<br>
+        &nbsp;&nbsp;• Which claims have <strong>sources attached</strong>?</span></li>
+      <li class="fragment fade-up"><span class="step-num">4</span><span>Verdict: Which answer would you trust for a report to your manager? Why?</span></li>
+    </ol>
+    <div class="footer-bar fragment fade-up" style="margin-top:14px;">⏱️ 8 minutes | Try a time-sensitive question — you'll see the biggest differences there</div>
+  </div>
+  <aside class="notes">
+[TIMING: 8 min] [TRANSITION: "Let's try this comparison method right now."]
+Key talking points:
+• Students use two tools simultaneously — encourage them to use split-screen or two tabs
+• Best questions for this exercise: anything time-sensitive, regulatory, or quantitative
+• Suggested questions if stuck: "What are the current UK corporation tax rates?" / "What changed in employment law this year?"
+• They should document: agreements, disagreements, and which tool provides sources
+• Walk around and ask: "What differences did you find?" — share interesting ones with the class
+Facilitation tip: Time-sensitive questions work best because that's where general chat fails most obviously.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 19: DIALOGUE — PRIYA & RACHEL ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:12px;">💬 Comparison in Action</h2>
+    <div style="display:flex;flex-direction:column;gap:10px;max-width:780px;">
+      <div class="fragment fade-up" style="display:flex;gap:12px;align-items:flex-start;">
+        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=PriyaFinance" alt="Priya" style="width:44px;height:44px;border-radius:50%;flex-shrink:0;border:2px solid var(--blue);">
+        <div style="background:var(--card-bg);border-radius:12px;padding:12px 16px;font-size:14px;color:var(--text-light);line-height:1.6;position:relative;">
+          <div style="font-size:11px;color:var(--mint);font-weight:700;margin-bottom:4px;">Priya — Finance</div>
+          I compared ChatGPT and Perplexity on the question "When did the UK VAT threshold change and what is it now?" ChatGPT said £85,000 — which was correct until April 2024. Perplexity said £90,000 and linked to the HMRC announcement.
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:12px;align-items:flex-start;">
+        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=RachelCFO" alt="Rachel" style="width:44px;height:44px;border-radius:50%;flex-shrink:0;border:2px solid var(--mint);">
+        <div style="background:rgba(8,145,178,0.12);border-radius:12px;padding:12px 16px;font-size:14px;color:var(--text-light);line-height:1.6;">
+          <div style="font-size:11px;color:var(--mint);font-weight:700;margin-bottom:4px;">Rachel — CFO</div>
+          And that's exactly why comparison matters for anything time-sensitive. If you'd only used ChatGPT, you'd have confidently used an outdated threshold in your calculations. The comparison flagged the discrepancy in seconds.
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:12px;align-items:flex-start;">
+        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=PriyaFinance" alt="Priya" style="width:44px;height:44px;border-radius:50%;flex-shrink:0;border:2px solid var(--blue);">
+        <div style="background:var(--card-bg);border-radius:12px;padding:12px 16px;font-size:14px;color:var(--text-light);line-height:1.6;">
+          <div style="font-size:11px;color:var(--mint);font-weight:700;margin-bottom:4px;">Priya — Finance</div>
+          I verified on gov.uk — Perplexity was right. Two minutes of comparison saved me from filing with the wrong threshold. That would have been an expensive mistake.
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:12px;">🎯 For financial, legal, or regulatory research: ALWAYS compare tools before trusting any single answer.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Here's what comparison looks like in practice."]
+Key talking points:
+• This scenario is very real — tax thresholds change annually, training data doesn't update in real-time
+• ChatGPT's answer was CORRECT at one point — just not anymore. That's the insidious part
+• Priya verified independently on gov.uk — the gold standard. Always go to the authoritative source
+• Rachel's point: comparison is a 2-minute investment that prevents hours of rework
+• Financial/legal/compliance info is the highest-risk area for outdated AI answers
+Facilitation tip: Ask "What's the equivalent high-stakes factual question in YOUR field?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 20: CHAPTER 04 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">04</div>
+    <div class="chapter-title">Verifying AI Sources</div>
+    <div class="chapter-sub">Citations aren't proof — they're claims that need checking</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Even grounded tools can get it wrong. Chapter 4: verification."]
+Key talking points:
+• Even grounded tools aren't perfect — they can misread sources, pull from unreliable sites, or misattribute claims
+• A citation is a CLAIM, not proof. "According to source X" just means AI says it found it there
+• This chapter teaches you to verify: does the source exist, does it say what AI claims, is it authoritative?
+• This is the final skill that separates research professionals from AI copy-pasters
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 21: VERIFICATION CHECKLIST ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">The Verification Checklist</h2>
+    <div class="accent-bar"></div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px;">
+      <div class="check-row fragment fade-up">
+        <span class="check-icon">1️⃣</span>
+        <span><strong style="color:var(--text-light);">Does the source exist?</strong> — Click the link. Is it a real page? Or does it 404 / lead nowhere?</span>
+      </div>
+      <div class="check-row fragment fade-up">
+        <span class="check-icon">2️⃣</span>
+        <span><strong style="color:var(--text-light);">Does it say what AI claims?</strong> — Read the actual source. Does it support the specific claim AI made? Or is AI paraphrasing loosely?</span>
+      </div>
+      <div class="check-row fragment fade-up">
+        <span class="check-icon">3️⃣</span>
+        <span><strong style="color:var(--text-light);">Is it current?</strong> — Check the publication date. Is this from 2024 or 2019? Information decays, especially in regulated fields.</span>
+      </div>
+      <div class="check-row fragment fade-up">
+        <span class="check-icon">4️⃣</span>
+        <span><strong style="color:var(--text-light);">Is it authoritative?</strong> — Is the source an official body, peer-reviewed, or an anonymous blog post? Source quality matters.</span>
+      </div>
+      <div class="check-row fragment fade-up">
+        <span class="check-icon">5️⃣</span>
+        <span><strong style="color:var(--text-light);">Is it relevant to MY question?</strong> — AI may cite a real source about a tangentially related topic. Does it actually answer YOUR specific question?</span>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:12px;">💡 You don't need to check every source — but ALWAYS check the ones that drive your key recommendation</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Here's your 5-point checklist for verifying AI citations."]
+Key talking points:
+• This checklist works for any AI-provided citation — grounded or ungrounded
+• Check 1 (Exists): You'd be surprised how often AI cites papers/pages that literally don't exist
+• Check 2 (Says what claimed): AI often "soft-hallucinate" — the source is real but doesn't quite say what AI claimed
+• Check 3 (Current): A source from 2020 might be superseded by newer regulation or data
+• Check 4 (Authoritative): gov.uk > random blog. Peer-reviewed journal > news article
+• Check 5 (Relevant): AI may cite a real source about a similar but different situation
+• Practical rule: You don't check EVERY citation — but you MUST check the ones that drive your recommendations
+Discussion prompt: "Which of these 5 checks catches the most errors in your experience?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 22: PRACTICAL — VERIFY CITATIONS ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="practical-badge">🔨 PRACTICAL</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:4px;">Verify These Citations</h2>
+    <div class="accent-bar"></div>
+    <div style="font-size:14px;color:var(--text-muted);margin-bottom:12px;line-height:1.5;">Below are 5 AI-generated "citations." Some are real, some are fabricated. Use the verification checklist to determine which are genuine.</div>
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <div class="card fragment fade-up" style="padding:10px 14px;border-left:3px solid var(--text-muted);">
+        <div style="font-size:14px;color:var(--text-light);">1. "According to the UK Health and Safety Executive's 2024 annual report on workplace injuries…"</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:10px 14px;border-left:3px solid var(--text-muted);">
+        <div style="font-size:14px;color:var(--text-light);">2. "Smith, J. and Patel, R. (2023) 'AI Adoption in Mid-Size UK Firms', Journal of Digital Transformation, 14(2), pp. 45-62."</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:10px 14px;border-left:3px solid var(--text-muted);">
+        <div style="font-size:14px;color:var(--text-light);">3. "The Information Commissioner's Office states that data breach notifications must be made within 72 hours."</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:10px 14px;border-left:3px solid var(--text-muted);">
+        <div style="font-size:14px;color:var(--text-light);">4. "Research by McKinsey Global Institute (2024) found that 67% of executives plan to increase AI spending."</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:10px 14px;border-left:3px solid var(--text-muted);">
+        <div style="font-size:14px;color:var(--text-light);">5. "The Employment Rights Act 2024 introduced mandatory flexible working requests from day one."</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:10px;">⏱️ 6 minutes | Use Google to check each one. Which are real? Which did AI invent?</div>
+  </div>
+  <aside class="notes">
+[TIMING: 6 min] [TRANSITION: "Let's put the checklist to work on these AI-generated citations."]
+Key talking points:
+• Students use Google/web search to verify each citation
+• Mix: some are real (ICO 72-hour rule is genuine; flexible working rights did change), some are fabricated
+• The academic citation (#2) is typically the hardest to verify and most likely fabricated — AI loves inventing plausible-sounding journal articles
+• Don't reveal answers yet — let them discover. Debrief afterwards
+• Key learning: academic citations are AI's favourite thing to hallucinate; official body citations are usually checkable
+Facilitation tip: Have them work in pairs for speed. Ask "Which was hardest to verify? Which was obviously fake?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 23: GROUP TASK — CITATION COURT ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="group-badge">👥 GROUP TASK</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:4px;">Citation Court</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="gap:14px;margin-top:10px;">
+      <div class="card fragment fade-up" style="border-left:3px solid var(--mint);padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:8px;">⚖️ How It Works</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          Groups of 3–4 people:<br><br>
+          1. One person is the <strong style="color:var(--text-light);">"Researcher"</strong> — presents a finding with an AI-generated citation<br>
+          2. Others are <strong style="color:var(--text-light);">"Judges"</strong> — they have 3 minutes to verify:<br>
+          &nbsp;&nbsp;• Is the source real?<br>
+          &nbsp;&nbsp;• Does it support the claim?<br>
+          3. Verdict: <strong style="color:#27AE60;">Accept</strong> or <strong style="color:#E74C3C;">Reject</strong> the citation
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid #F59E0B;padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:#F59E0B;margin-bottom:8px;">📋 Rules of Court</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          • Researcher: use AI to generate a finding WITH a citation on any topic<br>
+          • Judges: use the 5-point checklist to verify<br>
+          • Judges must give a <strong style="color:var(--text-light);">reason</strong> for their verdict<br>
+          • Rotate roles — everyone presents once<br>
+          • Keep score: who finds the most fabricated sources?
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:14px;">⏱️ 10 minutes | Each person presents once — rotate quickly | Debrief: "What patterns did you notice?"</div>
+  </div>
+  <aside class="notes">
+[TIMING: 12 min (10 min activity + 2 min debrief)] [TRANSITION: "Time for Citation Court — you're the judges."]
+Key talking points:
+• This gamifies verification and makes it fun — people get competitive about finding fakes
+• Each person asks AI for a factual claim with citation, then presents it to the group
+• The "judges" try to verify using the 5-point checklist
+• Common patterns they'll discover: AI cites real organisations but invents specific reports; invents journal articles; misattributes quotes
+• Rotate so everyone gets to be both researcher and judge
+• Debrief: "What types of citations were hardest to verify? What patterns did you notice in AI fabrication?"
+Facilitation tip: This activity energises the room. Encourage theatrical "verdicts" and brief arguments. Ask winning judges to share their verification strategy.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 24: CHAPTER 05 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">05</div>
+    <div class="chapter-title">The Trust Spectrum</div>
+    <div class="chapter-sub">Not everything needs the same level of verification</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "We can't verify everything — so where do we focus?"]
+Key talking points:
+• Verification takes time — we can't check every single AI claim
+• The skill is knowing WHEN verification is critical and when it's less so
+• This chapter gives you a framework for deciding where to invest your checking effort
+• Think of it as triage for trust: what's safe to accept, what MUST be verified?
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 25: THE TRUST SPECTRUM ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">The Trust Spectrum</h2>
+    <div class="accent-bar"></div>
+    <div style="margin-top:12px;">
+      <!-- Spectrum bar -->
+      <div class="fragment fade-up" style="background:linear-gradient(90deg,#27AE60,#F59E0B,#E74C3C);height:8px;border-radius:4px;margin-bottom:16px;"></div>
+      <div class="grid-2col" style="gap:14px;">
+        <div class="card fragment fade-up" style="border-top:3px solid #27AE60;padding:16px;">
+          <div style="font-size:14px;font-weight:700;color:#27AE60;margin-bottom:8px;">✅ Safer to Trust</div>
+          <div style="font-size:14px;color:var(--text-muted);line-height:1.8;">
+            • <strong style="color:var(--text-light);">Consensus facts</strong> — widely agreed, stable over time<br>
+            • <strong style="color:var(--text-light);">Well-cited claims</strong> — source provided and easily checkable<br>
+            • <strong style="color:var(--text-light);">Multiple sources agree</strong> — corroborated across tools<br>
+            • <strong style="color:var(--text-light);">General concepts</strong> — how things work in principle<br>
+            • <strong style="color:var(--text-light);">Historical facts</strong> — established, unlikely to change
+          </div>
+        </div>
+        <div class="card fragment fade-up" style="border-top:3px solid #E74C3C;padding:16px;">
+          <div style="font-size:14px;font-weight:700;color:#E74C3C;margin-bottom:8px;">🚨 Must Verify</div>
+          <div style="font-size:14px;color:var(--text-muted);line-height:1.8;">
+            • <strong style="color:var(--text-light);">Recent events</strong> — anything from the last 6 months<br>
+            • <strong style="color:var(--text-light);">Niche topics</strong> — less training data = more hallucination<br>
+            • <strong style="color:var(--text-light);">Quantitative claims</strong> — statistics, percentages, figures<br>
+            • <strong style="color:var(--text-light);">Legal/medical/financial specifics</strong> — high-consequence if wrong<br>
+            • <strong style="color:var(--text-light);">Academic citations</strong> — AI's #1 hallucination category
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:14px;">🎯 Rule of thumb: the more specific and consequential the claim, the more you must verify</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Not every AI answer needs the same level of scrutiny."]
+Key talking points:
+• Left side (safer): These are things where AI is drawing on well-established consensus — lower risk
+• Right side (must verify): These are AI's danger zones — recent, specific, quantitative, high-consequence
+• The key principle: specificity and consequence. "AI exists" needs no verification. "The fine for X is £17.5M" absolutely does
+• Academic citations deserve special mention — this is the #1 category where AI invents things
+• Practical application: spend your verification time on the RIGHT side claims, not checking everything
+• This isn't about laziness — it's about intelligent triage of your attention
+Discussion prompt: "What's on the 'must verify' side in YOUR specific role?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 26: QUIZ 2 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-m7-2">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🧠 MODULE 7 — QUIZ 2</div>
+    <div class="quiz-question">AI gives you a statistic with a citation to a research paper. What should you do?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-m7-2',0,1,'Correct answer is B. A citation is a claim, not proof. You must check that the paper actually exists AND that it says what AI claims. AI frequently invents plausible-sounding academic references.')">
+        <span class="opt-letter">A</span><span>Use it — it has a citation so it's verified</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-m7-2',1,1,'Correct! A citation from AI is a CLAIM, not proof. You must check: does the paper exist? Does it actually say what AI claims? AI frequently invents realistic-sounding academic references that don&apos;t exist at all.')">
+        <span class="opt-letter">B</span><span>Check if the paper exists and actually says what AI claims</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-m7-2',2,1,'Correct answer is B. Asking AI to verify its own sources doesn&apos;t work — it will often confirm its own fabrication. You need to check the source independently using Google Scholar or the publisher&apos;s website.')">
+        <span class="opt-letter">C</span><span>Ask AI to confirm the citation is accurate</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-m7-2',3,1,'Correct answer is B. Ignoring isn&apos;t necessary — the statistic MIGHT be correct. But you must verify by checking if the paper exists and says what AI claims before using it in your work.')">
+        <span class="opt-letter">D</span><span>Ignore it — AI statistics are always wrong</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] Key talking points: Answer B — check if the paper exists and says what AI claims. Key principle: a citation is a claim, not proof. AI hallucinating academic papers is so common there's a name for it: "confabulation." Never trust an AI citation without independently verifying it exists.
+Bridge: "Now let's wrap up with a group debate about when trust is appropriate."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 27: CHAPTER 06 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">06</div>
+    <div class="chapter-title">Wrap-up</div>
+    <div class="chapter-sub">From scepticism to confidence — your research workflow</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Final chapter — let's consolidate what we've learned."]
+Key talking points:
+• This closing section includes a group debate, key takeaways, and preview of Module 8
+• The debate brings together all the concepts: when is AI research trustworthy, when isn't it?
+• Goal: students leave with a clear framework for using AI in research, not just fear or blind trust
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 28: GROUP TASK — RESEARCH RELIABILITY DEBATE ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="group-badge">👥 GROUP TASK</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:4px;">Research Reliability Debate</h2>
+    <div class="accent-bar"></div>
+    <div style="font-size:15px;color:var(--text-muted);margin-bottom:12px;line-height:1.5;">Central question: <strong style="color:var(--text-light);">"When is it OK to trust AI research without verifying? When is it never OK?"</strong></div>
+    <div class="grid-3col" style="gap:10px;margin-top:8px;">
+      <div class="card fragment fade-up" style="padding:14px;border-top:3px solid #27AE60;">
+        <div style="font-size:13px;font-weight:700;color:#27AE60;margin-bottom:6px;">Scenario 1</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">You're writing an internal email explaining what blockchain is to a non-technical colleague. AI gives you a clear explanation.</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;border-top:3px solid #F59E0B;">
+        <div style="font-size:13px;font-weight:700;color:#F59E0B;margin-bottom:6px;">Scenario 2</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">You're advising a client on whether a new government grant applies to their business. AI says it does and cites the scheme's website.</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;border-top:3px solid #E74C3C;">
+        <div style="font-size:13px;font-weight:700;color:#E74C3C;margin-bottom:6px;">Scenario 3</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">You're preparing a compliance report and AI provides the exact fine amounts for GDPR violations with a citation to the ICO website.</div>
+      </div>
+    </div>
+    <div class="card fragment fade-up" style="margin-top:12px;padding:12px 16px;border-left:3px solid var(--mint);">
+      <div style="font-size:14px;color:var(--text-muted);line-height:1.6;">
+        <strong style="color:var(--text-light);">Your group decides:</strong> For each scenario — Trust ✅, Verify first ⚠️, or Never trust alone 🚨? Justify your verdict.
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:10px;">⏱️ 8 minutes | Groups of 3–4 | Each group shares their verdict and reasoning</div>
+  </div>
+  <aside class="notes">
+[TIMING: 10 min (8 min discussion + 2 min sharing)] [TRANSITION: "Final group activity — a debate about trust."]
+Key talking points:
+• This brings together all the module's concepts into practical decision-making
+• Scenario 1: Generally safe — it's a well-established concept, low consequence if slightly wrong
+• Scenario 2: Must verify — client advice based on government policy has real consequences
+• Scenario 3: Must verify — even with a citation, you must check the numbers are current and correct
+• The goal isn't one "right answer" — it's the REASONING. What factors matter? Consequence, recency, specificity
+• Debrief: Ask 2-3 groups to share. Highlight the REASONING, not just the verdicts
+Facilitation tip: Push groups to articulate WHY. "What makes Scenario 2 different from Scenario 1?" The answer is consequence + specificity.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 29: KEY TAKEAWAYS ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Key Takeaways</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2x2" style="gap:12px;margin-top:12px;">
+      <div class="card fragment fade-up" style="border-top:3px solid var(--mint);padding:16px;text-align:center;">
+        <div style="font-size:24px;margin-bottom:6px;">🎯</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px;">Grounded > Ungrounded</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">For research tasks, always start with a tool that searches and cites real sources.</div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:3px solid var(--blue);padding:16px;text-align:center;">
+        <div style="font-size:24px;margin-bottom:6px;">📚</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px;">Always Cite Sources</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">A research brief without sources is just an opinion. Include what you know AND what you don't.</div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:3px solid #F59E0B;padding:16px;text-align:center;">
+        <div style="font-size:24px;margin-bottom:6px;">⚖️</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px;">Compare Tools</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">Ask the same question to multiple AI tools. Divergence is your signal to verify independently.</div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:3px solid #E74C3C;padding:16px;text-align:center;">
+        <div style="font-size:24px;margin-bottom:6px;">🔍</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px;">Verify Citations</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">A citation is a claim, not proof. Check: does it exist? Does it say what AI claims? Is it current?</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:14px;">💡 AI accelerates research — but YOU are responsible for what you present as fact</div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Let's consolidate the four key skills from today."]
+Key talking points:
+• These 4 cards are the framework for ALL AI research going forward
+• 1. Grounded tools first — always start where citations exist
+• 2. Structure your findings — the 4-part brief with Unknowns section
+• 3. Compare — use multiple tools to catch errors through disagreement
+• 4. Verify — citations are claims that need checking, especially academic ones
+• The overarching principle: AI is your research ASSISTANT, not your research AUTHORITY
+• You remain responsible for every fact you present to colleagues, managers, or clients
+Discussion prompt: "Which of these four will change your daily workflow the most?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 30: THANK YOU ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:40px;text-align:center;">
+    <div style="font-size:48px;margin-bottom:16px;">🔍📚</div>
+    <h2 class="slide-title-dark" style="font-size:30px;font-weight:800;margin-bottom:8px;text-align:center;">Thank You!</h2>
+    <div style="font-size:17px;color:var(--text-muted);margin-bottom:24px;text-align:center;">Module 7: Research &amp; Grounded Answers — Complete</div>
+    <div style="width:80px;height:3px;background:var(--mint);border-radius:2px;margin:0 auto 24px auto;"></div>
+    <div class="grid-3col" style="gap:10px;max-width:700px;margin:0 auto;">
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;">
+        <div style="font-size:20px;margin-bottom:4px;">🎯</div>
+        <div style="font-size:13px;color:var(--text-muted);">Grounded vs Ungrounded</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;">
+        <div style="font-size:20px;margin-bottom:4px;">📋</div>
+        <div style="font-size:13px;color:var(--text-muted);">Research Briefs</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;">
+        <div style="font-size:20px;margin-bottom:4px;">🔍</div>
+        <div style="font-size:13px;color:var(--text-muted);">Source Verification</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:20px;max-width:500px;margin-left:auto;margin-right:auto;">See you in Module 8: Writing &amp; Communication with AI</div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] [TRANSITION: "That's a wrap!"]
+Key talking points:
+• Thank everyone for an interactive and thought-provoking session
+• Recap: from understanding the grounded/ungrounded distinction to verifying citations independently
+• The key skill isn't using AI for research — it's knowing when to trust and when to verify
+• Homework suggestion: next time you research something with AI, apply the comparison method and write a brief with Unknowns
+• Module 8 preview: we'll focus on writing and communication — using AI to draft, edit, and refine professional documents
+Facilitation tip: "You now have a research workflow that's both faster AND more reliable than what most professionals use. Apply it this week."
+  </aside>
+</section>
+
+</div><!-- /.slides -->
+</div><!-- /.reveal -->
+
+<!-- Reveal.js & Initialization -->
+<script type="module">
+  import Reveal from 'https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.esm.js';
+  import RevealNotes from 'https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.esm.js';
+
+  const deck = Reveal.initialize({
+    hash: true,
+    slideNumber: function(slide) {
+      const h = Reveal.getIndices(slide).h + 1;
+      return [h + ' / 30'];
+    },
+    showSlideNumber: 'all',
+    progress: true,
+    keyboard: true,
+    overview: true,
+    center: true,
+    touch: true,
+    loop: false,
+    autoSlide: 0,
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    width: 1280,
+    height: 720,
+    margin: 0.06,
+    minScale: 0.2,
+    maxScale: 2.0,
+    plugins: [RevealNotes]
+  });
+
+  deck.then(() => {
+    const navLinks = document.querySelectorAll('#session-nav a');
+    const chapters = [6, 10, 15, 19, 23, 26];
+
+    function updateNav() {
+      const current = Reveal.getIndices().h;
+      navLinks.forEach((link, i) => {
+        link.classList.remove('nav-active');
+        if (i < chapters.length - 1 && current >= chapters[i] && current < chapters[i+1]) {
+          link.classList.add('nav-active');
+        } else if (i === chapters.length - 1 && current >= chapters[i]) {
+          link.classList.add('nav-active');
+        }
+      });
+    }
+
+    Reveal.on('slidechanged', updateNav);
+    updateNav();
+  });
+</script>
+
+<!-- Graceful fallback for offline use -->
+<noscript>
+  <style>
+    .reveal .fragment { opacity: 1 !important; transform: none !important; }
+    .reveal .slides section { display: block !important; }
+  </style>
+</noscript>
+<script>
+  window.addEventListener('error', function(e) {
+    if (e.filename && e.filename.includes('reveal')) {
+      document.querySelectorAll('.fragment').forEach(function(el) {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+      document.querySelector('.reveal').style.overflow = 'auto';
+      document.querySelectorAll('.reveal .slides section').forEach(function(s) {
+        s.style.display = 'block';
+        s.style.position = 'relative';
+        s.style.width = '100%';
+        s.style.minHeight = '100vh';
+        s.style.padding = '48px';
+        s.style.boxSizing = 'border-box';
+        s.style.borderBottom = '2px solid rgba(8,145,178,0.3)';
+      });
+    }
+  }, true);
+</script>
+
+<!-- Quiz handler -->
+<script>
+  function quizAnswer(slideId, selectedIdx, correctIdx, explanation) {
+    var container = document.getElementById(slideId);
+    if (!container) return;
+    var opts = container.querySelectorAll('.quiz-opt');
+    opts.forEach(function(opt, i) {
+      opt.classList.add('disabled');
+      if (i === correctIdx) {
+        opt.classList.add('correct');
+        opt.querySelector('.opt-letter').textContent = '✓';
+      }
+      if (i === selectedIdx && selectedIdx !== correctIdx) {
+        opt.classList.add('wrong');
+        opt.querySelector('.opt-letter').textContent = '✗';
+      }
+    });
+    var explainEl = container.querySelector('.quiz-explain');
+    if (explainEl) {
+      explainEl.textContent = explanation;
+      explainEl.classList.add('show');
+    }
+  }
+  window.quizAnswer = quizAnswer;
+</script>
+
+<!-- Tooltip mobile tap-to-toggle -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.tip').forEach(function(el) {
+      el.setAttribute('tabindex', '0');
+      el.addEventListener('click', function(e) {
+        e.stopPropagation();
+        document.querySelectorAll('.tip .tip-content').forEach(function(t) {
+          t.style.display = 'none';
+        });
+        var content = el.querySelector('.tip-content');
+        if (content) {
+          content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        }
+      });
+    });
+    document.addEventListener('click', function() {
+      document.querySelectorAll('.tip .tip-content').forEach(function(t) {
+        t.style.display = '';
+      });
+    });
+  });
+</script>
+
+<!-- Passcode Gate -->
+<script>
+  (function() {
+    var PASSCODE = 'G2026';
+    var gate = document.getElementById('passcode-gate');
+    var input = document.getElementById('gate-input');
+    var error = document.getElementById('gate-error');
+    var nav = document.getElementById('session-nav');
+
+    if (sessionStorage.getItem('ai-studio-auth') === 'true') {
+      gate.style.display = 'none';
+      nav.style.display = 'flex';
+    } else {
+      document.querySelector('.reveal').style.display = 'none';
+    }
+
+    input.addEventListener('input', function() {
+      error.style.display = 'none';
+      if (input.value.length === 5) {
+        if (input.value.toUpperCase() === PASSCODE) {
+          sessionStorage.setItem('ai-studio-auth', 'true');
+          gate.style.display = 'none';
+          nav.style.display = 'flex';
+          document.querySelector('.reveal').style.display = '';
+          setTimeout(function() {
+            if (window.Reveal && window.Reveal.layout) {
+              window.Reveal.layout();
+            }
+          }, 100);
+        } else {
+          error.style.display = 'block';
+          input.value = '';
+          input.focus();
+        }
+      }
+    });
+
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && input.value.length >= 4) {
+        if (input.value.toUpperCase() === PASSCODE) {
+          sessionStorage.setItem('ai-studio-auth', 'true');
+          gate.style.display = 'none';
+          nav.style.display = 'flex';
+          document.querySelector('.reveal').style.display = '';
+          setTimeout(function() {
+            if (window.Reveal && window.Reveal.layout) {
+              window.Reveal.layout();
+            }
+          }, 100);
+        } else {
+          error.style.display = 'block';
+          input.value = '';
+        }
+      }
+    });
+
+    setTimeout(function() { input.focus(); }, 300);
+  })();
+</script>
+</body>
+</html>
