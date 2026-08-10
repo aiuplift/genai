@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 6: Reviewing &amp; Summarising Documents — AI Skills Studio</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+<style>
+  :root{--navy:#1E1045;--blue:#6C3AED;--mint:#0891B2;--dark-bg:#0F0A2E;--light-bg:#F5F3FF;--card-bg:#1E1B4B;--text-light:#FFFFFF;--text-muted:#A8B4D8;--font:system-ui,'Segoe UI',sans-serif;--practical-bg:#1A1050}
+  .reveal{font-family:var(--font)}.reveal .slides section{text-align:left;padding:0 48px}
+  .reveal .progress{height:4px;color:var(--mint)}.reveal .progress span{background:var(--mint)}
+  .reveal .slide-number{background:rgba(0,0,0,0.4);color:var(--text-muted);font-size:13px;padding:4px 10px;border-radius:4px;font-family:var(--font)}
+  .reveal h1,.reveal h2,.reveal h3{font-family:var(--font);text-transform:none;letter-spacing:-0.5px}
+  .slide-title-dark{color:var(--text-light)!important}.slide-title-light{color:var(--navy)!important}
+  .accent-bar{width:80px;height:4px;background:var(--mint);margin:6px 0 16px 0;border-radius:2px}
+  .card{background:var(--card-bg);border-radius:10px;padding:18px 20px;box-shadow:0 4px 16px rgba(0,0,0,0.25)}
+  .card-light{background:#fff;border-radius:10px;padding:18px 20px;box-shadow:0 2px 12px rgba(30,16,69,0.10)}
+  .card-navy{background:var(--navy);border-radius:10px;padding:18px 20px;box-shadow:0 4px 16px rgba(0,0,0,0.2)}
+  .grid-2col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid-3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .grid-2x3{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:12px}
+  .grid-2x2{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px}
+  .flex-row{display:flex;gap:16px;align-items:stretch}
+  .chapter-num{font-size:96px;font-weight:900;color:var(--mint);opacity:0.85;line-height:1;margin-bottom:8px}
+  .chapter-title{font-size:38px;font-weight:700;color:var(--text-light);margin:0 0 8px 0}
+  .chapter-sub{font-size:17px;color:var(--text-muted);font-style:italic;margin:0}
+  .chapter-rule{width:100px;height:4px;background:var(--mint);border-radius:2px;margin-top:20px}
+  .agenda-num{font-size:28px;font-weight:800;color:var(--mint);margin-bottom:6px}
+  .agenda-title{font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:4px}
+  .agenda-sub{font-size:14px;color:var(--text-muted)}
+  .limit-row{display:flex;align-items:center;background:var(--card-bg);border-radius:8px;padding:10px 18px;margin-bottom:8px;gap:12px}
+  .limit-txt{font-size:16px;color:var(--text-light)}
+  .loop-steps{display:flex;align-items:stretch;gap:0}
+  .loop-step{flex:1;background:var(--navy);border-radius:10px;padding:16px 10px;text-align:center}
+  .loop-step-label{font-size:13px;font-weight:800;color:var(--mint);margin-bottom:10px;letter-spacing:1px}
+  .loop-step-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .loop-arrow{display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--mint);flex-shrink:0;padding:0 6px}
+  .loop-footer{background:rgba(8,145,178,0.12);border-radius:8px;padding:10px 18px;margin-top:16px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .closing-card{background:var(--card-bg);border-radius:10px;padding:16px 18px;border-left:3px solid var(--mint);font-size:15px;color:var(--text-light);line-height:1.5}
+  .footer-bar{background:rgba(8,145,178,0.08);border-radius:8px;padding:8px 16px;margin-top:10px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .footer-bar-dark{background:var(--card-bg);border-radius:8px;padding:8px 16px;margin-top:10px;font-size:14px;color:var(--mint);font-weight:600;text-align:center}
+  .teaser{background:var(--card-bg);border-left:3px solid var(--mint);border-radius:8px;padding:10px 16px;font-size:14px;color:var(--text-muted);margin-top:12px;font-style:italic}
+  .tip{position:relative;border-bottom:1px dashed var(--mint);cursor:help;color:inherit;font-weight:inherit}
+  .tip:hover{color:var(--mint)}
+  .tip .tip-content{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--navy);color:var(--text-light);padding:14px 18px;border-radius:10px;font-size:14px;font-weight:400;line-height:1.6;width:340px;max-width:90vw;box-shadow:0 12px 40px rgba(0,0,0,0.7);border:2px solid var(--mint);z-index:99999;text-align:left;font-style:normal}
+  .tip .tip-content::before{content:'💡';display:block;font-size:14px;margin-bottom:6px}
+  .tip:hover .tip-content,.tip:focus .tip-content{display:block}
+  .light-tip .tip-content{background:#fff;color:var(--navy);border-color:var(--blue)}.light-tip{border-bottom-color:var(--blue)}.light-tip:hover{color:var(--blue)}
+  .quiz-label{font-size:13px;font-weight:700;color:var(--mint);letter-spacing:2px;margin-bottom:12px}
+  .quiz-question{font-size:24px;font-weight:700;color:var(--text-light);margin-bottom:24px;line-height:1.4}
+  .quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .quiz-opt{background:var(--card-bg);border-radius:10px;padding:16px 20px;font-size:15px;color:var(--text-light);cursor:pointer;border:2px solid transparent;transition:all 0.2s;display:flex;align-items:center;gap:12px}
+  .quiz-opt:hover{border-color:var(--mint);background:rgba(8,145,178,0.1)}
+  .quiz-opt.correct{background:#1D4A3A!important;border-color:#27AE60!important;cursor:default}
+  .quiz-opt.wrong{background:#4A1D1D!important;border-color:#E74C3C!important;cursor:default;opacity:0.7}
+  .quiz-opt.disabled{pointer-events:none;opacity:0.6}
+  .quiz-opt .opt-letter{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+  .quiz-opt.correct .opt-letter{background:#27AE60;color:#fff}
+  .quiz-opt.wrong .opt-letter{background:#E74C3C;color:#fff}
+  .quiz-explain{margin-top:16px;padding:12px 18px;border-radius:8px;background:rgba(8,145,178,0.1);border-left:3px solid var(--mint);font-size:14px;color:var(--text-muted);display:none;line-height:1.6}
+  .quiz-explain.show{display:block}
+  #session-nav{position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;justify-content:center;align-items:center;gap:6px;padding:6px 12px;background:rgba(15,10,46,0.92);backdrop-filter:blur(6px);border-bottom:1px solid rgba(8,145,178,0.2);font-family:var(--font);font-size:11px}
+  #session-nav .nav-label{color:var(--text-muted);font-size:10px;font-weight:700;letter-spacing:1px;margin-right:4px;flex-shrink:0}
+  #session-nav a{color:var(--text-muted);text-decoration:none;padding:3px 10px;border-radius:20px;border:1px solid transparent;transition:all 0.2s;font-size:11px;white-space:nowrap}
+  #session-nav a:hover{color:var(--mint);border-color:var(--mint);background:rgba(8,145,178,0.1)}
+  #session-nav a.nav-active{color:var(--mint);border-color:rgba(8,145,178,0.4)}
+  .title-series{font-size:34px;font-weight:800;color:var(--text-light);margin-bottom:8px;line-height:1.2}
+  .title-session{font-size:19px;font-weight:600;color:var(--mint);margin-bottom:8px}
+  .title-tagline{font-size:15px;color:var(--text-muted);font-style:italic;margin-bottom:32px}
+  .title-rule{width:80px;height:3px;background:var(--mint);border-radius:2px;margin-bottom:24px}
+  .title-author{font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:4px}
+  .title-date{font-size:13px;color:var(--text-muted)}
+  .keyboard-hint{position:absolute;bottom:28px;right:0;font-size:11px;color:rgba(168,180,216,0.6);display:flex;gap:12px;align-items:center}
+  .key{display:inline-block;border:1px solid rgba(168,180,216,0.3);border-radius:4px;padding:2px 7px;font-size:11px;color:rgba(168,180,216,0.7)}
+  .reveal .fragment{opacity:0.15;transition:opacity 0.4s,transform 0.4s}
+  .reveal .fragment.visible{opacity:1}
+  .reveal .fragment.fade-up{transform:translateY(20px)}.reveal .fragment.fade-up.visible{transform:translateY(0)}
+  .reveal .fragment.scale-in{transform:scale(0.85)}.reveal .fragment.scale-in.visible{transform:scale(1)}
+  .light-slide p,.light-slide li{color:var(--navy)}
+  .practical-badge{display:inline-block;background:linear-gradient(135deg,var(--blue),var(--mint));color:#fff;font-size:14px;font-weight:800;padding:6px 16px;border-radius:20px;letter-spacing:1px;margin-bottom:14px}
+  .practical-steps{list-style:none;padding:0;margin:12px 0}
+  .practical-steps li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;font-size:16px;color:var(--text-light)}
+  .practical-steps li .step-num{background:var(--mint);color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+  .check-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(108,58,237,0.15);font-size:16px;color:var(--text-light)}
+  .check-icon{color:var(--mint);font-size:17px;flex-shrink:0}
+  .vs-arrow{display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--mint);font-weight:800;flex-shrink:0;padding:0 8px}
+  #passcode-gate{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--dark-bg);display:flex;align-items:center;justify-content:center;z-index:99999;flex-direction:column;gap:16px}
+  #passcode-gate input{padding:12px 24px;font-size:18px;border-radius:8px;border:2px solid var(--mint);background:var(--card-bg);color:var(--text-light);text-align:center;letter-spacing:4px;width:200px;outline:none}
+  #passcode-gate input:focus{box-shadow:0 0 12px rgba(8,145,178,0.4)}
+  #passcode-gate .gate-title{font-size:24px;color:var(--text-light);font-weight:700}
+  .gate-hint{font-size:13px;color:var(--text-muted)}
+  #passcode-gate .gate-error{font-size:13px;color:#E74C3C;display:none}
+  .craft-card{background:var(--card-bg);border-radius:10px;padding:16px 14px;text-align:center;border-top:4px solid var(--mint)}
+  .craft-letter{font-size:36px;font-weight:900;color:var(--mint);margin-bottom:4px}
+  .craft-word{font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px}
+  .craft-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .constraint-card{background:var(--card-bg);border-radius:10px;padding:18px 16px;border-left:4px solid var(--mint)}
+  .constraint-title{font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:6px}
+  .constraint-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .failure-card{background:var(--card-bg);border-radius:10px;padding:16px;text-align:center}
+  .failure-icon{font-size:28px;margin-bottom:6px}
+  .failure-title{font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px}
+  .failure-desc{font-size:14px;color:var(--text-muted);line-height:1.5}
+  .messy-table{width:100%;font-size:12px;border-collapse:collapse;background:var(--card-bg);border-radius:8px;overflow:hidden}
+  .messy-table th{background:var(--navy);color:var(--mint);padding:8px 10px;text-align:left;font-size:11px;font-weight:700;letter-spacing:0.5px}
+  .messy-table td{padding:7px 10px;color:var(--text-light);border-bottom:1px solid rgba(108,58,237,0.15);font-size:12px}
+  .messy-table tr.issue-row td{background:rgba(231,76,60,0.08)}
+  .group-badge{display:inline-block;background:linear-gradient(135deg,#E74C3C,#F39C12);color:#fff;font-size:14px;font-weight:800;padding:6px 16px;border-radius:20px;letter-spacing:1px;margin-bottom:14px}
+  /* Global overflow safety net */
+  .reveal .slides section > div { max-height: calc(720px * 0.88 - 40px); overflow: hidden; }
+</style>
+</head>
+<body>
+
+<!-- PASSCODE GATE -->
+<div id="passcode-gate">
+  <div class="gate-title">🔒 AI Skills Studio</div>
+  <div class="gate-hint">Enter session passcode to continue</div>
+  <input type="text" id="gate-input" maxlength="5" placeholder="•••••" autocomplete="off">
+  <div class="gate-error" id="gate-error">Incorrect passcode. Try again.</div>
+</div>
+
+<!-- SESSION NAV BAR -->
+<div id="session-nav" style="display:none;">
+  <span class="nav-label">MODULE 6:</span>
+  <a href="#" data-nav="0" onclick="Reveal.slide(6);return false;">01 Why It Matters</a>
+  <a href="#" data-nav="1" onclick="Reveal.slide(9);return false;">02 Resolutions</a>
+  <a href="#" data-nav="2" onclick="Reveal.slide(13);return false;">03 Extraction</a>
+  <a href="#" data-nav="3" onclick="Reveal.slide(17);return false;">04 Critical Review</a>
+  <a href="#" data-nav="4" onclick="Reveal.slide(21);return false;">05 Synthesis</a>
+  <a href="#" data-nav="5" onclick="Reveal.slide(26);return false;">06 Wrap-up</a>
+</div>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- ==================== SLIDE 1: TITLE ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:40px;">
+    <div style="width:100%;height:4px;background:linear-gradient(90deg,var(--blue),var(--mint));border-radius:2px;margin-bottom:32px;"></div>
+    <div class="title-series">AI Skills Studio</div>
+    <div class="title-session">Module 6: Reviewing &amp; Summarising Documents</div>
+    <div class="title-tagline">Compress, extract, and synthesise — AI as your document intelligence engine</div>
+    <div class="title-rule"></div>
+    <div class="title-author">Gen AI Inc</div>
+    <div class="title-date">2025 &nbsp;|&nbsp; 75 minutes</div>
+    <div class="keyboard-hint">
+      <span><span class="key">←→</span> Navigate</span>
+      <span><span class="key">F</span> Fullscreen</span>
+      <span><span class="key">S</span> Speaker Notes</span>
+      <span><span class="key">O</span> Overview</span>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] [TRANSITION: Welcome participants to Module 6]
+Key talking points:
+• Welcome to Module 6 — Reviewing and Summarising Documents
+• Every professional spends hours reading long documents — reports, proposals, contracts, research
+• Today we'll learn to use AI to compress, extract, and synthesise information at multiple levels of detail
+• 75 minutes: multi-resolution summaries, theme extraction, critical review, and document synthesis
+Discussion prompt: "How many pages of documents did you read last week? Today we make that process dramatically faster — and more thorough."
+Facilitation tip: Ask people to think about a recent long document they struggled with. They'll use that mental model throughout.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 2: RECAP SUMMARY ==================== -->
+<section data-background-color="#F5F3FF">
+  <div style="padding-top:12px;">
+    <h2 class="slide-title-light" style="font-size:26px;font-weight:800;margin-bottom:4px;">Quick Recap — Modules 1–5</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-3col" style="gap:10px;margin-top:8px;">
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid var(--blue);" class="fragment fade-up">
+        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:6px;">M1–M2: AI Basics &amp; Prompting</div>
+        <div style="font-size:13px;color:var(--navy);line-height:1.5;">
+          • AI = pattern prediction, not understanding<br>
+          • CRAFT framework for prompts<br>
+          • Constraints: Change, Keep, Avoid<br>
+          • 3-step: Structure → Refine → Verify
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid var(--mint);" class="fragment fade-up">
+        <div style="font-size:13px;font-weight:700;color:var(--mint);margin-bottom:6px;">M3–M4: Notetaking &amp; Privacy</div>
+        <div style="font-size:13px;color:var(--navy);line-height:1.5;">
+          • 5-step documentation pipeline<br>
+          • Anchor Guardrail prevents hallucination<br>
+          • Traffic-light data classification (R/A/G)<br>
+          • Safe Prompt Pattern: Identify → Classify → Anonymise → Prompt → Verify
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 12px rgba(30,16,69,0.08);border-left:3px solid #F59E0B;" class="fragment fade-up">
+        <div style="font-size:13px;font-weight:700;color:#F59E0B;margin-bottom:6px;">M5: Data Analysis</div>
+        <div style="font-size:13px;color:var(--navy);line-height:1.5;">
+          • AI as formula generator (not calculator)<br>
+          • Data cleaning suggestions<br>
+          • Always verify numerical claims yourself<br>
+          • Communicate insights, not just data
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="background:rgba(30,16,69,0.12);color:var(--navy);margin-top:12px;">💡 Module 6 builds on all of these — you'll summarise, extract, and verify using every skill so far</div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: From title → recap of all prior modules]
+Key talking points:
+• M1-M2: You know how to write structured prompts — essential for getting good summaries
+• M3-M4: Anchor Guardrail is critical today — summaries must stay faithful to source
+• M5: You learned verification with data — same principle applies to document review
+• Module 6 brings it all together: structured prompting + verification + privacy awareness
+Bridge: "Today we apply everything to the thing professionals do most: reading and processing documents."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 3: RECAP QUIZ 1 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-recap1">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🔄 RECAP — QUESTION 1 of 3</div>
+    <div class="quiz-question">Which data task is AI most reliable for?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',0,0,'Correct! AI excels at pattern-matching tasks like identifying data quality issues, suggesting cleaning steps, and spotting inconsistencies. It struggles with causation claims and precise calculations.')">
+        <span class="opt-letter">A</span><span>Suggesting data cleaning steps</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',1,0,'Correct answer is A. AI excels at pattern-matching tasks like identifying data quality issues, suggesting cleaning steps, and spotting inconsistencies. Precise calculations and causation require human verification.')">
+        <span class="opt-letter">B</span><span>Guaranteeing calculation accuracy</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',2,0,'Correct answer is A. AI excels at pattern-matching tasks like identifying data quality issues, suggesting cleaning steps, and spotting inconsistencies. Predicting future outcomes reliably is beyond current AI.')">
+        <span class="opt-letter">C</span><span>Predicting next quarter&apos;s revenue</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap1',3,0,'Correct answer is A. AI excels at pattern-matching tasks like identifying data quality issues and suggesting cleaning steps. Explaining causation requires domain expertise and context AI doesn&apos;t have.')">
+        <span class="opt-letter">D</span><span>Explaining why sales dropped</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] [TRANSITION: "Let's warm up with 3 questions from previous modules."]
+Key talking points: Module 5 concept. Answer A — cleaning suggestions. AI is a pattern matcher. This is relevant today because summarisation is also pattern matching — finding the key information in noise.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 4: RECAP QUIZ 2 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-recap2">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🔄 RECAP — QUESTION 2 of 3</div>
+    <div class="quiz-question">What's the first step in the Safe Prompt Pattern?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',0,0,'Correct! Step 1 is Identify the task. Before you can classify data sensitivity or decide how to anonymise, you need to know WHAT you&apos;re trying to accomplish. The full pattern: Identify → Classify → Anonymise → Prompt → Verify.')">
+        <span class="opt-letter">A</span><span>Identify the task</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',1,0,'Correct answer is A — Identify the task. You must know what you&apos;re doing before you can decide how to handle the data. Full pattern: Identify → Classify → Anonymise → Prompt → Verify.')">
+        <span class="opt-letter">B</span><span>Anonymise the data</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',2,0,'Correct answer is A — Identify the task. Classification comes second — you can&apos;t classify sensitivity without knowing what task you&apos;re performing. Full pattern: Identify → Classify → Anonymise → Prompt → Verify.')">
+        <span class="opt-letter">C</span><span>Classify the sensitivity</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap2',3,0,'Correct answer is A — Identify the task. Writing the prompt comes much later (step 4). First you need to know what you&apos;re doing, then classify, then anonymise, THEN prompt.')">
+        <span class="opt-letter">D</span><span>Write the prompt</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] Key talking points: Module 4 core concept. Answer A — Identify the task. This matters today because when summarising documents, you first need to identify what kind of document it is and what you need from it.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 5: RECAP QUIZ 3 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-recap3">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🔄 RECAP — QUESTION 3 of 3</div>
+    <div class="quiz-question">AI says "revenue grew 23% last quarter." Your first step?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',0,1,'Correct answer is B. Always verify numerical claims yourself. Pull the raw numbers and do the calculation. AI can hallucinate statistics confidently — never trust a number without checking the source.')">
+        <span class="opt-letter">A</span><span>Include it in your report — AI is accurate with numbers</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',1,1,'Correct! Always verify numerical claims yourself. Pull the raw numbers, do the calculation manually. AI hallucates statistics confidently. This principle applies to document summaries too — always check claims against the source.')">
+        <span class="opt-letter">B</span><span>Calculate it yourself from the raw data</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',2,1,'Correct answer is B. Asking AI to verify its own work doesn&apos;t help — it will often confirm its own errors. You need to check against the actual source data yourself.')">
+        <span class="opt-letter">C</span><span>Ask AI to double-check its own calculation</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-recap3',3,1,'Correct answer is B. Adding a disclaimer doesn&apos;t make incorrect information acceptable. Verify first, then report confidently — or flag it as unverified.')">
+        <span class="opt-letter">D</span><span>Add &quot;AI-generated&quot; disclaimer and use it</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] Key talking points: Answer B — calculate yourself. This verification mindset is the foundation of today's module. When AI summarises a document, you must check that the summary is faithful to the source. Same principle, different domain.
+Bridge: "This verification habit? It's the single most important skill for document summarisation too."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 6: GROUND RULES ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:26px;font-weight:800;margin-bottom:4px;">Ground Rules for This Module</h2>
+    <div class="accent-bar"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px;">
+      <div class="card fragment fade-up" style="border-left:3px solid var(--mint);padding:14px 18px;">
+        <div style="font-size:15px;color:var(--text-light);line-height:1.6;">💻 <strong>Devices ready.</strong> Have your AI tool open — you'll be summarising, extracting, and reviewing documents hands-on throughout.</div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid #F59E0B;padding:14px 18px;">
+        <div style="font-size:15px;color:var(--text-light);line-height:1.6;">📄 <strong>Bring a long document if possible.</strong> A report, proposal, or contract you've been meaning to read. You'll use it in the final exercises.</div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid var(--blue);padding:14px 18px;">
+        <div style="font-size:15px;color:var(--text-light);line-height:1.6;">🎯 <strong>Summarisation is a skill, not a shortcut.</strong> Good summaries require judgment about what matters. AI helps you get there faster, but YOU decide what's important.</div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid #27AE60;padding:14px 18px;">
+        <div style="font-size:15px;color:var(--text-light);line-height:1.6;">✅ <strong>Always verify against the source.</strong> The Anchor Guardrail from Module 3 applies here: every summary must be traceable back to the original document.</div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Before we dive in, let's set the stage."]
+Key talking points:
+• This module is 65% practical — you'll be doing real summarisation work throughout
+• If anyone has a real document they've been meaning to process, today is the day
+• Key mindset: AI doesn't replace your judgment about what matters — it accelerates the mechanics of compression
+• The Anchor Guardrail from M3 is your best friend today: every AI summary must be checkable against the source
+Discussion prompt: "Think about the last long document you had to read for work. How long did it take? What if you could get the key points in 2 minutes?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 7: CHAPTER 01 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">01</div>
+    <div class="chapter-title">Why Summarisation Matters</div>
+    <div class="chapter-sub">Professionals read 100+ pages a week — AI compresses without losing meaning</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Let's start with WHY this skill matters so much."]
+Key talking points:
+• This chapter frames the problem: information overload is real and getting worse
+• Every professional drowns in documents — reports, emails, proposals, contracts
+• Summarisation isn't lazy — it's a strategic skill that lets you process more and decide faster
+• AI makes multi-resolution summarisation practical for the first time
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 8: THE INFORMATION OVERLOAD PROBLEM ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">The Information Overload Problem</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="gap:14px;margin-top:10px;">
+      <div class="card fragment fade-up" style="border-top:3px solid #E74C3C;padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:#E74C3C;margin-bottom:8px;">📊 The Reality</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          • Professionals read <strong style="color:var(--text-light);">100+ pages/week</strong> of reports, emails, docs<br>
+          • Average board pack: <strong style="color:var(--text-light);">60-200 pages</strong><br>
+          • Policy updates: <strong style="color:var(--text-light);">30-50 pages</strong> of legal text<br>
+          • Most information is read once, poorly retained
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="border-top:3px solid #27AE60;padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:#27AE60;margin-bottom:8px;">🤖 What AI Changes</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          • Compress 40 pages → 1 paragraph (without losing key points)<br>
+          • Extract specific information types on demand<br>
+          • Compare multiple documents simultaneously<br>
+          • Create different summaries for different audiences
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:14px;">🎯 AI doesn't replace reading — it helps you read smarter, deciding WHERE to focus your limited attention</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Here's the problem we're solving today."]
+Key talking points:
+• Everyone in this room reads too many documents and retains too little
+• The issue isn't laziness — it's volume. There's more to read than hours in the day
+• AI's strength: compressing information while preserving meaning. This is pattern matching — AI's sweet spot
+• Important framing: AI doesn't replace deep reading. It helps you TRIAGE — decide what deserves deep reading
+• Example: "Would you rather spend 2 hours reading a 40-page report, or 10 minutes getting the key points and then 30 minutes deeply reading the 5 pages that matter most to you?"
+Discussion prompt: "What's the longest document you've had to read this month? How much of it was actually relevant to your decision?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 9: DIALOGUE 1 — PRIYA + RACHEL ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:8px;max-height:none;overflow:visible;">
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:2px;">💬 Priya's Board Prep Problem</h2>
+    <div class="accent-bar" style="margin:4px 0 8px 0;"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=PriyaFinance" alt="Priya" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;background:#2D1B69;">
+        <div style="background:#2D1B69;border-radius:12px 12px 12px 0;padding:12px 16px;max-width:75%;position:relative;">
+          <div style="font-size:14px;color:var(--text-light);line-height:1.5;">Rachel, I have a 40-page quarterly report to present to the board in 10 minutes. I've been reading it for 2 hours and I still can't figure out what to highlight. 😰</div>
+          <div style="position:absolute;bottom:-6px;left:12px;width:12px;height:12px;background:#2D1B69;clip-path:polygon(0 0, 100% 0, 0 100%);"></div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;flex-direction:row-reverse;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=RachelCFO" alt="Rachel" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;background:#0E4D5C;">
+        <div style="background:#0E4D5C;border-radius:12px 12px 0 12px;padding:12px 16px;max-width:75%;position:relative;">
+          <div style="font-size:14px;color:var(--text-light);line-height:1.5;">Try the multi-resolution approach: ask AI for a one-line summary first, then a paragraph, then a full page. Each level serves a different need — the one-liner is your opening statement, the paragraph is your handout, the page is your backup.</div>
+          <div style="position:absolute;bottom:-6px;right:12px;width:12px;height:12px;background:#0E4D5C;clip-path:polygon(100% 0, 0 0, 100% 100%);"></div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=PriyaFinance" alt="Priya" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;background:#2D1B69;">
+        <div style="background:#2D1B69;border-radius:12px 12px 12px 0;padding:12px 16px;max-width:75%;position:relative;">
+          <div style="font-size:14px;color:var(--text-light);line-height:1.5;">So I don't just ask for "a summary" — I ask for THREE summaries at different lengths? That's actually brilliant. The board wants headlines, not chapters.</div>
+          <div style="position:absolute;bottom:-6px;left:12px;width:12px;height:12px;background:#2D1B69;clip-path:polygon(0 0, 100% 0, 0 100%);"></div>
+        </div>
+      </div>
+    </div>
+    <div class="teaser fragment fade-up">💡 Next: The Resolution Ladder — how to summarise at 3 different levels of detail</div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "This scenario will be familiar to many of you."]
+Key talking points:
+• Priya's problem is universal — long document, short presentation time
+• Rachel introduces the multi-resolution concept: different audiences need different depths
+• Key insight: "a summary" is too vague. You need to specify the RESOLUTION — how compressed?
+• The board wants headlines. Your manager wants context. Your team wants detail. Same document, three outputs.
+Discussion prompt: "Has anyone been in Priya's position? What did you do?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 10: CHAPTER 02 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">02</div>
+    <div class="chapter-title">The Resolution Ladder</div>
+    <div class="chapter-sub">One document, three summaries — each serving a different audience</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Let's make this practical."]
+Key talking points:
+• This chapter teaches the core technique: multi-resolution summarisation
+• Think of it like a camera zoom — same scene, different levels of detail
+• One-line (elevator pitch), paragraph (executive brief), full page (detailed summary)
+• Each resolution serves a different purpose and audience
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 11: THREE LEVELS OF SUMMARY ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Three Levels of Summary</h2>
+    <div class="accent-bar"></div>
+    <div class="loop-steps" style="margin-top:16px;">
+      <div class="loop-step fragment scale-in" style="border-top:3px solid #F59E0B;">
+        <div class="loop-step-label" style="color:#F59E0B;">ONE-LINE</div>
+        <div style="font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:6px;">Elevator Pitch</div>
+        <div class="loop-step-desc">The single most important takeaway. Use for: subject lines, Slack updates, opening statements.</div>
+      </div>
+      <div class="loop-arrow fragment fade-up">→</div>
+      <div class="loop-step fragment scale-in" style="border-top:3px solid var(--mint);">
+        <div class="loop-step-label">PARAGRAPH</div>
+        <div style="font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:6px;">Executive Brief</div>
+        <div class="loop-step-desc">3-5 sentences covering key points. Use for: email summaries, handouts, meeting prep notes.</div>
+      </div>
+      <div class="loop-arrow fragment fade-up">→</div>
+      <div class="loop-step fragment scale-in" style="border-top:3px solid var(--blue);">
+        <div class="loop-step-label" style="color:var(--blue);">FULL PAGE</div>
+        <div style="font-size:16px;font-weight:700;color:var(--text-light);margin-bottom:6px;">Detailed Summary</div>
+        <div class="loop-step-desc">Structured overview with all key details. Use for: briefing documents, handover notes, reference summaries.</div>
+      </div>
+    </div>
+    <div class="loop-footer fragment fade-up">🎯 Each resolution serves a DIFFERENT audience — the skill is choosing which level to deliver</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Here's the framework."]
+Key talking points:
+• One-Line: forces AI (and you) to identify THE single most important point. Hardest to write, most valuable.
+• Paragraph: the "executive summary" level — enough context for someone to make a decision without reading the full doc.
+• Full Page: comprehensive but structured — someone could skip the original doc entirely (with verification caveats).
+• The key skill isn't asking AI to summarise — it's knowing which resolution your audience needs.
+• Example: "Your CEO needs the one-liner. Your manager needs the paragraph. The project team needs the page."
+Discussion prompt: "When was the last time you received a summary that was the wrong length? Too short? Too long?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 12: PRACTICAL — SUMMARISE AT 3 RESOLUTIONS ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="practical-badge">🔨 PRACTICAL</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:4px;">Summarise at 3 Resolutions</h2>
+    <div class="accent-bar"></div>
+    <ul class="practical-steps">
+      <li class="fragment fade-up"><span class="step-num">1</span><span>Open the sample business proposal (provided on your student page — "Employee Wellness Programme")</span></li>
+      <li class="fragment fade-up"><span class="step-num">2</span><span>Paste it into AI and ask: "Summarise this document in ONE sentence"</span></li>
+      <li class="fragment fade-up"><span class="step-num">3</span><span>Then ask: "Now summarise in ONE paragraph (3-5 sentences)"</span></li>
+      <li class="fragment fade-up"><span class="step-num">4</span><span>Then ask: "Now create a full-page structured summary with headings"</span></li>
+      <li class="fragment fade-up"><span class="step-num">5</span><span><strong>Apply the Anchor Guardrail:</strong> check each summary against the source — does it add anything that wasn't there?</span></li>
+    </ul>
+    <div class="footer-bar-dark fragment fade-up">⏱️ 5 minutes — then we'll compare results</div>
+  </div>
+  <aside class="notes">
+[TIMING: 6 min] [TRANSITION: "Time to try this yourself."]
+Key talking points:
+• Walk around and observe — are people getting meaningfully different outputs at each level?
+• Common issue: the one-line summary is often too vague. Coach students to ask AI to be more specific.
+• Anchor Guardrail check: does the summary introduce claims not in the source? (AI sometimes "enhances")
+• Expected result: the one-liner should capture the core proposal (wellness programme to reduce sick days)
+• The paragraph should add: budget, timeline, expected ROI
+• The full page should structure: problem, solution, budget, timeline, expected outcomes
+Facilitation tip: After 5 min, ask 2-3 volunteers to read their one-line summaries aloud. Compare — which best captures the essence?
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 13: GROUP TASK — RESOLUTION SWAP ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="group-badge">👥 GROUP TASK</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:4px;">Resolution Swap</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="gap:14px;margin-top:10px;">
+      <div class="card fragment fade-up" style="border-left:3px solid #F59E0B;padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:#F59E0B;margin-bottom:8px;">📋 Instructions</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          1. Pair up with someone near you<br>
+          2. Swap ONLY your one-line summaries<br>
+          3. Read your partner's one-liner<br>
+          4. Can you understand the key point from ONE SENTENCE?<br>
+          5. Give feedback: what's clear? What's missing?
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid var(--mint);padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:8px;">🔍 What to Look For</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          • Does the summary stand alone? (No context needed)<br>
+          • Is it specific enough to be useful?<br>
+          • Does it capture the CORE point or a detail?<br>
+          • Would a busy executive get value from this?<br>
+          • Is anything added that wasn't in the source?
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar-dark fragment fade-up">⏱️ 3 minutes in pairs — then 2 volunteers share their best one-liner</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Now let's test whether your summaries actually work."]
+Key talking points:
+• The test of a good one-liner: can someone else understand the key point without any context?
+• Common failure: one-liners that are too generic ("This document proposes a programme") — not useful
+• Good one-liners are specific: "Proposal for a £50K employee wellness programme targeting 40% sick-day reduction over 12 months"
+• Debrief: ask 2 volunteers to read their partner's one-liner. Discuss what makes it effective or not.
+Facilitation tip: If pairs struggle, give the comparison: "Would this one-liner work as an email subject line? If not, it's too vague."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 14: CHAPTER 03 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">03</div>
+    <div class="chapter-title">Extracting Themes</div>
+    <div class="chapter-sub">Beyond summarising — pull specific types of information from any document</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Summarising compresses everything equally. But sometimes you need to pull specific things OUT."]
+Key talking points:
+• Summarisation compresses the whole document
+• Extraction is different — it pulls out specific TYPES of information
+• Think of it like different lenses on the same document: themes, risks, questions, decisions, action items
+• This chapter teaches you to apply those lenses systematically
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 15: BEYOND SUMMARISING — EXTRACTION LENSES ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Beyond Summarising — 6 Extraction Lenses</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2x3" style="gap:10px;margin-top:10px;">
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;border-top:3px solid var(--mint);">
+        <div style="font-size:22px;margin-bottom:4px;">🎯</div>
+        <div style="font-size:14px;font-weight:700;color:var(--text-light);margin-bottom:4px;">Key Themes</div>
+        <div style="font-size:13px;color:var(--text-muted);">Main topics and arguments</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;border-top:3px solid #F59E0B;">
+        <div style="font-size:22px;margin-bottom:4px;">⚠️</div>
+        <div style="font-size:14px;font-weight:700;color:var(--text-light);margin-bottom:4px;">Risks</div>
+        <div style="font-size:13px;color:var(--text-muted);">Potential problems mentioned or implied</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;border-top:3px solid var(--blue);">
+        <div style="font-size:22px;margin-bottom:4px;">❓</div>
+        <div style="font-size:14px;font-weight:700;color:var(--text-light);margin-bottom:4px;">Open Questions</div>
+        <div style="font-size:13px;color:var(--text-muted);">Unanswered or unresolved issues</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;border-top:3px solid #27AE60;">
+        <div style="font-size:22px;margin-bottom:4px;">✅</div>
+        <div style="font-size:14px;font-weight:700;color:var(--text-light);margin-bottom:4px;">Action Items</div>
+        <div style="font-size:13px;color:var(--text-muted);">Tasks, commitments, next steps</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;border-top:3px solid #E74C3C;">
+        <div style="font-size:22px;margin-bottom:4px;">🔑</div>
+        <div style="font-size:14px;font-weight:700;color:var(--text-light);margin-bottom:4px;">Key Decisions</div>
+        <div style="font-size:13px;color:var(--text-muted);">Choices made or required</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;border-top:3px solid #8B5CF6;">
+        <div style="font-size:22px;margin-bottom:4px;">💭</div>
+        <div style="font-size:14px;font-weight:700;color:var(--text-light);margin-bottom:4px;">Sentiment</div>
+        <div style="font-size:13px;color:var(--text-muted);">Tone, confidence levels, concerns</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:10px;">🎯 Apply any lens to any document — "Extract all [risks/questions/decisions] from this document"</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Summarisation compresses. Extraction PULLS."]
+Key talking points:
+• These 6 lenses work on ANY document type — reports, contracts, proposals, meeting minutes, emails
+• You don't need all 6 every time. Pick the lenses that matter for YOUR purpose.
+• Example prompt: "Read this proposal and extract: (1) all risks mentioned or implied, (2) any open questions that aren't answered"
+• AI is surprisingly good at this because extraction is pattern matching — exactly what AI does well
+• Caveat: AI can miss implied/subtle information. It catches explicit things well, implicit things less so.
+Discussion prompt: "Which of these 6 lenses would be most valuable for the documents YOU read at work?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 16: PRACTICAL — APPLY 3 LENSES ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="practical-badge">🔨 PRACTICAL</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:4px;">Apply 3 Lenses</h2>
+    <div class="accent-bar"></div>
+    <ul class="practical-steps">
+      <li class="fragment fade-up"><span class="step-num">1</span><span>Use the same Employee Wellness Proposal from earlier</span></li>
+      <li class="fragment fade-up"><span class="step-num">2</span><span>Ask AI: "Extract all key themes from this document" — note what it finds</span></li>
+      <li class="fragment fade-up"><span class="step-num">3</span><span>Ask AI: "What open questions does this document NOT answer?" — note the gaps</span></li>
+      <li class="fragment fade-up"><span class="step-num">4</span><span>Ask AI: "What risks are mentioned or implied in this proposal?" — note the warnings</span></li>
+      <li class="fragment fade-up"><span class="step-num">5</span><span><strong>Compare:</strong> Did AI find things you missed? Did it invent things that aren't there?</span></li>
+    </ul>
+    <div class="footer-bar-dark fragment fade-up">⏱️ 5 minutes — you should get different results from each lens</div>
+  </div>
+  <aside class="notes">
+[TIMING: 6 min] [TRANSITION: "Let's put these lenses to work."]
+Key talking points:
+• Expected findings from the wellness proposal:
+  - Themes: employee wellbeing, cost reduction, competitive positioning
+  - Open questions: Who will manage the programme? What's the staffing plan? (intentional gap in the doc)
+  - Risks: unsupported ROI claim ("40% reduction" with no citation), timeline may be ambitious
+• Walk around — are students finding the intentional gaps? The unsupported claim?
+• The "open questions" lens is particularly powerful — it reveals what a document DOESN'T say
+Facilitation tip: After 5 min, ask: "Who found something they hadn't noticed when they first read the document?" This demonstrates the value of extraction lenses.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 17: QUIZ 1 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-main1">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🧠 KNOWLEDGE CHECK</div>
+    <div class="quiz-question">What's the difference between summarising and extracting?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-main1',0,2,'Correct answer is C. Summarising compresses the entire document into fewer words. Extracting pulls out specific TYPES of information (themes, risks, questions) without necessarily shortening the whole document.')">
+        <span class="opt-letter">A</span><span>Summarising is faster; extracting takes more time</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-main1',1,2,'Correct answer is C. Summarising compresses the entire document into fewer words. Extracting pulls out specific TYPES of information (themes, risks, questions) — it&apos;s about filtering by category, not by length.')">
+        <span class="opt-letter">B</span><span>They're the same thing with different names</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-main1',2,2,'Correct! Summarising compresses content (makes it shorter while keeping the essence). Extracting pulls specific types of information (themes, risks, questions, decisions) — it&apos;s like applying a filter rather than a compressor.')">
+        <span class="opt-letter">C</span><span>Summarising compresses content; extracting pulls specific types of info</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-main1',3,2,'Correct answer is C. Both can be done by AI. The difference is PURPOSE: summarising compresses the whole document shorter, extracting pulls specific categories of information (risks, themes, decisions) out of it.')">
+        <span class="opt-letter">D</span><span>Summarising is for AI; extracting is for humans</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1.5 min] Key talking points: Answer C. Summarising = compression (shorter version of everything). Extracting = filtering (specific types of info pulled out). Both are valuable, used for different purposes. A good document review uses BOTH.
+Bridge: "Now that you can summarise AND extract, let's add a third skill: critical review."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 18: CHAPTER 04 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">04</div>
+    <div class="chapter-title">AI-Assisted Critical Review</div>
+    <div class="chapter-sub">Use AI as your "critical friend" — finding gaps, contradictions, and weak claims</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Summarisation and extraction tell you what IS in a document. Critical review tells you what's WRONG with it."]
+Key talking points:
+• This chapter shifts from passive reading to active critique
+• AI can review documents for: logical gaps, unsupported claims, missing context, contradictions
+• Think of it as having a critical colleague who reads everything carefully and asks hard questions
+• This is especially valuable for proposals, business cases, and draft documents
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 19: THE REVIEW PROMPT PATTERN ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">The Review Prompt Pattern</h2>
+    <div class="accent-bar"></div>
+    <div style="font-size:15px;color:var(--text-muted);margin-bottom:14px;line-height:1.5;">Ask AI to review a document as your <span class="tip">"critical friend"<span class="tip-content">💡 A critical friend asks the uncomfortable questions you might miss because you're too close to the content. AI has no ego investment in the document, making it effective at spotting weaknesses.</span></span> — finding issues the author may have missed:</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div class="card fragment fade-up" style="padding:12px 16px;border-left:3px solid #E74C3C;">
+        <div style="font-size:14px;color:var(--text-light);"><strong>🔍 Logical Gaps</strong> — Where does the argument skip steps or assume too much?</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:12px 16px;border-left:3px solid #F59E0B;">
+        <div style="font-size:14px;color:var(--text-light);"><strong>📊 Unsupported Claims</strong> — Which statements lack evidence or citations?</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:12px 16px;border-left:3px solid var(--mint);">
+        <div style="font-size:14px;color:var(--text-light);"><strong>🕳️ Missing Context</strong> — What important information is absent?</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:12px 16px;border-left:3px solid var(--blue);">
+        <div style="font-size:14px;color:var(--text-light);"><strong>⚡ Contradictions</strong> — Do any parts of the document conflict with each other?</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:12px 16px;border-left:3px solid #8B5CF6;">
+        <div style="font-size:14px;color:var(--text-light);"><strong>❓ Unanswered Questions</strong> — What would a skeptical reader ask after reading this?</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:10px;">💡 Prompt: "Review this document as a critical friend. Identify logical gaps, unsupported claims, contradictions, and questions a reader would ask."</div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Here's how to turn AI into your critical reviewer."]
+Key talking points:
+• This is one of AI's most underused capabilities — document critique
+• Why it works: AI has no ego investment in the document. It's not trying to be polite.
+• The prompt pattern is simple: "Review this as a critical friend" + specify what you want it to look for
+• Important caveat: AI's critiques themselves need verification! Sometimes AI flags things that aren't actually problems.
+• Best practice: use this on YOUR OWN drafts before sharing with others
+• Real-world value: "Imagine catching a missing cost section in your proposal BEFORE the CFO reads it"
+Discussion prompt: "Would you rather find problems in your proposal yourself, or have your boss find them?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 20: DIALOGUE 2 — AMIT + KENJI ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:8px;max-height:none;overflow:visible;">
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:2px;">💬 Amit's Proposal Gets Reviewed</h2>
+    <div class="accent-bar" style="margin:4px 0 8px 0;"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=AmitOps" alt="Amit" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;background:#2D1B69;">
+        <div style="background:#2D1B69;border-radius:12px 12px 12px 0;padding:12px 16px;max-width:75%;position:relative;">
+          <div style="font-size:14px;color:var(--text-light);line-height:1.5;">Kenji, I just submitted my project proposal. Feeling pretty good about it — spent all week on it. 💪</div>
+          <div style="position:absolute;bottom:-6px;left:12px;width:12px;height:12px;background:#2D1B69;clip-path:polygon(0 0, 100% 0, 0 100%);"></div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;flex-direction:row-reverse;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=KenjiHR" alt="Kenji" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;background:#0E4D5C;">
+        <div style="background:#0E4D5C;border-radius:12px 12px 0 12px;padding:12px 16px;max-width:75%;position:relative;">
+          <div style="font-size:14px;color:var(--text-light);line-height:1.5;">I ran it through AI with the critical review prompt. It found 3 issues: you're missing a cost section for staffing, your "40% ROI" claim has no citation, and your timeline in section 2 contradicts section 4. 😬</div>
+          <div style="position:absolute;bottom:-6px;right:12px;width:12px;height:12px;background:#0E4D5C;clip-path:polygon(100% 0, 0 0, 100% 100%);"></div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=AmitOps" alt="Amit" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;background:#2D1B69;">
+        <div style="background:#2D1B69;border-radius:12px 12px 12px 0;padding:12px 16px;max-width:75%;position:relative;">
+          <div style="font-size:14px;color:var(--text-light);line-height:1.5;">...I'd rather find those now than have the budget committee find them next week. Can you show me how to do that review myself?</div>
+          <div style="position:absolute;bottom:-6px;left:12px;width:12px;height:12px;background:#2D1B69;clip-path:polygon(0 0, 100% 0, 0 100%);"></div>
+        </div>
+      </div>
+    </div>
+    <div class="teaser fragment fade-up">💡 Next: You'll do exactly what Kenji did — use AI to critically review a proposal</div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Here's this in practice."]
+Key talking points:
+• Amit's situation is common — you spend a week on something and miss obvious issues because you're too close
+• The 3 issues Kenji found are all in the sample proposal students will use next:
+  1. Missing staffing plan (logical gap)
+  2. Unsupported "40% reduction" claim (no citation)
+  3. Timeline contradiction (if applicable)
+• Key message: better to find problems yourself BEFORE submission than have reviewers find them
+• AI as critical friend has no ego — it won't soften feedback to spare your feelings
+Discussion prompt: "How would finding these issues BEFORE submission change the outcome?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 21: PRACTICAL — CRITIQUE THIS PROPOSAL ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="practical-badge">🔨 PRACTICAL</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:4px;">Critique This Proposal</h2>
+    <div class="accent-bar"></div>
+    <ul class="practical-steps">
+      <li class="fragment fade-up"><span class="step-num">1</span><span>Use the same Employee Wellness Proposal</span></li>
+      <li class="fragment fade-up"><span class="step-num">2</span><span>Prompt: "Review this proposal as a critical friend. Identify: logical gaps, unsupported claims, missing information, and contradictions."</span></li>
+      <li class="fragment fade-up"><span class="step-num">3</span><span>Read AI's critique carefully — does it find the missing staffing plan?</span></li>
+      <li class="fragment fade-up"><span class="step-num">4</span><span><strong>Verify AI's critiques:</strong> Are they valid? Re-read the source to check each one</span></li>
+      <li class="fragment fade-up"><span class="step-num">5</span><span>Note: Did AI flag anything that ISN'T actually a problem? (False positives happen)</span></li>
+    </ul>
+    <div class="footer-bar-dark fragment fade-up">⏱️ 5 minutes — then we'll discuss what AI found vs what's actually there</div>
+  </div>
+  <aside class="notes">
+[TIMING: 6 min] [TRANSITION: "Your turn to be Kenji."]
+Key talking points:
+• The sample proposal has intentional issues students should find:
+  1. No staffing plan (who runs the programme?)
+  2. "Studies show 40% reduction in sick days" — no citation provided
+  3. Budget estimate without breakdown
+• AI should find at least 2 of these. Some students may get more or fewer depending on their AI tool.
+• CRITICAL: step 4 — verify AI's critiques! AI sometimes flags things that aren't problems (false positives)
+• This teaches the meta-skill: critical thinking about AI's critical thinking
+Facilitation tip: After 5 min, ask: "Did anyone get a critique from AI that you disagreed with? That's important — AI isn't always right about what's wrong."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 22: CHAPTER 05 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">05</div>
+    <div class="chapter-title">Synthesising Multiple Sources</div>
+    <div class="chapter-sub">Find common ground, contradictions, and unique insights across documents</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "So far we've worked with single documents. Now let's tackle the hardest task: synthesising MULTIPLE sources."]
+Key talking points:
+• Synthesis is the highest-level document skill — combining insights from multiple sources
+• This is what researchers, analysts, and decision-makers do: read 3-5 documents and form a coherent picture
+• AI can help identify: common themes, contradictions, unique insights, and consensus vs disagreement
+• Warning: this is where AI hallucination risk is highest — it may "invent" connections
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 23: FROM REVIEW TO SYNTHESIS ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">From Review to Synthesis</h2>
+    <div class="accent-bar"></div>
+    <div style="font-size:15px;color:var(--text-muted);margin-bottom:12px;line-height:1.5;">When you have 3-5 documents on the same topic, AI can synthesise across all of them:</div>
+    <div class="grid-3col" style="gap:10px;margin-top:10px;">
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;border-top:3px solid #27AE60;">
+        <div style="font-size:24px;margin-bottom:6px;">🤝</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px;">Common Ground</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">What do all sources agree on? Where's consensus?</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;border-top:3px solid #E74C3C;">
+        <div style="font-size:24px;margin-bottom:6px;">⚔️</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px;">Contradictions</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">Where do sources disagree? What are the tensions?</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;border-top:3px solid var(--blue);">
+        <div style="font-size:24px;margin-bottom:6px;">💎</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text-light);margin-bottom:6px;">Unique Insights</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.5;">What does only ONE source mention that others miss?</div>
+      </div>
+    </div>
+    <div class="card fragment fade-up" style="margin-top:14px;padding:14px 18px;border-left:3px solid #F59E0B;">
+      <div style="font-size:14px;color:var(--text-light);line-height:1.6;">⚠️ <strong>Critical Warning:</strong> AI can hallucinate consensus — claiming sources agree when they don't, or inventing connections between unrelated points. Always verify synthesis claims against each source individually.</div>
+    </div>
+  </div>
+  <aside class="notes">
+[TIMING: 4 min] [TRANSITION: "Synthesis is the most powerful — and most dangerous — AI document skill."]
+Key talking points:
+• Synthesis = combining insights from multiple sources into a coherent picture
+• Three things to look for: agreement, disagreement, and unique contributions
+• Real-world example: "You have reports from Finance, HR, and Operations about the same initiative. What do they agree on? Where do they clash?"
+• CRITICAL WARNING: AI hallucination risk is highest in synthesis. AI may claim "all three sources agree that..." when actually only one does.
+• Verification is non-negotiable: always check synthesis claims against each original source
+• This is where the Anchor Guardrail matters most
+Discussion prompt: "Have you ever read conflicting reports about the same topic? How did you reconcile them?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 24: PRACTICAL — SYNTHESISE 3 SOURCES ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="practical-badge">🔨 PRACTICAL</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:4px;">Synthesise 3 Sources</h2>
+    <div class="accent-bar"></div>
+    <ul class="practical-steps">
+      <li class="fragment fade-up"><span class="step-num">1</span><span>Open the 3 provided excerpts on your student page (CFO, HR, and Operations perspectives)</span></li>
+      <li class="fragment fade-up"><span class="step-num">2</span><span>Paste all 3 into AI and prompt: "These are 3 perspectives on the same initiative. Identify: (1) where they agree, (2) where they contradict, (3) unique insights from each."</span></li>
+      <li class="fragment fade-up"><span class="step-num">3</span><span>Read AI's synthesis — does it accurately represent each source?</span></li>
+      <li class="fragment fade-up"><span class="step-num">4</span><span><strong>Verify:</strong> Go back to each original excerpt. Did AI invent any agreements or contradictions?</span></li>
+    </ul>
+    <div class="footer-bar-dark fragment fade-up">⏱️ 6 minutes — compare AI's synthesis to your own reading of the 3 sources</div>
+  </div>
+  <aside class="notes">
+[TIMING: 7 min] [TRANSITION: "This is the most advanced exercise today. Take your time."]
+Key talking points:
+• The 3 excerpts provide genuinely different perspectives:
+  - CFO: cost-focused, skeptical of ROI claims, wants hard numbers
+  - HR: employee engagement focus, retention benefits, wellbeing metrics
+  - Operations: timeline concerns, implementation complexity, resource requirements
+• Expected synthesis: they agree the programme has potential; they disagree on priority and whether ROI justifies cost
+• Watch for: AI claiming all three "support the initiative" — the CFO excerpt is actually skeptical
+• Verification step is crucial: students should catch if AI overstates consensus
+Facilitation tip: Walk around checking if anyone noticed AI hallucinating agreement. Ask: "Did AI say all three agreed on something? Go check — is that actually true?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 25: GROUP TASK — THE BRIEFING ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="group-badge">👥 GROUP TASK</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:4px;">The Briefing</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="gap:14px;margin-top:10px;">
+      <div class="card fragment fade-up" style="border-left:3px solid #F59E0B;padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:#F59E0B;margin-bottom:8px;">📋 Instructions</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          1. Form groups of 3-4<br>
+          2. Each person takes ONE excerpt (CFO / HR / Ops)<br>
+          3. Summarise YOUR excerpt in 2-3 sentences<br>
+          4. Share summaries with your group<br>
+          5. Together: create ONE team brief combining all perspectives
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid var(--mint);padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:8px;">🔍 Compare</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          • How does your HUMAN synthesis compare to AI's?<br>
+          • Did you catch tensions AI missed?<br>
+          • Did AI find patterns you didn't notice?<br>
+          • Which synthesis would you trust more? Why?<br>
+          • What does AI miss about organisational politics?
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar-dark fragment fade-up">⏱️ 8 minutes total: 3 min individual + 5 min group synthesis — then debrief</div>
+  </div>
+  <aside class="notes">
+[TIMING: 10 min] [TRANSITION: "Now let's see how human synthesis compares to AI synthesis."]
+Key talking points:
+• This exercise deliberately compares human vs AI synthesis on the same materials
+• Human advantage: understanding organisational politics, reading between the lines, knowing which disagreements are deal-breakers
+• AI advantage: systematically identifying every point of agreement/disagreement, not missing details
+• Debrief questions: "Where was AI better? Where were humans better? What does this tell you about when to use each?"
+• Expected insight: AI is good at finding EXPLICIT connections; humans are better at IMPLICIT ones
+Facilitation tip: After 8 min, ask 1-2 groups to share their human synthesis vs AI's. Discuss differences.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 26: QUIZ 2 ==================== -->
+<section data-background-color="#0F0A2E" id="quiz-main2">
+  <div style="padding-top:28px;">
+    <div class="quiz-label">🧠 KNOWLEDGE CHECK</div>
+    <div class="quiz-question">When synthesising multiple documents, what should you watch for?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="quizAnswer('quiz-main2',0,1,'Correct answer is B. AI can hallucinate consensus — claiming sources agree when they don&apos;t, or inventing connections between unrelated points. Always go back to each original source and verify the claimed relationships.')">
+        <span class="opt-letter">A</span><span>AI taking too long to process multiple documents</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-main2',1,1,'Correct! AI&apos;s biggest synthesis risk is hallucinating consensus — claiming sources agree when they don&apos;t, or inventing connections between unrelated points. Always go back to each original source and verify.')">
+        <span class="opt-letter">B</span><span>AI inventing connections or hallucinating consensus</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-main2',2,1,'Correct answer is B. While formatting can be a minor issue, the real danger is AI fabricating connections between sources — claiming agreement that doesn&apos;t exist, or inventing patterns across documents.')">
+        <span class="opt-letter">C</span><span>Documents being in different formats</span>
+      </div>
+      <div class="quiz-opt" onclick="quizAnswer('quiz-main2',3,1,'Correct answer is B. AI can handle multiple documents fine technically. The risk is that it INVENTS connections — claiming consensus that doesn&apos;t exist or fabricating patterns across the sources.')">
+        <span class="opt-letter">D</span><span>AI being unable to read more than one document</span>
+      </div>
+    </div>
+    <div class="quiz-explain"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 1.5 min] Key talking points: Answer B — hallucinating consensus. This is THE key risk of AI synthesis. AI wants to find patterns and connections — sometimes it manufactures them. The Anchor Guardrail is your defence: always check claims against each original source.
+Bridge: "This is why human judgment remains essential. Let's wrap up with the full toolkit in action."
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 27: CHAPTER 06 DIVIDER ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:30px;">
+    <div class="chapter-num">06</div>
+    <div class="chapter-title">Wrap-up</div>
+    <div class="chapter-sub">The complete document intelligence toolkit — from one report to full synthesis</div>
+    <div class="chapter-rule"></div>
+  </div>
+  <aside class="notes">
+[TIMING: 0.5 min] [TRANSITION: "Let's bring everything together."]
+Key talking points:
+• This closing chapter shows the full toolkit in action
+• We'll see Rachel demonstrate the complete workflow
+• Then pairs will teach each other the techniques
+• Finally: key takeaways and next module preview
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 28: DIALOGUE 3 — RACHEL FULL TOOLKIT ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:8px;max-height:none;overflow:visible;">
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:2px;">💬 Rachel's Full Toolkit Demo</h2>
+    <div class="accent-bar" style="margin:4px 0 8px 0;"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;flex-direction:row-reverse;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=RachelCFO" alt="Rachel" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;background:#0E4D5C;">
+        <div style="background:#0E4D5C;border-radius:12px 12px 0 12px;padding:12px 16px;max-width:80%;position:relative;">
+          <div style="font-size:14px;color:var(--text-light);line-height:1.5;">Let me show you my morning routine: 50-page compliance report. Summarised at 3 resolutions, extracted the key risks, then synthesised with 2 related policy documents. 15 minutes total.</div>
+          <div style="position:absolute;bottom:-6px;right:12px;width:12px;height:12px;background:#0E4D5C;clip-path:polygon(100% 0, 0 0, 100% 100%);"></div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=KenjiHR" alt="Kenji" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;background:#2D1B69;">
+        <div style="background:#2D1B69;border-radius:12px 12px 12px 0;padding:12px 16px;max-width:75%;position:relative;">
+          <div style="font-size:14px;color:var(--text-light);line-height:1.5;">That would have taken me 3 hours. What did you DO with the time you saved? 🤔</div>
+          <div style="position:absolute;bottom:-6px;left:12px;width:12px;height:12px;background:#2D1B69;clip-path:polygon(0 0, 100% 0, 0 100%);"></div>
+        </div>
+      </div>
+      <div class="fragment fade-up" style="display:flex;gap:14px;align-items:flex-end;flex-direction:row-reverse;">
+        <img src="https://api.dicebear.com/8.x/avataaars/svg?seed=RachelCFO" alt="Rachel" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;background:#0E4D5C;">
+        <div style="background:#0E4D5C;border-radius:12px 12px 0 12px;padding:12px 16px;max-width:75%;position:relative;">
+          <div style="font-size:14px;color:var(--text-light);line-height:1.5;">I spent 30 minutes DEEPLY reading only the 4 pages that required my judgment. AI handles the volume; I handle the decisions.</div>
+          <div style="position:absolute;bottom:-6px;right:12px;width:12px;height:12px;background:#0E4D5C;clip-path:polygon(100% 0, 0 0, 100% 100%);"></div>
+        </div>
+      </div>
+    </div>
+    <div class="teaser fragment fade-up">💡 AI handles volume; you handle judgment. That's the partnership.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Here's the full workflow in real life."]
+Key talking points:
+• Rachel demonstrates all skills combined: summarise → extract → synthesise
+• Key insight from Kenji: the TIME SAVED isn't the point. It's what you DO with that time.
+• Rachel's answer is the correct framing: AI handles mechanical reading; humans handle judgment
+• The "4 pages that required judgment" — this is triage. AI helps you find WHERE to focus.
+• Frame: "Not 'AI reads everything for me' but 'AI helps me find where to invest my attention.'"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 29: GROUP TASK — TEACH-BACK ==================== -->
+<section data-background-color="#1A1050">
+  <div style="padding-top:14px;">
+    <div class="group-badge">👥 GROUP TASK</div>
+    <h2 class="slide-title-dark" style="font-size:22px;font-weight:800;margin-bottom:4px;">Teach-Back</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="gap:14px;margin-top:10px;">
+      <div class="card fragment fade-up" style="border-left:3px solid var(--mint);padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:8px;">👤 Person A teaches:</div>
+        <div style="font-size:15px;color:var(--text-light);line-height:1.7;">
+          <strong>Multi-Resolution Summarisation</strong><br>
+          • What are the 3 levels?<br>
+          • When would you use each one?<br>
+          • What's the biggest mistake people make?
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid var(--blue);padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:8px;">👤 Person B teaches:</div>
+        <div style="font-size:15px;color:var(--text-light);line-height:1.7;">
+          <strong>Extraction Lenses</strong><br>
+          • What are the 6 lenses?<br>
+          • How is extracting different from summarising?<br>
+          • Which lens is most useful for YOUR work?
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar-dark fragment fade-up">⏱️ 4 minutes total: 2 minutes each — teaching is the best way to learn</div>
+  </div>
+  <aside class="notes">
+[TIMING: 5 min] [TRANSITION: "The best test of understanding: can you teach it?"]
+Key talking points:
+• Pair up — Person A teaches multi-resolution, Person B teaches extraction lenses
+• 2 minutes each way — keep it concise and practical
+• This isn't a test — it's a learning technique. Teaching forces you to organise your understanding.
+• Walk around and listen for misconceptions you can address in the debrief
+• Common misconception to watch for: confusing summarising with extracting
+Facilitation tip: After 4 min, ask: "Did anyone's partner explain it in a way that gave you a new insight?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 30: KEY TAKEAWAYS ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Key Takeaways</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2x2" style="gap:12px;margin-top:12px;">
+      <div class="closing-card fragment fade-up">
+        <div style="font-size:16px;font-weight:700;color:var(--mint);margin-bottom:6px;">📐 Multi-Resolution</div>
+        <div style="font-size:14px;">One document, three summaries. Each serves a different audience. Always specify the resolution — "summarise this" is too vague.</div>
+      </div>
+      <div class="closing-card fragment fade-up">
+        <div style="font-size:16px;font-weight:700;color:var(--mint);margin-bottom:6px;">🔍 Extraction Lenses</div>
+        <div style="font-size:14px;">Themes, risks, questions, actions, decisions, sentiment. Apply any lens to any document. Extraction pulls; summarisation compresses.</div>
+      </div>
+      <div class="closing-card fragment fade-up">
+        <div style="font-size:16px;font-weight:700;color:var(--mint);margin-bottom:6px;">🎯 Critical Review</div>
+        <div style="font-size:14px;">AI as your "critical friend" finds gaps, unsupported claims, and contradictions. Always verify AI's critiques are valid too.</div>
+      </div>
+      <div class="closing-card fragment fade-up">
+        <div style="font-size:16px;font-weight:700;color:var(--mint);margin-bottom:6px;">⚠️ Synthesis Verification</div>
+        <div style="font-size:14px;">AI can hallucinate consensus across documents. Always check synthesis claims against each original source individually.</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:12px;">🧠 AI handles volume; you handle judgment. That's the partnership.</div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Let's capture what we've learned."]
+Key talking points:
+• Four skills that combine into a powerful document workflow:
+  1. Multi-resolution: control the zoom level of your summaries
+  2. Extraction: pull specific types of information on demand
+  3. Critical review: use AI to find weaknesses in documents
+  4. Synthesis: combine insights from multiple sources (with verification)
+• The thread: VERIFICATION. AI handles the mechanics; you handle the judgment.
+Discussion prompt: "Which of today's 4 skills will you use first at work this week?"
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 31: NEXT MODULE PREVIEW + HOMEWORK ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:14px;">
+    <h2 class="slide-title-dark" style="font-size:24px;font-weight:800;margin-bottom:4px;">Before Next Time</h2>
+    <div class="accent-bar"></div>
+    <div class="grid-2col" style="gap:14px;margin-top:12px;">
+      <div class="card fragment fade-up" style="border-left:3px solid var(--mint);padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--mint);margin-bottom:8px;">📝 Homework</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          1. Take a real work document (5+ pages) and produce all 3 resolution levels<br>
+          2. Apply at least 2 extraction lenses to the same document<br>
+          3. Use the critical review prompt on something you've written<br>
+          4. Note: what did AI find that you missed? What did it get wrong?
+        </div>
+      </div>
+      <div class="card fragment fade-up" style="border-left:3px solid var(--blue);padding:16px;">
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:8px;">🔮 Module 7 Preview</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+          <strong>Writing &amp; Communication with AI</strong><br><br>
+          • Drafting professional emails and documents<br>
+          • Tone adjustment and audience adaptation<br>
+          • Editing and proofreading workflows<br>
+          • When AI writing helps vs when it hurts
+        </div>
+      </div>
+    </div>
+    <div class="teaser fragment fade-up">💡 Today's summary skills feed directly into Module 7's writing skills — two sides of the same coin</div>
+  </div>
+  <aside class="notes">
+[TIMING: 2 min] [TRANSITION: "Here's what to do before we meet again."]
+Key talking points:
+• Homework is designed to be immediately useful — use REAL work documents
+• Privacy reminder: apply the Safe Prompt Pattern if documents contain sensitive data
+• The critical review on your OWN writing is the most valuable exercise
+• Module 7 connection: today you learned to READ better; next time you'll WRITE better
+• Summarisation and writing are complementary skills
+Facilitation tip: Encourage people to share homework results in a group chat or next session opening.
+  </aside>
+</section>
+
+<!-- ==================== SLIDE 32: THANK YOU ==================== -->
+<section data-background-color="#0F0A2E">
+  <div style="padding-top:40px;text-align:center;">
+    <div style="font-size:48px;margin-bottom:16px;">📄✨</div>
+    <h2 class="slide-title-dark" style="font-size:30px;font-weight:800;margin-bottom:8px;text-align:center;">Thank You!</h2>
+    <div style="font-size:17px;color:var(--text-muted);margin-bottom:24px;text-align:center;">Module 6: Reviewing &amp; Summarising Documents — Complete</div>
+    <div style="width:80px;height:3px;background:var(--mint);border-radius:2px;margin:0 auto 24px auto;"></div>
+    <div class="grid-3col" style="gap:10px;max-width:700px;margin:0 auto;">
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;">
+        <div style="font-size:20px;margin-bottom:4px;">📐</div>
+        <div style="font-size:13px;color:var(--text-muted);">Multi-Resolution Summaries</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;">
+        <div style="font-size:20px;margin-bottom:4px;">🔍</div>
+        <div style="font-size:13px;color:var(--text-muted);">Extraction Lenses</div>
+      </div>
+      <div class="card fragment fade-up" style="padding:14px;text-align:center;">
+        <div style="font-size:20px;margin-bottom:4px;">🤝</div>
+        <div style="font-size:13px;color:var(--text-muted);">Document Synthesis</div>
+      </div>
+    </div>
+    <div class="footer-bar fragment fade-up" style="margin-top:20px;max-width:500px;margin-left:auto;margin-right:auto;">See you in Module 7: Writing &amp; Communication with AI</div>
+  </div>
+  <aside class="notes">
+[TIMING: 1 min] [TRANSITION: "That's a wrap!"]
+Key talking points:
+• Thank everyone for a very interactive session
+• Recap: from one-line summaries to full multi-document synthesis
+• The key skill isn't using AI — it's VERIFYING what AI produces
+• Anchor Guardrail is your constant companion: every summary traces back to the source
+• Encourage homework — real documents, real practice, real results
+• Module 7 date/time reminder — offer to stay for questions
+Facilitation tip: "You've just learned to process documents 5-10x faster. You can do this at your desk tomorrow with any document in your inbox."
+  </aside>
+</section>
+
+</div><!-- /.slides -->
+</div><!-- /.reveal -->
+
+<!-- Reveal.js & Initialization -->
+<script type="module">
+  import Reveal from 'https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.esm.js';
+  import RevealNotes from 'https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.esm.js';
+
+  const deck = Reveal.initialize({
+    hash: true,
+    slideNumber: function(slide) {
+      const h = Reveal.getIndices(slide).h + 1;
+      return [h + ' / 32'];
+    },
+    showSlideNumber: 'all',
+    progress: true,
+    keyboard: true,
+    overview: true,
+    center: true,
+    touch: true,
+    loop: false,
+    autoSlide: 0,
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    width: 1280,
+    height: 720,
+    margin: 0.06,
+    minScale: 0.2,
+    maxScale: 2.0,
+    plugins: [RevealNotes]
+  });
+
+  deck.then(() => {
+    const navLinks = document.querySelectorAll('#session-nav a');
+    const chapters = [6, 9, 13, 17, 21, 26];
+
+    function updateNav() {
+      const current = Reveal.getIndices().h;
+      navLinks.forEach((link, i) => {
+        link.classList.remove('nav-active');
+        if (i < chapters.length - 1 && current >= chapters[i] && current < chapters[i+1]) {
+          link.classList.add('nav-active');
+        } else if (i === chapters.length - 1 && current >= chapters[i]) {
+          link.classList.add('nav-active');
+        }
+      });
+    }
+
+    Reveal.on('slidechanged', updateNav);
+    updateNav();
+  });
+</script>
+
+<!-- Graceful fallback for offline use -->
+<noscript>
+  <style>
+    .reveal .fragment { opacity: 1 !important; transform: none !important; }
+    .reveal .slides section { display: block !important; }
+  </style>
+</noscript>
+<script>
+  window.addEventListener('error', function(e) {
+    if (e.filename && e.filename.includes('reveal')) {
+      document.querySelectorAll('.fragment').forEach(function(el) {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+      document.querySelector('.reveal').style.overflow = 'auto';
+      document.querySelectorAll('.reveal .slides section').forEach(function(s) {
+        s.style.display = 'block';
+        s.style.position = 'relative';
+        s.style.width = '100%';
+        s.style.minHeight = '100vh';
+        s.style.padding = '48px';
+        s.style.boxSizing = 'border-box';
+        s.style.borderBottom = '2px solid rgba(8,145,178,0.3)';
+      });
+    }
+  }, true);
+</script>
+
+<!-- Quiz handler -->
+<script>
+  function quizAnswer(slideId, selectedIdx, correctIdx, explanation) {
+    var container = document.getElementById(slideId);
+    if (!container) return;
+    var opts = container.querySelectorAll('.quiz-opt');
+    opts.forEach(function(opt, i) {
+      opt.classList.add('disabled');
+      if (i === correctIdx) {
+        opt.classList.add('correct');
+        opt.querySelector('.opt-letter').textContent = '✓';
+      }
+      if (i === selectedIdx && selectedIdx !== correctIdx) {
+        opt.classList.add('wrong');
+        opt.querySelector('.opt-letter').textContent = '✗';
+      }
+    });
+    var explainEl = container.querySelector('.quiz-explain');
+    if (explainEl) {
+      explainEl.textContent = explanation;
+      explainEl.classList.add('show');
+    }
+  }
+  window.quizAnswer = quizAnswer;
+</script>
+
+<!-- Tooltip mobile tap-to-toggle -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.tip').forEach(function(el) {
+      el.setAttribute('tabindex', '0');
+      el.addEventListener('click', function(e) {
+        e.stopPropagation();
+        document.querySelectorAll('.tip .tip-content').forEach(function(t) {
+          t.style.display = 'none';
+        });
+        var content = el.querySelector('.tip-content');
+        if (content) {
+          content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        }
+      });
+    });
+    document.addEventListener('click', function() {
+      document.querySelectorAll('.tip .tip-content').forEach(function(t) {
+        t.style.display = '';
+      });
+    });
+  });
+</script>
+
+<!-- Passcode Gate -->
+<script>
+  (function() {
+    var PASSCODE = 'G2026';
+    var gate = document.getElementById('passcode-gate');
+    var input = document.getElementById('gate-input');
+    var error = document.getElementById('gate-error');
+    var nav = document.getElementById('session-nav');
+
+    if (sessionStorage.getItem('ai-studio-auth') === 'true') {
+      gate.style.display = 'none';
+      nav.style.display = 'flex';
+    } else {
+      document.querySelector('.reveal').style.display = 'none';
+    }
+
+    input.addEventListener('input', function() {
+      error.style.display = 'none';
+      if (input.value.length === 5) {
+        if (input.value.toUpperCase() === PASSCODE) {
+          sessionStorage.setItem('ai-studio-auth', 'true');
+          gate.style.display = 'none';
+          nav.style.display = 'flex';
+          document.querySelector('.reveal').style.display = '';
+          setTimeout(function() {
+            if (window.Reveal && window.Reveal.layout) {
+              window.Reveal.layout();
+            }
+          }, 100);
+        } else {
+          error.style.display = 'block';
+          input.value = '';
+          input.focus();
+        }
+      }
+    });
+
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && input.value.length >= 4) {
+        if (input.value.toUpperCase() === PASSCODE) {
+          sessionStorage.setItem('ai-studio-auth', 'true');
+          gate.style.display = 'none';
+          nav.style.display = 'flex';
+          document.querySelector('.reveal').style.display = '';
+          setTimeout(function() {
+            if (window.Reveal && window.Reveal.layout) {
+              window.Reveal.layout();
+            }
+          }, 100);
+        } else {
+          error.style.display = 'block';
+          input.value = '';
+        }
+      }
+    });
+
+    setTimeout(function() { input.focus(); }, 300);
+  })();
+</script>
+</body>
+</html>
