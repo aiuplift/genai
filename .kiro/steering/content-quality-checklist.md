@@ -96,6 +96,15 @@ Every module MUST include **2-3 comic-style dialogue slides** inserted between t
 - Place dialogues BEFORE the corresponding practical exercise (primes the learning)
 - Each dialogue should be 3-4 messages max (fits on one slide)
 
+### Group Tasks (Module 5+)
+Every module from Module 5 onward MUST include **2-3 group/pair activities** to encourage collaboration:
+- Place after individual practical exercises (so students have something to share)
+- Types: peer critique, partner verification, small group presentation, debate/discussion
+- Format: distinct slide with 👥 GROUP badge, clear instructions, time allocation, and debrief prompt
+- Always include "What to share" and "What to look for in your partner's work"
+- Groups of 2-4 people depending on the task
+- End each group task with a facilitated debrief (2-3 volunteers share findings)
+
 ### Example & Scenario Guidelines
 - All examples MUST be industry-agnostic (finance, HR, admin, law, teaching, operations)
 - NEVER use software engineering examples (no APIs, sprints, deployments, code reviews)
