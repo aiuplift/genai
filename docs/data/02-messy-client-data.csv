@@ -1,0 +1,17 @@
+Company_Name,Date_Joined,Annual_Revenue,Region,Status,Contact_Email
+Acme Corp,15/03/2024,$45000,london,Active,j.smith@acme.com
+Beta Ltd,2024-04-22,38000,LONDON,active,info@beta.co.uk
+Acme Corp,15/03/2024,$45000,london,Active,j.smith@acme.com
+Gamma Inc,March 2024,,Manchester,Inactive,
+Delta Co,2024-01-15,$62500,Edinburgh,Active,hello@delta.io
+Beta Ltd,22 Apr 2024,£38000,London,ACTIVE,info@beta.co.uk
+Epsilon Group,01-06-2024,$28000,london,active,team@epsilon.com
+Zeta Partners,2024/02/28,$51000,Birmingham,Active,contact@zeta.biz
+Eta Solutions,Feb 2024,$33000,MANCHESTER,active,
+Theta Corp,2024-03-10,$47500,Edinburgh,Inactive,admin@theta.co
+Iota Ltd,10th January 2024,$55000,London,Active,hello@iota.com
+Kappa Inc,2024-05-15,42000,leeds,Active,info@kappa.org
+Lambda Co,May 2024,$39000,LEEDS,active,
+Mu Group,2024-01-20,$71000,London,Active,ceo@mu-group.com
+Nu Partners,20/04/2024,$44500,manchester,Active,team@nu.co.uk
+Zeta Partners,28-02-2024,£51000,Birmingham,ACTIVE,contact@zeta.biz
